@@ -1,4 +1,4 @@
-package models;
+package server.models;
 
 public class TestModel {
     /*
