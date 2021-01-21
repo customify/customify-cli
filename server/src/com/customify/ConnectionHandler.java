@@ -73,7 +73,6 @@ public class ConnectionHandler {
             //e.printStackTrace();
         }
     }
-
     public void socketClose(){
         try{ this.output.close();
             this.input.close();
