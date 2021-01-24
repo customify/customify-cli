@@ -1,4 +1,4 @@
-package customify;
+package customify.shared;
 
 import java.io.Serializable;
 

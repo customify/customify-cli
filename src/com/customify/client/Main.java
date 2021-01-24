@@ -1,7 +1,8 @@
 package customify.client;
 
 
-import customify.Request;
+import customify.client.views.Home;
+import customify.shared.Request;
 
 import java.io.*;
 import java.net.*;
@@ -12,6 +13,7 @@ public class Main {
     private OutputStream output = null;
     private ObjectOutputStream objectOutput = null;
     private boolean isConnectionOn = true;
+    Socket socket;
 
     public Main(String serverIP){
         System.out.println(serverIP);
@@ -30,7 +32,7 @@ public class Main {
         int portNumber = 3000;
         try{
 
-            Socket socket = new Socket(serverIp, portNumber);
+            this.socket = new Socket(serverIp, portNumber);
             this.output = socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(output);
 
@@ -59,14 +61,21 @@ public class Main {
         String userInput;
 
         try{
-            System.out.println("Enter key request: ");
-            key = reader.readLine();
+            Home homeView = new Home();
+            homeView.displayHome();
 
-            System.out.println("Enter data: ");
-            userInput = reader.readLine();
 
-            Request request = new Request(key,userInput);
-            dataFromUser.add(request);
+
+//            System.out.println("Enter key request: ");
+//            key = reader.readLine();
+
+//            System.out.println("Enter data: ");
+//            userInput = reader.readLine();
+
+//           Request request = new Request(key,userInput);
+//           dataFromUser.add(request);
+
+
 
         }catch (NullPointerException e){
             e.printStackTrace();
@@ -84,6 +93,8 @@ public class Main {
             Request req = (Request)dataToSend.get(i);
         }
         this.objectOutput.writeObject(dataToSend);
+        DataInputStream serverInput = new DataInputStream(this.socket.getInputStream());
+        System.out.println(serverInput.readUTF());
     }
 }
 
