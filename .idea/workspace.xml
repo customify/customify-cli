@@ -2,41 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Shared.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Signup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/AuthRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/HomeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/LoginHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Views.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/project-template.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/customify/ConnectionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/customify/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/project-template.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/com/customify/ConnectionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/com/customify/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Shared.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Signup.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
