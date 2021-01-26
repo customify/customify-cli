@@ -1,9 +1,10 @@
 package customify.client;
 
 
-import customify.client.views.Home;
+import customify.client.views.Views;
 import customify.shared.Request;
 
+import javax.swing.text.View;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -42,7 +43,9 @@ public class Main {
 
             List<Object> query = new ArrayList<Object>();
             while(isConnectionOn){
-                this.sendToServer(this.readFromConsole());
+                Views views = new Views();
+                views.HomeView();
+//                this.sendToServer(this.readFromConsole());
             }
 
         }catch (Exception e){
@@ -61,9 +64,8 @@ public class Main {
         String userInput;
 
         try{
-            Home homeView = new Home();
-            homeView.displayHome();
-
+            Views views = new Views();
+            views.HomeView();
 
 
 //            System.out.println("Enter key request: ");
