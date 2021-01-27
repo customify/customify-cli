@@ -7,7 +7,6 @@ import java.net.Socket;
 public class Auth {
     DataOutputStream output;
 
-
     public void login(Socket socket)throws IOException{
         output = new DataOutputStream(socket.getOutputStream());
         output.writeUTF("You success fully logged in");

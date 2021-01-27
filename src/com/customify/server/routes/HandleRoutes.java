@@ -12,10 +12,10 @@ public class HandleRoutes {
         this.socket = socket;
         this.authRoute = new AuthRoute(socket);
         this.key = key;
-        this.swithcRoutes();
+        this.switchRoutes();
     }
 
-    public void swithcRoutes() throws IOException {
+    public void switchRoutes() throws IOException {
         switch (this.key) {
             case "login":
                 authRoute.loginRoute();

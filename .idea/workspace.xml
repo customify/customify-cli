@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/HomeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/LoginHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Views.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Shared.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Signup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +34,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../NetworkingProgramming" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -50,7 +46,7 @@
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientMain">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="ClientMain" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="customify.client.Main" />
       <method v="2">
@@ -59,6 +55,17 @@
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" singleton="false">
       <option name="MAIN_CLASS_NAME" value="customify.server.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -76,8 +83,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611084407271</updated>
+      <workItem from="1611771414072" duration="58000" />
+      <workItem from="1611771495749" duration="2111000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

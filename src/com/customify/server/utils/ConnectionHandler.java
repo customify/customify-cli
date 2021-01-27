@@ -26,7 +26,7 @@ public class ConnectionHandler {
                 System.out.println("-------------------QUERY FROM FRONTEND--------------------");
                 clientRequest.forEach((data)-> System.out.println("Key "+data.getKey()+" value: "+data.getRequestData()));
                 HandleRoutes handleRoutes = new HandleRoutes(clientRequest.get(0).getKey(), this.clientSocket);
-                handleRoutes.swithcRoutes();
+                handleRoutes.switchRoutes();
 
                 DataInputStream response = new DataInputStream(this.clientSocket.getInputStream());
                 System.out.println(response.readUTF());
