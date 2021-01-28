@@ -29,7 +29,7 @@ git pull origin main
 git push origin <your branch>
 ```
 
-**Note** Please don't ~~commit dirrectly to main branch.~~
+**Note** Please don't `commit to the main branch`
 
 Resources
 
