@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/Product.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,17 +74,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.ClientMain" />
@@ -102,7 +91,8 @@
       <workItem from="1611771495749" duration="2972000" />
       <workItem from="1611775058197" duration="95000" />
       <workItem from="1611775184079" duration="113000" />
-      <workItem from="1611781622854" duration="1058000" />
+      <workItem from="1611781622854" duration="1191000" />
+      <workItem from="1611811173000" duration="521000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
