@@ -33,8 +33,11 @@ git push origin <your branch>
 
 Resources
 [Project SRS Document](https://docs.google.com/document/d/1QQb2NpTqJYs0DBmqgORl_rMlQrSiHjMEPdxY3kaue-8/edit#)
+---
 [GitHub repository](https://github.com/PatrickNiyogitare28/customify)
+---
 [See branches created for you](https://github.com/PatrickNiyogitare28/customify/branches)
+---
 [Trello Khanban board](https://trello.com/b/CfQDY64n/customfy)
 
 Happy hacking!
