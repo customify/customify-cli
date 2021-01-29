@@ -31,6 +31,25 @@ git push origin <your branch>
 
 **Note** Please don't `commit to the main branch`
 
+
+### Doc backend
+
+The `database` we are using is hosted on the cloud you don't have even to know its  name
+What you will rather do is to just to call a static variable  statement from Db class and connect it
+
+
+To access database in the shell run
+
+
+```bash
+  mysql -h bsnlibok3ll8qs778xbx-mysql.services.clever-cloud.com -P 3306 -u uqq6c1ewt1hkbzwd -p bsnlibok3ll8qs778xbx
+```
+
+The password is 
+```bash
+   jaW3mRUAAwzTAiOTVkZu
+```
+
 Resources
 
 1. [Project SRS Document](https://docs.google.com/document/d/1QQb2NpTqJYs0DBmqgORl_rMlQrSiHjMEPdxY3kaue-8/edit#)
@@ -39,5 +58,3 @@ Resources
 4. [Trello Khanban board](https://trello.com/b/CfQDY64n/customfy)
 
 Happy hacking!
-
-Created with 💔 by [Jacques Twizeyimana](https://github.com/PatrickNiyogitare28/customify/commits?author=jtwizeyimana)

@@ -49,37 +49,5 @@ public class Main {
         }
         return true;
     }
-
-
-
-    //--------------------  read request from console ------------
-//    private List<Request> readFromConsole() throws IOException {
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//        List<Request> dataFromUser = new ArrayList<>();
-//        String key;
-//        String userInput;
-//
-//        try{
-//            Home home = new Home();
-//            home.view();
-//        }catch (NullPointerException e){
-//            e.printStackTrace();
-//        }
-//
-//        for(int i = 0; i < dataFromUser.size(); i++){
-//            Request req = (Request)dataFromUser.get(i);
-//            System.out.println("Key: "+req.getKey()+" value: "+req.getRequestData());
-//        }
-//        return dataFromUser;
-//    }
-
-//    public void sendToServer(List<Request> dataToSend) throws IOException {
-//        for(int i = 0; i < dataToSend.size(); i++){
-//            Request req = (Request)dataToSend.get(i);
-//        }
-//        this.objectOutput.writeObject(dataToSend);
-//        DataInputStream serverInput = new DataInputStream(this.socket.getInputStream());
-//        System.out.println(serverInput.readUTF());
-//    }
 }
 
