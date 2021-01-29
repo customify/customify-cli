@@ -1,4 +1,5 @@
 package customify.server;
+import customify.server.Db.Db;
 import customify.server.utils.ConnectionHandler;
 
 import java.io.IOException;
@@ -27,7 +28,9 @@ public class Main {
                 }
 
                 ConnectionHandler con = new ConnectionHandler(clientSocket);
+                Db db = new Db();
                 con.init();
+                db.init();
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
             /*
