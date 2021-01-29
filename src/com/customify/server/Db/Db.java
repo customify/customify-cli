@@ -44,6 +44,8 @@ public class Db {
             System.out.println(ex.getMessage());
         }
 
+        System.out.println(prop.getProperty("dbUrl"));
+
       try{
           connection = DriverManager.getConnection(prop.getProperty("dbUrl"),prop.getProperty("user"),prop.getProperty("password"));
           statement = connection.createStatement();
