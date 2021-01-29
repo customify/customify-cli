@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,19 +88,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.ClientMain" />
@@ -113,7 +101,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611084407271</updated>
-      <workItem from="1611899754444" duration="2858000" />
+      <workItem from="1611899754444" duration="3016000" />
+      <workItem from="1611904705907" duration="349000" />
     </task>
     <task id="LOCAL-00001" summary="Initialate database connectivity">
       <created>1611895449150</created>
@@ -150,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611901805583</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added online db">
+      <created>1611902689108</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1611902689108</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +171,7 @@
     <MESSAGE value="ignores idea file" />
     <MESSAGE value="Db connector cleaned" />
     <MESSAGE value="Db connection done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Db connection done" />
+    <MESSAGE value="Added online db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added online db" />
   </component>
 </project>

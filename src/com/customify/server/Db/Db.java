@@ -17,7 +17,7 @@ public class Db {
 
     // To login into the shell do
 
-    // mysql -h bsnlibok3ll8qs778xbx-mysql.services.clever-cloud.com -P 3306 -u uqq6c1ewt1hkbzwd -p bsnlibok3ll8qs778xbx
+    //
     // jaW3mRUAAwzTAiOTVkZu
 
   private static  Connection connection = null;
