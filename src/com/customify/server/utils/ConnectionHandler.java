@@ -20,11 +20,9 @@ public class ConnectionHandler {
     }
 
     public void init() {
-        int iterate = 1;
         try {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(input);
-<<<<<<< HEAD
             while (true) {
 
                     try{
@@ -35,23 +33,7 @@ public class ConnectionHandler {
                         this.handleRequest();
                     }catch(IOException | ClassNotFoundException  e){}
             } } catch (IOException e) {
-                System.out.println("Error in reading Object " + e.getMessage()+" ITERATOR "+iterate);
-=======
-            String request = "";
-            while(!request.equals("exit")){
-                List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
-                System.out.println("-------------------QUERY FROM FRONTEND--------------------");
-                clientRequest.forEach((data)-> System.out.println("Key "+data.getKey()+" value: "+data.getRequestData()));
-                HandleRoutes handleRoutes = new HandleRoutes(clientRequest.get(0).getKey(), this.clientSocket);
-                handleRoutes.switchRoutes();
-
-                DataInputStream response = new DataInputStream(this.clientSocket.getInputStream());
-                System.out.println(response.readUTF());
-            }
-
-        }catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error in reading Object "+e.toString());
->>>>>>> d855d62be74518be1a3d950c6e862a346d57d4a1
+                System.out.println("Error in reading Object " + e.getMessage());
         }
     }
 
