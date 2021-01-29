@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/Common.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/Auth.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/LoginView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/SignupView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/utils/PrepareJson.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/data_format/LoginFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/data_format/SignUpFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/HomeHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/LoginHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Views.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/AuthRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/AuthRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +44,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PROJECT_DIR$/../../../../../Program Files/Amazon Corretto/jdk11.0.10_9/lib/src.zip!/java.base/java/io/DataOutputStream.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="ProjectId" id="1nIjGpClJe6lNfNEB3SLAz2QZla" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -47,7 +59,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../NetworkingProgramming" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../test/test" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -59,11 +71,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="customify.client.views" />
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
-    <configuration name="ClientMain" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="customify.client.Main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -77,7 +90,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Server" />
-      <item itemvalue="Application.ClientMain" />
+      <item itemvalue="Application.Client" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
