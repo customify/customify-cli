@@ -27,6 +27,7 @@ public class Product {
         output.writeUTF("Products list here...");
     }
 
+
     public void getProduct(Socket socket) throws IOException{
         output = new DataOutputStream(socket.getOutputStream());
         output.writeUTF("Single product");

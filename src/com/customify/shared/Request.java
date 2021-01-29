@@ -4,15 +4,12 @@ import java.io.Serializable;
 
 public class Request implements Serializable {
     private String key;
-    private Object requestData;
+    private Object data;
 
-    public Request() {
 
-    }
-
-    public Request(String key, Object requestData) {
+    public Request(String key, Object data) {
         this.key = key;
-        this.requestData = requestData;
+        this.data = data;
     }
 
     public String getKey() {
@@ -22,10 +19,10 @@ public class Request implements Serializable {
         this.key = key;
     }
 
-    public Object getRequestData() {
-        return requestData;
+    public Object getObject() {
+        return data;
     }
-    public void setRequestData(Object data){
-        this.requestData = data;
+    public void setObject(Object data){
+        this.data=data;
     }
 }

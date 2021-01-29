@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class AuthRoute {
     Socket socket;
-    Auth auth = new Auth();
+    Auth auth;
 
     public AuthRoute(Socket socket) {
         this.socket = socket;
@@ -18,10 +18,10 @@ public class AuthRoute {
     }
 
     public void  loginRoute() throws IOException {
-        auth.login(this.socket);
+  //      auth.login(this.socket);
     }
 
     public void loginError() throws IOException {
-        auth.loginError(this.socket);
+     //   auth.loginError(this.socket);
     }
 }
