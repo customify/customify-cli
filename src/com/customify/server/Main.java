@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         ServerSocket serverSocket;
 
+
         try {
             serverSocket = new ServerSocket(portNumber);
             System.out.println("New server has been listening on port: " + portNumber);
@@ -28,19 +29,10 @@ public class Main {
                 }
 
                 ConnectionHandler con = new ConnectionHandler(clientSocket);
-                Db db = new Db();
                 con.init();
-                db.init();
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
-            /*
-            * try {
-                System.out.println("Closing the server gracefully");
-                serverSocket.close();
-            } catch (IOException e) {
-                System.out.println("Could no close the server " + e.getMessage());
-            }
-            * */
+
         } catch (IOException e) {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
         }

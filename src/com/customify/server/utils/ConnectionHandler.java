@@ -34,7 +34,6 @@ public class ConnectionHandler {
 
         }catch (IOException | ClassNotFoundException e) {
             System.out.println("Error in reading Object "+e.toString());
-
         }
     }
     /*public void socketClose(){

@@ -1,3 +1,10 @@
+
+/*
+*
+*  created by veritem 29/01/2021
+*
+*  */
+
 package customify.server.Db;
 
 import java.sql.Connection;
@@ -6,30 +13,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Db {
-  private  Connection connection = null;
-  private  Statement statement = null;
+  private static  Connection connection = null;
+  private static Statement statement = null;
 
   public  void init() {
       try{
-          this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?characterEncoding=utf8","root","code");
-          this.statement = this.connection.createStatement();
+          connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?characterEncoding=utf8","root","code");
+          statement = connection.createStatement();
       }catch (SQLException e){
           System.out.println(e.getMessage());
       }
   }
 
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 
-    public Statement getStatement() {
+    public static Statement getStatement() {
         return statement;
     }
 
-    public  void closeConnection(){
+    public static void closeConnection(){
       try{
-          this.connection.close();
+          connection.close();
       }catch (SQLException e){
           e.printStackTrace();
       }
