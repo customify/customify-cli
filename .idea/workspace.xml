@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/Common.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/Auth.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/LoginView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/SignupView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/utils/PrepareJson.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/data_format/LoginFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/data_format/SignUpFormat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/HomeHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/LoginHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Views.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/AuthRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/AuthRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Request.java" afterDir="false" />
-    </list>
+    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,7 +107,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="sam" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
