@@ -43,9 +43,9 @@ public class Main {
 
             List<Object> query = new ArrayList<Object>();
             while(isConnectionOn){
-                Views views = new Views();
-                views.HomeView();
-//                this.sendToServer(this.readFromConsole());
+                //Views views = new Views();
+                //views.HomeView();
+               this.sendToServer(this.readFromConsole());
             }
 
         }catch (Exception e){
@@ -64,18 +64,15 @@ public class Main {
         String userInput;
 
         try{
-            Views views = new Views();
-            views.HomeView();
+            //Views views = new Views();
+            //views.HomeView();
 
 
-//            System.out.println("Enter key request: ");
-//            key = reader.readLine();
+            System.out.println("Enter key request: ");
+            key = reader.readLine();
 
-//            System.out.println("Enter data: ");
-//            userInput = reader.readLine();
-
-//           Request request = new Request(key,userInput);
-//           dataFromUser.add(request);
+            System.out.println("Enter data: ");
+            userInput = reader.readLine();
 
 
 
