@@ -7,25 +7,20 @@
 
 package customify.server.Db;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class Db {
 
-
-    // To login into the shell do
-
-    //
-    // jaW3mRUAAwzTAiOTVkZu
-
   private static  Connection connection = null;
   private static Statement statement = null;
-  private static final String dbUrl = "jdbc:mysql://uqq6c1ewt1hkbzwd:jaW3mRUAAwzTAiOTVkZu@bsnlibok3ll8qs778xbx-mysql.services.clever-cloud.com:3306/bsnlibok3ll8qs778xbx";
-  private static final String user = "uqq6c1ewt1hkbzwd";
-  private static final String password = "jaW3mRUAAwzTAiOTVkZu";
-
 
     /**
      * for initializing the connections to the database
@@ -34,10 +29,24 @@ public class Db {
       System.out.println("Db is connecting...........");
 
 
-      try{
-          connection = DriverManager.getConnection(dbUrl,user,password);
-          statement = connection.createStatement();
+        Properties prop = new Properties();
+        String fileName = "config.properties";
+        InputStream is = null;
 
+        try {
+            is = new FileInputStream(fileName);
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        try {
+            prop.load(is);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+      try{
+          connection = DriverManager.getConnection(prop.getProperty("dbUrl"),prop.getProperty("user"),prop.getProperty("password"));
+          statement = connection.createStatement();
 
           System.out.println("Db connected......");
 
