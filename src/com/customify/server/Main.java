@@ -12,7 +12,6 @@ public class Main {
     public static void main(String[] args) {
         ServerSocket serverSocket;
 
-
         try {
             serverSocket = new ServerSocket(portNumber);
             System.out.println("New server has been listening on port: " + portNumber);
@@ -20,11 +19,14 @@ public class Main {
             for (;;) {
                 Socket clientSocket = null;
                 try {
+                    Db.init();
                     System.out.println("** Listening on port ***");
                     clientSocket = serverSocket.accept();
                     System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
                 } catch (IOException e) {
+                    Db.closeConnection();
                     System.out.println("Terminating because of "+e.getMessage());
+
                     //e.printStackTrace();
                 }
 
