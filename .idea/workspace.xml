@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/resources/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" afterDir="false" />
     </list>
@@ -66,6 +66,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\HIGH SCHOOL\RCA YEAR 2\Java\Programs\customify" />
       <recent name="E:\HIGH SCHOOL\RCA YEAR 2\Java\Programs\customify\src\com\customify\resources" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
@@ -116,7 +117,7 @@
       <option name="presentableId" value="Default" />
       <updated>1611084407271</updated>
       <workItem from="1611899754444" duration="3016000" />
-      <workItem from="1611904705907" duration="2188000" />
+      <workItem from="1611904705907" duration="2520000" />
     </task>
     <task id="LOCAL-00001" summary="Initialate database connectivity">
       <created>1611895449150</created>
@@ -167,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611905116088</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="moved db configurations to properties">
+      <created>1611907261275</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1611907261275</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +202,7 @@
     <MESSAGE value="Db connection done" />
     <MESSAGE value="Added online db" />
     <MESSAGE value="doc for database functionality is done" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc for database functionality is done" />
+    <MESSAGE value="moved db configurations to properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved db configurations to properties" />
   </component>
 </project>
