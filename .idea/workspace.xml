@@ -77,19 +77,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
@@ -114,7 +101,7 @@
       <workItem from="1612087249470" duration="5257000" />
       <workItem from="1612107739165" duration="847000" />
       <workItem from="1612108608573" duration="444000" />
-      <workItem from="1612109061810" duration="1050000" />
+      <workItem from="1612109061810" duration="1730000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
@@ -137,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612109123164</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Db connection fixed">
+      <created>1612112174267</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1612112174267</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +166,7 @@
     <MESSAGE value="fixed a typo: switch" />
     <MESSAGE value="Fixed the source" />
     <MESSAGE value="setup on local pc done" />
-    <option name="LAST_COMMIT_MESSAGE" value="setup on local pc done" />
+    <MESSAGE value="Db connection fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Db connection fixed" />
   </component>
 </project>
