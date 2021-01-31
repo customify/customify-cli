@@ -7,7 +7,7 @@ public class Request implements Serializable {
     private Object data;
 
 
-    public Request(String key, Object data) {
+    public Request(Keys key, Object data) {
         this.key = key;
         this.data = data;
     }

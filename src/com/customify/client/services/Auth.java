@@ -1,5 +1,6 @@
 package com.customify.client.services;
 
+import com.customify.shared.Keys;
 import com.customify.client.Common;
 import com.customify.shared.Request;
 import com.customify.shared.data_format.LoginFormat;
@@ -27,13 +28,12 @@ public class Auth {
     }
 
     public void login(LoginFormat format) throws IOException {
-        String key ="USER_LOGIN";
-        Request request = new Request(key,format);
+        Request request = new Request(Keys.LOGIN,format);
         Common common = new Common(request,this.socket);
     }
     public void signUp(SignUpFormat format) throws IOException {
         String key ="USER_SIGNUP";
-        Request request = new Request(key,format);
+        Request request = new Request(Keys.REGISTER,format);
         Common common = new Common(request,this.socket);
 
     }
