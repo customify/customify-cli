@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch" />
+    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
+      <change afterPath="$PROJECT_DIR$/production/customify/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/customify.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/production/customify/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/production/customify/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/production/customify/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/production/customify/production/customify/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/production/customify/production/customify/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/production/customify/production/customify/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/customify/production/src/src.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/production/src/src.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/SignupView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/AuthRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/AuthRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/PrepareJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/PrepareJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/data_format/LoginFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/data_format/LoginFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/data_format/SignUpFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/data_format/SignUpFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/src.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +66,7 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -40,11 +76,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../test/test" />
+    <property name="jdk.selected.JAVA_MODULE" value="11" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../custo-proj-3/customify/customify.iml" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.11" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="ReaderModeSettings">
@@ -58,13 +95,19 @@
   </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="customify.client.Main" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.customify.client.Main" />
+      <module name="src" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" singleton="false">
-      <option name="MAIN_CLASS_NAME" value="customify.server.Main" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.customify.server.Main" />
+      <module name="src" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

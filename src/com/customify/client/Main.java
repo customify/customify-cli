@@ -1,8 +1,8 @@
-package customify.client;
+package com.customify.client;
 
 
-import customify.client.views.Home;
-import customify.shared.Request;
+import com.customify.client.views.Home;
+import com.customify.shared.Request;
 
 import java.io.*;
 import java.net.*;

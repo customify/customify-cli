@@ -1,4 +1,4 @@
-package customify.shared.data_format;
+package com.customify.shared.data_format;
 
 import java.io.Serializable;
 

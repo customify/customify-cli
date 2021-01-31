@@ -1,9 +1,9 @@
-package customify.client.views;
+package com.customify.client.views;
 
-import customify.client.services.Auth;
-import customify.server.utils.PrepareJson;
-import customify.shared.data_format.LoginFormat;
-import customify.shared.data_format.SignUpFormat;
+import com.customify.client.services.Auth;
+import com.customify.server.utils.PrepareJson;
+import com.customify.shared.data_format.LoginFormat;
+import com.customify.shared.data_format.SignUpFormat;
 
 import java.io.IOException;
 import java.net.Socket;

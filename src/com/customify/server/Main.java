@@ -1,6 +1,6 @@
-package customify.server;
-import customify.server.Db.Db;
-import customify.server.utils.ConnectionHandler;
+package com.customify.server;
+import com.customify.server.Db.Db;
+import com.customify.server.utils.ConnectionHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;

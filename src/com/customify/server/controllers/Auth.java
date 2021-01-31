@@ -1,9 +1,9 @@
-package customify.server.controllers;
+package com.customify.server.controllers;
 
-import customify.client.views.SignupView;
-import customify.shared.Request;
-import customify.shared.data_format.LoginFormat;
-import customify.shared.data_format.SignUpFormat;
+import com.customify.client.views.SignupView;
+import com.customify.shared.Request;
+import com.customify.shared.data_format.LoginFormat;
+import com.customify.shared.data_format.SignUpFormat;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

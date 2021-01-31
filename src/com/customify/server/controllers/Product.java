@@ -1,4 +1,4 @@
-package customify.server.controllers;
+package com.customify.server.controllers;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

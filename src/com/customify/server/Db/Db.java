@@ -5,7 +5,7 @@
 *
 *  */
 
-package customify.server.Db;
+package com.customify.server.Db;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
