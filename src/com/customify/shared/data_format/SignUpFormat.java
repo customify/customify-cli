@@ -7,7 +7,7 @@ public class SignUpFormat  implements Serializable {
     private String lastName;
     private String firstName;
 
-        public SignUpFormat(String email,String lastName,String firstName){
+    public SignUpFormat(String email,String lastName,String firstName){
         this.email = email;
         this.lastName = lastName;
         this.firstName = firstName;
