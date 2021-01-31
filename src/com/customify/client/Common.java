@@ -1,6 +1,6 @@
-package customify.client;
+package com.customify.client;
 
-import customify.shared.Request;
+import com.customify.shared.Request;
 
 import java.io.*;
 import java.net.Socket;

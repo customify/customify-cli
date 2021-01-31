@@ -1,9 +1,9 @@
-package customify.server.utils;
+package com.customify.server.utils;
 
-import customify.server.controllers.Auth;
-import customify.shared.Request;
-import customify.server.routes.HandleRoutes;
-import customify.shared.data_format.LoginFormat;
+import com.customify.server.controllers.Auth;
+import com.customify.shared.Request;
+import com.customify.server.routes.HandleRoutes;
+import com.customify.shared.data_format.LoginFormat;
 
 import java.io.*;
 import java.net.*;

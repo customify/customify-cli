@@ -1,6 +1,6 @@
-package customify.server.routes;
+package com.customify.server.routes;
 
-import customify.server.controllers.Auth;
+import com.customify.server.controllers.Auth;
 
 import java.io.IOException;
 import java.net.Socket;

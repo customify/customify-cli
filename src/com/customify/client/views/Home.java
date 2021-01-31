@@ -1,4 +1,4 @@
-package customify.client.views;
+package com.customify.client.views;
 import java.io.IOException;
 import java.net.Socket;
 import  java.util.*;
@@ -43,7 +43,4 @@ public class Home {
         }
 
     }
-
-
-
 }

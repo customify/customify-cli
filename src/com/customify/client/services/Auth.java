@@ -1,9 +1,9 @@
-package customify.client.services;
+package com.customify.client.services;
 
-import customify.client.Common;
-import customify.shared.Request;
-import customify.shared.data_format.LoginFormat;
-import customify.shared.data_format.SignUpFormat;
+import com.customify.client.Common;
+import com.customify.shared.Request;
+import com.customify.shared.data_format.LoginFormat;
+import com.customify.shared.data_format.SignUpFormat;
 
 import java.io.IOException;
 import java.net.Socket;

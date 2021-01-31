@@ -1,4 +1,4 @@
-package customify.server.models;
+package com.customify.server.models;
 
 public class User {
     private String firstname;
