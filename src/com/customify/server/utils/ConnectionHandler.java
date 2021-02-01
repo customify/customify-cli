@@ -2,7 +2,7 @@ package com.customify.server.utils;
 
 import com.customify.server.controllers.AuthController;
 import com.customify.shared.Request;
-
+import com.customify.shared.Keys;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -36,11 +36,11 @@ public class ConnectionHandler {
     public void handleRequest() throws IOException {
       AuthController authController;
         switch (request.getKey()) {
-            case "USER_LOGIN":
+            case LOGIN:
                  authController = new AuthController(this.clientSocket,this.request);
                   authController.login();
                  break;
-            case "USER_SIGNUP":
+            case REGISTER:
                   authController = new AuthController(this.clientSocket,this.request);
                   authController.signup();
                 break;
