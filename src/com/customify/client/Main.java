@@ -2,11 +2,9 @@ package com.customify.client;
 
 
 import com.customify.client.views.Home;
-import com.customify.shared.Request;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
 
 public class Main {
 

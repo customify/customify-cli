@@ -1,3 +1,6 @@
+/*
+ A class to send the request to server
+ */
 package com.customify.client;
 
 import com.customify.shared.Request;
@@ -14,6 +17,8 @@ public class Common {
     private boolean isConnectionOn = true;
     private Request request;
     private String serverIP;
+    InputStream input;
+    ObjectInputStream objectInputStream;
 
     private Socket socket;
 
@@ -31,19 +36,23 @@ public class Common {
         this.socket = socket;
         this.request = request;
         this.serverIP = "";
-        this.sendToServer();
     }
 
-    public void sendToServer() throws IOException {
+    public boolean sendToServer() throws IOException {
         try {
             List<Request> dataToSend = new ArrayList<>();
             dataToSend.add(request);
             this.output = socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(output);
             this.objectOutput.writeObject(dataToSend);
+
+
+
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
+        return true;
     }
+
 }
