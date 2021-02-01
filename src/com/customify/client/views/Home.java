@@ -1,3 +1,6 @@
+/*
+  Class to display the Home view
+*/
 package com.customify.client.views;
 import java.io.IOException;
 import java.net.Socket;
@@ -17,7 +20,7 @@ public class Home {
     public void setSocket(Socket socket){
         this.socket = socket;
     }
-    public void view() throws IOException {
+    public void view() throws IOException, ClassNotFoundException {
 
         int choice;
         Scanner scan = new Scanner(System.in);

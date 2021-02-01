@@ -1,9 +1,7 @@
 package com.customify.server.utils;
 
-import com.customify.server.controllers.Auth;
+import com.customify.server.controllers.AuthController;
 import com.customify.shared.Request;
-import com.customify.server.routes.HandleRoutes;
-import com.customify.shared.data_format.LoginFormat;
 
 import java.io.*;
 import java.net.*;
@@ -24,12 +22,9 @@ public class ConnectionHandler {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(input);
             while (true) {
-
-                    try{
+                try{
                         List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
                         this.request = clientRequest.get(0);
-                        //                    System.out.println("-------------------QUERY FROM FRONTEND--------------------");
-//                    clientRequest.forEach((data) -> System.out.println("Key " + data.getKey() + " value: " + data.getObject().toString()));
                         this.handleRequest();
                     }catch(IOException | ClassNotFoundException  e){}
             } } catch (IOException e) {
@@ -39,15 +34,15 @@ public class ConnectionHandler {
 
 
     public void handleRequest() throws IOException {
-      Auth auth;
+      AuthController authController;
         switch (request.getKey()) {
             case "USER_LOGIN":
-                 auth = new Auth(this.clientSocket,this.request);
-                  auth.login();
+                 authController = new AuthController(this.clientSocket,this.request);
+                  authController.login();
                  break;
             case "USER_SIGNUP":
-                  auth = new Auth(this.clientSocket,this.request);
-                  auth.signup();
+                  authController = new AuthController(this.clientSocket,this.request);
+                  authController.signup();
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");

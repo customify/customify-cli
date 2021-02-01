@@ -1,12 +1,12 @@
 package com.customify.server.models;
 
-public class User {
+public class UserModel {
     private String firstname;
     private String lastname;
     private String email;
     private String password;
 
-    public User(String firstname, String lastname, String email, String password) {
+    public UserModel(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;

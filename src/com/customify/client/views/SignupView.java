@@ -1,7 +1,10 @@
+/*
+  Class to signup the login view
+*/
 package com.customify.client.views;
 
-import com.customify.client.services.Auth;
-import com.customify.shared.data_format.SignUpFormat;
+import com.customify.client.services.AuthService;
+import com.customify.shared.requests_data_formats.SignUpFormat;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -22,7 +25,7 @@ public class SignupView {
         this.socket = socket;
     }
 
-    public void view() throws IOException {
+    public void view() throws IOException, ClassNotFoundException {
         boolean login = true;
         Scanner scan = new Scanner(System.in);
         String firstName,lastName,email;
@@ -48,22 +51,9 @@ public class SignupView {
 
             if(email.equals("00"))
                 break signupLoop;
-
-            // Set our data...
-//            String meta = "firstName,lastName,email";
-//            String values = firstName+","+lastName+","+email;
-//            PrepareJson prepareJson =new PrepareJson(values,meta);
-
-
             SignUpFormat format = new SignUpFormat(email,lastName,firstName);
-//
-//            PrepareJson prepareJson =new PrepareJson(values,meta);
-//            String json = prepareJson.getJson();
-
-            Auth auth = new Auth(socket);
-            auth.signUp(format);
-
-
+            AuthService authService = new AuthService(socket);
+            authService.signUp(format);
         }while(signup);
 
     }

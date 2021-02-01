@@ -1,7 +1,10 @@
+/*
+  Class to display the login view
+*/
+
 package com.customify.client.views;
-import com.customify.client.services.Auth;
-import com.customify.server.utils.PrepareJson;
-import com.customify.shared.data_format.LoginFormat;
+import com.customify.client.services.AuthService;
+import com.customify.shared.requests_data_formats.LoginFormat;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -20,7 +23,7 @@ public class LoginView {
     public void setSocket(Socket socket){
         this.socket = socket;
     }
-    public void view() throws IOException {
+    public void view() throws IOException, ClassNotFoundException {
 
         boolean login = true;
         Scanner scan = new Scanner(System.in);
@@ -40,12 +43,8 @@ public class LoginView {
             login = false;
 
             LoginFormat format = new LoginFormat(email,password);
-//
-//            PrepareJson prepareJson =new PrepareJson(values,meta);
-//            String json = prepareJson.getJson();
-
-            Auth auth = new Auth(socket);
-            auth.login(format);
+            AuthService authService = new AuthService(socket);
+            authService.login(format);
         }while(login);
 
     }
