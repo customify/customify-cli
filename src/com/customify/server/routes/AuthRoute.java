@@ -1,13 +1,13 @@
-package customify.server.routes;
+package com.customify.server.routes;
 
-import customify.server.controllers.Auth;
+import com.customify.server.controllers.AuthController;
 
 import java.io.IOException;
 import java.net.Socket;
 
 public class AuthRoute {
     Socket socket;
-    Auth auth = new Auth();
+    AuthController authController;
 
     public AuthRoute(Socket socket) {
         this.socket = socket;
@@ -18,10 +18,10 @@ public class AuthRoute {
     }
 
     public void  loginRoute() throws IOException {
-        auth.login(this.socket);
+  //      authController.login(this.socket);
     }
 
     public void loginError() throws IOException {
-        auth.loginError(this.socket);
+     //   authController.loginError(this.socket);
     }
 }

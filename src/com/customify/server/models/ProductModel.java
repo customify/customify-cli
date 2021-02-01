@@ -1,8 +1,8 @@
-package customify.server.models;
+package com.customify.server.models;
 
 import java.util.Date;
 
-public class Product {
+public class ProductModel {
     private int productId;
     private int business_id;
     private String name;
@@ -13,9 +13,9 @@ public class Product {
     private int registered_by;
     private Date createdAt;
 
-    public Product(){}
+    public ProductModel(){}
 
-    public Product(int productId, int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, Date createdAt) {
+    public ProductModel(int productId, int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, Date createdAt) {
         this.productId = productId;
         this.business_id = business_id;
         this.name = name;

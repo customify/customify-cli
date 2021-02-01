@@ -1,5 +1,6 @@
-package customify.server;
-import customify.server.utils.ConnectionHandler;
+package com.customify.server;
+import com.customify.server.Db.Db;
+import com.customify.server.utils.ConnectionHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -18,11 +19,14 @@ public class Main {
             for (;;) {
                 Socket clientSocket = null;
                 try {
+                    Db.init();
                     System.out.println("** Listening on port ***");
                     clientSocket = serverSocket.accept();
                     System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
                 } catch (IOException e) {
+                    Db.closeConnection();
                     System.out.println("Terminating because of "+e.getMessage());
+
                     //e.printStackTrace();
                 }
 
@@ -30,14 +34,7 @@ public class Main {
                 con.init();
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
-            /*
-            * try {
-                System.out.println("Closing the server gracefully");
-                serverSocket.close();
-            } catch (IOException e) {
-                System.out.println("Could no close the server " + e.getMessage());
-            }
-            * */
+
         } catch (IOException e) {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
         }
