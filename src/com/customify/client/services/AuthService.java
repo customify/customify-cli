@@ -1,5 +1,5 @@
 package com.customify.client.services;
-
+import com.customify.shared.Keys;
 import com.customify.client.Common;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
@@ -35,8 +35,7 @@ public class AuthService {
     }
 
     public void login(LoginFormat format) throws IOException, ClassNotFoundException {
-        String key ="USER_LOGIN";
-        Request request = new Request(key,format);
+        Request request = new Request(Keys.LOGIN,format);
         Common common = new Common(request,this.socket);
         //if the sending is successful call a method to handle response from server
         if(common.sendToServer()==true){
@@ -45,7 +44,7 @@ public class AuthService {
     }
     public void signUp(SignUpFormat format) throws IOException, ClassNotFoundException {
         String key ="USER_SIGNUP";
-        Request request = new Request(key,format);
+        Request request = new Request(Keys.REGISTER,format);
         Common common = new Common(request,this.socket);
         if(common.sendToServer()){
             this.handleLoginResponse();
