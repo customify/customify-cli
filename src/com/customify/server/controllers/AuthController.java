@@ -1,9 +1,9 @@
-package com.customify.server.controllers;
+package customify.server.controllers;
 
-import com.customify.server.services.AuthService;
-import com.customify.shared.Request;
-import com.customify.shared.requests_data_formats.LoginFormat;
-import com.customify.shared.requests_data_formats.SignUpFormat;
+import customify.server.services.AuthService;
+import customify.shared.Request;
+import customify.shared.requests_data_formats.LoginFormat;
+import customify.shared.requests_data_formats.SignUpFormat;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,7 +22,7 @@ private AuthService authService;
 
     public void login()throws IOException{
         LoginFormat format =(LoginFormat)request.getObject();
-        System.out.println("LOGGED IN SUCESSFULLY ");
+        System.out.println("LOGGED IN SUCCESSFULLY ");
         System.out.println("Your Credentials");
         System.out.println("Email - "+format.getEmail());
         System.out.println("Password - "+format.getPassword());

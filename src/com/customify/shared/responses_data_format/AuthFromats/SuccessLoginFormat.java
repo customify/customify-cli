@@ -1,4 +1,4 @@
-package com.customify.shared.responses_data_format.AuthFromats;
+package customify.shared.responses_data_format.AuthFromats;
 
 import java.io.Serializable;
 

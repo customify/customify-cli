@@ -2,9 +2,10 @@
   Class to display the login view
 */
 
-package com.customify.client.views;
-import com.customify.client.services.AuthService;
-import com.customify.shared.requests_data_formats.LoginFormat;
+package customify.client.views;
+
+import customify.client.services.AuthService;
+import customify.shared.requests_data_formats.LoginFormat;
 
 import java.io.IOException;
 import java.net.Socket;

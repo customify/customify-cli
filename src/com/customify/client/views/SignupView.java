@@ -1,10 +1,10 @@
 /*
   Class to signup the login view
 */
-package com.customify.client.views;
+package customify.client.views;
 
-import com.customify.client.services.AuthService;
-import com.customify.shared.requests_data_formats.SignUpFormat;
+import customify.client.services.AuthService;
+import customify.shared.requests_data_formats.SignUpFormat;
 
 import java.io.IOException;
 import java.net.Socket;

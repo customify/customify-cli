@@ -1,8 +1,7 @@
-package com.customify.server.utils;
+package customify.server.utils;
+import customify.server.controllers.AuthController;
+import customify.shared.Request;
 
-import com.customify.server.controllers.AuthController;
-import com.customify.shared.Request;
-import com.customify.shared.Keys;
 import java.io.*;
 import java.net.*;
 import java.util.*;

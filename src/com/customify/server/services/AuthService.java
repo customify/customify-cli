@@ -1,8 +1,8 @@
-package com.customify.server.services;
+package customify.server.services;
 
-import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.LoginFormat;
-import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
+import customify.shared.Response;
+import customify.shared.requests_data_formats.LoginFormat;
+import customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;

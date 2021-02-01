@@ -1,7 +1,7 @@
 /*
   Class to display the Home view
 */
-package com.customify.client.views;
+package customify.client.views;
 import java.io.IOException;
 import java.net.Socket;
 import  java.util.*;

@@ -1,9 +1,9 @@
 /*
  A class to send the request to server
  */
-package com.customify.client;
+package customify.client;
 
-import com.customify.shared.Request;
+import customify.shared.Request;
 
 import java.io.*;
 import java.net.Socket;

@@ -1,11 +1,11 @@
 
 /*
 *
-*  created by veritem 29/01/2021
+*  created by verite m 29/01/2021
 *
 *  */
 
-package com.customify.server.Db;
+package customify.server.Db;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

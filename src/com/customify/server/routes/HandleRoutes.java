@@ -1,4 +1,4 @@
-package com.customify.server.routes;
+package customify.server.routes;
 
 import java.io.IOException;
 import java.net.Socket;

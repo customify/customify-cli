@@ -1,11 +1,12 @@
-package com.customify.client.services;
-import com.customify.shared.Keys;
-import com.customify.client.Common;
-import com.customify.shared.Request;
-import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.LoginFormat;
-import com.customify.shared.requests_data_formats.SignUpFormat;
-import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
+package customify.client.services;
+
+import customify.client.Common;
+import customify.shared.Keys;
+import customify.shared.Request;
+import customify.shared.Response;
+import customify.shared.requests_data_formats.LoginFormat;
+import customify.shared.requests_data_formats.SignUpFormat;
+import customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
 
 import java.io.IOException;
 import java.io.InputStream;

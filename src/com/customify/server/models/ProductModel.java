@@ -1,4 +1,4 @@
-package com.customify.server.models;
+package customify.server.models;
 
 import java.util.Date;
 

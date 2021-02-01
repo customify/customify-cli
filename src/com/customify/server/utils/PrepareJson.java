@@ -1,4 +1,4 @@
-package com.customify.server.utils;
+package customify.server.utils;
 
 public class PrepareJson {
 

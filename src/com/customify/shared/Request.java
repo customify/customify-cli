@@ -1,5 +1,4 @@
-package com.customify.shared;
-import com.customify.shared.Keys;
+package customify.shared;
 
 import java.io.Serializable;
 
