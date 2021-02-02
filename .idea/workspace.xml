@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch" />
+    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/customify/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/production/customify/src.iml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,19 +61,8 @@
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Client" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
+  <component name="RunManager" selected="Application.Server">
+    <configuration name="Client2" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.customify.client.Main" />
@@ -87,9 +80,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Server" />
-      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Client2" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -114,6 +120,9 @@
       <workItem from="1612109061810" duration="1730000" />
       <workItem from="1612114212591" duration="298000" />
       <workItem from="1612114984363" duration="777000" />
+      <workItem from="1612291273962" duration="396000" />
+      <workItem from="1612291697329" duration="133000" />
+      <workItem from="1612291855688" duration="1072000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
