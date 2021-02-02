@@ -1,21 +1,22 @@
 package com.customify.shared;
+import com.customify.shared.Keys;
 
 import java.io.Serializable;
 
 public class Request implements Serializable {
-    private String key;
+    private Keys key;
     private Object data;
 
 
-    public Request(String key, Object data) {
+    public Request(Keys key, Object data) {
         this.key = key;
         this.data = data;
     }
 
-    public String getKey() {
+    public Keys getKey() {
         return key;
     }
-    public void setKey(String key){
+    public void setKey(Keys key){
         this.key = key;
     }
 
