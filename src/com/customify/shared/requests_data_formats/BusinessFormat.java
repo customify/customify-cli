@@ -10,7 +10,9 @@
 
 package com.customify.shared.requests_data_formats;
 
-public class BusinessFormat {
+import java.io.Serializable;
+
+public class BusinessFormat implements Serializable {
     private String name;
     private String location;
     private String phone_number;
