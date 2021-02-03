@@ -5,7 +5,6 @@ import com.customify.server.models.ProductModel;
 import com.customify.shared.Keys;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.ProductFormat;
 import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
 
 import java.io.IOException;
@@ -35,8 +34,8 @@ public class ProductService {
 
     }
 
-    public void addNewProduct(ProductFormat productFormat) throws Exception {
-        Request request = new Request(Keys.CREATE_PRODUCT, productFormat);
+    public void addNewProduct(ProductModel productModel) throws Exception {
+        Request request = new Request(Keys.CREATE_PRODUCT, productModel);
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server

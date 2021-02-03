@@ -32,7 +32,7 @@ public class Home {
         System.out.println("--------------CUSTOMIFY HOME-----------------");
         System.out.println("\n           1. Sign Up");
         System.out.println("           2. Login In");
-        System.out.println("           3. Create product");
+        System.out.println("           3. Register product");
         System.out.println("           4. See all Products");
         choice = scan.nextInt();
 

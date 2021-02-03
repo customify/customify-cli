@@ -1,5 +1,11 @@
 package com.customify.server.controllers;
 
+/*
+Created by Jacques Twizeyimana
+This a product controller class to handle all logics regarding product
+It has createProduct,getAll,UpdateProduct,getProductByI and deleteProduct methods
+*/
+
 import com.customify.server.Db.Db;
 import com.customify.server.models.ProductModel;
 import com.customify.shared.Request;
@@ -27,20 +33,6 @@ public class ProductController {
 
     public void registerProduct() throws IOException, SQLException {
         ProductModel product = (ProductModel) request.getObject();
-        Statement statement = Db.getStatement();
-        statement.execute("CREATE TABLE products(" +
-                "id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY," +
-                "product_code int not null," +
-                "business_id int(11) not null," +
-                "name varchar(255)," +
-                "price float not null," +
-                "quantity int(5) not null default 0," +
-                "description text not null ," +
-                "bonded_points double not null," +
-                "registered_by int(11) not null," +
-                "created_at date not null" +
-                ")");
-
 
         Connection connection = Db.getConnection();
         String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
