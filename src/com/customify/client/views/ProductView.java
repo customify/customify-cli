@@ -1,5 +1,10 @@
-<<<<<<< HEAD
 package com.customify.client.views;
+
+/*
+* Created by Jacques Twizeyimana
+* ProductView is an interface of what user will be interacting with
+* It has methods including  createProduct and getAll products that our user will be interacting with when he choose their corresponding options
+* */
 
 import com.customify.client.services.ProductService;
 import com.customify.server.models.ProductModel;
@@ -41,12 +46,10 @@ public class ProductView {
         newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
 
         newProduct.setCreatedAt(new Date());
-            ProductService productService = new ProductService(this.socket);
-            productService.addNewProduct(newProduct);
+        ProductService productService = new ProductService(this.socket);
+        productService.addNewProduct(newProduct);
 
-            System.out.println("Product you registered has id of " + newProduct.getProductCode());
-
-
+        System.out.println("Product you registered has id of " + newProduct.getProductCode());
 
     }
 
@@ -63,8 +66,5 @@ public class ProductView {
         System.out.println("\t\tHere is a list of products registered so far");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-        }
-=======
-package com.customify.client.views;public class ProductView {
->>>>>>> 112ef6f5f3c53be2677a51a1925833905190461f
+    }
 }

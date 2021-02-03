@@ -17,6 +17,7 @@ public class AuthService {
 
     private Socket socket;
     private String data;
+
     InputStream inputStream;
     ObjectInputStream objectInputStream;
 

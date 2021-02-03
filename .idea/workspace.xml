@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/customify/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/production/customify/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/SignupView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/ProductModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" afterDir="false" />
-</list>
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -204,5 +198,19 @@
     <MESSAGE value="Db connection fixed" />
     <MESSAGE value="adding mysql connector jar file" />
     <option name="LAST_COMMIT_MESSAGE" value="adding mysql connector jar file" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/com/customify/client/services/ProductService.java</url>
+          <line>52</line>
+          <properties class="com.customify.client.services.ProductService" method="handleRegisterProductSuccess">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
