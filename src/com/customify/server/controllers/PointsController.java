@@ -6,6 +6,7 @@ import com.customify.shared.requests_data_formats.PointsByCustomerEmailFormat;
 
 import java.net.Socket;
 
+//author: Fredson
 public class PointsController {
     private Socket socket;
     private Request request;

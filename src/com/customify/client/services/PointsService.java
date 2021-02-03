@@ -8,6 +8,7 @@ import com.customify.shared.requests_data_formats.PointsByCustomerEmailFormat;
 import java.io.IOException;
 import java.net.Socket;
 
+//author: Fredson
 public class PointsService {
     private Socket socket;
     private Common common;
@@ -19,8 +20,9 @@ public class PointsService {
     public void getPointsByCustomerEmail(PointsByCustomerEmailFormat format) throws IOException {
         Request request = new Request(Keys.POINTS_BY_CUSTOMER_EMAIL, format);
         this.common = new Common(request, this.socket);
-        if(common.sendToServer()==true){
+        if(common.sendToServer()){
             System.out.println("Request Sent successfully");
+//            System.out.println(data.);
         }
     }
 }

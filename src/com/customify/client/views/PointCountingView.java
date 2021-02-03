@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.util.Scanner;
 
+//author: Fredson
 public class PointCountingView {
     private Socket socket;
 
@@ -67,7 +68,6 @@ public class PointCountingView {
 //            LoginFormat format = new LoginFormat(email,password);
 //            AuthService authService = new AuthService(socket);
 //            authService.login(format);
-
         }while(points);
     }
 }

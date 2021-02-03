@@ -2,6 +2,7 @@ package com.customify.shared.requests_data_formats;
 
 import java.io.Serializable;
 
+//author: Fredson
 public class PointsByCustomerEmailFormat implements Serializable {
     private String email;
 
