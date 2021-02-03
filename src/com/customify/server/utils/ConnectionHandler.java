@@ -43,6 +43,8 @@ public class ConnectionHandler {
             case REGISTER:
                   authController = new AuthController(this.clientSocket,this.request);
                   authController.signup();
+            case CREATE_BUSINESS:
+                System.out.println("This is the register business service");
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
