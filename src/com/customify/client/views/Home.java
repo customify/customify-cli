@@ -33,6 +33,7 @@ public class Home {
         System.out.println("\n           1. Sign Up");
         System.out.println("           2. Login In");
         System.out.println("           3. Points");
+        System.out.println("\n\n           Enter your choice");
         choice = scan.nextInt();
 
         switch(choice)
