@@ -26,11 +26,13 @@ public class Home {
         Scanner scan = new Scanner(System.in);
         LoginView loginView =new LoginView(this.socket);
         SignupView signupView =new SignupView(this.socket);
+        PointCountingView pointCountingView = new PointCountingView((this.socket));
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------");
         System.out.println("\n           1. Sign Up");
         System.out.println("           2. Login In");
+        System.out.println("           3. Points");
         choice = scan.nextInt();
 
         switch(choice)
@@ -40,6 +42,9 @@ public class Home {
                 break;
             case 2:
                 loginView.view();
+                break;
+            case 3:
+                pointCountingView.view();
                 break;
             default:
                 System.out.println("Invalid choice");

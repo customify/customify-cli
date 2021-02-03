@@ -8,6 +8,7 @@ public class HandleRoutes {
     private final Keys key;
     Socket socket;
     AuthRoute authRoute;
+    PointsRoutes pointsRoutes;
 
     public HandleRoutes(Keys key, Socket socket) throws IOException {
         this.socket = socket;
@@ -17,9 +18,18 @@ public class HandleRoutes {
     }
 
     public void switchRoutes() throws IOException {
-        if (this.key == Keys.LOGIN) {
-            authRoute.loginRoute();
+//        if (this.key == Keys.LOGIN) {
+//            authRoute.loginRoute();
+//        }
+
+        switch (this.key){
+            case LOGIN:
+                authRoute.loginRoute();
+                break;
+            case POINTS_BY_CUSTOMER_EMAIL:
+                 pointsRoutes.getPointsByCustomer();
+                 break;
         }
-        authRoute.loginError();
+//        authRoute.loginError();
     }
 }

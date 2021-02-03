@@ -33,6 +33,3 @@ public class ProductController {
         output.writeUTF("Single product");
     }
 }
-
-
-
