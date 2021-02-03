@@ -1,9 +1,16 @@
 package com.customify.server.models;
 
+/*
+* Created by Jacques Twizeyimana
+* Product model is a blueprint of how our products will be represented in database
+* all fields that product table will have are blueprinted here
+* It will also be used as a data format for products to or from server/client
+*/
+
 import java.util.Date;
 
 public class ProductModel {
-    private int productId;
+    private long productCode;
     private int business_id;
     private String name;
     private float price;
@@ -13,10 +20,12 @@ public class ProductModel {
     private int registered_by;
     private Date createdAt;
 
-    public ProductModel(){}
+    public ProductModel(){
+        this.productCode = this.generateId();
+    }
 
-    public ProductModel(int productId, int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, Date createdAt) {
-        this.productId = productId;
+    public ProductModel(int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, Date createdAt) {
+        this.productCode = this.generateId();
         this.business_id = business_id;
         this.name = name;
         this.price = price;
@@ -26,13 +35,19 @@ public class ProductModel {
         this.registered_by = registered_by;
         this.createdAt = createdAt;
     }
+    public long generateId(){
+        int min = 1000000;
+        int max = 999999999;
 
-    public int getProductId() {
-        return productId;
+        return Math.round(Math.random() * (max - min + 1) + min);
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public long getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(int productCode) {
+        this.productCode = productCode;
     }
 
     public int getBusiness_id() {

@@ -20,17 +20,20 @@ public class Home {
     public void setSocket(Socket socket){
         this.socket = socket;
     }
-    public void view() throws IOException, ClassNotFoundException {
+    public void view() throws Exception {
 
         int choice;
         Scanner scan = new Scanner(System.in);
         LoginView loginView =new LoginView(this.socket);
         SignupView signupView =new SignupView(this.socket);
+        ProductView productView = new ProductView(this.socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------");
         System.out.println("\n           1. Sign Up");
         System.out.println("           2. Login In");
+        System.out.println("           3. Register product");
+        System.out.println("           4. See all Products");
         choice = scan.nextInt();
 
         switch(choice)
@@ -40,6 +43,12 @@ public class Home {
                 break;
             case 2:
                 loginView.view();
+                break;
+            case 3:
+                productView.createProduct();
+                break;
+            case 4:
+                productView.getAll();
                 break;
             default:
                 System.out.println("Invalid choice");

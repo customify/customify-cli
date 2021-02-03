@@ -4,10 +4,19 @@
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/production/customify/src.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/production/production/customify/src.iml" beforeDir="false" />
 =======
 >>>>>>> ca962ec7d1856f38713d3c20128e05fb28b01516
+=======
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/ProductModel.java" afterDir="false" />
+>>>>>>> 077369a706caee738ac1bbeeddc8d093436ee564
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -48,14 +57,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.16.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.11" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -70,7 +81,11 @@
     </key>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="RunManager" selected="Application.Server">
+=======
+  <component name="RunManager" selected="Application.Client2">
+>>>>>>> 077369a706caee738ac1bbeeddc8d093436ee564
     <configuration name="Client2" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
 =======
   <component name="RunManager" selected="Application.Client">
@@ -94,6 +109,7 @@
       </method>
     </configuration>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
 =======
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
@@ -114,6 +130,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+>>>>>>> 077369a706caee738ac1bbeeddc8d093436ee564
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client2" />
@@ -142,6 +160,7 @@
       <workItem from="1612114212591" duration="298000" />
       <workItem from="1612114984363" duration="777000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1612291273962" duration="396000" />
       <workItem from="1612291697329" duration="133000" />
       <workItem from="1612291855688" duration="1072000" />
@@ -150,6 +169,14 @@
       <workItem from="1612351899846" duration="5000" />
       <workItem from="1612351917176" duration="94000" />
 >>>>>>> ca962ec7d1856f38713d3c20128e05fb28b01516
+=======
+      <workItem from="1612292464031" duration="7676000" />
+      <workItem from="1612326310430" duration="8261000" />
+      <workItem from="1612291273962" duration="396000" />
+      <workItem from="1612291697329" duration="133000" />
+      <workItem from="1612291855688" duration="1072000" />
+      <workItem from="1612301629860" duration="1399000" />
+>>>>>>> 077369a706caee738ac1bbeeddc8d093436ee564
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
@@ -224,5 +251,19 @@
     <MESSAGE value="Db connection fixed" />
     <MESSAGE value="adding mysql connector jar file" />
     <option name="LAST_COMMIT_MESSAGE" value="adding mysql connector jar file" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/com/customify/client/services/ProductService.java</url>
+          <line>52</line>
+          <properties class="com.customify.client.services.ProductService" method="handleRegisterProductSuccess">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
