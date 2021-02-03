@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.customify.client.views;
 
 import com.customify.client.services.ProductService;
@@ -63,4 +64,7 @@ public class ProductView {
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
         }
+=======
+package com.customify.client.views;public class ProductView {
+>>>>>>> 112ef6f5f3c53be2677a51a1925833905190461f
 }
