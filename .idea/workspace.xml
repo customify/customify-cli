@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
       <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/AwardsNotifications.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/CouponModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/utils/CouponStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/Points.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/PointsModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612427653252</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="all models for ward winning module done">
+      <created>1612428278911</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1612428278911</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +229,7 @@
     <MESSAGE value="adding mysql connector jar file" />
     <MESSAGE value="Added enum utility for key handling" />
     <MESSAGE value="added points model" />
-    <option name="LAST_COMMIT_MESSAGE" value="added points model" />
+    <MESSAGE value="all models for ward winning module done" />
+    <option name="LAST_COMMIT_MESSAGE" value="all models for ward winning module done" />
   </component>
 </project>
