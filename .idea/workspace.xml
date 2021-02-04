@@ -33,6 +33,13 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/PatrickNiyogitare28/customify" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1nIjGpClJe6lNfNEB3SLAz2QZla" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -64,7 +71,7 @@
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -120,7 +127,8 @@
       <workItem from="1612108608573" duration="444000" />
       <workItem from="1612109061810" duration="1730000" />
       <workItem from="1612114212591" duration="298000" />
-      <workItem from="1612114984363" duration="777000" />
+      <workItem from="1612114984363" duration="1101000" />
+      <workItem from="1612291790217" duration="636000" />
       <workItem from="1612351844191" duration="41000" />
       <workItem from="1612351899846" duration="5000" />
       <workItem from="1612351917176" duration="94000" />
@@ -160,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612114324980</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added enum utility for key handling">
+      <created>1612117035626</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612117035626</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +212,7 @@
     <MESSAGE value="setup on local pc done" />
     <MESSAGE value="Db connection fixed" />
     <MESSAGE value="adding mysql connector jar file" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding mysql connector jar file" />
+    <MESSAGE value="Added enum utility for key handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added enum utility for key handling" />
   </component>
 </project>
