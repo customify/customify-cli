@@ -43,7 +43,7 @@ public class AuthService {
         }
     }
     public void signUp(SignUpFormat format) throws IOException, ClassNotFoundException {
-        Request request = new Request(Keys.REGISTER,format);
+        Request request = new Request(Keys.FEEDBACK,format);
         Common common = new Common(request,this.socket);
         if(common.sendToServer()){
             this.handleLoginResponse();

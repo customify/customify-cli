@@ -1,7 +1,9 @@
 package com.customify.server;
+
 import com.customify.server.Db.Db;
 import com.customify.server.utils.ConnectionHandler;
 
+// import java.io.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -22,17 +24,19 @@ public class Main {
                     Db.init();
                     System.out.println("** Listening on port ***");
                     clientSocket = serverSocket.accept();
-                    System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
+                    System.out.println("Accepted socket connection from a client with address: "
+                            + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
                 } catch (IOException e) {
                     Db.closeConnection();
-                    System.out.println("Terminating because of "+e.getMessage());
+                    System.out.println("Terminating because of " + e.getMessage());
 
-                    //e.printStackTrace();
+                    // e.printStackTrace();
                 }
 
                 ConnectionHandler con = new ConnectionHandler(clientSocket);
                 con.init();
-                System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
+                System.out
+                        .println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
 
         } catch (IOException e) {
@@ -40,4 +44,3 @@ public class Main {
         }
     }
 }
-

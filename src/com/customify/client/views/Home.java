@@ -2,30 +2,34 @@
   Class to display the Home view
 */
 package com.customify.client.views;
+
 import java.io.IOException;
 import java.net.Socket;
-import  java.util.*;
+import java.util.*;
 
 public class Home {
 
     private Socket socket;
 
-    public Home(Socket socket){
+    public Home(Socket socket) {
         this.socket = socket;
     }
-    public Socket getSocket()
-    {
+
+    public Socket getSocket() {
         return socket;
     }
-    public void setSocket(Socket socket){
+
+    public void setSocket(Socket socket) {
         this.socket = socket;
     }
+
     public void view() throws IOException, ClassNotFoundException {
 
         int choice;
         Scanner scan = new Scanner(System.in);
-        LoginView loginView =new LoginView(this.socket);
-        SignupView signupView =new SignupView(this.socket);
+        LoginView loginView = new LoginView(this.socket);
+        SignupView signupView = new SignupView(this.socket);
+        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------");
@@ -33,14 +37,18 @@ public class Home {
         System.out.println("           2. Login In");
         choice = scan.nextInt();
 
-        switch(choice)
-        {
+        switch (choice) {
             case 1:
                 signupView.view();
                 break;
             case 2:
                 loginView.view();
                 break;
+
+            case 3:
+            feedbackView.view();
+                break;
+
             default:
                 System.out.println("Invalid choice");
         }
