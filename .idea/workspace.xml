@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessRegisterView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/BusinessFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Common.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,19 +90,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
@@ -146,6 +124,9 @@
       <workItem from="1612333231559" duration="3000" />
       <workItem from="1612335130548" duration="11215000" />
       <workItem from="1612370353621" duration="1008000" />
+      <workItem from="1612382402236" duration="118000" />
+      <workItem from="1612412125075" duration="9460000" />
+      <workItem from="1612436270169" duration="782000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
@@ -182,7 +163,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612114324980</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Now everything is working on creating business from both ends">
+      <created>1612420142189</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612420142189</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Document anselme's classes and methods">
+      <created>1612420941062</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1612420941062</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,7 +194,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="sam" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -219,6 +214,9 @@
     <MESSAGE value="setup on local pc done" />
     <MESSAGE value="Db connection fixed" />
     <MESSAGE value="adding mysql connector jar file" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding mysql connector jar file" />
+    <MESSAGE value="Now front-end is working on the business registration" />
+    <MESSAGE value="Now everything is working on creating business from both ends" />
+    <MESSAGE value="Document anselme's classes and methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Document anselme's classes and methods" />
   </component>
 </project>
