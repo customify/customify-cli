@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/ProductFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Common.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/ProductModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +126,7 @@
       <workItem from="1612419246762" duration="41000" />
       <workItem from="1612421182722" duration="5219000" />
       <workItem from="1612458182473" duration="1539000" />
-      <workItem from="1612463514652" duration="2233000" />
+      <workItem from="1612463514652" duration="3057000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
