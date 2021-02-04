@@ -1,6 +1,7 @@
 package com.customify.server.utils;
 
 import com.customify.server.controllers.AuthController;
+import com.customify.server.controllers.FeedbackController;
 import com.customify.shared.Request;
 import com.customify.shared.Keys;
 import java.io.*;
@@ -13,7 +14,7 @@ public class ConnectionHandler {
     private ObjectInputStream objectInput;
     private Request request;
 
-    public  ConnectionHandler(Socket socket){
+    public ConnectionHandler(Socket socket) {
         this.clientSocket = socket;
     }
 
@@ -22,27 +23,34 @@ public class ConnectionHandler {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(input);
             while (true) {
-                try{
-                        List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
-                        this.request = clientRequest.get(0);
-                        this.handleRequest();
-                    }catch(IOException | ClassNotFoundException  e){}
-            } } catch (IOException e) {
-                System.out.println("Error in reading Object " + e.getMessage());
+                try {
+                    List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
+                    this.request = clientRequest.get(0);
+                    this.handleRequest();
+                } catch (IOException | ClassNotFoundException e) {
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error in reading Object " + e.getMessage());
         }
     }
 
-
-    public void handleRequest() throws IOException {
-      AuthController authController;
+    public void handleRequest() throws IOException,ClassNotFoundException {
+        AuthController authController;
+        FeedbackController fController;
         switch (request.getKey()) {
             case LOGIN:
-                 authController = new AuthController(this.clientSocket,this.request);
-                  authController.login();
-                 break;
+                authController = new AuthController(this.clientSocket, this.request);
+                authController.login();
+                break;
             case REGISTER:
-                  authController = new AuthController(this.clientSocket,this.request);
-                  authController.signup();
+                authController = new AuthController(this.clientSocket, this.request);
+                authController.signup();
+                break;
+
+            case FEEDBACK:
+                fController = new FeedbackController(this.clientSocket, this.request);
+                fController.feedbackOnServer();
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");

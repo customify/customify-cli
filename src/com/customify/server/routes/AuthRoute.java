@@ -24,4 +24,8 @@ public class AuthRoute {
     public void loginError() throws IOException {
      //   authController.loginError(this.socket);
     }
+
+    public void feedbackRoute() throws IOException{
+      
+    }
 }

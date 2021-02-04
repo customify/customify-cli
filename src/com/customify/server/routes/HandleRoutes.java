@@ -21,5 +21,10 @@ public class HandleRoutes {
             authRoute.loginRoute();
         }
         authRoute.loginError();
+
+        if(this.key == key.FEEDBACK){
+            authRoute.feedbackRoute();
+        }
     }
+
 }

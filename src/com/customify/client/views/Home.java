@@ -35,6 +35,7 @@ public class Home {
         System.out.println("--------------CUSTOMIFY HOME-----------------");
         System.out.println("\n           1. Sign Up");
         System.out.println("           2. Login In");
+        System.out.println("           3.Provide feedback");
         choice = scan.nextInt();
 
         switch (choice) {

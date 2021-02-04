@@ -40,10 +40,10 @@ public class CustomerThread extends Thread {
             String commenterMessage;
 
             do {
-                commenterMessage = reader.readLine();                
-                serverMessage = "[" + commenter + "]:  " + "{" + "Customer_id: " + feedView.getCustomerId()
-                        + "\nBusiness_id: " + feedView.getBusinessId() + "\nTitle: " + feedView.getTitle()
-                        + "\nDescription: " + feedView.getDescription() + "}";
+                commenterMessage = reader.readLine();
+                // serverMessage = "[" + commenter + "]:  " + "{" + "Customer_id: " + feedView.getCustomerId()
+                //         + "\nBusiness_id: " + feedView.getBusinessId() + "\nTitle: " + feedView.getTitle()
+                //         + "\nDescription: " + feedView.getDescription() + "}";
                 server.broadcast(serverMessage, this);
 
             } while (!commenterMessage.equals("bye")); // and check if the customer_id and business_id are present
