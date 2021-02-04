@@ -7,28 +7,31 @@ import com.customify.client.views.Business.BusinessRegisterView;
 
 import java.io.IOException;
 import java.net.Socket;
-import  java.util.*;
+import java.util.*;
 
 public class Home {
 
     private Socket socket;
 
-    public Home(Socket socket){
+    public Home(Socket socket) {
         this.socket = socket;
     }
-    public Socket getSocket()
-    {
+
+    public Socket getSocket() {
         return socket;
     }
-    public void setSocket(Socket socket){
+
+    public void setSocket(Socket socket) {
         this.socket = socket;
     }
+
     public void view() throws Exception {
 
         int choice;
         Scanner scan = new Scanner(System.in);
-        LoginView loginView =new LoginView(this.socket);
-        SignupView signupView =new SignupView(this.socket);
+        LoginView loginView = new LoginView(this.socket);
+        SignupView signupView = new SignupView(this.socket);
+        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
         ProductView productView = new ProductView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
 
@@ -39,10 +42,10 @@ public class Home {
         System.out.println("           3. Register product");
         System.out.println("           4. See all Products");
         System.out.println("           5. Register a business ");
+        System.out.println("           6. Provide feedback ");
         choice = scan.nextInt();
 
-        switch(choice)
-        {
+        switch (choice) {
             case 1:
                 signupView.view();
                 break;
@@ -57,6 +60,10 @@ public class Home {
                 break;
             case 5:
                 businessRegisterView.view();
+                break;
+
+            case 6:
+                feedbackView.view();
                 break;
             default:
                 System.out.println("Invalid choice");
