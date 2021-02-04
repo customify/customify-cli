@@ -1,8 +1,9 @@
-<<<<<<< HEAD
+
 package com.customify.client.views;
 
 import com.customify.client.services.ProductService;
 import com.customify.server.models.ProductModel;
+import com.customify.shared.requests_data_formats.ProductFormat;
 
 import java.net.Socket;
 import java.util.Date;
@@ -11,40 +12,50 @@ import java.util.Scanner;
 public class ProductView {
     private Socket socket;
 
+    long productCode;
+    int business_id;
+    String name;
+    float price;
+    int quantity;
+    String description;
+    double bondedPoints;
+    int registered_by;
+    Date createdAt;
+
     public ProductView(Socket socket) {
         this.socket = socket;
     }
 
     public void createProduct() throws Exception {
         Scanner scanner = new Scanner(System.in);
-        ProductModel newProduct = new ProductModel();
+
 
         System.out.println("Enter product name:");
-        newProduct.setName(scanner.nextLine());
+        name = scanner.nextLine();
 
         System.out.println("Enter business_id:");
-        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+        business_id = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter product price:");
-        newProduct.setPrice(Float.parseFloat(scanner.nextLine()));
+        price = Float.parseFloat(scanner.nextLine());
 
         System.out.println("Enter quantity you have:");
-        newProduct.setQuantity(Integer.parseInt(scanner.nextLine()));
+        quantity = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter product description:");
-        newProduct.setDescription(scanner.nextLine());
+        description = scanner.nextLine();
 
         System.out.println("Enter points to bind with:");
-        newProduct.setBondedPoints(Double.parseDouble(scanner.nextLine()));
+        bondedPoints = Double.parseDouble(scanner.nextLine());
 
         System.out.println("Who is registering this product?");
-        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+        registered_by = Integer.parseInt(scanner.nextLine());
 
-        newProduct.setCreatedAt(new Date());
+        ProductFormat productFormat = new ProductFormat(productCode,business_id,name,price,quantity,description,bondedPoints,registered_by,createdAt);
+
+        productFormat.setCreatedAt(new Date());
             ProductService productService = new ProductService(this.socket);
-            productService.addNewProduct(newProduct);
-
-            System.out.println("Product you registered has id of " + newProduct.getProductCode());
+            productService.addNewProduct(productFormat);
 
 
 
@@ -64,7 +75,5 @@ public class ProductView {
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
         }
-=======
-package com.customify.client.views;public class ProductView {
->>>>>>> 112ef6f5f3c53be2677a51a1925833905190461f
+
 }
