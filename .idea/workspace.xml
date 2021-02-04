@@ -90,6 +90,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
@@ -117,6 +128,7 @@
       <workItem from="1612109061810" duration="1730000" />
       <workItem from="1612114212591" duration="298000" />
       <workItem from="1612114984363" duration="777000" />
+<<<<<<< HEAD
       <workItem from="1612328611965" duration="110000" />
       <workItem from="1612328741594" duration="614000" />
       <workItem from="1612329372387" duration="1715000" />
@@ -127,6 +139,11 @@
       <workItem from="1612382402236" duration="118000" />
       <workItem from="1612412125075" duration="9460000" />
       <workItem from="1612436270169" duration="782000" />
+=======
+      <workItem from="1612351844191" duration="41000" />
+      <workItem from="1612351899846" duration="5000" />
+      <workItem from="1612351917176" duration="94000" />
+>>>>>>> ca962ec7d1856f38713d3c20128e05fb28b01516
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
