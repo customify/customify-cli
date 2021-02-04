@@ -46,8 +46,6 @@ public class Common {
             this.output = socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(output);
             this.objectOutput.writeObject(dataToSend);
-
-
         }catch(Exception e)
         {
             System.out.println(e.getMessage());

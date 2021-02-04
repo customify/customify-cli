@@ -49,6 +49,7 @@ public class AuthService {
             this.handleLoginResponse();
         }
     }
+
     public void handleLoginResponse() throws IOException, ClassNotFoundException {
         //reading and extracting response from the server
         inputStream = this.socket.getInputStream();
