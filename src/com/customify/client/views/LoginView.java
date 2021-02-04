@@ -2,6 +2,7 @@
   Class to display the login view
 */
 
+
 package com.customify.client.views;
 import com.customify.client.services.AuthService;
 import com.customify.shared.requests_data_formats.LoginFormat;

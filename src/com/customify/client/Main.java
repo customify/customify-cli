@@ -28,8 +28,6 @@ public class Main {
         int portNumber = 3000;
         try{
             Socket socket = new Socket(serverIp, portNumber);
-
-
             System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
