@@ -55,6 +55,7 @@ public class ProductView {
 
         productFormat.setCreatedAt(new Date());
             ProductService productService = new ProductService(this.socket);
+            productService.setSocket(this.socket);
             productService.addNewProduct(productFormat);
 
 
