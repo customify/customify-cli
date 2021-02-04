@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/ProductFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/customify/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/production/customify/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/SignupView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/ProductModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +71,7 @@
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.Client2">
     <configuration name="Client2" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -128,6 +122,17 @@
       <workItem from="1612291273962" duration="396000" />
       <workItem from="1612291697329" duration="133000" />
       <workItem from="1612291855688" duration="1072000" />
+      <workItem from="1612370756773" duration="1735000" />
+      <workItem from="1612372521754" duration="1433000" />
+      <workItem from="1612378508005" duration="2393000" />
+      <workItem from="1612385834666" duration="1143000" />
+      <workItem from="1612387617774" duration="16000" />
+      <workItem from="1612414370183" duration="2165000" />
+      <workItem from="1612417726411" duration="1457000" />
+      <workItem from="1612419246762" duration="41000" />
+      <workItem from="1612421182722" duration="5219000" />
+      <workItem from="1612458182473" duration="1539000" />
+      <workItem from="1612463514652" duration="2233000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>

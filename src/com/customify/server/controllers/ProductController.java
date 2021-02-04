@@ -4,6 +4,7 @@ import com.customify.server.Db.Db;
 import com.customify.server.models.ProductModel;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
+import com.customify.shared.requests_data_formats.ProductFormat;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -26,51 +27,43 @@ public class ProductController {
     }
 
     public void registerProduct() throws IOException, SQLException {
-        ProductModel product = (ProductModel) request.getObject();
-        Statement statement = Db.getStatement();
-        statement.execute("CREATE TABLE products(" +
-                "id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY," +
-                "product_code int not null," +
-                "business_id int(11) not null," +
-                "name varchar(255)," +
-                "price float not null," +
-                "quantity int(5) not null default 0," +
-                "description text not null ," +
-                "bonded_points double not null," +
-                "registered_by int(11) not null," +
-                "created_at date not null" +
-                ")");
+        ProductFormat product = (ProductFormat) request.getObject();
 
-
-        Connection connection = Db.getConnection();
-        String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
-                " values(?,?,?,?,?,?,?,?,?)";
-
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setLong(1,product.getProductCode());
-        preparedStatement.setInt(2,product.getBusiness_id());
-        preparedStatement.setString(3,product.getName());
-        preparedStatement.setFloat(4,product.getPrice());
-        preparedStatement.setInt(5,product.getQuantity());
-        preparedStatement.setString(6,product.getDescription());
-        preparedStatement.setDouble(7,product.getBondedPoints());
-        preparedStatement.setInt(8,product.getRegistered_by());
-        preparedStatement.setDate(9, (Date) product.getCreatedAt());
+        System.out.println("Request to create product was received at backend");
 
         try {
+            Connection connection = Db.getConnection();
+            String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
+                    " values(?,?,?,?,?,?,?,?,?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1,product.getProductCode());
+            preparedStatement.setInt(2,product.getBusiness_id());
+            preparedStatement.setString(3,product.getName());
+            preparedStatement.setFloat(4,product.getPrice());
+            preparedStatement.setInt(5,product.getQuantity());
+            preparedStatement.setString(6,product.getDescription());
+            preparedStatement.setDouble(7,product.getBondedPoints());
+            preparedStatement.setInt(8,product.getRegistered_by());
+            preparedStatement.setString(9,product.getCreatedAt());
+
             OutputStream output = this.socket.getOutputStream();
             ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 
-            if(preparedStatement.execute()){
-                Response response = new Response(200,product);
+            if(preparedStatement.executeUpdate() > 0){
                 List responseData = new ArrayList<>();
+                Response response = new Response(200,product);
                 responseData.add(response);
 
-                //Send the response to client
+                //Sending the response to client
                 objectOutput.writeObject(responseData);
             }
             else{
-                System.out.println("Error occurred when registering product");
+                List responseData = new ArrayList<>();
+                Response response = new Response(400,product);
+                responseData.add(response);
+                //Sending the response to client
+                objectOutput.writeObject(responseData);
             }
         }
         catch (Exception e){

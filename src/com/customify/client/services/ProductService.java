@@ -5,6 +5,7 @@ import com.customify.server.models.ProductModel;
 import com.customify.shared.Keys;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
+import com.customify.shared.requests_data_formats.ProductFormat;
 import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
 
 import java.io.IOException;
@@ -29,12 +30,10 @@ public class ProductService {
 
     public void setSocket(Socket socket) throws IOException {
         this.socket = socket;
-        inputStream = this.socket.getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
 
     }
 
-    public void addNewProduct(ProductModel productModel) throws Exception {
+    public void addNewProduct(ProductFormat productModel) throws Exception {
         Request request = new Request(Keys.CREATE_PRODUCT, productModel);
         Common common = new Common(request, this.socket);
 
@@ -42,17 +41,38 @@ public class ProductService {
         if (common.sendToServer() == true) {
             this.handleRegisterProductSuccess();
         }
+        else{
+            System.out.println("Error occurred at productService");
+        }
     }
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
-        List<Response> response = (List<Response>) objectInputStream.readObject();
-        if(response.get(0).getStatusCode() == 200){
-            ProductModel registeredProduct = (ProductModel) response.get(0).getData();
+        System.out.println("handle register product success method was reached");
 
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            System.out.println("\t\t product registered successfully");
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        inputStream = this.getSocket().getInputStream();
+        objectInputStream = new ObjectInputStream(inputStream);
+
+        try {
+            List<Response> response = (List<Response>) objectInputStream.readObject();
+            System.out.println(response);
+            if(response.get(0).getStatusCode() == 200){
+                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
+
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("\t\t product registered successfully");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+            }
+            else {
+                System.out.println("Invalid product format");
+            }
+
+        } catch (IOException e) {
+            e.getCause();
+        } catch (ClassNotFoundException e) {
+            e.getCause();
         }
+
+        return;
     }
 
 }
