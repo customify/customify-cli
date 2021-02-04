@@ -6,7 +6,9 @@ import com.customify.shared.requests_data_formats.PointsByCustomerEmailFormat;
 
 import java.net.Socket;
 
-//author: Fredson
+/**
+ * @author GISA KAZE Fredson
+ * */
 public class PointsController {
     private Socket socket;
     private Request request;
@@ -16,6 +18,9 @@ public class PointsController {
         this.request = request;
     }
 
+    /**
+     * @author GISA KAZE Fredson
+     * */
     public void getPointsByCustomerEmail(){
         PointsByCustomerEmailFormat data = (PointsByCustomerEmailFormat) request.getObject();
         System.out.println("Customer email: "+data.getEmail());

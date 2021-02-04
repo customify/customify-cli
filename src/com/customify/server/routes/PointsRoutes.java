@@ -5,7 +5,9 @@ import com.customify.shared.Request;
 
 import java.net.Socket;
 
-//author: Fredson
+/**
+ * @author GISA KAZE Fredson
+ * */
 public class PointsRoutes {
     Socket socket;
     PointsController pointsController;

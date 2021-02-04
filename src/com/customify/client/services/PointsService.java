@@ -8,7 +8,9 @@ import com.customify.shared.requests_data_formats.PointsByCustomerEmailFormat;
 import java.io.IOException;
 import java.net.Socket;
 
-//author: Fredson
+/**
+ * @author GISA KAZE Fredson
+ * */
 public class PointsService {
     private Socket socket;
     private Common common;
@@ -17,6 +19,9 @@ public class PointsService {
         this.socket = socket;
     }
 
+    /**
+     * @author GISA KAZE Fredson
+     * */
     public void getPointsByCustomerEmail(PointsByCustomerEmailFormat format) throws IOException {
         Request request = new Request(Keys.POINTS_BY_CUSTOMER_EMAIL, format);
         this.common = new Common(request, this.socket);

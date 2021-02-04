@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.util.Scanner;
 
-//author: Fredson
+/**
+ * @author GISA KAZE Fredson
+ * */
 public class PointCountingView {
     private Socket socket;
 
@@ -26,6 +28,9 @@ public class PointCountingView {
         this.socket = socket;
     }
 
+    /**
+     * @author GISA KAZE Fredson
+     * */
     public void view() throws IOException {
         boolean points = true;
         Scanner scan = new Scanner(System.in);
