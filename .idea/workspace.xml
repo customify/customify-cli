@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/AwardsNotifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/CouponModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/utils/CouponStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/Points.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/PointsModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -175,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612117035626</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added points model">
+      <created>1612427653251</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1612427653252</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,7 +203,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="sam" />
+                        <option value="HEAD" />
                       </list>
                     </value>
                   </entry>
@@ -213,6 +224,7 @@
     <MESSAGE value="Db connection fixed" />
     <MESSAGE value="adding mysql connector jar file" />
     <MESSAGE value="Added enum utility for key handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added enum utility for key handling" />
+    <MESSAGE value="added points model" />
+    <option name="LAST_COMMIT_MESSAGE" value="added points model" />
   </component>
 </project>
