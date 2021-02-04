@@ -8,6 +8,7 @@ public class HandleRoutes {
     private final Keys key;
     Socket socket;
     AuthRoute authRoute;
+    BussinessRoute bussinessRoute;
 
     public HandleRoutes(Keys key, Socket socket) throws IOException {
         this.socket = socket;
@@ -17,8 +18,22 @@ public class HandleRoutes {
     }
 
     public void switchRoutes() throws IOException {
-        if (this.key == Keys.LOGIN) {
-            authRoute.loginRoute();
+        switch (this.key) {
+            case LOGIN:
+                authRoute.loginRoute();
+                break;
+            case GET_BUSS:
+                bussinessRoute.getAllRoute();
+                break;
+            case GET_BUSS_BYID:
+                bussinessRoute.getByIdroute();
+                break;
+            case REMOVE_BUSS:
+                bussinessRoute.deleteBusinessroute();
+                break;
+
+            default:
+                System.out.println("Invalid key");
         }
         authRoute.loginError();
     }

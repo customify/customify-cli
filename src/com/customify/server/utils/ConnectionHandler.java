@@ -1,6 +1,7 @@
 package com.customify.server.utils;
 
 import com.customify.server.controllers.AuthController;
+import com.customify.server.controllers.BussinessController;
 import com.customify.shared.Request;
 import com.customify.shared.Keys;
 import java.io.*;
@@ -35,6 +36,7 @@ public class ConnectionHandler {
 
     public void handleRequest() throws IOException {
       AuthController authController;
+      BussinessController bussinessController;
         switch (request.getKey()) {
             case LOGIN:
                  authController = new AuthController(this.clientSocket,this.request);
@@ -43,6 +45,17 @@ public class ConnectionHandler {
             case REGISTER:
                   authController = new AuthController(this.clientSocket,this.request);
                   authController.signup();
+                break;
+            case GET_BUSS:
+                bussinessController = new BussinessController(this.clientSocket,this.request);
+                bussinessController.getall();
+                break;
+            case GET_BUSS_BYID:
+                bussinessController = new BussinessController(this.clientSocket,this.request);
+                bussinessController.getById();
+            case REMOVE_BUSS:
+                bussinessController=new BussinessController(this.clientSocket,this.request);
+                bussinessController.deleteBusiness();
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
