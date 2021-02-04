@@ -40,6 +40,8 @@ public class ConnectionHandler {
 
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
+        ProductController productController = new ProductController(this.clientSocket, this.request);
+
         switch (request.getKey()) {
             case LOGIN:
                 authController = new AuthController(this.clientSocket, this.request);
@@ -50,8 +52,10 @@ public class ConnectionHandler {
                 authController.signup();
                 break;
             case CREATE_PRODUCT:
-                ProductController productController = new ProductController(this.clientSocket, this.request);
                 productController.registerProduct();
+
+            case GET_ALL_PRODUCTS:
+                productController.getAllProducts();
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

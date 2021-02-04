@@ -15,11 +15,32 @@ public class ProductView {
         this.socket = socket;
     }
 
-    public  void init(){
+    public void init() throws Exception {
+        Scanner reader = new Scanner(System.in);
+        int choice;
+
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("\t\tPRODUCT MANAGEMENT");
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("\t\t1.register product");
+        System.out.println("\t\t2.get all products");
+        System.out.println("\t\t3.get product by id");
+        System.out.println("\t\t4.update product");
+        System.out.println("\t\t5.delete product");
+        System.out.println("\t\t00.back");
+
+        System.out.print("\nEnter option:\t");
+        choice = Integer.parseInt(reader.nextLine());
+
+        switch (choice) {
+            case 0:
+                return;
+            case 1:
+                this.createProduct();
+                break;
+            default:
+                System.out.println("Your entered Incorrect option");
+        }
     }
 
     public void createProduct() throws Exception {
@@ -50,10 +71,6 @@ public class ProductView {
         newProduct.setCreatedAt("2021/02/04");
         ProductService productService = new ProductService(this.socket);
         productService.addNewProduct(newProduct);
-
-        System.out.println("Product you registered has id of " + newProduct.getProductCode());
-
-
     }
 
     public Socket getSocket() {

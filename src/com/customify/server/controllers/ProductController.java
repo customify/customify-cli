@@ -29,7 +29,8 @@ public class ProductController {
     public void registerProduct() throws IOException, SQLException {
         ProductFormat product = (ProductFormat) request.getObject();
 
-        System.out.println("Request to create product was received at backend");
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 
         try {
             Connection connection = Db.getConnection();
@@ -46,9 +47,6 @@ public class ProductController {
             preparedStatement.setDouble(7,product.getBondedPoints());
             preparedStatement.setInt(8,product.getRegistered_by());
             preparedStatement.setString(9,product.getCreatedAt());
-
-            OutputStream output = this.socket.getOutputStream();
-            ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 
             if(preparedStatement.executeUpdate() > 0){
                 List responseData = new ArrayList<>();
@@ -67,7 +65,11 @@ public class ProductController {
             }
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            List responseData = new ArrayList<>();
+            Response response = new Response(500,new ProductFormat());
+            responseData.add(response);
+            //Sending the response to client
+            objectOutput.writeObject(responseData);
         }
     }
 
@@ -81,9 +83,38 @@ public class ProductController {
         output.writeUTF("Product was deleted successfully");
     }
 
-    public void getAllProducts() throws IOException {
-        output = new DataOutputStream(this.socket.getOutputStream());
-        output.writeUTF("Products list here...");
+    public void getAllProducts() throws IOException, SQLException {
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+
+        List products = null;
+        List response = new ArrayList<>();
+
+        try {
+            Statement statement = Db.getStatement();
+            ResultSet records = statement.executeQuery("SELECT * FROM products");
+
+            products = new ArrayList<>();
+
+            while (records.next()){
+                products.add(
+                    new ProductFormat(
+                            records.getInt("business_id"), records.getString("name"),
+                            records.getFloat("price"), records.getInt("quantity"),
+                            records.getString("description"),records.getDouble("bondedPoints"),
+                            records.getInt("registered_by"), records.getString("createdAt")
+                    )
+                );
+            }
+
+            response.add(new Response(200,products));
+            objectOutput.writeObject(response);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            response.add(new Response(500,new Object()));
+            objectOutput.writeObject(response);
+        }
     }
 
 

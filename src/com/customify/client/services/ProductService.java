@@ -42,19 +42,16 @@ public class ProductService {
             this.handleRegisterProductSuccess();
         }
         else{
-            System.out.println("Error occurred at productService");
+            System.out.println("\n\nError occurred when trying to send request to server\n");
         }
     }
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
-        System.out.println("handle register product success method was reached");
-
         inputStream = this.getSocket().getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
 
         try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
-            System.out.println(response);
             if(response.get(0).getStatusCode() == 200){
                 ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
 
@@ -62,14 +59,17 @@ public class ProductService {
                 System.out.println("\t\t product registered successfully");
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
             }
-            else {
-                System.out.println("Invalid product format");
+            else if(response.get(0).getStatusCode() == 400){
+                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
+            }
+            else{
+                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
             }
 
         } catch (IOException e) {
-            e.getCause();
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
         } catch (ClassNotFoundException e) {
-            e.getCause();
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
         }
 
         return;
