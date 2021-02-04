@@ -1,3 +1,10 @@
+/**
+ * @description
+ * Format for Products to be used both on Server and Client
+ *
+ * @author SAUVE Jean-Luc
+ * @version 1
+ * */
 package com.customify.shared.requests_data_formats;
 
 import java.io.Serializable;

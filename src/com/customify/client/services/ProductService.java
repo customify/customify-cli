@@ -1,7 +1,6 @@
 package com.customify.client.services;
 
 import com.customify.client.Common;
-import com.customify.server.models.ProductModel;
 import com.customify.shared.Keys;
 import com.customify.shared.Request;
 import com.customify.shared.Response;

@@ -1,4 +1,7 @@
-
+/*
+   Description: A view made for manipulating products
+   Contributors: SAUVE, Jacques, Merlyn
+ */
 package com.customify.client.views;
 
 import com.customify.client.services.ProductService;
