@@ -10,17 +10,33 @@ public class Home {
 
     private Socket socket;
 
+    /**
+     * @param socket for using to work with backend
+     */
     public Home(Socket socket){
         this.socket = socket;
     }
+
+    /**
+     *
+     * @return socket the current socket
+     */
     public Socket getSocket()
     {
         return socket;
     }
+
+
+    /**
+     *
+     * @param socket
+     */
     public void setSocket(Socket socket){
         this.socket = socket;
     }
-    public void view() throws IOException, ClassNotFoundException {
+
+
+    public void view() throws IOException, ClassNotFoundException, InterruptedException {
 
         int choice;
         Scanner scan = new Scanner(System.in);
@@ -28,22 +44,38 @@ public class Home {
         SignupView signupView =new SignupView(this.socket);
 
         System.out.println("---------------------------------------------");
-        System.out.println("--------------CUSTOMIFY HOME-----------------");
+        System.out.println("            CUSTOMIFY HOME                    ");
         System.out.println("\n           1. Sign Up");
         System.out.println("           2. Login In");
+
+        System.out.println("\n");
+
+        System.out.println("Enter your choice here: ");
         choice = scan.nextInt();
 
         switch(choice)
         {
             case 1:
+                clearScreen();
                 signupView.view();
                 break;
             case 2:
+                clearScreen();
                 loginView.view();
                 break;
             default:
+                clearScreen();
                 System.out.println("Invalid choice");
         }
 
+    }
+
+    /**
+     *
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static void clearScreen() throws IOException, InterruptedException {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 }

@@ -40,12 +40,12 @@ public class Common {
 
     public boolean sendToServer() throws IOException {
         try {
+
             List<Request> dataToSend = new ArrayList<>();
             dataToSend.add(request);
             this.output = socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(output);
             this.objectOutput.writeObject(dataToSend);
-
 
 
         }catch(Exception e)

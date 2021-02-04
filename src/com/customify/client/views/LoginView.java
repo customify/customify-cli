@@ -13,6 +13,9 @@ public class LoginView {
 
     private Socket socket;
 
+    /**
+     * @param socket for connection
+     */
     public LoginView(Socket socket){
         this.socket = socket;
     }
@@ -23,6 +26,9 @@ public class LoginView {
     public void setSocket(Socket socket){
         this.socket = socket;
     }
+
+
+
     public void view() throws IOException, ClassNotFoundException {
 
         boolean login = true;
