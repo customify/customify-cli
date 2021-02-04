@@ -13,6 +13,7 @@ public class HandleRoutes {
     public HandleRoutes(Keys key, Socket socket) throws IOException {
         this.socket = socket;
         this.authRoute = new AuthRoute(socket);
+        this.pointsRoutes = new PointsRoutes(socket);
         this.key = key;
         this.switchRoutes();
     }

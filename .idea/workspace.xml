@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/PointsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/PointsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/PointCountingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/PointCountingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/PointsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/PointsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/PointsRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/PointsRoutes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/PointsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/PointsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/PointsByCustomerEmailFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/PointsByCustomerEmailFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +62,7 @@
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
