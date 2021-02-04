@@ -24,7 +24,14 @@ public class BusinessRegisterView {
         this.socket = socket;
     }
 
-    public void view() throws IOException {
+
+    /**
+     * @author IRUMVA HABUMUGISHA Anselme
+     * @role
+     * this function is to handle the entrance view of the class
+     * */
+
+    public void view() throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
         String name, location, address, phone_number;
         int representative_id, plan_id;

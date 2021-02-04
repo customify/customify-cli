@@ -23,19 +23,38 @@ import java.util.List;
 public class BusinessService {
     Socket socket;
 
-    public BusinessService(Socket socket) throws IOException {
+    public BusinessService(Socket socket) {
         this.socket = socket;
     }
 
-    public void create(BusinessFormat businessFormat) throws IOException {
+    /**
+     * @role
+     * @author IRUMVA HABUMUGISHA Anselme
+     * this function is to create a new business
+     * We send the request to the backend
+     * */
+    public void create(BusinessFormat businessFormat) throws IOException, ClassNotFoundException {
         Request request = new Request(Keys.CREATE_BUSINESS , businessFormat);
         Common common = new Common(request,this.socket);
 
         if(common.sendToServer()){
-            System.out.println("Wait for the response from the server ... ");
+            this.handleCreateBusinessResponse();
         }else{
             System.out.println("There was an error when sending request ....");
         }
     }
 
+    /**
+     * @author IRUMVA HABUMUGISHA Anselme
+     * @role
+     * this function is to handle response on the successfully creation of the business
+     * */
+    public void handleCreateBusinessResponse() throws IOException, ClassNotFoundException {
+        InputStream inputStream = this.socket.getInputStream();
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        List<Response> response = (List<Response>) objectInputStream.readObject();
+        if(response.get(0).getStatusCode() == 201){
+            System.out.println("The business is created successfully ....");
+        }
+    }
 }
