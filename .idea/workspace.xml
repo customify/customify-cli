@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19e39362-b4bb-45ea-a642-7d91e42784c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/ProductRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/AuthFromats/SuccessProductFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/LoginView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/ProductFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/ProductFormat.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612430573343</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Documented Classes related to Product Module">
+      <created>1612438185604</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1612438185604</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,6 +228,7 @@
     <MESSAGE value="adding mysql connector jar file" />
     <MESSAGE value="Replaced the dependency of ProductView on Server's codes." />
     <MESSAGE value="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error" />
+    <MESSAGE value="Documented Classes related to Product Module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documented Classes related to Product Module" />
   </component>
 </project>

@@ -1,5 +1,12 @@
+/**
+ * @description
+ * A view made for manipulating products
+ *
+ * @author SAUVE Jean-Luc, Jacques Twizeyimana,Iradukunda Tamara Merlyn
+ * @version 5
+ * */
 /*
-   Description: A view made for manipulating products
+   Description:
    Contributors: SAUVE, Jacques, Merlyn
  */
 package com.customify.client.views;
