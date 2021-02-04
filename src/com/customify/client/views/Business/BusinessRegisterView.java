@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class BusinessRegisterView {
     private final Socket socket;
 
+    // constructor created by anselme
     public BusinessRegisterView(Socket socket) {
         this.socket = socket;
     }
@@ -28,7 +29,8 @@ public class BusinessRegisterView {
     /**
      * @author IRUMVA HABUMUGISHA Anselme
      * @role
-     * this function is to handle the entrance view of the class
+     * this function is to handle the entrance view of the class and casts it into the format all
+     * handlers for this register understands ...
      * */
 
     public void view() throws IOException, ClassNotFoundException {
@@ -50,8 +52,13 @@ public class BusinessRegisterView {
         System.out.print("Enter the business plan           :  ");
         plan_id = scan.nextInt();
 
+        // let me create the format for the business create
         var businessFormat = new BusinessFormat(name, location, phone_number, address, representative_id, plan_id);
+
+        // make my service manage by request
         var businessService = new BusinessService(this.socket);
+
+        // then try ti create the service
         businessService.create(businessFormat);
     }
 }

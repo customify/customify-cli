@@ -33,7 +33,7 @@ public class BusinessController {
     ObjectOutputStream objectOutput;
     Socket socket;
 
-    public BusinessController(Socket socket, Request request) throws IOException {
+    public BusinessController(Socket socket, Request request){
         this.request = request;
         this.socket = socket;
     }
@@ -59,6 +59,7 @@ public class BusinessController {
         statement.setInt(5, businessFormat.getRepresentative());
         statement.setInt(6, businessFormat.getPlan());
 
+        // Let me try to execute the query and write the result ....
         try {
             if(statement.execute()){
                 System.out.println("Your query not working .... ");
