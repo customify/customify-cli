@@ -1,6 +1,6 @@
 package com.customify.server;
-import com.customify.server.Db.Db;
-import com.customify.server.utils.ConnectionHandler;
+import com.customify.server.Db.*;
+import com.customify.server.utils.*;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -9,7 +9,7 @@ import java.net.Socket;
 public class Main {
     private static final int portNumber = 3000;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ServerSocket serverSocket;
 
         try {

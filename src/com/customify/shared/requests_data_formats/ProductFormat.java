@@ -1,15 +1,16 @@
-package com.customify.server.models;
+/**
+ * @description
+ * Format for Products to be used both on Server and Client
+ *
+ * @author SAUVE Jean-Luc
+ * @version 1
+ * */
+package com.customify.shared.requests_data_formats;
 
-/*
-* Created by Jacques Twizeyimana
-* Product model is a blueprint of how our products will be represented in database
-* all fields that product table will have are blueprinted here
-* It will also be used as a data format for products to or from server/client
-*/
-
+import java.io.Serializable;
 import java.util.Date;
 
-public class ProductModel {
+public class ProductFormat  implements Serializable {
     private long productCode;
     private int business_id;
     private String name;
@@ -20,12 +21,9 @@ public class ProductModel {
     private int registered_by;
     private Date createdAt;
 
-    public ProductModel(){
-        this.productCode = this.generateId();
-    }
-
-    public ProductModel(int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, Date createdAt) {
-        this.productCode = this.generateId();
+    //Constructor
+    public ProductFormat(long productCode, int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, Date createdAt) {
+        this.productCode = productCode;
         this.business_id = business_id;
         this.name = name;
         this.price = price;
@@ -35,18 +33,13 @@ public class ProductModel {
         this.registered_by = registered_by;
         this.createdAt = createdAt;
     }
-    public long generateId(){
-        int min = 1000000;
-        int max = 999999999;
 
-        return Math.round(Math.random() * (max - min + 1) + min);
-    }
-
+    //Getters and Setters
     public long getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(int productCode) {
+    public void setProductCode(long productCode) {
         this.productCode = productCode;
     }
 

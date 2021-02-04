@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/libs/activation.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/mail.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/NotificationModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/NotificationService.java" afterDir="false" />
+    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/mysql-connector-java-8.0.16.jar" beforeDir="false" afterPath="$PROJECT_DIR$/libs/mysql-connector-java-8.0.19.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -28,6 +19,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="sauve" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -53,40 +49,28 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mailactivation/activation.jar" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.16.jar" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.11" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="ReaderModeSettings">
     <option name="enabled" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Yassin\Desktop\customify\libs" />
-      <recent name="C:\Users\Yassin\Pictures\customify\libs" />
-    </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="customify.client.views" />
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Notification">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Client" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
-      <option name="ALTERNATIVE_JRE_PATH" value="15 " />
+  <component name="RunManager" selected="Application.Client2">
+    <configuration name="Client2" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.customify.client.Main" />
       <module name="customify" />
@@ -94,28 +78,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Notification" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="com.customify.server.services.NotificationService" />
-      <module name="customify" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SendMail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.customify.server.controllers.SendMail" />
-      <module name="customify" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.customify.server.controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Server" type="Application" factoryName="Application" activateToolWindowBeforeRun="false" singleton="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="15" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.customify.server.Main" />
       <module name="customify" />
@@ -123,17 +87,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Server" />
-      <item itemvalue="Application.Notification" />
-      <item itemvalue="Application.Client" />
-      <item itemvalue="Application.SendMail" />
+      <item itemvalue="Application.Client2" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.SendMail" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -157,6 +127,11 @@
       <workItem from="1612109061810" duration="1730000" />
       <workItem from="1612114212591" duration="298000" />
       <workItem from="1612114984363" duration="777000" />
+      <workItem from="1612292464031" duration="7676000" />
+      <workItem from="1612326310430" duration="8261000" />
+      <workItem from="1612291273962" duration="396000" />
+      <workItem from="1612291697329" duration="133000" />
+      <workItem from="1612291855688" duration="1072000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
@@ -193,7 +168,35 @@
       <option name="project" value="LOCAL" />
       <updated>1612114324980</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Replaced the dependency of ProductView on Server's codes.">
+      <created>1612428413615</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612428413615</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error">
+      <created>1612430573343</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1612430573343</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Wrote Response Data Format for Product + ProductService.">
+      <created>1612443173009</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1612443173009</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Removed all bugs caused by latest Business Model's commits">
+      <created>1612444248295</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1612444248295</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +233,10 @@
     <MESSAGE value="setup on local pc done" />
     <MESSAGE value="Db connection fixed" />
     <MESSAGE value="adding mysql connector jar file" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding mysql connector jar file" />
+    <MESSAGE value="Replaced the dependency of ProductView on Server's codes." />
+    <MESSAGE value="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error" />
+    <MESSAGE value="Wrote Response Data Format for Product + ProductService." />
+    <MESSAGE value="Removed all bugs caused by latest Business Model's commits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed all bugs caused by latest Business Model's commits" />
   </component>
 </project>

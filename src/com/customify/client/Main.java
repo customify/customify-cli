@@ -1,12 +1,12 @@
 package com.customify.client;
 
 
-import com.customify.client.views.Home;
+import com.customify.client.views.*;
+
 import java.io.*;
 import java.net.*;
 
 public class Main {
-
     private OutputStream output = null;
     private ObjectOutputStream objectOutput = null;
     private boolean isConnectionOn = true;
@@ -28,8 +28,6 @@ public class Main {
         int portNumber = 3000;
         try{
             Socket socket = new Socket(serverIp, portNumber);
-
-
             System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
