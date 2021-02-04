@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/AwardsNotifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/PointsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/AwardsNotifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/AwardsNotifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +65,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.11" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="ReaderModeSettings">
@@ -72,7 +77,7 @@
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -190,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612428278911</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Award notification module">
+      <created>1612430383713</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1612430383713</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +242,18 @@
     <MESSAGE value="Added enum utility for key handling" />
     <MESSAGE value="added points model" />
     <MESSAGE value="all models for ward winning module done" />
-    <option name="LAST_COMMIT_MESSAGE" value="all models for ward winning module done" />
+    <MESSAGE value="Award notification module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Award notification module" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/customify/server/Db/Db.java</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

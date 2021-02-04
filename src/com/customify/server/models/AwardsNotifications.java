@@ -8,15 +8,15 @@ public class AwardsNotifications {
     private Date created_at;
     private String description;
     private String title;
-    private boolean isRecieved;
+    private boolean isReceived;
 
-    public AwardsNotifications(int id, int customer_id, Date created_at, String description, String title, boolean isRecieved) {
+    public AwardsNotifications(int id, int customer_id, Date created_at, String description, String title, boolean isReceived) {
         this.id = id;
         this.customer_id = customer_id;
         this.created_at = created_at;
         this.description = description;
         this.title = title;
-        this.isRecieved = isRecieved;
+        this.isReceived = isReceived;
     }
 
     public int getId() {
@@ -59,11 +59,11 @@ public class AwardsNotifications {
         this.title = title;
     }
 
-    public boolean isRecieved() {
-        return isRecieved;
+    public boolean isReceived() {
+        return isReceived;
     }
 
-    public void setRecieved(boolean recieved) {
-        isRecieved = recieved;
+    public void setReceived(boolean received) {
+        isReceived = received;
     }
 }

@@ -1,3 +1,11 @@
+/*
+ *
+ * By Verite ,  Patrick & Samuel
+ * Desc: The core server loader
+ *
+ * */
+
+
 package com.customify.server;
 import com.customify.server.Db.*;
 import com.customify.server.utils.*;
@@ -20,13 +28,12 @@ public class Main {
                 Socket clientSocket = null;
                 try {
                     Db.init();
-                    System.out.println("** Listening on port ***");
+                    System.out.println("** Listening on port "+portNumber +" ***");
                     clientSocket = serverSocket.accept();
                     System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
                 } catch (IOException e) {
                     Db.closeConnection();
                     System.out.println("Terminating because of "+e.getMessage());
-
                     //e.printStackTrace();
                 }
 
