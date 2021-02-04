@@ -9,7 +9,7 @@ import java.net.Socket;
 public class Main {
     private static final int portNumber = 3000;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ServerSocket serverSocket;
 
         try {
