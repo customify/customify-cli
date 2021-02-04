@@ -5,10 +5,6 @@
  * @author SAUVE Jean-Luc, Jacques Twizeyimana,Iradukunda Tamara Merlyn
  * @version 5
  * */
-/*
-   Description:
-   Contributors: SAUVE, Jacques, Merlyn
- */
 package com.customify.client.views;
 
 import com.customify.client.services.ProductService;
