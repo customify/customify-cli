@@ -1,13 +1,12 @@
 package com.customify.client;
 
 
-import com.customify.client.views.Home;
+import com.customify.client.views.*;
 
 import java.io.*;
 import java.net.*;
 
 public class Main {
-
     private OutputStream output = null;
     private ObjectOutputStream objectOutput = null;
     private boolean isConnectionOn = true;
