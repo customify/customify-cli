@@ -38,7 +38,7 @@ public class Home {
         System.out.println("           2. Login In");
         System.out.println("           3. Register product");
         System.out.println("           4. See all Products");
-        System.out.println("           3. Register a business ");
+        System.out.println("           5. Register a business ");
         choice = scan.nextInt();
 
         switch(choice)
@@ -53,9 +53,11 @@ public class Home {
                 productView.createProduct();
                 break;
             case 4:
+                productView.getAll();
+                break;
+            case 5:
                 businessRegisterView.view();
                 break;
-
             default:
                 System.out.println("Invalid choice");
         }
