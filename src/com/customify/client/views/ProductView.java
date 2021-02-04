@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class ProductView {
     private Socket socket;
 
+    // Declare
     long productCode;
     int business_id;
     String name;
@@ -32,6 +33,7 @@ public class ProductView {
         this.socket = socket;
     }
 
+    //Ask for required data in order to Register a Product
     public void createProduct() throws Exception {
         Scanner scanner = new Scanner(System.in);
 
