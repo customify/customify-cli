@@ -2,6 +2,7 @@ package com.customify.server.utils;
 
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.ProductController;
+import com.customify.server.controllers.BusinessController;
 import com.customify.shared.Request;
 import com.customify.shared.Keys;
 
@@ -40,6 +41,20 @@ public class ConnectionHandler {
 
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
+
+                try{
+                        List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
+                        this.request = clientRequest.get(0);
+                        this.handleRequest();
+                    }catch(Exception e){}
+            } } catch (IOException e) {
+                System.out.println("Error in reading Object " + e.getMessage());
+        }
+    }
+
+    public void handleRequest() throws Exception {
+      AuthController authController;
+        BusinessController businessController;
         switch (request.getKey()) {
             case LOGIN:
                 authController = new AuthController(this.clientSocket, this.request);
@@ -48,6 +63,11 @@ public class ConnectionHandler {
             case REGISTER:
                 authController = new AuthController(this.clientSocket, this.request);
                 authController.signup();
+                  authController = new AuthController(this.clientSocket,this.request);
+                  authController.signup();
+            case CREATE_BUSINESS:
+                businessController = new BusinessController(this.clientSocket, this.request);
+                businessController.create();
                 break;
             case CREATE_PRODUCT:
                 ProductController productController = new ProductController(this.clientSocket, this.request);

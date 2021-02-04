@@ -2,6 +2,9 @@
   Class to display the Home view
 */
 package com.customify.client.views;
+
+import com.customify.client.views.Business.BusinessRegisterView;
+
 import java.io.IOException;
 import java.net.Socket;
 import  java.util.*;
@@ -27,6 +30,7 @@ public class Home {
         LoginView loginView =new LoginView(this.socket);
         SignupView signupView =new SignupView(this.socket);
         ProductView productView = new ProductView(this.socket);
+        var businessRegisterView = new BusinessRegisterView(this.socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------");
@@ -34,6 +38,7 @@ public class Home {
         System.out.println("           2. Login In");
         System.out.println("           3. Register product");
         System.out.println("           4. See all Products");
+        System.out.println("           3. Register a business ");
         choice = scan.nextInt();
 
         switch(choice)
@@ -50,6 +55,7 @@ public class Home {
             case 4:
                 productView.getAll();
                 break;
+                businessRegisterView.view();
             default:
                 System.out.println("Invalid choice");
         }

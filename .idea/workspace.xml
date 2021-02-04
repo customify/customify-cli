@@ -51,6 +51,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -60,16 +65,21 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.16.jar" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.16.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.11" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="ReaderModeSettings">
     <option name="enabled" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Developments\anselme-dev\Java_Class_B\customify\libs" />
+    </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="customify.client.views" />
       <recent name="src" />
@@ -87,7 +97,6 @@
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" activateToolWindowBeforeRun="false" singleton="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.customify.server.Main" />
       <module name="customify" />
       <method v="2">
@@ -139,6 +148,19 @@
       <workItem from="1612291273962" duration="396000" />
       <workItem from="1612291697329" duration="133000" />
       <workItem from="1612291855688" duration="1072000" />
+      <workItem from="1612328611965" duration="110000" />
+      <workItem from="1612328741594" duration="614000" />
+      <workItem from="1612329372387" duration="1715000" />
+      <workItem from="1612332783582" duration="433000" />
+      <workItem from="1612333231559" duration="3000" />
+      <workItem from="1612335130548" duration="11215000" />
+      <workItem from="1612370353621" duration="1008000" />
+      <workItem from="1612382402236" duration="118000" />
+      <workItem from="1612412125075" duration="9460000" />
+      <workItem from="1612436270169" duration="782000" />
+      <workItem from="1612351844191" duration="41000" />
+      <workItem from="1612351899846" duration="5000" />
+      <workItem from="1612351917176" duration="94000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
@@ -188,6 +210,19 @@
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1612430573343</updated>
+    <task id="LOCAL-00006" summary="Now everything is working on creating business from both ends">
+      <created>1612420142189</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612420142189</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Document anselme's classes and methods">
+      <created>1612420941062</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1612420941062</updated>
     </task>
     <option name="localTasksCounter" value="8" />
     <servers />
@@ -206,7 +241,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="sam" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -229,5 +264,9 @@
     <MESSAGE value="Replaced the dependency of ProductView on Server's codes." />
     <MESSAGE value="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error" />
     <option name="LAST_COMMIT_MESSAGE" value="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error" />
+    <MESSAGE value="Now front-end is working on the business registration" />
+    <MESSAGE value="Now everything is working on creating business from both ends" />
+    <MESSAGE value="Document anselme's classes and methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Document anselme's classes and methods" />
   </component>
 </project>
