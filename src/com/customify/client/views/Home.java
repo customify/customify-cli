@@ -30,7 +30,7 @@ public class Home {
         LoginView loginView =new LoginView(this.socket);
         SignupView signupView =new SignupView(this.socket);
         ProductView productView = new ProductView(this.socket);
-        var businessRegisterView = new BusinessRegisterView(this.socket);
+        BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------");
@@ -53,9 +53,9 @@ public class Home {
                 productView.createProduct();
                 break;
             case 4:
-                productView.getAll();
-                break;
                 businessRegisterView.view();
+                break;
+
             default:
                 System.out.println("Invalid choice");
         }

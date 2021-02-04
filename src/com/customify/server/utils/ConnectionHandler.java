@@ -11,6 +11,8 @@ import java.net.*;
 import java.sql.SQLException;
 import java.util.*;
 
+import static com.customify.shared.Keys.LOGIN;
+
 public class ConnectionHandler {
     private final Socket clientSocket;
     private InputStream input;
@@ -21,7 +23,7 @@ public class ConnectionHandler {
         this.clientSocket = socket;
     }
 
-    public void init() {
+    public void init() throws Exception{
         try {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(input);
@@ -38,19 +40,23 @@ public class ConnectionHandler {
         }
     }
 
+//Method Commented due to that it is already defined below
 
-    public void handleRequest() throws IOException, SQLException {
-        AuthController authController;
-
-                try{
-                        List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
-                        this.request = clientRequest.get(0);
-                        this.handleRequest();
-                    }catch(Exception e){}
-            } } catch (IOException e) {
-                System.out.println("Error in reading Object " + e.getMessage());
-        }
-    }
+//    public void handleRequest() throws IOException, SQLException {
+//        AuthController authController;
+//
+//                try{
+//                        List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
+//                        this.request = clientRequest.get(0);
+//                        this.handleRequest();
+//                    }
+//                catch(Exception e)
+//                {
+//                }
+//                catch (IOException e) {
+//                System.out.println("Error in reading Object " + e.getMessage());
+//                }
+//    }
 
     public void handleRequest() throws Exception {
       AuthController authController;
