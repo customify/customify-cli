@@ -2,6 +2,9 @@ package com.customify.server.models;
 
 import java.util.Date;
 
+//Hagenimana Yassin created at 3/2/2020
+//this is notification model shows all entities or properties of notifications sent to customer when an award is won
+
 public class NotificationModel {
   private   int Notification_id;
   private   int Customer_id;

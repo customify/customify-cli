@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+// Hagenimana Yassin created at 3/2/2021
+// this is a service notification which sends email to customer who won an award.
 
 public class NotificationService {
     public static void send(String mailFrom, String password, String mailTo, String subject, String msg){
