@@ -37,13 +37,14 @@ public class Home {
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
 
         System.out.println("---------------------------------------------");
-        System.out.println("--------------CUSTOMIFY HOME-----------------");
-        System.out.println("\n           1. Sign Up");
-        System.out.println("           2. Login In");
-        System.out.println("           3. Register product");
-        System.out.println("           4. See all Products");
-        System.out.println("           5. Register a business ");
-        System.out.println("           6. Provide feedback ");
+        System.out.println("--------------CUSTOMIFY HOME-----------------\n");
+        System.out.println("           1. SIGN UP");
+        System.out.println("           2. LOGIN");
+        System.out.println("           3. PRODUCT MANAGEMENT");
+        System.out.println("           4. REGISTER BUSINESS");
+        System.out.println("           5. GIVE FEEDBACK");
+        System.out.println("           6. PROVIDE FEEDBACK ");
+
         choice = scan.nextInt();
 
         switch (choice) {
@@ -57,9 +58,6 @@ public class Home {
                 productView.createProduct();
                 break;
             case 4:
-                productView.getAll();
-                break;
-            case 5:
                 businessRegisterView.view();
                 break;
 
