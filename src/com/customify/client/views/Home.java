@@ -26,11 +26,13 @@ public class Home {
         Scanner scan = new Scanner(System.in);
         LoginView loginView =new LoginView(this.socket);
         SignupView signupView =new SignupView(this.socket);
+        CardManagementView cardManagementView = new CardManagementView(this.socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------");
         System.out.println("\n           1. Sign Up");
         System.out.println("           2. Login In");
+        System.out.println("           3. Card management");
         choice = scan.nextInt();
 
         switch(choice)
@@ -41,6 +43,8 @@ public class Home {
             case 2:
                 loginView.view();
                 break;
+            case 3:
+                 cardManagementView.init();
             default:
                 System.out.println("Invalid choice");
         }
