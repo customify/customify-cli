@@ -46,6 +46,7 @@ public class CustomerFeedbackView {
              * ---------------------------------
              * -------------------------------
              */
+            
             System.out.print("\tEnter the title: ");
             title = scan.next();
 
