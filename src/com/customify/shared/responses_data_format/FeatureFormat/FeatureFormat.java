@@ -1,11 +1,14 @@
-package com.customify.server.models;
+package com.customify.shared.responses_data_format.FeatureFormat;
 
-public class FeatureModel {
+
+ import java.io.Serializable;
+
+public class FeatureFormat implements  Serializable {
     private int featureId;
     private  String featureName;
     private  String featureDescription;
-    public FeatureModel(){}
-    public FeatureModel(int featureId ,String featureName,String featureDescription){
+    public FeatureFormat(){}
+    public FeatureFormat(int featureId ,String featureName,String featureDescription){
         this.featureId = featureId;
         this.featureName = featureName;
         this.featureDescription = featureDescription;
