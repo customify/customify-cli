@@ -12,11 +12,11 @@ import java.io.Serializable;
 import  java.util.*;
 
 public class BusinessReadFormat implements Serializable{
-    private List<BusinessFormat> data;
+    private List<BusinessRFormat> data;
     public BusinessReadFormat(){};
-    public BusinessReadFormat(List<BusinessFormat> bs){this.data=bs;}
+    public BusinessReadFormat(List<BusinessRFormat> bs){this.data=bs;}
 
-    public List<BusinessFormat> getData() {
+    public List<BusinessRFormat> getData() {
         return data;
     }
 }

@@ -34,7 +34,9 @@ public class BusinessView {
         System.out.println("------------------BUSINESS---------------------");
         System.out.println("\n         00. Return Home");
         System.out.println("         1. Register business");
-        System.out.println("         2. View businesses");
+        System.out.println("         2. View business by id");
+        System.out.println("         3. View businesses");
+        System.out.println("         4. Delete business");
         choice = scan.nextInt();
 
         switch (choice){
@@ -44,7 +46,15 @@ public class BusinessView {
                 break;
             case 2:
                 BusinessReadView businessReadView = new BusinessReadView(this.socket);
-                businessReadView.viewAll();
+                businessReadView.viewById();
+                break;
+            case 3:
+                BusinessReadView businessReadView0 = new BusinessReadView(this.socket);
+                businessReadView0.viewAll();
+                break;
+            case 4:
+                BusinessReadView businessReadView1 = new BusinessReadView(this.socket);
+                businessReadView1.deleteBusiness();
                 break;
             default:
                 System.out.println("Invalid choice");

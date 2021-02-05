@@ -12,9 +12,7 @@ public class HandleRoutes {
     private final Keys key;
     Socket socket;
     AuthRoute authRoute;
-<<<<<<< HEAD
     ProductRoute productRoute;
-=======
     BusinessRoute businessRoute;
 
     public HandleRoutes(Keys key, Socket socket) throws IOException, SQLException {
@@ -28,20 +26,12 @@ public class HandleRoutes {
     public void switchRoutes() throws IOException, SQLException {
         if (this.key == Keys.LOGIN) {
             authRoute.loginRoute();
-
-    public void switchRoutes() throws IOException {
-        switch (this.key) {
-            case LOGIN:
-                authRoute.loginRoute();
-                break;
-            case GET_BUSINESS:
-                businessRoute.readBusinessRoute();
-                break;
-            default:
-                System.out.println("Invalid key");
         }
         if (this.key ==Keys.CREATE_PRODUCT){
             productRoute.registerProduct();
+        }
+        if(this.key ==Keys.GET_BUSINESS){
+            businessRoute.readBusinessRoute();
         }
         authRoute.loginError();
     }

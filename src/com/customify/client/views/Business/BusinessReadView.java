@@ -13,6 +13,7 @@ import com.customify.shared.requests_data_formats.BusinessFormats.GetbusinessFor
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.*;
 
 public class BusinessReadView {
     private Socket socket;
@@ -33,4 +34,22 @@ public class BusinessReadView {
         BusinessService businessService = new BusinessService(socket);
         businessService.getbusinesses(format);
     }
+
+    public void viewById()throws IOException, ClassNotFoundException{
+        Scanner scan=new Scanner(System.in);
+        System.out.print("Enter businessId: \t");
+        int businessId = scan.nextInt();
+        BusinessService businessService = new BusinessService(socket);
+        businessService.getById(businessId);
+    }
+
+    public void deleteBusiness()throws IOException, ClassNotFoundException {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter businessId: \t");
+        int businessId = scan.nextInt();
+        Integer format = businessId;
+        BusinessService businessService = new BusinessService(socket);
+        businessService.deleteBusiness(format);
+    }
+
 }

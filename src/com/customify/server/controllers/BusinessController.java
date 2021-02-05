@@ -3,7 +3,7 @@
  * The register business front-end services class this is here to
  * register all the businesses in the project must use this service
  *
- * @author IRUMVA HABUMUGISHA Anselme
+ * @author IRUMVA HABUMUGISHA Anselme,
  * @version 1
  * @since Wednesday, 3 February 2021 - 08:17 - Time in Nyabihu
  * */
@@ -13,7 +13,7 @@ package com.customify.server.controllers;
 import com.customify.server.Db.Db;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.BusinessFormat;
+import com.customify.shared.requests_data_formats.BusinessFormats.BusinessFormat;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessCreate;
 import com.customify.server.services.BusinessService;
 
@@ -34,9 +34,12 @@ public class BusinessController {
     ObjectOutputStream objectOutput;
     Socket socket;
 
-    public BusinessController(Socket socket, Request request){
+    BusinessService businessService;
+
+    public BusinessController(Socket socket, Request request)throws IOException{
         this.request = request;
         this.socket = socket;
+        this.businessService = new BusinessService(this.socket);
     }
 
     /**
@@ -86,7 +89,16 @@ public class BusinessController {
      * */
 
     public void getall()throws IOException{
-        BusinessService businessService;
         businessService.getAll();
+    }
+
+    public void getById()throws IOException{
+        Integer format = (Integer) request.getObject();
+        businessService.getBusinessById(format);
+    }
+
+    public void deleteBusiness()throws IOException{
+        Integer format = (Integer) request.getObject();
+        businessService.removeBusiness(format);
     }
 }

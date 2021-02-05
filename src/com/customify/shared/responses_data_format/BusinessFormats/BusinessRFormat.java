@@ -11,7 +11,7 @@ package com.customify.shared.responses_data_format.BusinessFormats;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class BusinessFormat implements Serializable{
+public class BusinessRFormat implements Serializable{
     private int id;
     private String name;
     private String location;
@@ -20,8 +20,8 @@ public class BusinessFormat implements Serializable{
     private int representative_id;
     private int plan_id;
     private LocalDate created_at;
-    public BusinessFormat(){};
-    public BusinessFormat(int id,String location,String address,String phone_number,String name,int representative_id,int plan_id){
+    public BusinessRFormat(){};
+    public BusinessRFormat(int id, String location, String address, String phone_number, String name, int representative_id, int plan_id){
         this.id=id;
         this.name=name;
         this.location=location;

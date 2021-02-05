@@ -1,12 +1,8 @@
 package com.customify.server.utils;
 
 import com.customify.server.controllers.AuthController;
-<<<<<<< HEAD
 import com.customify.server.controllers.ProductController;
 import com.customify.server.controllers.BusinessController;
-=======
-import com.customify.server.controllers.BussinessController;
->>>>>>> a8b3f003f42a73d14f38e77a3b50e0ebec30815b
 import com.customify.shared.Request;
 import com.customify.shared.Keys;
 
@@ -64,11 +60,7 @@ public class ConnectionHandler {
 
     public void handleRequest() throws Exception {
       AuthController authController;
-<<<<<<< HEAD
         BusinessController businessController;
-=======
-      BussinessController bussinessController;
->>>>>>> a8b3f003f42a73d14f38e77a3b50e0ebec30815b
         switch (request.getKey()) {
             case LOGIN:
                 authController = new AuthController(this.clientSocket, this.request);
@@ -83,16 +75,21 @@ public class ConnectionHandler {
                 businessController = new BusinessController(this.clientSocket, this.request);
                 businessController.create();
                 break;
-<<<<<<< HEAD
             case CREATE_PRODUCT:
                 ProductController productController = new ProductController(this.clientSocket, this.request);
                 productController.registerProduct();
-=======
             case GET_BUSINESS:
                 businessController = new BusinessController(this.clientSocket,this.request);
                 businessController.getall();
                 break;
->>>>>>> a8b3f003f42a73d14f38e77a3b50e0ebec30815b
+            case REMOVE_BUSS:
+                businessController = new BusinessController(this.clientSocket,this.request);
+                businessController.deleteBusiness();
+                break;
+            case GET_BUSS_BYID:
+                businessController = new BusinessController(this.clientSocket,this.request);
+                businessController.getById();
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
