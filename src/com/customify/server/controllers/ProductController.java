@@ -98,12 +98,12 @@ public class ProductController {
 
             while (records.next()){
                 products.add(
-                    new ProductFormat(
-                            records.getInt("business_id"), records.getString("name"),
-                            records.getFloat("price"), records.getInt("quantity"),
-                            records.getString("description"),records.getDouble("bondedPoints"),
-                            records.getInt("registered_by"), records.getString("createdAt")
-                    )
+                        new ProductFormat(
+                                records.getInt("business_id"), records.getString("name"),
+                                records.getFloat("price"), records.getInt("quantity"),
+                                records.getString("description"),records.getDouble("bondedPoints"),
+                                records.getInt("registered_by"), records.getString("createdAt")
+                        )
                 );
             }
 
@@ -123,6 +123,3 @@ public class ProductController {
         output.writeUTF("Single product with ID: ");
     }
 }
-
-
-

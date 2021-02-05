@@ -38,9 +38,6 @@ public class ProductView {
             case 1:
                 this.createProduct();
                 break;
-            case 2:
-                this.getAll();
-                break;
             default:
                 System.out.println("Your entered Incorrect option");
         }

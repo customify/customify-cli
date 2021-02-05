@@ -1,6 +1,13 @@
 package com.customify.server.models;
 
 import java.io.Serializable;
+/*
+* Created by Jacques Twizeyimana
+* Product model is a blueprint of how our products will be represented in database
+* all fields that product table will have are blueprinted here
+* It will also be used as a data format for products to or from server/client
+*/
+
 import java.util.Date;
 
 public class ProductModel implements Serializable {

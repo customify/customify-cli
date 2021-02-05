@@ -2,6 +2,7 @@ package com.customify.server.utils;
 
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.ProductController;
+import com.customify.server.controllers.BusinessController;
 import com.customify.shared.Request;
 import com.customify.shared.Keys;
 
@@ -9,6 +10,8 @@ import java.io.*;
 import java.net.*;
 import java.sql.SQLException;
 import java.util.*;
+
+import static com.customify.shared.Keys.LOGIN;
 
 public class ConnectionHandler {
     private final Socket clientSocket;
@@ -20,7 +23,7 @@ public class ConnectionHandler {
         this.clientSocket = socket;
     }
 
-    public void init() {
+    public void init() throws Exception{
         try {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(input);
@@ -37,11 +40,29 @@ public class ConnectionHandler {
         }
     }
 
+//Method Commented due to that it is already defined below
+
+//    public void handleRequest() throws IOException, SQLException {
+//        AuthController authController;
+//
+//                try{
+//                        List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
+//                        this.request = clientRequest.get(0);
+//                        this.handleRequest();
+//                    }
+//                catch(Exception e)
+//                {
+//                }
+//                catch (IOException e) {
+//                System.out.println("Error in reading Object " + e.getMessage());
+//                }
+//    }
 
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
         ProductController productController = new ProductController(this.clientSocket, this.request);
-
+        BusinessController businessController;
+        
         switch (request.getKey()) {
             case LOGIN:
                 authController = new AuthController(this.clientSocket, this.request);
@@ -50,6 +71,9 @@ public class ConnectionHandler {
             case REGISTER:
                 authController = new AuthController(this.clientSocket, this.request);
                 authController.signup();
+            case CREATE_BUSINESS:
+                businessController = new BusinessController(this.clientSocket, this.request);
+                businessController.create();
                 break;
             case CREATE_PRODUCT:
                 productController.registerProduct();
