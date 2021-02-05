@@ -38,25 +38,7 @@ public class BusinessService {
             this.handleResponse();
         }
     }
-    public void getById(Integer format) throws IOException,ClassNotFoundException{
-        Request request = new Request(Keys.GET_BUSS_BYID,format);
-        Common common = new Common(request,this.socket);
-        if(common.sendToServer()){
-            inputStream = this.socket.getInputStream();
-            objectInputStream=new ObjectInputStream(inputStream);
-            List<Response> response = (List<Response>) objectInputStream.readObject();
-            if(response.get(0).getStatusCode()==200){
-                BusinessFormat data = (BusinessFormat) response.get(0).getData();
-                System.out.println("-------------------Business "+data.getId()+"------------------");
-                System.out.print(data.getId()+" \t");
-                System.out.print(data.getName()+'\t');
-                System.out.print(data.getAddress()+'\t');
-                System.out.print(data.getLocation()+'\t');
-                System.out.print(data.getPhone_number()+'\t');
-                System.out.println("----------------------------------------------");
-            }
-        }
-    }
+
     public void handleResponse() throws IOException,ClassNotFoundException{
         inputStream = this.socket.getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
@@ -64,30 +46,16 @@ public class BusinessService {
         if(response.get(0).getStatusCode()==200){
             BusinessDataFormat data = (BusinessDataFormat) response.get(0).getData();
             System.out.println("------------------List of Businesses------------------");
+            System.out.format("%5s%20s%20s%25s%20s\n","ID","Name","Location","Address","Phone number");
+            System.out.println();
             for(BusinessFormat bs:data.getData()){
-                System.out.print(bs.getId()+" \t");
-                System.out.print(bs.getName()+'\t');
-                System.out.print(bs.getAddress()+'\t');
-                System.out.print(bs.getLocation()+'\t');
-                System.out.print(bs.getPhone_number()+'\t');
-                System.out.println();
+                System.out.format("%5d%20s%20s%25s%20s\n",bs.getId(),bs.getName(),bs.getLocation(),bs.getAddress(),bs.getPhone_number());
             }
+
             System.out.println("----------------------------------------------");
         }
     }
-    public  void deleteBusiness(Integer format) throws IOException,ClassNotFoundException{
-        Request request = new Request(Keys.REMOVE_BUSS,format);
-        Common common = new Common(request,this.socket);
-        if(common.sendToServer()){
-            inputStream = this.socket.getInputStream();
-            objectInputStream=new ObjectInputStream(inputStream);
-            List<Response> response = (List<Response>) objectInputStream.readObject();
-            if(response.get(0).getStatusCode()==200){
-                String message = (String) response.get(0).getData();
-                System.out.println("--------"+message+"--------");
-            }
-        }
-    }
+
 
 
 }

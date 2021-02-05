@@ -13,7 +13,7 @@ public class BusinessFormat implements Serializable{
     private int plan_id;
     private LocalDate created_at;
     public BusinessFormat(){};
-    public BusinessFormat(int id,String name,String location,String address,String phone_number,int representative_id,int plan_id){
+    public BusinessFormat(int id,String location,String address,String phone_number,String name,int representative_id,int plan_id){
         this.id=id;
         this.name=name;
         this.location=location;

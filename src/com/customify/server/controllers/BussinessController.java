@@ -19,12 +19,5 @@ public class BussinessController {
     public void getall()throws IOException{
         bussService.getAll();
     }
-    public void deleteBusiness() throws IOException{
-        Integer format = (Integer) request.getObject();
-        bussService.removeBusiness(format);
-    }
-    public void getById()throws IOException{
-        Integer format = (Integer) request.getObject();
-        bussService.getBusinessById(format);
-    }
+
 }

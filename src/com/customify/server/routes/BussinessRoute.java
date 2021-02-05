@@ -17,10 +17,5 @@ public class BussinessRoute {
     public void  getAllRoute() throws IOException {
         bussController.getall();
     }
-    public void deleteBusinessroute() throws IOException{
-        bussController.deleteBusiness();
-    }
-    public void getByIdroute() throws IOException{
-        bussController.getById();
-    }
+
 }

@@ -50,13 +50,6 @@ public class ConnectionHandler {
                 bussinessController = new BussinessController(this.clientSocket,this.request);
                 bussinessController.getall();
                 break;
-            case GET_BUSS_BYID:
-                bussinessController = new BussinessController(this.clientSocket,this.request);
-                bussinessController.getById();
-            case REMOVE_BUSS:
-                bussinessController=new BussinessController(this.clientSocket,this.request);
-                bussinessController.deleteBusiness();
-                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
