@@ -25,13 +25,11 @@ public class BusinessRegisterView {
         this.socket = socket;
     }
 
-
     /**
      * @author IRUMVA HABUMUGISHA Anselme
-     * @role
-     * this function is to handle the entrance view of the class and casts it into the format all
-     * handlers for this register understands ...
-     * */
+     * @role this function is to handle the entrance view of the class and casts it
+     *       into the format all handlers for this register understands ...
+     */
 
     public void view() throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
@@ -41,14 +39,18 @@ public class BusinessRegisterView {
         System.out.println("\n\n\n\n You are going to register the business ");
         System.out.print("Enter the Business name           :  ");
         name = scan.nextLine();
+
         System.out.print("Enter the business location       :  ");
         location = scan.nextLine();
+
         System.out.print("Enter the business address        :  ");
         address = scan.nextLine();
+
         System.out.print("Enter the business phone number   :  ");
         phone_number = scan.nextLine();
         System.out.print("Enter the business representative :  ");
         representative_id = scan.nextInt();
+
         System.out.print("Enter the business plan           :  ");
         plan_id = scan.nextInt();
 
