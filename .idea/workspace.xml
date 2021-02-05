@@ -20,9 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/FeatureController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/FeatureModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/FeatureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/FeatureController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +83,7 @@
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Server">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -228,22 +227,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1612415623267" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1612416347621">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1612501762981">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612416347621" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1612416347620">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612501762981" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1612501762980">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612416347620" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1612416347620">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612501762980" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1612501762980">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612416347620" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1612416347621">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612501762980" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1612501762981">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612416347621" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612501762981" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1612415630812">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
