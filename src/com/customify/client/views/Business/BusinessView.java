@@ -1,3 +1,12 @@
+/**
+ * @description
+ *Main view for operating on businesses
+ *
+ * @author Kellia Umuhire
+ * @since Wednesday, 3 February 2021
+ * */
+
+
 package com.customify.client.views.Business;
 
 
@@ -25,24 +34,16 @@ public class BusinessView {
         int choice;
         System.out.println("------------------BUSINESS---------------------");
         System.out.println("\n         00. Return Home");
-        System.out.println("         1. Register business");
-        System.out.println("         2. View businesses");
+        System.out.println("         1. View businesses");
         choice = scan.nextInt();
 
         switch (choice){
             case 1:
-                register();
-                break;
-            case 2:
                 BusinessReadView businessReadView = new BusinessReadView(this.socket);
                 businessReadView.viewAll();
                 break;
             default:
                 System.out.println("Invalid choice");
         }
-    }
-
-    private void register() {
-        System.out.println("Register business");
     }
 }

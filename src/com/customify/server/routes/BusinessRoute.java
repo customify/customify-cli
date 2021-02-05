@@ -5,13 +5,13 @@ import com.customify.server.controllers.BussinessController;
 import java.io.IOException;
 import java.net.Socket;
 
-public class BussinessRoute {
+public class BusinessRoute {
     Socket socket;
     BussinessController bussController;
-    public BussinessRoute(Socket socket) {
+    public BusinessRoute(Socket socket) {
         this.socket = socket;
     }
-    public BussinessRoute() {
+    public BusinessRoute() {
 
     }
     public void  readBusinessRoute() throws IOException {

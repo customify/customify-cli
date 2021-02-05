@@ -8,7 +8,7 @@ public class HandleRoutes {
     private final Keys key;
     Socket socket;
     AuthRoute authRoute;
-    BussinessRoute bussinessRoute;
+    BusinessRoute businessRoute;
 
     public HandleRoutes(Keys key, Socket socket) throws IOException {
         this.socket = socket;
@@ -23,7 +23,7 @@ public class HandleRoutes {
                 authRoute.loginRoute();
                 break;
             case GET_BUSINESS:
-                bussinessRoute.readBusinessRoute();
+                businessRoute.readBusinessRoute();
                 break;
             default:
                 System.out.println("Invalid key");

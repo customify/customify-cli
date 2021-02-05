@@ -1,3 +1,11 @@
+/**
+ * @description
+ * View Class for reading  businesses/business
+ *
+ * @author Kellia Umuhire
+ * @since Wednesday, 3 February 2021
+ * */
+
 package com.customify.client.views.Business;
 
 import com.customify.client.services.BusinessService;

@@ -1,3 +1,11 @@
+/**
+ * @description
+ * Read business  format class
+ * Used as data format for reading a business
+ *
+ * @author Kellia Umuhire
+ * @since Wednesday, 3 February 2021
+ * */
 package com.customify.shared.responses_data_format.BusinessFormats;
 
 import java.io.Serializable;
