@@ -5,14 +5,11 @@ import com.customify.server.controllers.ProductController;
 import com.customify.server.controllers.BusinessController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.shared.Request;
-import com.customify.shared.Keys;
 
 import java.io.*;
 import java.net.*;
 import java.sql.SQLException;
 import java.util.*;
-
-import static com.customify.shared.Keys.LOGIN;
 
 public class ConnectionHandler {
     private final Socket clientSocket;
@@ -61,8 +58,7 @@ public class ConnectionHandler {
 
     public void handleRequest() throws Exception {
         AuthController authController;
-        BusinessController businessController;
-        // FeedbackController fController;
+        BusinessController businessController;        
         switch (request.getKey()) {
             case LOGIN:
                 authController = new AuthController(this.clientSocket, this.request);

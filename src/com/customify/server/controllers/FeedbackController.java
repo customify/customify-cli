@@ -37,15 +37,13 @@ public class FeedbackController {
 
     public FeedbackController(Socket socket, Request request) throws IOException {
         this.socket = socket;
-        this.request = request;        
+        this.request = request;
     }
-
-    
 
     public void sendDataInDb() throws SQLException {
         FeedbackFormat format = (FeedbackFormat) request.getObject();
         Connection connection = Db.getConnection();
-        String customerQuery = "INSERT INTO customerFeedback VALUES(?,?,?,NOW())";
+        String customerQuery = "INSERT INTO customerFeedback VALUES(?,?,?,?,NOW())";
 
         /**
          * This is all about sending the feedback data to the database
@@ -61,7 +59,6 @@ public class FeedbackController {
         statement.setInt(10, format.getBusinessId());
         statement.setString(1, format.getTitle());
         statement.setString(1, format.getDescription());
-
         try {
             if (statement.execute()) {
                 System.out.println("Something went wrong in the query");
@@ -74,21 +71,10 @@ public class FeedbackController {
 
                 responseData.add(response);
                 objectOutput.writeObject(responseData);
+                System.out.println("The data sent successively");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        // FeedbackFormat format = (FeedbackFormat) request.getObject();
-        // System.out.println("FEEDBACK DATA");
-        // System.out.println("Customer ID - " + format.getCustomerId());
-        // System.out.println("Business ID - " + format.getBusinessId());
-        // System.out.println("Title - " + format.getTitle());
-        // System.out.println("Description - " + format.getDescription());
-
-        /*
-         * Call the feedback service to handle the request
-         */
-        // fService.Feed(format);
-
     }
 }
