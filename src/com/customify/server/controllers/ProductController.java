@@ -84,6 +84,7 @@ public class ProductController {
     }
 
     public void getAllProducts() throws IOException, SQLException {
+        System.out.println("request to get products was received");
         OutputStream output = this.socket.getOutputStream();
         ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 
@@ -94,15 +95,15 @@ public class ProductController {
             Statement statement = Db.getStatement();
             ResultSet records = statement.executeQuery("SELECT * FROM products");
 
-            products = new ArrayList<>();
+            products = new ArrayList<ProductFormat>();
 
             while (records.next()){
                 products.add(
                         new ProductFormat(
                                 records.getInt("business_id"), records.getString("name"),
                                 records.getFloat("price"), records.getInt("quantity"),
-                                records.getString("description"),records.getDouble("bondedPoints"),
-                                records.getInt("registered_by"), records.getString("createdAt")
+                                records.getString("description"),records.getDouble("bonded_points"),
+                                records.getInt("registered_by"), records.getString("created_at")
                         )
                 );
             }

@@ -30,5 +30,8 @@ public class ProductRoute {
     public void  registerProduct() throws IOException, SQLException {
         productController.registerProduct();
     }
+    public void  getProducts() throws IOException, SQLException {
+        productController.getAllProducts();
+    }
 
 }

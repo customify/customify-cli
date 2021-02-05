@@ -37,6 +37,9 @@ public class Home {
         System.out.println("           1. SIGN UP");
         System.out.println("           2. LOGIN");
         System.out.println("           3. PRODUCT MANAGEMENT");
+        System.out.println("           4. REGISTER BUSINESS");
+        System.out.println("           5. GIVE FEEDBACK");
+
         choice = scan.nextInt();
 
         switch(choice)
@@ -50,7 +53,7 @@ public class Home {
             case 3:
                 productView.init();
                 break;
-            case 5:
+            case 4:
                 businessRegisterView.view();
                 break;
             default:

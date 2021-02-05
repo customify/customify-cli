@@ -5,7 +5,6 @@ import com.customify.server.models.ProductModel;
 import com.customify.shared.requests_data_formats.ProductFormat;
 
 import java.net.Socket;
-import java.util.Date;
 import java.util.Scanner;
 
 public class ProductView {
@@ -38,6 +37,9 @@ public class ProductView {
             case 1:
                 this.createProduct();
                 break;
+            case 2:
+                this.getAll();
+                break;
             default:
                 System.out.println("Your entered Incorrect option");
         }
@@ -69,6 +71,7 @@ public class ProductView {
         newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
 
         newProduct.setCreatedAt("2021/02/04");
+
         ProductService productService = new ProductService(this.socket);
         productService.addNewProduct(newProduct);
     }
@@ -81,10 +84,9 @@ public class ProductView {
         this.socket = socket;
     }
 
-    public void getAll() {
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("\t\tHere is a list of products registered so far");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    public void getAll() throws Exception {
+        ProductService productService = new ProductService(this.socket);
+        productService.getAllProducts();
 
     }
 }
