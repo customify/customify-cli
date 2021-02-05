@@ -1,7 +1,9 @@
-package com.customify.client.views;
+package com.customify.client.views.CustomerFeedback;
 
 /**
- * NSENGIYUMVA Gershom
+ *  Author: Niyonzima Stecie
+ * done on: 4 Feb 2021
+ * 
  * This class file contains the view which allows the customer to provide his/her
  * feedback about the services he got from the various business.
  * 

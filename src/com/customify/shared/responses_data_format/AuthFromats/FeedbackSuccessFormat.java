@@ -3,18 +3,18 @@ package com.customify.shared.responses_data_format.AuthFromats;
 import java.io.Serializable;
 
 public class FeedbackSuccessFormat implements Serializable{
-    private int customer_id;
+    private String successMessage;
 
     public FeedbackSuccessFormat(){}
-    public FeedbackSuccessFormat(int customer_id) {
-        this.customer_id = customer_id;
+    public FeedbackSuccessFormat(String successMessage) {
+        this.successMessage = successMessage;
     }
 
-    public int getCustomerID() {
-        return customer_id;
+    public String getMessage() {
+        return successMessage;
     }
 
-    public void setCustomerId(int customer_id) {
-        this.customer_id = customer_id;
+    public void setMessage(String successMessage) {
+        this.successMessage = successMessage;
     }   
 }

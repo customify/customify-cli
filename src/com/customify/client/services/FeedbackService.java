@@ -1,7 +1,12 @@
 package com.customify.client.services;
 
 /**
- * client feed back ser
+ * Author: Niyonzima Stecie
+ * done on: 4 Feb 2021
+ * 
+ * This is is the service class for the customers to provide the feedbacks
+ * for the services they got.
+ * 
  * */
 
 import com.customify.shared.Keys;
@@ -37,6 +42,10 @@ public class FeedbackService {
         objectInputStream = new ObjectInputStream(inputStream);
     }
 
+    /**
+     * This method is for tracking the choice of the customer(feedback) and 
+     * then this choice can be sent to the server
+     * */ 
     public void Comment(FeedbackFormat format) throws IOException, ClassNotFoundException {
         Request request = new Request(Keys.FEEDBACK, format);
         Common common = new Common(request, this.socket);

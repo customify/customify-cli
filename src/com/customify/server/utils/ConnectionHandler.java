@@ -62,7 +62,7 @@ public class ConnectionHandler {
     public void handleRequest() throws Exception {
         AuthController authController;
         BusinessController businessController;
-        FeedbackController fController;
+        // FeedbackController fController;
         switch (request.getKey()) {
             case LOGIN:
                 authController = new AuthController(this.clientSocket, this.request);
@@ -82,8 +82,8 @@ public class ConnectionHandler {
                 productController.registerProduct();
 
             case FEEDBACK:
-                fController = new FeedbackController(this.clientSocket, this.request);
-                fController.feedbackOnServer();
+                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+                fController.sendDataInDb();
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");

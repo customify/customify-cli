@@ -1,9 +1,12 @@
 package com.customify.server.services;
 
 /**
- * NSENGIYUMVA GERSHOM
- * The class for
- * */ 
+ * Author: NSENGIYUMVA GERSHOM
+ * done on 3 Feb 2021
+ * 
+ * This class is for formatting the data to be sent into the 
+ * the desired method
+ * */
 import com.customify.shared.Response;
 import com.customify.shared.requests_data_formats.FeedbackFormat;
 import com.customify.shared.responses_data_format.AuthFromats.FeedbackSuccessFormat;
@@ -14,6 +17,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class FeebackService {
     Socket socket;
@@ -30,15 +34,12 @@ public class FeebackService {
     }
 
     public void Feed(FeedbackFormat format) throws IOException {
-        //setting the response status code
         this.statusCode = 200;
- 
-        //formatting the response into a successLoginFormat
-        FeedbackSuccessFormat sformat = new FeedbackSuccessFormat(format.getCustomerId());
-        response = new Response(statusCode,sformat);
+
+        FeedbackSuccessFormat sformat = new FeedbackSuccessFormat(format.getTitle());
+        response = new Response(statusCode, sformat);
         responseData.add(response);
- 
-        //Sending the response to server after it has been formated
+
         objectOutput.writeObject(responseData);
     }
 }
