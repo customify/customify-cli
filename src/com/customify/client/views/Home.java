@@ -37,6 +37,7 @@ public class Home {
         System.out.println("           1. SIGN UP");
         System.out.println("           2. LOGIN");
         System.out.println("           3. PRODUCT MANAGEMENT");
+
         choice = scan.nextInt();
 
         switch(choice)
