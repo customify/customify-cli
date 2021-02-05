@@ -2,12 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70dce282-9c3e-444b-9ec9-1025276f1e00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/libs/activation.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/mail.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/mysql-connector-java-8.0.19.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessRegisterView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/BusinessController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/NotificationModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/ProductRoute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/BusinessFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessCreate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/ProductFormats/SuccessProductFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,17 +100,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client2" />
@@ -108,7 +108,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="" />
+      <changelist id="70dce282-9c3e-444b-9ec9-1025276f1e00" name="Default Changelist" comment="" />
       <created>1611084407271</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -143,6 +143,8 @@
       <workItem from="1612421182722" duration="5219000" />
       <workItem from="1612458182473" duration="1539000" />
       <workItem from="1612463514652" duration="3057000" />
+      <workItem from="1612503211475" duration="3403000" />
+      <workItem from="1612513921857" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
