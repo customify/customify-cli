@@ -22,8 +22,8 @@ public class HandleRoutes {
             case LOGIN:
                 authRoute.loginRoute();
                 break;
-            case GET_BUSS:
-                bussinessRoute.getAllRoute();
+            case GET_BUSINESS:
+                bussinessRoute.readBusinessRoute();
                 break;
             default:
                 System.out.println("Invalid key");

@@ -4,9 +4,9 @@ import com.customify.client.Common;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
 
-import com.customify.shared.requests_data_formats.GetbusinessFormat;
-import com.customify.shared.responses_data_format.BussinessFormats.BusinessFormat;
-import com.customify.shared.responses_data_format.BussinessFormats.BusinessDataFormat;
+import com.customify.shared.requests_data_formats.BusinessFormats.GetbusinessFormat;
+import com.customify.shared.responses_data_format.BusinessFormats.BusinessFormat;
+import com.customify.shared.responses_data_format.BusinessFormats.BusinessReadFormat;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +32,7 @@ public class BusinessService {
     }
 
     public void getbusinesses (GetbusinessFormat format) throws IOException, ClassNotFoundException{
-        Request request = new Request(Keys.GET_BUSS,format);
+        Request request = new Request(Keys.GET_BUSINESS,format);
         Common common = new Common(request,this.socket);
         if(common.sendToServer()){
             this.handleResponse();
@@ -44,7 +44,7 @@ public class BusinessService {
         objectInputStream = new ObjectInputStream(inputStream);
         List<Response> response = (List<Response>) objectInputStream.readObject();
         if(response.get(0).getStatusCode()==200){
-            BusinessDataFormat data = (BusinessDataFormat) response.get(0).getData();
+            BusinessReadFormat data = (BusinessReadFormat) response.get(0).getData();
             System.out.println("------------------List of Businesses------------------");
             System.out.format("%5s%20s%20s%25s%20s\n","ID","Name","Location","Address","Phone number");
             System.out.println();

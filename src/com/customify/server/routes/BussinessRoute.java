@@ -14,7 +14,7 @@ public class BussinessRoute {
     public BussinessRoute() {
 
     }
-    public void  getAllRoute() throws IOException {
+    public void  readBusinessRoute() throws IOException {
         bussController.getall();
     }
 

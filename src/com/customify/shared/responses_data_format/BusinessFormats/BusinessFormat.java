@@ -1,4 +1,4 @@
-package com.customify.shared.responses_data_format.BussinessFormats;
+package com.customify.shared.responses_data_format.BusinessFormats;
 
 import java.io.Serializable;
 import java.time.LocalDate;

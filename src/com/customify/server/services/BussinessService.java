@@ -1,16 +1,14 @@
 package com.customify.server.services;
 import com.customify.shared.Response;
 import com.customify.server.Db.Db;
-import com.customify.shared.responses_data_format.BussinessFormats.BusinessDataFormat;
-import com.customify.shared.responses_data_format.BussinessFormats.BusinessFormat;
-import com.customify.shared.requests_data_formats.RemoveBusinessFormat;
+import com.customify.shared.responses_data_format.BusinessFormats.BusinessReadFormat;
+import com.customify.shared.responses_data_format.BusinessFormats.BusinessFormat;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +48,7 @@ public class BussinessService {
                 );
                 alldata.add(bs);
             }
-            BusinessDataFormat format = new BusinessDataFormat(alldata);
+            BusinessReadFormat format = new BusinessReadFormat(alldata);
             response = new Response(statusCode,format);
             responseData.add(response);
 

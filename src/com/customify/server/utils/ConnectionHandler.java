@@ -46,7 +46,7 @@ public class ConnectionHandler {
                   authController = new AuthController(this.clientSocket,this.request);
                   authController.signup();
                 break;
-            case GET_BUSS:
+            case GET_BUSINESS:
                 bussinessController = new BussinessController(this.clientSocket,this.request);
                 bussinessController.getall();
                 break;
