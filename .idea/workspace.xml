@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/NotificationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/NotificationModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/UserModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/NotificationService.java" afterDir="false" />
+=======
+    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessReadFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessReadFormat.java" afterDir="false" />
+>>>>>>> a8b3f003f42a73d14f38e77a3b50e0ebec30815b
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,10 +59,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.16.jar" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/customify/client/views" />
+>>>>>>> a8b3f003f42a73d14f38e77a3b50e0ebec30815b
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.11" />
@@ -65,26 +77,42 @@
     <option name="enabled" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DELL\Documents\wspace\java\Customify\customify\src\com\customify\client\views" />
+    </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="customify.client.views" />
       <recent name="src" />
     </key>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Application.Client2">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+=======
+  <component name="RunManager" selected="Application.Client">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+>>>>>>> a8b3f003f42a73d14f38e77a3b50e0ebec30815b
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
+<<<<<<< HEAD
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
+=======
+      <option name="TEST_OBJECT" value="class" />
+>>>>>>> a8b3f003f42a73d14f38e77a3b50e0ebec30815b
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="Client2" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
+=======
+    <configuration name="Client" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
+>>>>>>> a8b3f003f42a73d14f38e77a3b50e0ebec30815b
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.customify.client.Main" />

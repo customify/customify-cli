@@ -15,6 +15,7 @@ import com.customify.shared.Request;
 import com.customify.shared.Response;
 import com.customify.shared.requests_data_formats.BusinessFormat;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessCreate;
+import com.customify.server.services.BusinessService;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -76,5 +77,16 @@ public class BusinessController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * @author Kellia Umuhire
+     * @role
+     * this function calls the service to fetch all businesses
+     * */
+
+    public void getall()throws IOException{
+        BusinessService businessService;
+        businessService.getAll();
     }
 }
