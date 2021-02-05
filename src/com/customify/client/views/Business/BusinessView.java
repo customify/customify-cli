@@ -1,8 +1,5 @@
-package com.customify.client.views;
-import com.customify.client.services.BusinessService;
+package com.customify.client.views.Business;
 
-import com.customify.shared.requests_data_formats.GetbusinessFormat;
-//import com.customify.shared.requests_data_formats.RemoveBusinessFormat;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -21,6 +18,7 @@ public class BusinessView {
     public void setSocket(Socket socket){
         this.socket = socket;
     }
+
     public void view() throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
@@ -36,18 +34,12 @@ public class BusinessView {
                 register();
                 break;
             case 2:
-                viewAll();
+                BusinessReadView businessReadView = new BusinessReadView(this.socket);
+                businessReadView.viewAll();
                 break;
             default:
                 System.out.println("Invalid choice");
         }
-    }
-
-
-    private void viewAll()throws IOException, ClassNotFoundException {
-        GetbusinessFormat format = new GetbusinessFormat();
-        BusinessService businessService = new BusinessService(socket);
-        businessService.getbusinesses(format);
     }
 
     private void register() {

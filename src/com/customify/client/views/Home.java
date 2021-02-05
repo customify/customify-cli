@@ -2,6 +2,8 @@
   Class to display the Home view
 */
 package com.customify.client.views;
+import com.customify.client.views.Business.BusinessView;
+
 import java.io.IOException;
 import java.net.Socket;
 import  java.util.*;
