@@ -36,14 +36,12 @@ public class PointCountingView {
         Scanner scan = new Scanner(System.in);
         String choice;
         String customerEmail = null;
-        PointsService pointsService = null;
 
         pointsLoop:do{
             System.out.println("------------------POINTS---------------------");
             System.out.println("\n         00. Return Home");
-            System.out.println("         1. All Customers' Points");
-            System.out.println("         2. Highest Points");
-            System.out.println("         3. Points by customer");
+            System.out.println("         1. Winners");
+            System.out.println("         2. Points by customer");
 
             System.out.print("\n\n           Enter your choice: ");
             choice=scan.nextLine();
@@ -52,15 +50,15 @@ public class PointCountingView {
                 break pointsLoop;
             }
             else if(choice.equals("1")) {
+                PointsService pointsService = new PointsService(this.socket);
+                pointsService.getWinners();
 
             }
             else if(choice.equals("2")){
-                System.out.println("Not Done");
-            }
-            else if(choice.equals("3")){
                 System.out.print("\n           Enter Customer Email: ");
                 customerEmail = scan.nextLine();
                 PointsByCustomerEmailFormat format = new PointsByCustomerEmailFormat(customerEmail);
+                PointsService pointsService = new PointsService(socket);
                 pointsService.getPointsByCustomerEmail(format);
             }
             else{

@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 //author: Fredson
 public class PointsByCustomerEmailFormat implements Serializable {
+
     private String email;
+
+    public PointsByCustomerEmailFormat() {}
 
     public PointsByCustomerEmailFormat(String email) {
         this.email = email;

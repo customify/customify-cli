@@ -5,5 +5,6 @@ public enum Keys {
     REGISTER,
     GET_USERS,
     POINTS_BY_CUSTOMER_EMAIL,
+    GET_WINNERS,
     CREATE_BUSINESS
 }

@@ -60,7 +60,7 @@ public class AuthService {
               If the response status code is OK call SuccessLoginFormat to extract data from server
             */
             SuccessLoginFormat data = (SuccessLoginFormat) response.get(0).getData();
-            System.out.println("               Loggin success full");
+            System.out.println("               Login success full");
             System.out.println("               Registered Email: "+data.getEmail());
         }
     }
