@@ -40,30 +40,76 @@ public class ProductService {
         //if the sending is successful call a method to handle response from server
         if (common.sendToServer() == true) {
             this.handleRegisterProductSuccess();
-        }
-        else{
+        } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
     }
 
-    /**
-     * @description
-     * Service to Retrieve Product By Id
-     * @author SAUVE Jean-Luc
-     * @version 1
-     * */
-    public void getProductById(Integer productId) throws  Exception{
-        Request request = new Request(Keys.GET_PRODUT_BY_ID,productId);
+    //Method Created By Merlyne Iradukunda
+    // Due date: 6/2/2020
+    public void deleteProduct(Long productCode) throws  Exception{
+        Request request = new Request(Keys.DELETE_PRODUCT, productCode);
+        Common common = new Common(request, this.socket);
+
+        //if the sending is successful call a method to handle response from server
+        if (common.sendToServer()) {
+            this.handleDeleteProductSuccess();
+        } else {
+            System.out.println("\n\nError occurred when trying to send request to server\n");
+        }
+    }
+
+    public void getAllProducts() throws Exception {
+        Request request = new Request(Keys.GET_ALL_PRODUCTS, new ProductFormat());
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server
         if (common.sendToServer() == true) {
-            this.handleGetProductByIdSuccess();
-        }
-        else{
+            this.handleGetProductListSuccess();
+        } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
+    }
 
+    public void handleGetProductListSuccess() throws IOException, ClassNotFoundException {
+        inputStream = this.getSocket().getInputStream();
+        objectInputStream = new ObjectInputStream(inputStream);
+
+        try {
+            List<Response> response = (List<Response>) objectInputStream.readObject();
+            if (response.get(0).getStatusCode() == 200) {
+                List<ProductFormat> products = (List<ProductFormat>) response.get(0).getData();
+
+                if (products.size() == 0) {
+                    System.out.println("\n\nNo products registered so far.\n");
+                    return;
+                }
+
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+                System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
+
+                for (int i = 0; i < products.size(); i++) {
+                    ProductFormat product = products.get(i);
+
+                    System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", product.getProductCode(), product.getName(), product.getQuantity(), product.getPrice(), product.getBondedPoints(), product.getCreatedAt()));
+                }
+                System.out.println("\n");
+            } else if (response.get(0).getStatusCode() == 400) {
+                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
+            } else {
+                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
+            }
+
+        } catch (IOException e) {
+            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+        } catch (ClassNotFoundException e) {
+            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+        }
+
+        return;
     }
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
@@ -72,61 +118,49 @@ public class ProductService {
 
         try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
-            if(response.get(0).getStatusCode() == 200){
+            ;
+            if (response.get(0).getStatusCode() == 200) {
                 ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
 
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("\t\t product registered successfully");
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            }
-            else if(response.get(0).getStatusCode() == 400){
+            } else if (response.get(0).getStatusCode() == 400) {
                 System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-            }
-            else{
+            } else {
                 System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
             }
 
         } catch (IOException e) {
-            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
         } catch (ClassNotFoundException e) {
-            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
         }
 
         return;
     }
 
-    public void handleGetProductByIdSuccess() throws IOException, ClassNotFoundException{
+    public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
         inputStream = this.getSocket().getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
-
         try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
-            if(response.get(0).getStatusCode() == 200){
-                ProductFormat retrievedProduct = (ProductFormat) response.get(0).getData();
 
+            if (response.get(0).getStatusCode() == 200) {
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-                System.out.println("Product Code: " + retrievedProduct.getProductCode());
-                System.out.println("Business Id: "+ retrievedProduct.getBusiness_id());
-                System.out.println("Name: " + retrievedProduct.getName());
-                System.out.println("Price: " + retrievedProduct.getPrice() );
-                System.out.println("Quantity: " + retrievedProduct.getQuantity());
-                System.out.println("Description: " + retrievedProduct.getDescription());
-                System.out.println("Bonded Points: " + retrievedProduct.getBondedPoints());
-                System.out.println("Registered By: " + retrievedProduct.getRegistered_by());
-                System.out.println("Created At: " + retrievedProduct.getCreatedAt());
+                System.out.println("\t\t product deleted successfully");
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            }
-            else if(response.get(0).getStatusCode() == 400){
+            } else if (response.get(0).getStatusCode() == 400) {
                 System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-            }
-            else{
+            } else if(response.get(0).getStatusCode() == 500){
+                System.out.println("Internal server error!!");
+            }else{
                 System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
             }
-
         } catch (IOException e) {
-            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
         } catch (ClassNotFoundException e) {
-            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
         }
 
         return;

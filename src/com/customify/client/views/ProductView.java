@@ -1,11 +1,9 @@
 package com.customify.client.views;
 
 import com.customify.client.services.ProductService;
-import com.customify.server.models.ProductModel;
 import com.customify.shared.requests_data_formats.ProductFormat;
 
 import java.net.Socket;
-import java.util.Date;
 import java.util.Scanner;
 
 public class ProductView {
@@ -38,8 +36,11 @@ public class ProductView {
             case 1:
                 this.createProduct();
                 break;
-            case 3:
-                this.getProductById();
+            case 2:
+                this.getAll();
+                break;
+            case 5:
+                this.deleteProduct();
             default:
                 System.out.println("Your entered Incorrect option");
         }
@@ -71,23 +72,9 @@ public class ProductView {
         newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
 
         newProduct.setCreatedAt("2021/02/04");
+
         ProductService productService = new ProductService(this.socket);
         productService.addNewProduct(newProduct);
-    }
-
-    /**
-     * @description
-     * Method to provide Required Id to Product Service for Retrieving product by id
-     * @author SAUVE Jean-Luc
-     * @version 1
-     * */
-    public void getProductById() throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        Integer productId;
-        System.out.println("Enter Product Id:");
-        productId =scanner.nextInt();
-        ProductService productService = new ProductService(this.socket);
-        productService.getProductById(productId);
     }
 
     public Socket getSocket() {
@@ -98,10 +85,20 @@ public class ProductView {
         this.socket = socket;
     }
 
-    public void getAll() {
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("\t\tHere is a list of products registered so far");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    public void getAll() throws Exception {
+        ProductService productService = new ProductService(this.socket);
+        productService.getAllProducts();
 
+    }
+
+    //Delete method create by Merlyne Iradukunda
+    // Due 6/02/2021
+    public void deleteProduct() throws Exception{
+        Scanner scanner = new Scanner(System.in);
+        long productCode;
+        System.out.println("Enter product Code:");
+        productCode=scanner.nextLong();
+        ProductService productService = new ProductService(this.socket);
+        productService.deleteProduct(productCode);
     }
 }
