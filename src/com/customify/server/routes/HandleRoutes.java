@@ -27,8 +27,11 @@ public class HandleRoutes {
         if (this.key ==Keys.CREATE_PRODUCT){
             productRoute.registerProduct();
         }
-        if (this.key ==Keys.CREATE_PRODUCT){
-            productRoute.getProducts();
+        if (this.key ==Keys.GET_PRODUT_BY_ID){
+            productRoute.registerProduct();
+        }
+        if(this.key==Keys.DELETE_PRODUCT){
+            productRoute.deleteProduct();
         }
         authRoute.loginError();
     }

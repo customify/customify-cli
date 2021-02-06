@@ -7,5 +7,7 @@ public enum Keys {
     GET_USERS,
     CREATE_PRODUCT,
     GET_ALL_PRODUCTS,
+    DELETE_PRODUCT,
+    GET_PRODUT_BY_ID,
     CREATE_BUSINESS
 }

@@ -45,6 +45,20 @@ public class ProductService {
         }
     }
 
+    //Method Created By Merlyne Iradukunda
+    // Due date: 6/2/2020
+    public void deleteProduct(Long productCode) throws  Exception{
+        Request request = new Request(Keys.DELETE_PRODUCT, productCode);
+        Common common = new Common(request, this.socket);
+
+        //if the sending is successful call a method to handle response from server
+        if (common.sendToServer()) {
+            this.handleDeleteProductSuccess();
+        } else {
+            System.out.println("\n\nError occurred when trying to send request to server\n");
+        }
+    }
+
     public void getAllProducts() throws Exception {
         Request request = new Request(Keys.GET_ALL_PRODUCTS, new ProductFormat());
         Common common = new Common(request, this.socket);
@@ -117,6 +131,32 @@ public class ProductService {
                 System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
             }
 
+        } catch (IOException e) {
+            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+        } catch (ClassNotFoundException e) {
+            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+        }
+
+        return;
+    }
+
+    public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
+        inputStream = this.getSocket().getInputStream();
+        objectInputStream = new ObjectInputStream(inputStream);
+        try {
+            List<Response> response = (List<Response>) objectInputStream.readObject();
+
+            if (response.get(0).getStatusCode() == 200) {
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("\t\t product deleted successfully");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+            } else if (response.get(0).getStatusCode() == 400) {
+                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
+            } else if(response.get(0).getStatusCode() == 500){
+                System.out.println("Internal server error!!");
+            }else{
+                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
+            }
         } catch (IOException e) {
             System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
         } catch (ClassNotFoundException e) {
