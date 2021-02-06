@@ -5,6 +5,7 @@ import com.customify.server.models.ProductModel;
 import com.customify.shared.requests_data_formats.ProductFormat;
 
 import java.net.Socket;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -40,6 +41,8 @@ public class ProductView {
                 break;
             case 3:
                 this.getProductById();
+            case 4:
+                this.updateProduct();
             default:
                 System.out.println("Your entered Incorrect option");
         }
@@ -81,13 +84,55 @@ public class ProductView {
      * @author SAUVE Jean-Luc
      * @version 1
      * */
-    public void getProductById() throws Exception {
+    public Integer getProductById() throws Exception {
         Scanner scanner = new Scanner(System.in);
         Integer productId;
         System.out.println("Enter Product Id:");
         productId =scanner.nextInt();
         ProductService productService = new ProductService(this.socket);
         productService.getProductById(productId);
+        return productId;
+    }
+
+    /**
+     * @description
+     * Method to provide Required Id to Product Service for Updating a product
+     * @author SAUVE Jean-Luc
+     * @version 1
+     * */
+    public void updateProduct() throws Exception {
+        Integer productId;
+        productId = getProductById();
+        System.out.println("You are going to update the above product");
+
+        ProductFormat newProduct = new ProductFormat();
+
+        System.out.println("Enter NEW product name:");
+        newProduct.setName(scanner.nextLine());
+
+        System.out.println("Enter NEW business_id:");
+        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("Enter NEW product price:");
+        newProduct.setPrice(Float.parseFloat(scanner.nextLine()));
+
+        System.out.println("Enter NEW quantity you have:");
+        newProduct.setQuantity(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("Enter NEW product description:");
+        newProduct.setDescription(scanner.nextLine());
+
+        System.out.println("Enter NEW points to bind with:");
+        newProduct.setBondedPoints(Double.parseDouble(scanner.nextLine()));
+
+        System.out.println("Who is NEWLY registering this product?");
+        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+
+        LocalDate myObj = LocalDate.now();
+        newProduct.setCreatedAt((String)myObj);
+
+        ProductService productService = new ProductService(this.socket);
+        productService.updateProduct(productId,newProduct);
     }
 
     public Socket getSocket() {

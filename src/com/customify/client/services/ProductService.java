@@ -63,8 +63,13 @@ public class ProductService {
         else{
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
-
     }
+    /**
+     * @description
+     * Service to Update Product By Id
+     * @author SAUVE Jean-Luc
+     * @version 1
+     * */
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
         inputStream = this.getSocket().getInputStream();
