@@ -4,31 +4,35 @@
 package com.customify.client.views;
 
 import com.customify.client.views.Business.BusinessRegisterView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
 
 import java.io.IOException;
 import java.net.Socket;
-import  java.util.*;
+import java.util.*;
 
 public class Home {
 
     private Socket socket;
 
-    public Home(Socket socket){
+    public Home(Socket socket) {
         this.socket = socket;
     }
-    public Socket getSocket()
-    {
+
+    public Socket getSocket() {
         return socket;
     }
-    public void setSocket(Socket socket){
+
+    public void setSocket(Socket socket) {
         this.socket = socket;
     }
+
     public void view() throws Exception {
 
         int choice;
         Scanner scan = new Scanner(System.in);
-        LoginView loginView =new LoginView(this.socket);
-        SignupView signupView =new SignupView(this.socket);
+        LoginView loginView = new LoginView(this.socket);
+        SignupView signupView = new SignupView(this.socket);
+        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
         ProductView productView = new ProductView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
 
@@ -39,11 +43,11 @@ public class Home {
         System.out.println("           3. PRODUCT MANAGEMENT");
         System.out.println("           4. REGISTER BUSINESS");
         System.out.println("           5. GIVE FEEDBACK");
+        System.out.println("           6. PROVIDE FEEDBACK ");
 
         choice = scan.nextInt();
 
-        switch(choice)
-        {
+        switch (choice) {
             case 1:
                 signupView.view();
                 break;
@@ -51,10 +55,14 @@ public class Home {
                 loginView.view();
                 break;
             case 3:
-                productView.init();
+                productView.createProduct();
                 break;
             case 4:
                 businessRegisterView.view();
+                break;
+
+            case 6:
+                feedbackView.view();
                 break;
             default:
                 System.out.println("Invalid choice");
