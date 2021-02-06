@@ -38,6 +38,8 @@ public class ProductView {
             case 1:
                 this.createProduct();
                 break;
+            case 3:
+                this.getProductById();
             default:
                 System.out.println("Your entered Incorrect option");
         }
@@ -71,6 +73,21 @@ public class ProductView {
         newProduct.setCreatedAt("2021/02/04");
         ProductService productService = new ProductService(this.socket);
         productService.addNewProduct(newProduct);
+    }
+
+    /**
+     * @description
+     * Method to provide Required Id to Product Service for Retrieving product by id
+     * @author SAUVE Jean-Luc
+     * @version 1
+     * */
+    public void getProductById() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        Integer productId;
+        System.out.println("Enter Product Id:");
+        productId =scanner.nextInt();
+        ProductService productService = new ProductService(this.socket);
+        productService.getProductById(productId);
     }
 
     public Socket getSocket() {
