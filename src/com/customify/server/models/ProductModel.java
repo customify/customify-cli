@@ -1,5 +1,6 @@
 package com.customify.server.models;
 
+import java.io.Serializable;
 /*
 * Created by Jacques Twizeyimana
 * Product model is a blueprint of how our products will be represented in database
@@ -9,7 +10,7 @@ package com.customify.server.models;
 
 import java.util.Date;
 
-public class ProductModel {
+public class ProductModel implements Serializable {
     private long productCode;
     private int business_id;
     private String name;
@@ -18,13 +19,13 @@ public class ProductModel {
     private String description;
     private double bondedPoints;
     private int registered_by;
-    private Date createdAt;
+    private String createdAt;
 
     public ProductModel(){
         this.productCode = this.generateId();
     }
 
-    public ProductModel(int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, Date createdAt) {
+    public ProductModel(int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, String createdAt) {
         this.productCode = this.generateId();
         this.business_id = business_id;
         this.name = name;
@@ -106,11 +107,11 @@ public class ProductModel {
         this.registered_by = registered_by;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 }

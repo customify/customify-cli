@@ -1,15 +1,10 @@
 package com.customify.server.controllers;
 
-/*
-Created by Jacques Twizeyimana
-This a product controller class to handle all logics regarding product
-It has createProduct,getAll,UpdateProduct,getProductByI and deleteProduct methods
-*/
-
 import com.customify.server.Db.Db;
 import com.customify.server.models.ProductModel;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
+import com.customify.shared.requests_data_formats.ProductFormat;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -32,41 +27,49 @@ public class ProductController {
     }
 
     public void registerProduct() throws IOException, SQLException {
-        ProductModel product = (ProductModel) request.getObject();
+        ProductFormat product = (ProductFormat) request.getObject();
 
-        Connection connection = Db.getConnection();
-        String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
-                " values(?,?,?,?,?,?,?,?,?)";
-
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setLong(1,product.getProductCode());
-        preparedStatement.setInt(2,product.getBusiness_id());
-        preparedStatement.setString(3,product.getName());
-        preparedStatement.setFloat(4,product.getPrice());
-        preparedStatement.setInt(5,product.getQuantity());
-        preparedStatement.setString(6,product.getDescription());
-        preparedStatement.setDouble(7,product.getBondedPoints());
-        preparedStatement.setInt(8,product.getRegistered_by());
-        preparedStatement.setDate(9, (Date) product.getCreatedAt());
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 
         try {
-            OutputStream output = this.socket.getOutputStream();
-            ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+            Connection connection = Db.getConnection();
+            String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
+                    " values(?,?,?,?,?,?,?,?,?)";
 
-            if(preparedStatement.execute()){
-                Response response = new Response(200,product);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1,product.getProductCode());
+            preparedStatement.setInt(2,product.getBusiness_id());
+            preparedStatement.setString(3,product.getName());
+            preparedStatement.setFloat(4,product.getPrice());
+            preparedStatement.setInt(5,product.getQuantity());
+            preparedStatement.setString(6,product.getDescription());
+            preparedStatement.setDouble(7,product.getBondedPoints());
+            preparedStatement.setInt(8,product.getRegistered_by());
+            preparedStatement.setString(9,product.getCreatedAt());
+
+            if(preparedStatement.executeUpdate() > 0){
                 List responseData = new ArrayList<>();
+                Response response = new Response(200,product);
                 responseData.add(response);
 
-                //Send the response to client
+                //Sending the response to client
                 objectOutput.writeObject(responseData);
             }
             else{
-                System.out.println("Error occurred when registering product");
+                List responseData = new ArrayList<>();
+                Response response = new Response(400,product);
+                responseData.add(response);
+                //Sending the response to client
+                objectOutput.writeObject(responseData);
             }
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            List responseData = new ArrayList<>();
+            Response response = new Response(500,new ProductFormat());
+            responseData.add(response);
+            //Sending the response to client
+            objectOutput.writeObject(responseData);
         }
     }
 
@@ -80,9 +83,39 @@ public class ProductController {
         output.writeUTF("Product was deleted successfully");
     }
 
-    public void getAllProducts() throws IOException {
-        output = new DataOutputStream(this.socket.getOutputStream());
-        output.writeUTF("Products list here...");
+    public void getAllProducts() throws IOException, SQLException {
+        System.out.println("request to get products was received");
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+
+        List products = null;
+        List response = new ArrayList<>();
+
+        try {
+            Statement statement = Db.getStatement();
+            ResultSet records = statement.executeQuery("SELECT * FROM products");
+
+            products = new ArrayList<ProductFormat>();
+
+            while (records.next()){
+                products.add(
+                        new ProductFormat(
+                                records.getInt("business_id"), records.getString("name"),
+                                records.getFloat("price"), records.getInt("quantity"),
+                                records.getString("description"),records.getDouble("bonded_points"),
+                                records.getInt("registered_by"), records.getString("created_at")
+                        )
+                );
+            }
+
+            response.add(new Response(200,products));
+            objectOutput.writeObject(response);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            response.add(new Response(500,new Object()));
+            objectOutput.writeObject(response);
+        }
     }
 
 
@@ -91,6 +124,3 @@ public class ProductController {
         output.writeUTF("Single product with ID: ");
     }
 }
-
-
-

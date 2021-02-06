@@ -6,8 +6,6 @@ import java.sql.SQLException;
 
 import com.customify.shared.Keys;
 
-import static com.customify.shared.Keys.CREATE_PRODUCT;
-
 public class HandleRoutes {
     private final Keys key;
     Socket socket;
@@ -28,6 +26,9 @@ public class HandleRoutes {
         }
         if (this.key ==Keys.CREATE_PRODUCT){
             productRoute.registerProduct();
+        }
+        if (this.key ==Keys.CREATE_PRODUCT){
+            productRoute.getProducts();
         }
         authRoute.loginError();
     }
