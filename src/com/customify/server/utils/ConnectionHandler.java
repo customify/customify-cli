@@ -11,7 +11,6 @@ import java.net.*;
 import java.sql.SQLException;
 import java.util.*;
 
-import static com.customify.shared.Keys.GET_PRODUT_BY_ID;
 import static com.customify.shared.Keys.LOGIN;
 
 public class ConnectionHandler {
@@ -78,10 +77,13 @@ public class ConnectionHandler {
                 break;
             case CREATE_PRODUCT:
                 productController.registerProduct();
-            case GET_PRODUT_BY_ID:
-                productController.getProductById();
+                break;
             case GET_ALL_PRODUCTS:
                 productController.getAllProducts();
+                break;
+            case DELETE_PRODUCT:
+                productController.deleteProduct();
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

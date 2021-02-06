@@ -58,7 +58,7 @@ public class ProductController {
             }
             else{
                 List responseData = new ArrayList<>();
-                Response response = new Response(400,product);
+                Response response = new Response(500,product);
                 responseData.add(response);
                 //Sending the response to client
                 objectOutput.writeObject(responseData);
@@ -158,8 +158,42 @@ public class ProductController {
     }
 
     public void deleteProduct() throws IOException {
-        output = new DataOutputStream(this.socket.getOutputStream());
-        output.writeUTF("Product was deleted successfully");
+        Long product = (Long) request.getObject();
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+
+        try {
+
+            Connection connection = Db.getConnection();
+            String sql = "DELETE from products where product_code= ?;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1,product);
+
+
+            if(preparedStatement.executeUpdate() > 0){
+                List responseData = new ArrayList<>();
+                Response response = new Response(200,product);
+                responseData.add(response);
+
+                //Sending the response to client
+                objectOutput.writeObject(responseData);
+            }
+            else{
+                List responseData = new ArrayList<>();
+                Response response = new Response(400,product);
+                responseData.add(response);
+                //Sending the response to client
+                objectOutput.writeObject(responseData);
+            }
+        }
+        catch (Exception e){
+            List responseData = new ArrayList<>();
+            Response response = new Response(500,new ProductFormat());
+            responseData.add(response);
+            //Sending the response to client
+            objectOutput.writeObject(responseData);
+        }
     }
 
     public void getAllProducts() throws IOException, SQLException {
@@ -196,7 +230,6 @@ public class ProductController {
             objectOutput.writeObject(response);
         }
     }
-
 
     public void getProduct() throws IOException {
         output = new DataOutputStream(this.socket.getOutputStream());
