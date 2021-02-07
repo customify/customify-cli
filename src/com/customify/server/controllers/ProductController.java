@@ -58,7 +58,7 @@ public class ProductController {
             }
             else{
                 List responseData = new ArrayList<>();
-                Response response = new Response(400,product);
+                Response response = new Response(500,product);
                 responseData.add(response);
                 //Sending the response to client
                 objectOutput.writeObject(responseData);
@@ -207,63 +207,43 @@ public class ProductController {
     }
 
 
-
-
-
-
-
-
-//    public void updateProduct() throws IOException, SQLException {
-//        ProductFormat product = (ProductFormat) request.getObject();
-//
-//        OutputStream output = this.socket.getOutputStream();
-//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
-//
-//        try {
-//            Connection connection = Db.getConnection();
-//            String sql = "UPDATE products SET product_code = ?,business_id =?,name=?,price=?,quantity=?,description = ?,bonded_points=?,registered_by = ?,created_at =? WHERE id = ?";
-//
-//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setLong(1,product.getProductCode());
-//            preparedStatement.setInt(2,product.getBusiness_id());
-//            preparedStatement.setString(3,product.getName());
-//            preparedStatement.setFloat(4,product.getPrice());
-//            preparedStatement.setInt(5,product.getQuantity());
-//            preparedStatement.setString(6,product.getDescription());
-//            preparedStatement.setDouble(7,product.getBondedPoints());
-//            preparedStatement.setInt(8,product.getRegistered_by());
-//            preparedStatement.setString(9,product.getCreatedAt());
-//            preparedStatement.setInt(10,product.getId());
-//
-////            if(preparedStatement.executeUpdate() > 0){
-//                preparedStatement.executeUpdate();
-//                List responseData = new ArrayList<>();
-//                Response response = new Response(200,product);
-//                responseData.add(response);
-//
-//                //Sending the response to client
-//                objectOutput.writeObject(responseData);
-////            }
-////            else{
-////                List responseData = new ArrayList<>();
-////                Response response = new Response(400,product);
-////                responseData.add(response);
-////                //Sending the response to client
-////                objectOutput.writeObject(responseData);
-////            }
-//        }
-//        catch (Exception e){
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(500,new ProductFormat());
-//            responseData.add(response);
-//            //Sending the response to client
-//            objectOutput.writeObject(responseData);
-//        }
-//    }
-
     public void deleteProduct() throws IOException {
-        output = new DataOutputStream(this.socket.getOutputStream());
-        output.writeUTF("Product was deleted successfully");
+        Long product = (Long) request.getObject();
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+
+        try {
+
+            Connection connection = Db.getConnection();
+            String sql = "DELETE from products where product_code= ?;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1,product);
+
+
+            if(preparedStatement.executeUpdate() > 0){
+                List responseData = new ArrayList<>();
+                Response response = new Response(200,product);
+                responseData.add(response);
+
+                //Sending the response to client
+                objectOutput.writeObject(responseData);
+            }
+            else{
+                List responseData = new ArrayList<>();
+                Response response = new Response(400,product);
+                responseData.add(response);
+                //Sending the response to client
+                objectOutput.writeObject(responseData);
+            }
+        }
+        catch (Exception e){
+            List responseData = new ArrayList<>();
+            Response response = new Response(500,new ProductFormat());
+            responseData.add(response);
+            //Sending the response to client
+            objectOutput.writeObject(responseData);
+        }
     }
 
     public void getAllProducts() throws IOException, SQLException {
@@ -300,7 +280,6 @@ public class ProductController {
             objectOutput.writeObject(response);
         }
     }
-
 
     public void getProduct() throws IOException {
         output = new DataOutputStream(this.socket.getOutputStream());
