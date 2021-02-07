@@ -8,5 +8,6 @@ public enum Keys {
     GET_ALL_PRODUCTS,
     GET_PRODUT_BY_ID,
     UPDATE_PRODUCT,
+    FEEDBACK,
     CREATE_BUSINESS
 }
