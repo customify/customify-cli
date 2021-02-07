@@ -5,6 +5,7 @@ package com.customify.client.views;
 
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
+import com.customify.client.views.customer.CustomerMainView;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -33,6 +34,8 @@ public class Home {
         LoginView loginView = new LoginView(this.socket);
         SignupView signupView = new SignupView(this.socket);
         CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
+        CustomerMainView customer = new CustomerMainView(this.socket);
+
         ProductView productView = new ProductView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         PointCountingView pointCountingView = new PointCountingView((this.socket));
@@ -46,7 +49,7 @@ public class Home {
         System.out.println("           5. GIVE FEEDBACK");
         System.out.println("           6. PROVIDE FEEDBACK ");
         System.out.println("           7. POINTS");
-
+        System.out.println("           8. CUSTOMER MANAGEMENT");
         choice = scan.nextInt();
 
         switch (choice) {
@@ -68,8 +71,12 @@ public class Home {
             case 6:
                 feedbackView.view();
                 break;
+
             case 7:
                 pointCountingView.view();
+                break;
+            case 8:
+                customer.view();
                 break;
             default:
                 System.out.println("Invalid choice");
