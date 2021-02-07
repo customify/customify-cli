@@ -1,4 +1,4 @@
-cpackage com.customify.server.routes;
+package com.customify.server.routes;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -38,6 +38,6 @@ public class HandleRoutes {
         if(this.key==Keys.DELETE_PRODUCT){
             productRoute.deleteProduct();
         }
-        authRoute.loginError();
+//        authRoute.loginError();
     }
 }

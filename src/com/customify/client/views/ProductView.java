@@ -80,6 +80,10 @@ public class ProductView {
 
         newProduct.setCreatedAt("2021/02/04");
 
+        ProductService productService = new ProductService(this.socket);
+        productService.addNewProduct(newProduct);
+    }
+
     /**
      * @description
      * Method to provide Required Id to Product Service for Retrieving product by id

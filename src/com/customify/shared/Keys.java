@@ -10,6 +10,5 @@ public enum Keys {
     DELETE_PRODUCT,
     GET_PRODUT_BY_ID,
     UPDATE_PRODUCT,
-    FEEDBACK,
     CREATE_BUSINESS
 }

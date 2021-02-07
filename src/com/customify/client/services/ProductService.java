@@ -102,10 +102,8 @@ public class ProductService {
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        System.out.println("Reached here number 3");
         if (common.sendToServer() == true) {
             this.handleUpdateProductSuccess();
-            System.out.println("Reached here number 4");
         }
         else{
             System.out.println("\n\nError occurred when trying to send request to server\n");
@@ -259,10 +257,8 @@ public class ProductService {
     public void handleUpdateProductSuccess() throws IOException, ClassNotFoundException {
         inputStream = this.getSocket().getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
-        System.out.println("Reached here number 5");
         try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
-            System.out.println("Reached here number 6");
             System.out.println("Status: "+ response.get(0).getStatusCode());
             if(response.get(0).getStatusCode() == 200){
                 ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
