@@ -1,8 +1,10 @@
 package com.customify.server.utils;
 
+import com.customify.client.services.PointsService;
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.ProductController;
 import com.customify.server.controllers.BusinessController;
+import com.customify.server.controllers.PointsController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.shared.Request;
 
@@ -60,7 +62,8 @@ public class ConnectionHandler {
         AuthController authController;
         ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessController businessController;
-        
+        PointsController pointsController = new PointsController(this.clientSocket,this.request);
+
         switch (request.getKey()) {
             case LOGIN:
                 authController = new AuthController(this.clientSocket, this.request);
@@ -74,6 +77,11 @@ public class ConnectionHandler {
                 businessController = new BusinessController(this.clientSocket, this.request);
                 businessController.create();
                 break;
+            case GET_WINNERS:
+                pointsController.getWinners();
+                break;
+            case POINTS_BY_CUSTOMER_EMAIL:
+                pointsController.getPointsByCustomerEmail();
             case CREATE_PRODUCT:
                 productController.registerProduct();
 

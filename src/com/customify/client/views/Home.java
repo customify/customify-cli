@@ -35,6 +35,7 @@ public class Home {
         CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
         ProductView productView = new ProductView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
+        PointCountingView pointCountingView = new PointCountingView((this.socket));
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------\n");
@@ -44,6 +45,7 @@ public class Home {
         System.out.println("           4. REGISTER BUSINESS");
         System.out.println("           5. GIVE FEEDBACK");
         System.out.println("           6. PROVIDE FEEDBACK ");
+        System.out.println("           7. POINTS");
 
         choice = scan.nextInt();
 
@@ -60,9 +62,14 @@ public class Home {
             case 4:
                 businessRegisterView.view();
                 break;
-
+            case 5:
+               System.out.println("Not Det Done");
+                break;    
             case 6:
                 feedbackView.view();
+                break;
+            case 7:
+                pointCountingView.view();
                 break;
             default:
                 System.out.println("Invalid choice");

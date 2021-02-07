@@ -40,9 +40,8 @@ public class Main {
         }catch (Exception e){
             this.isConnectionOn = false;
             System.out.println("Failed to connect to the server at port: "+ portNumber);
-            System.out.println("  Exception: "+ e.toString());
+            System.out.println("Exception: "+ e.toString());
         }
         return true;
     }
 }
-
