@@ -20,11 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/FeatureFormat/FeatureFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/FeatureFormat/MessageFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/FeatureController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/FeatureFormat/FeatureIdformat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/FeatureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/FeatureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/FeatureModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/FeatureController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,34 +221,34 @@
     <option name="LAST_COMMIT_MESSAGE" value="adding mysql connector jar file" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1612506437152">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1612686939598">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1612506437152" />
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612504869365">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1612686939598" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612686823908">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1612504869365" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1612686823908" />
     <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1612415623268">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1612415623267" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1612505058059">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1612508964052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612505058059" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1612505058058">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612508964052" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1612508964052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612505058058" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1612505058058">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612508964052" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1612508964052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612505058058" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1612505058058">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612508964052" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1612508964052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612505058058" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612508964052" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1612415630812">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
