@@ -22,7 +22,7 @@ public class HandleRoutes {
         this.switchRoutes();
     }
 
-    public void switchRoutes() throws IOException {
+    public void switchRoutes() throws IOException, SQLException {
 //        if (this.key == Keys.LOGIN) {
 //            authRoute.loginRoute();
 //        }
