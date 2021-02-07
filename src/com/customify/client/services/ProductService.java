@@ -64,12 +64,28 @@ public class ProductService {
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
     }
+
     /**
      * @description
      * Service to Update Product By Id
      * @author SAUVE Jean-Luc
      * @version 1
      * */
+
+    public void updateProduct(ProductFormat productFormat) throws  Exception{
+        Request request = new Request(Keys.UPDATE_PRODUCT,productFormat);
+        Common common = new Common(request, this.socket);
+
+        //if the sending is successful call a method to handle response from server
+        System.out.println("Reached here number 3");
+        if (common.sendToServer() == true) {
+            this.handleUpdateProductSuccess();
+            System.out.println("Reached here number 4");
+        }
+        else{
+            System.out.println("\n\nError occurred when trying to send request to server\n");
+        }
+    }
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
         inputStream = this.getSocket().getInputStream();
@@ -78,7 +94,7 @@ public class ProductService {
         try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
             if(response.get(0).getStatusCode() == 200){
-                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
+                ProductFormat updatedProduct = (ProductFormat) response.get(0).getData();
 
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("\t\t product registered successfully");
@@ -100,6 +116,13 @@ public class ProductService {
         return;
     }
 
+    /**
+     * @description
+     * Function to Send Response when Product is Retrieved Successfully
+     * @author SAUVE Jean-Luc
+     * @version 1
+     * */
+
     public void handleGetProductByIdSuccess() throws IOException, ClassNotFoundException{
         inputStream = this.getSocket().getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
@@ -119,6 +142,44 @@ public class ProductService {
                 System.out.println("Bonded Points: " + retrievedProduct.getBondedPoints());
                 System.out.println("Registered By: " + retrievedProduct.getRegistered_by());
                 System.out.println("Created At: " + retrievedProduct.getCreatedAt());
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+            }
+            else if(response.get(0).getStatusCode() == 400){
+                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
+            }
+            else{
+                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
+            }
+
+        } catch (IOException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        } catch (ClassNotFoundException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        }
+
+        return;
+    }
+
+    /**
+     * @description
+     * Function to Send Response when Product is Updated Successfully
+     * @author SAUVE Jean-Luc
+     * @version 1
+     * */
+
+    public void handleUpdateProductSuccess() throws IOException, ClassNotFoundException {
+        inputStream = this.getSocket().getInputStream();
+        objectInputStream = new ObjectInputStream(inputStream);
+        System.out.println("Reached here number 5");
+        try {
+            List<Response> response = (List<Response>) objectInputStream.readObject();
+            System.out.println("Reached here number 6");
+            System.out.println("Status: "+ response.get(0).getStatusCode());
+            if(response.get(0).getStatusCode() == 200){
+                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
+
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("\t\t product Updated successfully");
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
             }
             else if(response.get(0).getStatusCode() == 400){

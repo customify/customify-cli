@@ -33,5 +33,8 @@ public class ProductRoute {
     public void  getProductById() throws IOException, SQLException {
         productController.getProductById();
     }
+    public void  updateProduct() throws IOException, SQLException {
+        productController.updateProduct();
+    }
 
 }

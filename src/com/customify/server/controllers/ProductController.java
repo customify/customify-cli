@@ -121,14 +121,17 @@ public class ProductController {
             //Sending the response to client
             objectOutput.writeObject(responseData);
 
-//            rs.close();
+            rs.close();
+            stmt.close();
+            conn.close();
         }catch(SQLException se){
             //Handle errors for JDBC
             se.printStackTrace();
         }catch(Exception e){
             //Handle errors for Class.forName
             e.printStackTrace();
-        }finally{
+        }
+        finally{
             //finally block used to close resources
             try{
                 if(stmt!=null)
@@ -152,10 +155,111 @@ public class ProductController {
      * @author SAUVE Jean-Luc
      * @version 1
      * */
-    public void updateProduct() throws IOException {
-        output = new DataOutputStream(this.socket.getOutputStream());
-        output.writeUTF("ProductController was updated successfully");
+        public void updateProduct() throws IOException, SQLException {
+        ProductFormat product = (ProductFormat) request.getObject();
+
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+
+        Statement stmt = null;
+        Connection conn = null;
+
+        try {
+            conn = Db.getConnection();
+
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+
+            String sql = "UPDATE products SET product_code = "+product.getProductCode()+",business_id = "+product.getBusiness_id()+
+                    ",name="+product.getName()+",price="+product.getPrice()+",quantity="+product.getQuantity()+
+                    ",description = "+product.getDescription()+",bonded_points="+product.getBondedPoints()+
+                    ",registered_by = "+product.getRegistered_by()+",created_at = '2021-02-04' WHERE id = "+product.getId();
+
+            stmt.executeUpdate(sql);
+
+//            if(preparedStatement.executeUpdate() > 0){
+//                preparedStatement.executeUpdate();
+                List responseData = new ArrayList<>();
+                Response response = new Response(200,product);
+                responseData.add(response);
+
+                //Sending the response to client
+                objectOutput.writeObject(responseData);
+//            }
+//            else{
+//                List responseData = new ArrayList<>();
+//                Response response = new Response(400,product);
+//                responseData.add(response);
+//                //Sending the response to client
+//                objectOutput.writeObject(responseData);
+//            }
+            stmt.close();
+            conn.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            List responseData = new ArrayList<>();
+            Response response = new Response(500,new ProductFormat());
+            responseData.add(response);
+            //Sending the response to client
+            objectOutput.writeObject(responseData);
+        }
     }
+
+
+
+
+
+
+
+
+//    public void updateProduct() throws IOException, SQLException {
+//        ProductFormat product = (ProductFormat) request.getObject();
+//
+//        OutputStream output = this.socket.getOutputStream();
+//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+//
+//        try {
+//            Connection connection = Db.getConnection();
+//            String sql = "UPDATE products SET product_code = ?,business_id =?,name=?,price=?,quantity=?,description = ?,bonded_points=?,registered_by = ?,created_at =? WHERE id = ?";
+//
+//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setLong(1,product.getProductCode());
+//            preparedStatement.setInt(2,product.getBusiness_id());
+//            preparedStatement.setString(3,product.getName());
+//            preparedStatement.setFloat(4,product.getPrice());
+//            preparedStatement.setInt(5,product.getQuantity());
+//            preparedStatement.setString(6,product.getDescription());
+//            preparedStatement.setDouble(7,product.getBondedPoints());
+//            preparedStatement.setInt(8,product.getRegistered_by());
+//            preparedStatement.setString(9,product.getCreatedAt());
+//            preparedStatement.setInt(10,product.getId());
+//
+////            if(preparedStatement.executeUpdate() > 0){
+//                preparedStatement.executeUpdate();
+//                List responseData = new ArrayList<>();
+//                Response response = new Response(200,product);
+//                responseData.add(response);
+//
+//                //Sending the response to client
+//                objectOutput.writeObject(responseData);
+////            }
+////            else{
+////                List responseData = new ArrayList<>();
+////                Response response = new Response(400,product);
+////                responseData.add(response);
+////                //Sending the response to client
+////                objectOutput.writeObject(responseData);
+////            }
+//        }
+//        catch (Exception e){
+//            List responseData = new ArrayList<>();
+//            Response response = new Response(500,new ProductFormat());
+//            responseData.add(response);
+//            //Sending the response to client
+//            objectOutput.writeObject(responseData);
+//        }
+//    }
 
     public void deleteProduct() throws IOException {
         output = new DataOutputStream(this.socket.getOutputStream());

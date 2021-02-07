@@ -2,6 +2,7 @@ package com.customify.shared.requests_data_formats;
 import java.io.Serializable;
 
 public class ProductFormat  implements Serializable {
+    private int id;
     private long productCode;
     private int business_id;
     private String name;
@@ -88,4 +89,11 @@ public class ProductFormat  implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

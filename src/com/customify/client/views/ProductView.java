@@ -41,6 +41,7 @@ public class ProductView {
                 break;
             case 3:
                 this.getProductById();
+                break;
             case 4:
                 this.updateProduct();
             default:
@@ -101,17 +102,24 @@ public class ProductView {
      * @version 1
      * */
     public void updateProduct() throws Exception {
-        Integer productId;
-        productId = getProductById();
-        System.out.println("You are going to update the above product");
+//        productId = getProductById();
+        Scanner scanner = new Scanner(System.in);
+
+//        System.out.println("You are going to update the above product");
 
         ProductFormat newProduct = new ProductFormat();
 
-        System.out.println("Enter NEW product name:");
-        newProduct.setName(scanner.nextLine());
+        System.out.println("Enter Product Id: ");
+        newProduct.setId(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("Enter NEW product code");
+        newProduct.setProductCode(Long.parseLong(scanner.nextLine()));
 
         System.out.println("Enter NEW business_id:");
         newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("Enter NEW product name:");
+        newProduct.setName(scanner.nextLine());
 
         System.out.println("Enter NEW product price:");
         newProduct.setPrice(Float.parseFloat(scanner.nextLine()));
@@ -128,11 +136,13 @@ public class ProductView {
         System.out.println("Who is NEWLY registering this product?");
         newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
 
-        LocalDate myObj = LocalDate.now();
-        newProduct.setCreatedAt((String)myObj);
+//        LocalDate myObj = LocalDate.now();
+        newProduct.setCreatedAt("2021-02-04");
 
         ProductService productService = new ProductService(this.socket);
-        productService.updateProduct(productId,newProduct);
+        System.out.println("Reached here number 1");
+        productService.updateProduct(newProduct);
+        System.out.println("Reached here number 2");
     }
 
     public Socket getSocket() {
