@@ -1,18 +1,38 @@
 package com.customify.server.services;
+
 import com.customify.server.Db.Db;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.responses_data_format.FeatureFormat.*;
-import java.io.*;
-import java.net.Socket;
-import java.sql.*;
-import java.util.*;
+import com.customify.shared.responses_data_format.FeatureFormat.FeatureFormat;
+import com.customify.shared.responses_data_format.FeatureFormat.FeatureIdformat;
+import com.customify.shared.responses_data_format.FeatureFormat.MessageFormat;
 
-public class FeatureController {
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+/**
+ * @description
+ * Services to provide operations to be done on billing feature 
+ *
+ * @author Fiston Nshimiyandinze
+ * @version 1
+ * */
+public class FeatureService {
     DataOutputStream output;
     private final Socket socket;
     private final Request request;
-    public  FeatureController(Socket socket, Request request)   {
+    public  FeatureService(Socket socket, Request request)   {
         this.socket = socket;
         this.request = request;
     }
@@ -200,7 +220,7 @@ public class FeatureController {
             Response response = new Response(200,features);
 
             features.add(response);
-            output.writeUTF("Products list here...");
+            output.writeUTF("Products matching given conditions...");
 
             objectOutput.writeObject(features);
             output = new DataOutputStream(this.socket.getOutputStream());

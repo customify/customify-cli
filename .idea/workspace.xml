@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/FeatureController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/FeatureFormat/FeatureIdformat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/FeatureService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/FeatureController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/FeatureController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
