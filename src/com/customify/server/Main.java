@@ -1,3 +1,11 @@
+/*
+ *
+ * By Verite ,  Patrick & Samuel
+ * Desc: The core server loader
+ *
+ * */
+
+
 package com.customify.server;
 import com.customify.server.Db.*;
 import com.customify.server.utils.*;
@@ -7,7 +15,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
-    private static final int portNumber = 3000;
+
+    private static final int portNumber = 6000;
 
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket;

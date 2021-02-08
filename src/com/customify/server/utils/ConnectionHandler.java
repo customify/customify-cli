@@ -1,13 +1,16 @@
+/*
+*
+* By Verite &  Patrick
+* Desc: Dealing with Server connection configurations
+* */
+
 package com.customify.server.utils;
 
-import com.customify.client.services.PointsService;
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.ProductController;
-import com.customify.server.controllers.BusinessController;
 import com.customify.server.controllers.PointsController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.shared.Request;
-
 import java.io.*;
 import java.net.*;
 import java.sql.SQLException;
@@ -61,7 +64,6 @@ public class ConnectionHandler {
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
         ProductController productController = new ProductController(this.clientSocket, this.request);
-        BusinessController businessController;
         PointsController pointsController = new PointsController(this.clientSocket,this.request);
 
         switch (request.getKey()) {
@@ -74,8 +76,8 @@ public class ConnectionHandler {
                 authController.signup();
                 
             case CREATE_BUSINESS:
-                businessController = new BusinessController(this.clientSocket, this.request);
-                businessController.create();
+//                businessController = new BusinessController(this.clientSocket, this.request);
+//                businessController.create();
                 break;
             case GET_WINNERS:
                 pointsController.getWinners();
@@ -84,7 +86,11 @@ public class ConnectionHandler {
                 pointsController.getPointsByCustomerEmail();
             case CREATE_PRODUCT:
                 productController.registerProduct();
-
+                break;
+            case GET_BUSINESS:
+//                businessController = new BusinessController(this.clientSocket,this.request);
+//                businessController.getall();
+                break;
             case FEEDBACK:
                 FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
                 fController.sendDataInDb();

@@ -1,11 +1,11 @@
 package com.customify.server.utils;
 
+import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
 import com.customify.server.controllers.AuthController;
-import com.customify.server.controllers.ProductController;
-import com.customify.server.controllers.BusinessController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
+import com.customify.server.services.BusinessService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,7 +58,7 @@ public class RequestHandler {
         AuthController authController;
         CustomerService  customer;
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
-//        BusinessController businessController;
+        BusinessService businessService = new BusinessService(this.clientSocket);
 
         switch (this.key) {
             case LOGIN:
@@ -70,12 +70,16 @@ public class RequestHandler {
 //                authController.signup();
 
             case CREATE_BUSINESS:
-//                businessController = new BusinessController(this.clientSocket, this.request);
-//                businessController.create();
+                businessService.create(json_data);
                 break;
+            case EDIT_BUSINESS:
+                businessService.update(json_data);
+                break;
+            case REMOVE_BUSINESS:
+                businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
 //                productController.registerProduct();
-
+                    break;
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
@@ -90,6 +94,12 @@ public class RequestHandler {
             case CREATE_CUSTOMER:
             customer  = new CustomerService(this.clientSocket,this.json_data);
             customer.create();
+                break;
+            case GET_ALL_BUSINESSES:
+                businessService.getAll();
+                break;
+            case GET_BUSINESS:
+                businessService.getBusinessById(json_data);
                 break;
 
             default:

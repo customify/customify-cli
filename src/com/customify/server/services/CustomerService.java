@@ -1,20 +1,14 @@
 package com.customify.server.services;
 
-import com.customify.client.SendToServer;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.customer.CreateCustomerFormat;
-import com.customify.shared.Request;
-import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.BusinessFormat;
-import com.customify.shared.responses_data_format.BusinessFormats.BusinessCreate;
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

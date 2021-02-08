@@ -31,7 +31,6 @@ public class Main {
             System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
-
             while(isConnectionOn){
                 Home home = new Home(socket);
                 home.view();
