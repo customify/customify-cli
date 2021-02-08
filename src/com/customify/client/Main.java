@@ -25,12 +25,15 @@ public class Main {
     }
 
     private boolean connectTOServer(String serverIp){
+<<<<<<< HEAD
         int portNumber = 3000;
+=======
+        int portNumber = 6000;
+>>>>>>> c3de07e96f442335f7d4ef31318a970ac01c850c
         try{
             Socket socket = new Socket(serverIp, portNumber);
             System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
-
 
             while(isConnectionOn){
                 Home home = new Home(socket);

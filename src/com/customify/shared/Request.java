@@ -1,5 +1,4 @@
 package com.customify.shared;
-import com.customify.shared.Keys;
 
 import java.io.Serializable;
 
@@ -8,6 +7,10 @@ public class Request implements Serializable {
     private Object data;
 
 
+    /**
+     * @param key
+     * @param data
+     */
     public Request(Keys key, Object data) {
         this.key = key;
         this.data = data;

@@ -3,6 +3,7 @@
 */
 package com.customify.client.views;
 
+import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.Business.BusinessView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
@@ -38,8 +39,13 @@ public class Home {
         CustomerMainView customer = new CustomerMainView(this.socket);
 
         ProductView productView = new ProductView(this.socket);
+<<<<<<< HEAD
 
         BusinessView businessView = new BusinessView(this.socket);
+=======
+        BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
+        BusinessEditView businessEditView = new BusinessEditView(this.socket);
+>>>>>>> c3de07e96f442335f7d4ef31318a970ac01c850c
         PointCountingView pointCountingView = new PointCountingView((this.socket));
 
         System.out.println("---------------------------------------------");
@@ -68,8 +74,8 @@ public class Home {
                 businessView.view();
                 break;
             case 5:
-               System.out.println("Not Det Done");
-                break;    
+                System.out.println("Not Det Done");
+                break;
             case 6:
                 feedbackView.view();
                 break;

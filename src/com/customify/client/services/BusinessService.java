@@ -15,6 +15,10 @@ import com.customify.client.SendToServer;
 import com.customify.client.data_format.business.GetBusinessFormat;
 import com.customify.shared.requests_data_formats.BusinessFormats.BusinessFormat;
 
+import com.customify.client.SendToServer;
+import com.customify.shared.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.customify.shared.Keys;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
@@ -53,18 +57,31 @@ public class BusinessService {
      * this function is to create a new business
      * We send the request to the backend
      * */
-    public void create(BusinessFormat businessFormat) throws IOException, ClassNotFoundException {
-        // make my request
-        Request request = new Request(Keys.CREATE_BUSINESS , businessFormat);
+    public void create(BusinessFormat businessFormat) throws IOException {
+        var mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(businessFormat);
+        SendToServer sendToServer = new SendToServer(json, this.socket);
+        if (sendToServer.send()) {
+            System.out.println("The business is successfully created .... ");
+        }else {
+            System.out.println("Failed to send the request on the server ....");
+        }
+    }
 
-        // Make the Backend connector
-        Common common = new Common(request,this.socket);
-
-        // send to the server
-        if(common.sendToServer()){
-            this.handleCreateBusinessResponse();
-        }else{
-            System.out.println("There was an error when sending request ....");
+    /**
+     * @author IRUMVA HABUMUGISHA Anselme
+     * @role
+     * this function is to edit an existing business
+     * We send the request to the backend
+     * */
+    public void update(BusinessFormat businessFormat) throws IOException {
+        var mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(businessFormat);
+        SendToServer sendToServer = new SendToServer(json, this.socket);
+        if (sendToServer.send()) {
+            System.out.println("The business is successfully updated .... ");
+        }else {
+            System.out.println("The request is not sent to the server ....");
         }
     }
 

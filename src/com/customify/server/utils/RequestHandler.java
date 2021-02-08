@@ -3,9 +3,8 @@ package com.customify.server.utils;
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
 import com.customify.server.controllers.AuthController;
-import com.customify.server.controllers.ProductController;
-import com.customify.server.controllers.BusinessController;
 import com.customify.server.controllers.FeedbackController;
+import com.customify.server.services.BusinessService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,7 +57,10 @@ public class RequestHandler {
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
+<<<<<<< HEAD
 //        BusinessController businessController;
+=======
+>>>>>>> c3de07e96f442335f7d4ef31318a970ac01c850c
         BusinessService businessService = new BusinessService(this.clientSocket);
 
         switch (this.key) {
@@ -71,8 +73,10 @@ public class RequestHandler {
 //                authController.signup();
 
             case CREATE_BUSINESS:
-//                businessController = new BusinessController(this.clientSocket, this.request);
-//                businessController.create();
+                businessService.create(json_data);
+                break;
+            case EDIT_BUSINESS:
+                businessService.update(json_data);
                 break;
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);

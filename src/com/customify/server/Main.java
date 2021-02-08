@@ -1,3 +1,11 @@
+/*
+ *
+ * By Verite ,  Patrick & Samuel
+ * Desc: The core server loader
+ *
+ * */
+
+
 package com.customify.server;
 import com.customify.server.Db.*;
 import com.customify.server.utils.*;
@@ -7,7 +15,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
-    private static final int portNumber = 3000;
+
+    private static final int portNumber = 6000;
+
+ main
 
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket;
@@ -20,13 +31,12 @@ public class Main {
                 Socket clientSocket = null;
                 try {
                     Db.init();
-                    System.out.println("** Listening on port ***");
+                    System.out.println("** Listening on port "+portNumber +" ***");
                     clientSocket = serverSocket.accept();
                     System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
                 } catch (IOException e) {
                     Db.closeConnection();
                     System.out.println("Terminating because of "+e.getMessage());
-
                     //e.printStackTrace();
                 }
 
