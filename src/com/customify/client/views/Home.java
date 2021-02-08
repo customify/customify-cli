@@ -39,13 +39,10 @@ public class Home {
         CustomerMainView customer = new CustomerMainView(this.socket);
 
         ProductView productView = new ProductView(this.socket);
-<<<<<<< HEAD
 
         BusinessView businessView = new BusinessView(this.socket);
-=======
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
->>>>>>> c3de07e96f442335f7d4ef31318a970ac01c850c
         PointCountingView pointCountingView = new PointCountingView((this.socket));
 
         System.out.println("---------------------------------------------");

@@ -88,8 +88,8 @@ public class ConnectionHandler {
                 productController.registerProduct();
                 break;
             case GET_BUSINESS:
-                businessController = new BusinessController(this.clientSocket,this.request);
-                businessController.getall();
+//                businessController = new BusinessController(this.clientSocket,this.request);
+//                businessController.getall();
                 break;
             case FEEDBACK:
                 FeedbackController fController = new FeedbackController(this.clientSocket, this.request);

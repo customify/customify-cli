@@ -33,7 +33,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.Iterator;
 import java.util.List;
 
 public class BusinessService {
@@ -116,6 +115,9 @@ public class BusinessService {
         if(serverSend.send()){
             this.handleResponse("getall");
         }
+        else {
+            System.out.println("Request failed...");
+        }
     }
 
     /**
@@ -133,8 +135,11 @@ public class BusinessService {
                 System.out.format("%5d%20s%20s%25s%20s\n",bs.getId(),bs.getName(),bs.getLocation(),bs.getAddress(),bs.getPhone_number());
         }
     }
-
-    //get business by id
+    /**
+     * @author Kellia Umuhire
+     * @role
+     * method for getting one business by its id
+     * */
     public void getById(GetBusinessFormat format) throws IOException,ClassNotFoundException{
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(format);
@@ -142,9 +147,16 @@ public class BusinessService {
         if(serverSend.send()){
             handleResponse("getbyid");
         }
+        else {
+            System.out.println("Request failed...");
+        }
     }
 
-    //handle get business
+    /**
+     * @author Kellia Umuhire
+     * @role
+     * Method for handling business response from the server
+     * */
     public void handleGetBYId(JsonNode jsonNode)throws IOException{
         ObjectMapper objectMapper = new ObjectMapper();
         BusinessRFormat data = objectMapper.treeToValue(jsonNode, BusinessRFormat.class);
@@ -162,9 +174,16 @@ public class BusinessService {
         if(serverSend.send()){
             System.out.println("--------Business deleted--------");
         }
+        else {
+            System.out.println("Request failed...");
+        }
     }
 
-    //handle response
+    /**
+     * @author Kellia Umuhire
+     * @role
+     * General method for handling response from the server
+     * */
     public void handleResponse(String func_name) throws IOException,ClassNotFoundException{
         try {
             this.input = this.socket.getInputStream();

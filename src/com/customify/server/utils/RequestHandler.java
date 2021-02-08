@@ -57,10 +57,6 @@ public class RequestHandler {
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
-<<<<<<< HEAD
-//        BusinessController businessController;
-=======
->>>>>>> c3de07e96f442335f7d4ef31318a970ac01c850c
         BusinessService businessService = new BusinessService(this.clientSocket);
 
         switch (this.key) {
