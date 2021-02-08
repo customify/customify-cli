@@ -46,30 +46,39 @@ public class CustomerService {
         JsonNode jsonNode = objectMapper.readTree(json_data);
         String email = jsonNode.get("email").asText();
         String firName = jsonNode.get("firName").asText();
-         String lasName = jsonNode.get("lasName").asText();
+        String lasName = jsonNode.get("lasName").asText();
 
 
         Connection connection = Db.getConnection();
 
-//        String query = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, ?, ?, NOW())";
+        String query = "INSERT INTO customers (customer_id,first_name,last_name,email,code) VALUES(?,?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, 34333);
+            statement.setString(2, firName);
+            statement.setString(3, lasName);
+            statement.setString(4, email);
+            statement.setString(5, "564-TSA-565");
 
-//        PreparedStatement statement = connection.prepareStatement(query);
-//        statement.setString(1, businessFormat.getLocation());
-//        statement.setString(2, businessFormat.getAddress());
-//        statement.setString(3, businessFormat.getPhone_number());
-//        statement.setString(4, businessFormat.getName());
-//        statement.setInt(5, businessFormat.getRepresentative());
-//        statement.setInt(6, businessFormat.getPlan());
-
-        // Let me try to execute the query and write the result ....
-//        try {
-//            if(statement.execute()){
-//                System.out.println("Your query not working .... ");
-//            }else{
+            int i = statement.executeUpdate();
+            if (i > 0) {
+//                System.out.println("success");
             CreateCustomerFormat format = new CreateCustomerFormat("Successfully registered a customer",201);
+            format.setJson_data(json_data);
+
             String response_json = objectMapper.writeValueAsString(format);
             responseData.add(response_json);
+
             SendToClient serverResponse =new  SendToClient(this.socket,this.responseData);
+            } else {
+                System.out.println("stuck somewhere");
+            }
+        } catch (Exception e)
+        {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+
     }
 
     public void update() throws SQLException{}

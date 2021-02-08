@@ -47,22 +47,12 @@ public class CustomerService {
             List<String> response = (List<String>) objectInputStream.readObject();
 
             String json_response = response.get(0);
+            System.out.println("HERE'S THE RESPONSE FROM THE SERVER => " + json_response);
 
-            System.out.println("HERE'S THE RESPONSE FROM CLIENT => " + json_response);
         }catch(Exception e)
         {
             System.out.println("RESPONSE ERROR =>"+e.getMessage());
         }
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        JsonNode jsonNode = objectMapper.readTree(json_data);
-//        this.key = Keys.valueOf(jsonNode.get("key").asText());
-
-
-
-        // if the status code is 201 then I am going to output that The business is created
-//        if(response.get(0).getStatusCode() == 201){
-//            System.out.println("The business is created successfully ....");
-//        }
     }
 
 
