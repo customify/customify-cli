@@ -1,5 +1,6 @@
 package com.customify.server.models;
 
+
 public class UserModel {
     private String firstname;
     private String lastname;

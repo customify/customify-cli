@@ -1,0 +1,55 @@
+package com.customify.client;
+
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SendToServer {
+    private OutputStream output = null;
+    private ObjectOutputStream objectOutput = null;
+    private boolean isConnectionOn = true;
+    private String serverIP;
+    InputStream input;
+    ObjectInputStream objectInputStream;
+    private String json;
+    private Socket socket;
+
+    public Socket getSocket() {
+        return this.socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
+    public SendToServer(String json, Socket socket) throws IOException {
+        this.socket = socket;
+        this.json = json;
+        this.serverIP = "";
+    }
+
+    // NEW VERSION OF COMMON CLASS
+    public boolean send() throws IOException {
+        try {
+            List<String> dataToSend = new ArrayList();
+            dataToSend.add(this.json);
+            this.output = this.socket.getOutputStream();
+            this.objectOutput = new ObjectOutputStream(this.output);
+            this.objectOutput.writeObject(dataToSend);
+            this.objectOutput.flush();
+            this.objectOutput.close();
+            this.output.close();
+        } catch (Exception var2) {
+            System.out.println(var2.getMessage());
+        }
+
+        return true;
+    }
+}
