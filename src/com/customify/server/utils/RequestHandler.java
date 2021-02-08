@@ -4,6 +4,7 @@ import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
+import com.customify.server.services.CustomerService;
 import com.customify.server.services.BusinessService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -34,12 +35,11 @@ public class RequestHandler {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
 
-            while(true) {
+
                 while(true) {
                     try {
                         List<String> clientRequest = (List)this.objectInput.readObject();
                         this.json_data = (String)clientRequest.get(0);
-                        System.out.println(json_data);
                         ObjectMapper objectMapper = new ObjectMapper();
                         JsonNode jsonNode = objectMapper.readTree(json_data);
                         this.key = Keys.valueOf(jsonNode.get("key").asText());
@@ -48,7 +48,7 @@ public class RequestHandler {
                     } catch (Exception var5) {
                     }
                 }
-            }
+
         } catch (IOException e) {
             System.out.println("Error in reading Object " + e.getMessage());
         }
@@ -56,6 +56,7 @@ public class RequestHandler {
 
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
+        CustomerService  customer;
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
 
@@ -91,7 +92,8 @@ public class RequestHandler {
 //                productController.deleteProduct();
                 break;
             case CREATE_CUSTOMER:
-                System.out.println("CUSTOMER RECORDS RECEIVED "+json_data);
+            customer  = new CustomerService(this.clientSocket,this.json_data);
+            customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();

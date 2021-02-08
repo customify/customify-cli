@@ -43,11 +43,11 @@ public class SendToServer {
             this.output = this.socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(this.output);
             this.objectOutput.writeObject(dataToSend);
-            this.objectOutput.flush();
+//            this.objectOutput.flush();
 //            this.objectOutput.close();
 //            this.output.close();
-        } catch (Exception var2) {
-            System.out.println(var2.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
         return true;
