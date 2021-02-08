@@ -1,3 +1,9 @@
+/*
+*
+* By Verite &  Patrick
+* Desc: Dealing with Server connection configurations
+* */
+
 package com.customify.server.utils;
 
 import com.customify.server.controllers.AuthController;
@@ -6,6 +12,7 @@ import com.customify.server.controllers.ProductController;
 import com.customify.server.controllers.PointsController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.shared.Request;
+
 import com.customify.shared.Keys;
 
 import java.io.*;

@@ -1,9 +1,8 @@
 
 /*
-*
 *  created by veritem 29/01/2021
-*
-*  */
+*  This is for dealing with database interactions
+**/
 
 package com.customify.server.Db;
 
@@ -54,15 +53,15 @@ public class Db {
 
           System.out.println("Db connected......");
 
-          /**
+          /*
+
            @author Yassin
            this is sendEmail method which sends email to customer who got an award;
 
+
           NotificationService notification = new NotificationService();
           notification.sendEmail();
-
-          */
-
+*/
       }catch (SQLException e){
           System.out.println("Db error: "+e.getMessage());
       }
@@ -84,8 +83,8 @@ public class Db {
     }
 
     public static void closeConnection(){
-      try{
-          connection.close();
+       try{
+           connection.close();
       }catch (SQLException e){
           e.printStackTrace();
       }
