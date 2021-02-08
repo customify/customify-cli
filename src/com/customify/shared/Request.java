@@ -16,6 +16,7 @@ public class Request implements Serializable {
         this.data = data;
     }
 
+
     public Keys getKey() {
         return key;
     }

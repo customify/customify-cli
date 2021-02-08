@@ -41,6 +41,7 @@ public class Home {
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
         PointCountingView pointCountingView = new PointCountingView((this.socket));
+        CouponView couponView = new CouponView(this.socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------\n");
@@ -52,6 +53,7 @@ public class Home {
         System.out.println("           6. PROVIDE FEEDBACK ");
         System.out.println("           7. POINTS");
         System.out.println("           8. CUSTOMER MANAGEMENT");
+        System.out.println("           9. Coupon");
         choice = scan.nextInt();
 
         switch (choice) {
@@ -80,6 +82,8 @@ public class Home {
             case 8:
                 customer.view();
                 break;
+            case 9:
+                couponView.init();
             default:
                 System.out.println("Invalid choice");
         }

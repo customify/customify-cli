@@ -1,6 +1,8 @@
+// This lists all of our api like endpoints 
+
+
 package com.customify.client;
 
-// NEW VERSION
 public enum Keys {
     LOGIN,
     REGISTER,
