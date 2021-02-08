@@ -68,8 +68,8 @@ public class Home {
                 businessRegisterView.view();
                 break;
             case 5:
-               System.out.println("Not Det Done");
-                break;    
+                System.out.println("Not Det Done");
+                break;
             case 6:
                 feedbackView.view();
                 break;
