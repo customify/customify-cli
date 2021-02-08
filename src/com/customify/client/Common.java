@@ -38,6 +38,7 @@ public class Common {
         this.serverIP = "";
     }
 
+    // OLD VERSION
     public boolean sendToServer() throws IOException {
         try {
             List<Request> dataToSend = new ArrayList<>();

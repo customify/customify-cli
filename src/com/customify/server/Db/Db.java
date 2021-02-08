@@ -23,6 +23,8 @@ public class Db {
   private static  Connection connection = null;
   private static Statement statement = null;
 
+  public Db(){}
+
     /**
      * for initializing the connections to the database
      */
