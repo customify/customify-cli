@@ -11,6 +11,8 @@ import com.customify.shared.Response;
 import com.customify.server.Db.Db;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessReadFormat;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessRFormat;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,10 +38,11 @@ public class BusinessService {
         this.objectOutput = new ObjectOutputStream(output);
     }
     public void getAll() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
         //setting the response status code
         this.statusCode = 200;
 
-        //formatting the response into a dataformat
+        //formatting the response into a data format
         Statement statement = Db.getStatement();
         String query = "Select * from businesses";
         List<BusinessRFormat> alldata = new ArrayList<>();
@@ -58,11 +61,10 @@ public class BusinessService {
                 alldata.add(bs);
             }
             BusinessReadFormat format = new BusinessReadFormat(alldata);
-            response = new Response(statusCode,format);
-            responseData.add(response);
+            String json = objectMapper.writeValueAsString(format);
 
             //Sending the response to server after it has been formated
-            objectOutput.writeObject(responseData);
+            objectOutput.writeObject(json);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -70,14 +72,16 @@ public class BusinessService {
 
     }
 
-    public void getBusinessById(Integer businessId) throws IOException{
+    public void getBusinessById(String data) throws IOException{
         //setting the response status code
         this.statusCode = 200;
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
 
         //formatting the response into a dataformat
         Statement statement = Db.getStatement();
         try{
-            ResultSet res = statement.executeQuery("select * from businesses where id="+businessId);
+            ResultSet res = statement.executeQuery("select * from businesses where id="+jsonNode.get("businessId"));
             if(res.next()){
                 BusinessRFormat bs = new BusinessRFormat(
                         res.getInt(1),
@@ -88,11 +92,10 @@ public class BusinessService {
                         res.getInt(6),
                         res.getInt(7)
                 );
-                response = new Response(statusCode,bs);
-                responseData.add(response);
+                String json = objectMapper.writeValueAsString(bs);
 
                 //send
-                objectOutput.writeObject(responseData);
+                objectOutput.writeObject(json);
                 objectOutput.close();
             }
 
@@ -103,28 +106,33 @@ public class BusinessService {
         }
     }
 
-    public void removeBusiness(Integer format) throws IOException{
+    public void removeBusiness(String data) throws IOException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+//
         Statement statement = Db.getStatement();
         String message = "Successfully removed business";
         this.statusCode = 200;
         try {
-            int ret = statement.executeUpdate("delete from businesses where id="+format);
+            int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId"));
             if(ret==1){
-                response = new Response(statusCode,message);
-                responseData.add(response);
+//                response = new Response(statusCode,message);
+//                responseData.add(response);
 
                 //Sending the response to server after it has been formated
-                objectOutput.writeObject(responseData);
+//                objectOutput.writeObject(responseData);
+                System.out.println("Successfully deleted");
             }
         }
         catch (SQLException e){
             this.statusCode= 400;
-            message= e.getMessage();
-            response=new Response(statusCode,message);
-            responseData.add(response);
-            //Sending the response to server after it has been formated
-            objectOutput.writeObject(responseData);
-            objectOutput.close();
+            System.out.println("Error occured: "+e.getMessage());
+//            message= e.getMessage();
+//            response=new Response(statusCode,message);
+//            responseData.add(response);
+//            //Sending the response to server after it has been formated
+//            objectOutput.writeObject(responseData);
+//            objectOutput.close();
         }
 
     }

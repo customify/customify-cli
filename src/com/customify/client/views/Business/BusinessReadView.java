@@ -9,7 +9,10 @@
 package com.customify.client.views.Business;
 
 import com.customify.client.services.BusinessService;
+import com.customify.server.Keys;
 import com.customify.shared.requests_data_formats.BusinessFormats.GetbusinessFormat;
+import com.customify.shared.requests_data_formats.BusinessFormats.DeleteBusinessFormat;
+import com.customify.client.data_format.business.GetBusinessFormat;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -30,7 +33,7 @@ public class BusinessReadView {
     }
 
     public void viewAll()throws IOException,ClassNotFoundException{
-        GetbusinessFormat format = new GetbusinessFormat();
+        GetBusinessFormat format = new GetBusinessFormat(Keys.GET_ALL_BUSINESSES);
         BusinessService businessService = new BusinessService(socket);
         businessService.getbusinesses(format);
     }
@@ -39,15 +42,16 @@ public class BusinessReadView {
         Scanner scan=new Scanner(System.in);
         System.out.print("Enter businessId: \t");
         int businessId = scan.nextInt();
+        GetBusinessFormat format = new GetBusinessFormat(businessId,Keys.GET_BUSINESS);
         BusinessService businessService = new BusinessService(socket);
-        businessService.getById(businessId);
+        businessService.getById(format);
     }
 
     public void deleteBusiness()throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter businessId: \t");
         int businessId = scan.nextInt();
-        Integer format = businessId;
+        DeleteBusinessFormat format = new DeleteBusinessFormat(businessId);
         BusinessService businessService = new BusinessService(socket);
         businessService.deleteBusiness(format);
     }

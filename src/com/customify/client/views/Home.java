@@ -39,7 +39,7 @@ public class Home {
 
         ProductView productView = new ProductView(this.socket);
 
-        BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
+        BusinessView businessView = new BusinessView(this.socket);
         PointCountingView pointCountingView = new PointCountingView((this.socket));
 
         System.out.println("---------------------------------------------");
@@ -47,7 +47,7 @@ public class Home {
         System.out.println("           1. SIGN UP");
         System.out.println("           2. LOGIN");
         System.out.println("           3. PRODUCT MANAGEMENT");
-        System.out.println("           4. REGISTER BUSINESS");
+        System.out.println("           4. BUSINESS");
         System.out.println("           5. GIVE FEEDBACK");
         System.out.println("           6. PROVIDE FEEDBACK ");
         System.out.println("           7. POINTS");
@@ -65,7 +65,7 @@ public class Home {
                 productView.createProduct();
                 break;
             case 4:
-                businessRegisterView.view();
+                businessView.view();
                 break;
             case 5:
                System.out.println("Not Det Done");

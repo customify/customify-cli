@@ -84,20 +84,11 @@ public class ConnectionHandler {
                 pointsController.getPointsByCustomerEmail();
             case CREATE_PRODUCT:
                 productController.registerProduct();
-<<<<<<< HEAD
+                break;
             case GET_BUSINESS:
                 businessController = new BusinessController(this.clientSocket,this.request);
                 businessController.getall();
                 break;
-            case REMOVE_BUSS:
-                businessController = new BusinessController(this.clientSocket,this.request);
-                businessController.deleteBusiness();
-                break;
-            case GET_BUSS_BYID:
-                businessController = new BusinessController(this.clientSocket,this.request);
-                businessController.getById();
-=======
-
             case FEEDBACK:
                 FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
                 fController.sendDataInDb();
@@ -108,7 +99,6 @@ public class ConnectionHandler {
                 break;
             case DELETE_PRODUCT:
                 productController.deleteProduct();
->>>>>>> 8991647549060d96a5609ee869aacd0572686198
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");

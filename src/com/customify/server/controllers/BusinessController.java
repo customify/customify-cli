@@ -92,13 +92,13 @@ public class BusinessController {
         businessService.getAll();
     }
 
-    public void getById()throws IOException{
-        Integer format = (Integer) request.getObject();
-        businessService.getBusinessById(format);
-    }
+//    public void getById()throws IOException{
+//        Integer format = (Integer) request.getObject();
+//        businessService.getBusinessById(format);
+//    }
 
-    public void deleteBusiness()throws IOException{
-        Integer format = (Integer) request.getObject();
-        businessService.removeBusiness(format);
-    }
+//    public void deleteBusiness()throws IOException{
+//        Integer format = (Integer) request.getObject();
+//        businessService.removeBusiness(format);
+//    }
 }

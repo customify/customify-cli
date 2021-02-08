@@ -45,13 +45,8 @@ public class HandleRoutes {
                 productRoute.deleteProduct();
                 break;
         }
-<<<<<<< HEAD
-        if(this.key ==Keys.GET_BUSINESS){
-            businessRoute.readBusinessRoute();
-        }
+
         authRoute.loginError();
-=======
 //        authRoute.loginError();
->>>>>>> 8991647549060d96a5609ee869aacd0572686198
     }
 }

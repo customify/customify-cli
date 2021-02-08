@@ -1,5 +1,6 @@
 package com.customify.server.utils;
 
+import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.ProductController;
@@ -58,6 +59,7 @@ public class RequestHandler {
         AuthController authController;
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
 //        BusinessController businessController;
+        BusinessService businessService = new BusinessService(this.clientSocket);
 
         switch (this.key) {
             case LOGIN:
@@ -72,9 +74,11 @@ public class RequestHandler {
 //                businessController = new BusinessController(this.clientSocket, this.request);
 //                businessController.create();
                 break;
+            case REMOVE_BUSINESS:
+                businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
 //                productController.registerProduct();
-
+                    break;
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
@@ -88,6 +92,12 @@ public class RequestHandler {
                 break;
             case CREATE_CUSTOMER:
                 System.out.println("CUSTOMER RECORDS RECEIVED "+json_data);
+                break;
+            case GET_ALL_BUSINESSES:
+                businessService.getAll();
+                break;
+            case GET_BUSINESS:
+                businessService.getBusinessById(json_data);
                 break;
 
             default:
