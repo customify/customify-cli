@@ -77,6 +77,5 @@ public class PointsController {
 
         //Sending the response to client
         objectOutput.writeObject(responseData);
-
     }
 }
