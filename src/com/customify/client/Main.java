@@ -31,7 +31,6 @@ public class Main {
             System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
-
             while(isConnectionOn){
                 Home home = new Home(socket);
                 home.view();
@@ -40,9 +39,8 @@ public class Main {
         }catch (Exception e){
             this.isConnectionOn = false;
             System.out.println("Failed to connect to the server at port: "+ portNumber);
-            System.out.println("  Exception: "+ e.toString());
+            System.out.println("Exception: "+ e.toString());
         }
         return true;
     }
 }
-

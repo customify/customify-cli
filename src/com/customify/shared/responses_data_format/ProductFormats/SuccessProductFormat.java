@@ -14,10 +14,24 @@ import java.io.Serializable;
 
 public class SuccessProductFormat  implements Serializable {
     private String name;
+    private Long productCode;
 
     public SuccessProductFormat(){}
+
     public SuccessProductFormat(String name) {
         this.name = name;
+    }
+
+    public SuccessProductFormat(Long productCode){
+        this.productCode=productCode;
+    }
+
+    public void setProductCode(Long productCode) {
+        this.productCode = productCode;
+    }
+
+    public Long getProductCode() {
+        return productCode;
     }
 
     public String getName() {

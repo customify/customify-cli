@@ -7,7 +7,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
+
     private static final int portNumber = 6000;
+
+ main
 
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket;
@@ -30,7 +33,8 @@ public class Main {
                     //e.printStackTrace();
                 }
 
-                ConnectionHandler con = new ConnectionHandler(clientSocket);
+                RequestHandler con = new RequestHandler(clientSocket);
+//                ConnectionHandler con = new ConnectionHandler(clientSocket);
                 con.init();
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
