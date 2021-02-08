@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/FeatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/FeatureController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/BusinessController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/BusinessRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/BusinessRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="sauve" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,17 +50,23 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.16.jar" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mail.jar" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.11621094" />
+    <property name="project.structure.proportion" value="0.11" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="ReaderModeSettings">
     <option name="enabled" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DELL\Documents\wspace\java\Customify\customify\src\com\customify\client\views" />
+    </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="customify.client.views" />
       <recent name="src" />
@@ -91,6 +79,9 @@
           <option name="containerStateName" value="" />
         </value>
       </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -115,8 +106,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -141,9 +132,11 @@
       <workItem from="1612109061810" duration="1730000" />
       <workItem from="1612114212591" duration="298000" />
       <workItem from="1612114984363" duration="777000" />
-      <workItem from="1612351844191" duration="41000" />
-      <workItem from="1612351899846" duration="5000" />
-      <workItem from="1612351917176" duration="94000" />
+      <workItem from="1612292464031" duration="7676000" />
+      <workItem from="1612326310430" duration="8261000" />
+      <workItem from="1612291273962" duration="396000" />
+      <workItem from="1612291697329" duration="133000" />
+      <workItem from="1612291855688" duration="1072000" />
     </task>
     <task id="LOCAL-00001" summary="fixed a typo: switch">
       <created>1611773876442</created>
@@ -180,7 +173,35 @@
       <option name="project" value="LOCAL" />
       <updated>1612114324980</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Replaced the dependency of ProductView on Server's codes.">
+      <created>1612428413615</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612428413615</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error">
+      <created>1612430573343</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1612430573343</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Wrote Response Data Format for Product + ProductService.">
+      <created>1612443173009</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1612443173009</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Removed all bugs caused by latest Business Model's commits">
+      <created>1612444248295</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1612444248295</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,44 +238,10 @@
     <MESSAGE value="setup on local pc done" />
     <MESSAGE value="Db connection fixed" />
     <MESSAGE value="adding mysql connector jar file" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding mysql connector jar file" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1612686939598">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1612686939598" />
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612686823908">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1612686823908" />
-    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1612415623268">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1612415623267" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1612508964052">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612508964052" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1612508964052">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612508964052" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1612508964052">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612508964052" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1612508964052">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612508964052" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1612415630812">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1612415630812" />
-    <state x="346" y="49" key="search.everywhere.popup" timestamp="1612416784801">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1612416784801" />
+    <MESSAGE value="Replaced the dependency of ProductView on Server's codes." />
+    <MESSAGE value="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error" />
+    <MESSAGE value="Wrote Response Data Format for Product + ProductService." />
+    <MESSAGE value="Removed all bugs caused by latest Business Model's commits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed all bugs caused by latest Business Model's commits" />
   </component>
 </project>
