@@ -53,4 +53,17 @@ public class ProductService {
         //Sending the response to server after it has been formated
         objectOutput.writeObject(responseData);
     }
+    public void deleteProduct(Long productCode) throws IOException {
+        //setting the response status code
+        this.statusCode = 200;
+
+        //formatting the response into a successProductFormat
+        SuccessProductFormat format = new SuccessProductFormat(productCode);
+        response = new Response(statusCode,format);
+        responseData.add(response);
+
+        //Sending the response to server after it has been formated
+        objectOutput.writeObject(responseData);
+    }
+
 }

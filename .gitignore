@@ -22,3 +22,9 @@
 hs_err_pid*
 .idea/
 production
+out/
+output/
+
+#editor config files
+.vscode
+.idea/

@@ -3,11 +3,20 @@ package com.customify.shared;
 public enum Keys {
     LOGIN,
     REGISTER,
+    FEEDBACK,
     GET_USERS,
+    POINTS_BY_CUSTOMER_EMAIL,
+    GET_WINNERS,
     CREATE_PRODUCT,
     GET_ALL_PRODUCTS,
+<<<<<<< HEAD
     CREATE_BUSINESS,
     GET_BUSINESS,
     GET_BUSS_BYID,
     REMOVE_BUSS
+=======
+    DELETE_PRODUCT,
+    GET_PRODUT_BY_ID,
+    CREATE_BUSINESS
+>>>>>>> 8991647549060d96a5609ee869aacd0572686198
 }

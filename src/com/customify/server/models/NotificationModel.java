@@ -11,16 +11,16 @@ public class NotificationModel {
   private   Date Created_at;
   private   String description;
   private   String Title;
-  private   String isSeen;
 
 
-    public NotificationModel(int notification_id, int customer_id, Date created_at, String description, String title, String isSeen) {
+
+    public NotificationModel(int notification_id, int customer_id, Date created_at, String description, String title) {
         this.Notification_id = notification_id;
         this.Customer_id = customer_id;
         this.Created_at = created_at;
         this.description = description;
         this.Title = title;
-        this.isSeen = isSeen;
+
     }
 
     public int getNotification_id() {
@@ -63,11 +63,4 @@ public class NotificationModel {
         this.Title = title;
     }
 
-    public String getIsSeen() {
-        return isSeen;
-    }
-
-    public void setIsSeen(String isSeen) {
-        this.isSeen = isSeen;
-    }
 }
