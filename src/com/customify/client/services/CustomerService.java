@@ -1,7 +1,7 @@
 package com.customify.client.services;
 
 import com.customify.client.SendToServer;
-import com.customify.client.data_format.customer.CreateCustomerFormat;
+import com.customify.client.data_format.CreateCustomerFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;

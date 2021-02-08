@@ -53,7 +53,7 @@ public class Home {
         System.out.println("           6. PROVIDE FEEDBACK ");
         System.out.println("           7. POINTS");
         System.out.println("           8. CUSTOMER MANAGEMENT");
-        System.out.println("           9. Coupon");
+        System.out.println("           9. COUPONS");
         choice = scan.nextInt();
 
         switch (choice) {
