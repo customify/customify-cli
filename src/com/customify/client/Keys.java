@@ -1,15 +1,16 @@
-package com.customify.shared;
+package com.customify.client;
 
+// NEW VERSION
 public enum Keys {
     LOGIN,
     REGISTER,
     FEEDBACK,
     GET_USERS,
-    POINTS_BY_CUSTOMER_EMAIL,
-    GET_WINNERS,
     CREATE_PRODUCT,
     GET_ALL_PRODUCTS,
     DELETE_PRODUCT,
-    GET_PRODUT_BY_ID,
-    CREATE_BUSINESS
+    GET_PRODUCT_BY_ID,
+    CREATE_BUSINESS,
+    EDIT_BUSINESS,
+    CREATE_CUSTOMER
 }

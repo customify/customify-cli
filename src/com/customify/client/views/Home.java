@@ -3,86 +3,86 @@
 */
 package com.customify.client.views;
 
+import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
+import com.customify.client.views.customer.CustomerMainView;
 
 import java.io.IOException;
 import java.net.Socket;
-import  java.util.*;
+import java.util.*;
 
 public class Home {
 
     private Socket socket;
 
-    /**
-     * @param socket for using to work with backend
-     */
-    public Home(Socket socket){
+    public Home(Socket socket) {
         this.socket = socket;
     }
 
-    /**
-     *
-     * @return socket the current socket
-     */
-    public Socket getSocket()
-    {
+    public Socket getSocket() {
         return socket;
     }
 
-
-    /**
-     *
-     * @param socket
-     */
-    public void setSocket(Socket socket){
+    public void setSocket(Socket socket) {
         this.socket = socket;
     }
 
-
-    public void view() throws IOException, ClassNotFoundException, InterruptedException {
+    public void view() throws Exception {
 
         int choice;
         Scanner scan = new Scanner(System.in);
-        LoginView loginView =new LoginView(this.socket);
-        SignupView signupView =new SignupView(this.socket);
-        var businessRegisterView = new BusinessRegisterView(this.socket);
+        LoginView loginView = new LoginView(this.socket);
+        SignupView signupView = new SignupView(this.socket);
+        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
+        CustomerMainView customer = new CustomerMainView(this.socket);
+
+        ProductView productView = new ProductView(this.socket);
+        BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
+        BusinessEditView businessEditView = new BusinessEditView(this.socket);
+        PointCountingView pointCountingView = new PointCountingView((this.socket));
 
         System.out.println("---------------------------------------------");
-        System.out.println("            CUSTOMIFY HOME                    ");
-        System.out.println("\n           1. Sign Up");
-        System.out.println("           2. Login In");
-
-        System.out.println("\n");
-
-        System.out.println("Enter your choice here: ");
-        System.out.println("           3. Register a business ");
+        System.out.println("--------------CUSTOMIFY HOME-----------------\n");
+        System.out.println("           1. SIGN UP");
+        System.out.println("           2. LOGIN");
+        System.out.println("           3. PRODUCT MANAGEMENT");
+        System.out.println("           4. REGISTER BUSINESS");
+        System.out.println("           5. GIVE FEEDBACK");
+        System.out.println("           6. PROVIDE FEEDBACK ");
+        System.out.println("           7. POINTS");
+        System.out.println("           8. CUSTOMER MANAGEMENT");
         choice = scan.nextInt();
 
-        switch(choice)
-        {
+        switch (choice) {
             case 1:
-                clearScreen();
                 signupView.view();
                 break;
             case 2:
-                clearScreen();
                 loginView.view();
                 break;
             case 3:
+                productView.createProduct();
+                break;
+            case 4:
                 businessRegisterView.view();
+                break;
+            case 5:
+                System.out.println("Not Det Done");
+                break;
+            case 6:
+                feedbackView.view();
+                break;
+
+            case 7:
+                pointCountingView.view();
+                break;
+            case 8:
+                customer.view();
+                break;
             default:
-                clearScreen();
                 System.out.println("Invalid choice");
         }
 
-    }
-
-    /**
-     *
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    public static void clearScreen() throws IOException, InterruptedException {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 }
