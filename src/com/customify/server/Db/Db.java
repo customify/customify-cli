@@ -1,9 +1,8 @@
 
 /*
-*
-*  created by verite m 29/01/2021
-*
-*  */
+*  created by veritem 29/01/2021
+*  This is for dealing with database interactions
+**/
 
 package com.customify.server.Db;
 
