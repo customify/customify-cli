@@ -2,7 +2,7 @@
  * @description
  *Main view for operating on businesses
  *
- * @author Kellia Umuhire
+ * @author Kellia Umuhire, Anselme Habumugisha
  * @since Wednesday, 3 February 2021
  * */
 
