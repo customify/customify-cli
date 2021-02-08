@@ -1,5 +1,4 @@
 package com.customify.shared;
-import com.customify.shared.Keys;
 
 import java.io.Serializable;
 
@@ -7,6 +6,10 @@ public class Request implements Serializable {
     private Keys key;
     private Object data;
 
+//    Added Request Constuctor Overlapping By Moss
+    public  Request(Keys key){
+        this.key = key;
+    }
 
     public Request(Keys key, Object data) {
         this.key = key;
@@ -14,7 +17,7 @@ public class Request implements Serializable {
     }
 
     public Keys getKey() {
-        return key;
+        return this.key;
     }
     public void setKey(Keys key){
         this.key = key;

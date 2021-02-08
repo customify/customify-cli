@@ -13,6 +13,7 @@ public class HandleRoutes {
     PointsRoutes pointsRoutes;
     ProductRoute productRoute;
 
+
     public HandleRoutes(Keys key, Socket socket) throws IOException, SQLException {
         this.socket = socket;
         this.authRoute = new AuthRoute(socket);
@@ -43,6 +44,9 @@ public class HandleRoutes {
             case DELETE_PRODUCT:
                 productRoute.deleteProduct();
                 break;
+            case CREATE_PLAN:
+
+
         }
 //        authRoute.loginError();
     }

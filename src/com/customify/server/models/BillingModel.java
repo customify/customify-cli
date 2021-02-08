@@ -13,6 +13,8 @@ Commented By Moss
         new Plan<>(2,"Basic","This will only contain 2 features");
 
  */
+    Feature<Integer,String,String> feature;
+    Plan<Integer,String,String> plan;
     public BillingModel(){
 
     }
