@@ -86,7 +86,11 @@ public class ConnectionHandler {
                 pointsController.getPointsByCustomerEmail();
             case CREATE_PRODUCT:
                 productController.registerProduct();
-
+                break;
+            case GET_BUSINESS:
+//                businessController = new BusinessController(this.clientSocket,this.request);
+//                businessController.getall();
+                break;
             case FEEDBACK:
                 FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
                 fController.sendDataInDb();
