@@ -1,10 +1,9 @@
 package com.customify.server.controllers;
 
 import com.customify.server.Db.Db;
-import com.customify.server.models.ProductModel;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.*;
+import com.customify.shared.requests_data_formats.ProductFormat;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

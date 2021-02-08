@@ -1,17 +1,16 @@
 package com.customify.server.utils;
 
-import com.customify.client.services.PointsService;
-import com.customify.server.controllers.AuthController;
-import com.customify.server.controllers.ProductController;
-import com.customify.server.controllers.BusinessController;
-import com.customify.server.controllers.PointsController;
-import com.customify.server.controllers.FeedbackController;
-import com.customify.shared.Request;
 
-import java.io.*;
-import java.net.*;
+import com.customify.server.controllers.*;
+import com.customify.shared.Request;
+import com.customify.shared.Keys;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.net.Socket;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.List;
 
 public class ConnectionHandler {
     private final Socket clientSocket;

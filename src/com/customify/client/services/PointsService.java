@@ -79,10 +79,10 @@ public class PointsService {
                     return;
                 }
 
-                System.out.println(String.format("%-10s %-20s %-20s %-24s %10s %-10s %10s", "Customer Id", "First name", "Last name", "Email", "Points", "Winning date", "Customer code"));
+                System.out.println(String.format("\t\t%-10s %-25s %-15s %-20s %17s %20s %25s", "Customer Id", "First name", "Last name", "Email", "Points", "Winning date", "Customer code"));
 
                 for (int i = 0; i < winners.size(); i++) {
-                    System.out.println(String.format("%-10s %-20s %-20s %-24s %10s %-10s %10s", winners.get(i).getCustomerId(), winners.get(i).getFirstName(), winners.get(i).getLastName(), winners.get(i).getEmail(), winners.get(i).getNoPoints(), winners.get(i).getWiningDate(), winners.get(i).getCode()));
+                    System.out.println(String.format("\t\t%-10s %-25s %-15s %-20s %14s %23s %22s", winners.get(i).getCustomerId(), winners.get(i).getFirstName(), winners.get(i).getLastName(), winners.get(i).getEmail(), winners.get(i).getNoPoints(), winners.get(i).getWiningDate(), winners.get(i).getCode()));
                 }
             }
             else{
