@@ -37,13 +37,18 @@ public class HandleRoutes {
             case CREATE_PRODUCT:
                 productRoute.registerProduct();
                 break;
-            case GET_PRODUT_BY_ID:
+            case GET_PRODUCT_BY_ID:
                 productRoute.registerProduct();
                break;
+            case GET_ALL_BUSINESSES:
+//                businessRoute.getAllBusinesses();
+                break;
             case DELETE_PRODUCT:
                 productRoute.deleteProduct();
                 break;
         }
+
+        authRoute.loginError();
 //        authRoute.loginError();
     }
 }

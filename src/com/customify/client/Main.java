@@ -25,7 +25,8 @@ public class Main {
     }
 
     private boolean connectTOServer(String serverIp){
-        int portNumber = 3000;
+
+        int portNumber = 6000;
         try{
             Socket socket = new Socket(serverIp, portNumber);
             System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());

@@ -1,3 +1,9 @@
+/*
+*
+* By Verite &  Patrick
+* Desc: Dealing with Server connection configurations
+* */
+
 package com.customify.server.utils;
 
 import com.customify.server.controllers.AuthController;
@@ -5,7 +11,6 @@ import com.customify.server.controllers.ProductController;
 import com.customify.server.controllers.PointsController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.shared.Request;
-
 import java.io.*;
 import java.net.*;
 import java.sql.SQLException;
@@ -82,6 +87,11 @@ public class ConnectionHandler {
             case CREATE_PRODUCT:
                 productController.registerProduct();
 
+                break;
+            case GET_BUSINESS:
+//                businessController = new BusinessController(this.clientSocket,this.request);
+//                businessController.getall();
+                break;
             case FEEDBACK:
                 FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
                 fController.sendDataInDb();

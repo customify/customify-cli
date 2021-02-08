@@ -12,7 +12,7 @@ package com.customify.client.views.Business;
 
 import com.customify.client.Keys;
 import com.customify.client.services.BusinessService;
-import com.customify.shared.requests_data_formats.BusinessFormat;
+import com.customify.client.data_format.business.BusinessFormat;
 
 import java.io.IOException;
 import java.net.Socket;

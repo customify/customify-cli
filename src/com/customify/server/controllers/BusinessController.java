@@ -13,7 +13,7 @@ package com.customify.server.controllers;
 import com.customify.server.Db.Db;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.BusinessFormat;
+import com.customify.client.data_format.business.BusinessFormat;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessCreate;
 
 import java.io.IOException;
