@@ -38,7 +38,7 @@ public class ProductService {
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer() == true) {
+        if (common.sendToServer()) {
             this.handleRegisterProductSuccess();
         } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
@@ -64,7 +64,7 @@ public class ProductService {
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer() == true) {
+        if (common.sendToServer()) {
             this.handleGetProductListSuccess();
         } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
