@@ -1,21 +1,22 @@
 package com.customify.server.routes;
 
-import com.customify.server.controllers.BusinessController;
+import com.customify.server.services.BusinessService;
 
 import java.io.IOException;
 import java.net.Socket;
 
 public class BusinessRoute {
     Socket socket;
-    BusinessController businessController;
+    BusinessService businessService;
     public BusinessRoute(Socket socket) {
         this.socket = socket;
     }
     public BusinessRoute() {
 
     }
-    public void  readBusinessRoute() throws IOException {
-        businessController.getall();
+    public void getAllBusinesses() throws IOException{
+        businessService.getAll();
     }
+
 
 }

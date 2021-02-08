@@ -41,6 +41,9 @@ public class HandleRoutes {
             case GET_PRODUT_BY_ID:
                 productRoute.registerProduct();
                break;
+            case GET_ALL_BUSINESSES:
+                businessRoute.getAllBusinesses();
+                break;
             case DELETE_PRODUCT:
                 productRoute.deleteProduct();
                 break;
