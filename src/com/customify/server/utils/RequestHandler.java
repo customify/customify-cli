@@ -4,6 +4,7 @@ import com.customify.server.Keys;
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.ProductService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -57,7 +58,7 @@ public class RequestHandler {
         AuthController authController;
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
-
+        ProductService productService = new ProductService(this.clientSocket);
         switch (this.key) {
             case LOGIN:
 //                authController = new AuthController(this.clientSocket, this.request);
@@ -86,6 +87,13 @@ public class RequestHandler {
                 break;
             case DELETE_PRODUCT:
 //                productController.deleteProduct();
+                break;
+
+            case GET_PRODUCT_BY_ID:
+
+                break;
+
+            case UPDATE_PRODUCT:
                 break;
             case CREATE_CUSTOMER:
                 System.out.println("CUSTOMER RECORDS RECEIVED "+json_data);

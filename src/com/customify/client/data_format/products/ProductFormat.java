@@ -1,3 +1,10 @@
+/**
+ * @description
+ * Class to provide the Product's json format structure to be sent as Requests
+ * @author SAUVE Jean-Luc
+ * @version 1
+ * */
+
 package com.customify.client.data_format.products;
 
 import com.customify.client.Keys;
