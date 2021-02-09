@@ -19,6 +19,7 @@
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" afterDir="false" />
     </list>
+    <list default="true" id="8ab9679f-7687-41ae-9b4e-2e4a8ae8cc04" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,96 +126,6 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="" />
-      <created>1611084407271</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1611084407271</updated>
-      <workItem from="1611771414072" duration="58000" />
-      <workItem from="1611771495749" duration="2972000" />
-      <workItem from="1611775058197" duration="95000" />
-      <workItem from="1611775184079" duration="113000" />
-      <workItem from="1611781622854" duration="1191000" />
-      <workItem from="1611811173000" duration="521000" />
-      <workItem from="1612077573735" duration="30000" />
-      <workItem from="1612077619380" duration="107000" />
-      <workItem from="1612087249470" duration="5257000" />
-      <workItem from="1612107739165" duration="847000" />
-      <workItem from="1612108608573" duration="444000" />
-      <workItem from="1612109061810" duration="1730000" />
-      <workItem from="1612114212591" duration="298000" />
-      <workItem from="1612114984363" duration="777000" />
-      <workItem from="1612292464031" duration="7676000" />
-      <workItem from="1612326310430" duration="8261000" />
-      <workItem from="1612291273962" duration="396000" />
-      <workItem from="1612291697329" duration="133000" />
-      <workItem from="1612291855688" duration="1072000" />
-    </task>
-    <task id="LOCAL-00001" summary="fixed a typo: switch">
-      <created>1611773876442</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1611773876442</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Fixed the source">
-      <created>1612098516704</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1612098516704</updated>
-    </task>
-    <task id="LOCAL-00003" summary="setup on local pc done">
-      <created>1612109123164</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1612109123164</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Db connection fixed">
-      <created>1612112174267</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1612112174267</updated>
-    </task>
-    <task id="LOCAL-00005" summary="adding mysql connector jar file">
-      <created>1612114324980</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1612114324980</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Replaced the dependency of ProductView on Server's codes.">
-      <created>1612428413615</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1612428413615</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Solved Cannot invoke &quot;java.io.ObjectInputStream.readObject()&quot; error">
-      <created>1612430573343</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1612430573343</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Wrote Response Data Format for Product + ProductService.">
-      <created>1612443173009</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1612443173009</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Removed all bugs caused by latest Business Model's commits">
-      <created>1612444248295</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1612444248295</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

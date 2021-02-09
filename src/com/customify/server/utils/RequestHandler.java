@@ -6,6 +6,7 @@ import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.ProductService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,8 +60,12 @@ public class RequestHandler {
         CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
+<<<<<<< HEAD
 
 
+=======
+        ProductService productService = new ProductService(this.clientSocket);
+>>>>>>> f0a97b12655ca7b67386d113d791604c4485dff4
         switch (this.key) {
             case LOGIN:
 //                authController = new AuthController(this.clientSocket, this.request);
@@ -69,7 +74,7 @@ public class RequestHandler {
             case REGISTER:
 //                authController = new AuthController(this.clientSocket, this.request);
 //                authController.signup();
-
+                break;
             case CREATE_BUSINESS:
                 businessService.create(json_data);
                 break;
@@ -80,7 +85,7 @@ public class RequestHandler {
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
 //                productController.registerProduct();
-                    break;
+                break;
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
@@ -91,6 +96,14 @@ public class RequestHandler {
                 break;
             case DELETE_PRODUCT:
 //                productController.deleteProduct();
+                break;
+
+            case GET_PRODUCT_BY_ID:
+                productService.getProductById(json_data);
+                break;
+
+            case UPDATE_PRODUCT:
+                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
             customer.create();
