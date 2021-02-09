@@ -2,7 +2,7 @@ package com.customify.client.services;
 
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CreateCustomerFormat;
-import com.customify.client.data_format.customer.CreateCustomerFormat;
+import com.customify.client.data_format.CreateCustomerFormat;
 import com.customify.server.Keys;
 import com.customify.shared.Response;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -62,8 +62,4 @@ public class CustomerService {
     public void undisable(){}
     public void getAll(){}
     public void get(){}
-
-
-
-
 }
