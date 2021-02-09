@@ -23,7 +23,7 @@ public class CustomerMainView {
         this.socket = socket;
     }
 
-    public void view() throws IOException {
+    public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
 
         label:do {

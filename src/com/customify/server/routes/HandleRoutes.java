@@ -12,6 +12,7 @@ public class HandleRoutes {
     AuthRoute authRoute;
     PointsRoutes pointsRoutes;
     ProductRoute productRoute;
+    BusinessRoute businessRoute;
 
     public HandleRoutes(Keys key, Socket socket) throws IOException, SQLException {
         this.socket = socket;
@@ -32,10 +33,15 @@ public class HandleRoutes {
                  break;
             case GET_PRODUT_BY_ID:
                 productRoute.registerProduct();
+               break;
+            case GET_ALL_BUSINESSES:
+                businessRoute.getAllBusinesses();
                 break;
             case DELETE_PRODUCT:
                 productRoute.deleteProduct();
                 break;
         }
+        authRoute.loginError();
+//        authRoute.loginError();
     }
 }
