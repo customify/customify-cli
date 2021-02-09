@@ -1,12 +1,17 @@
 /**
  * @description
- * server-side business service for handling operations related to the business
+ * The register business front-end services class this is here to
+ * register all the businesses in the project must use this service
  *
  * @author Kellia Umuhire, Anselme Habumugisha
  * @since Wednesday, 3 February 2021
  * */
 
 package com.customify.server.services;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,7 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -31,8 +39,13 @@ public class BusinessService {
     Socket socket;
     OutputStream output;
     ObjectOutputStream objectOutput;
-    private int statusCode;
 
+    /**
+     * Class Constructor
+     *
+     * @author IRUMVA HABUMUGISHA Anselme
+     * @param socket The Socket to use in our Sending and Receiving the request
+     * */
     public BusinessService(Socket socket)throws IOException{
         this.socket = socket;
         this.output = socket.getOutputStream();
@@ -41,60 +54,69 @@ public class BusinessService {
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
+     * @param data The data from the clint in the JSON Format
      * @role
      * this function is to handle the backend registering into the database
      * and sending back the response
      * */
-
     public void create(String data) throws SQLException, JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(data);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(data);
 
-        Connection connection = Db.getConnection();
-        String query = "INSERT INTO businesses VALUES(NULL, ?, ?, ?, ?, ?, ?, NOW())";
+            Connection connection = Db.getConnection();
+            String query = "INSERT INTO businesses VALUES(NULL, ?, ?, ?, ?, ?, ?, NOW())";
 
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, jsonNode.get("name").asText());
-        statement.setString(2, jsonNode.get("location").asText());
-        statement.setString(3, jsonNode.get("address").asText());
-        statement.setString(4, jsonNode.get("phone_number").asText());
-        statement.setInt(5, jsonNode.get("representative").asInt());
-        statement.setInt(6, jsonNode.get("plan").asInt());
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, jsonNode.get("name").asText());
+            statement.setString(2, jsonNode.get("location").asText());
+            statement.setString(3, jsonNode.get("address").asText());
+            statement.setString(4, jsonNode.get("phone_number").asText());
+            statement.setInt(5, jsonNode.get("representative").asInt());
+            statement.setInt(6, jsonNode.get("plan").asInt());
 
-        // Let me try to execute the query and write the result ....
-        if(statement.execute()){
-            System.out.println("Your query not working .... ");
-        }else{
-            System.out.println("Query Ok !!! ");
+            // Let me try to execute the query and write the result ....
+            if(statement.execute()){
+                System.out.println("Your query not working .... ");
+            }else{
+                System.out.println("Query Ok !!! ");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
+     * @param data The data from the clint in the JSON Format
      * @role
      * this function is to handle the backend editing of the business into the database
      * and sending back the response
      * */
-    public void update(String data) throws SQLException, JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(data);
+    public void update(String data) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(data);
 
-        Connection connection = Db.getConnection();
-        String query = "UPDATE businesses SET location = ? , address = ?, phone_number = ?, name = ?, representative_id = ?, plan_id = ? WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, jsonNode.get("location").asText());
-        statement.setString(2, jsonNode.get("address").asText());
-        statement.setString(3, jsonNode.get("phone_number").asText());
-        statement.setString(4, jsonNode.get("name").asText());
-        statement.setInt(5, jsonNode.get("representative").asInt());
-        statement.setInt(6, jsonNode.get("plan").asInt());
-        statement.setInt(7, jsonNode.get("int").asInt());
+            Connection connection = Db.getConnection();
+            String query = "UPDATE businesses SET location = ? , address = ?, phone_number = ?, name = ?, representative_id = ?, plan_id = ? WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, jsonNode.get("location").asText());
+            statement.setString(2, jsonNode.get("address").asText());
+            statement.setString(3, jsonNode.get("phone_number").asText());
+            statement.setString(4, jsonNode.get("name").asText());
+            statement.setInt(5, jsonNode.get("representative").asInt());
+            statement.setInt(6, jsonNode.get("plan").asInt());
+            statement.setInt(7, jsonNode.get("int").asInt());
 
-        // Let me try to execute the query and write the result ....
-        if(statement.execute()){
-            System.out.println("Your query not working .... ");
-        }else{
-            System.out.println("Query Ok !!! ");
+            // Let me try to execute the query and write the result ....
+            if(statement.execute()){
+                System.out.println("Your query not working .... ");
+            }else{
+                System.out.println("Query Ok !!! ");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -108,7 +130,10 @@ public class BusinessService {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         Statement statement = Db.getStatement();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
         try {
             int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
             if(ret==1){
@@ -118,9 +143,13 @@ public class BusinessService {
             }
         }
         catch (SQLException e){
+<<<<<<< HEAD
             this.statusCode= 400;
             String json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ this.statusCode +"\" }";
             objectOutput.writeObject(json);
+=======
+            System.out.println("Error occured: "+e.getMessage());
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
         }
 
         objectOutput.close();
@@ -134,7 +163,6 @@ public class BusinessService {
      * */
     public void getBusinessById(String data) throws IOException{
         //setting the response status code
-        this.statusCode = 200;
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
 
@@ -174,9 +202,13 @@ public class BusinessService {
      * @role
      * Method for fetching all businesses registered
      * */
-    public void getAll() throws IOException {
+    public void getAll() {
         ObjectMapper objectMapper = new ObjectMapper();
+<<<<<<< HEAD
         this.statusCode = 200;
+=======
+        //setting the response status code
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
 
         //formatting the response into a data format
         Statement statement = Db.getStatement();
@@ -201,8 +233,13 @@ public class BusinessService {
                 alldata.add(json);
             }
 
+<<<<<<< HEAD
             //Sending the response to server after it has been formated
             objectOutput.writeObject(alldata);
+=======
+            //Sending the response to server after it has been formatted
+            objectOutput.writeObject(json);
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
         }
         catch (Exception e){
             e.printStackTrace();

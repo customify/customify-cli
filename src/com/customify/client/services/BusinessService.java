@@ -13,7 +13,12 @@
 package com.customify.client.services;
 
 import com.customify.client.SendToServer;
+<<<<<<< HEAD
 import com.customify.shared.requests_data_formats.BusinessFormats.BusinessFormat;
+=======
+import com.customify.client.data_format.business.GetBusinessFormat;
+import com.customify.client.data_format.business.BusinessFormat;
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,13 +34,16 @@ import java.util.Iterator;
 import java.util.List;
 
 public class BusinessService {
-    private final Socket socket;
+    private Socket socket;
     private InputStream input;
     private ObjectInputStream objectInput;
     private String json_data;
 
+    public BusinessService () {}
+
     /**
-     * @author IRUMVA Anselme
+     * Class Constructor
+     * @author IRUMVA HABUMUGISHA Anselme
      * @role Constructor it assigns socket to the variable socket
      * */
     public BusinessService(Socket socket) {
@@ -44,6 +52,8 @@ public class BusinessService {
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
+     * @param businessFormat the business detains in form of a format
+     * @return void
      * @role
      * this function is to create a new business
      * We send the request to the backend
@@ -61,6 +71,7 @@ public class BusinessService {
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
+     * @param businessFormat the business detains in form of a format
      * @role
      * this function is to edit an existing business
      * We send the request to the backend
@@ -82,13 +93,12 @@ public class BusinessService {
      * this function is to handle response on the successfully creation of the business
      * */
     public void handleCreateBusinessResponse() throws IOException, ClassNotFoundException {
-        System.out.println("Creaa 1");
         // here I am going to get the data from the server
         InputStream inputStream = this.socket.getInputStream();
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         List<Response> response = (List<Response>) objectInputStream.readObject();
 
-        System.out.println("Creaa 2") ;
+
         // if the status code is 201 then I am going to output that The business is created
         if(response.get(0).getStatusCode() == 201){
             System.out.println("The business is created successfully ....");
@@ -116,10 +126,14 @@ public class BusinessService {
      * this function is for handling the response after fetching all the businesses from the server
      * and displaying the response
      * */
+<<<<<<< HEAD
     public void handleGetResponse() throws IOException,ClassNotFoundException{
         //Get response
         this.input = this.socket.getInputStream();
         this.objectInput = new ObjectInputStream(this.input);
+=======
+    public void handleGetResponse(JsonNode jsonNode) throws IOException {
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
         ObjectMapper objectMapper = new ObjectMapper();
 
         //Casting the response data to list
@@ -159,6 +173,7 @@ public class BusinessService {
     public void handleGetOneResponse() throws IOException,ClassNotFoundException{
         try {
 
+<<<<<<< HEAD
             //Get response
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
@@ -173,6 +188,18 @@ public class BusinessService {
             System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(),jsonNode.get("created_at").asText());
         } catch (IOException e) {
             System.out.println("Error in reading Object " + e.getMessage());
+=======
+    //remove business
+    public  void deleteBusiness(DeleteBusinessFormat format) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(format);
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if(serverSend.send()){
+            System.out.println("--------Business deleted--------");
+        }
+        else {
+            System.out.println("Request failed...");
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
         }
     }
 
@@ -181,9 +208,14 @@ public class BusinessService {
      * @role
      * Method for sending a delete request to the server and displaying the response to the client
      * */
+<<<<<<< HEAD
     public  void deleteBusiness(String json) throws IOException,ClassNotFoundException{
         SendToServer serverSend = new SendToServer(json, this.socket);
         if(serverSend.send()){
+=======
+    public void handleResponse(String func_name) throws ClassNotFoundException{
+        try {
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
             this.json_data = (String)this.objectInput.readObject();
@@ -199,8 +231,11 @@ public class BusinessService {
             System.out.println("Request failed...");
         }
     }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
 }
