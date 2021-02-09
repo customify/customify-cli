@@ -1,4 +1,11 @@
-package com.customify.shared.responses_data_format.AuthFromats;
+package com.customify.shared.responses_data_format.customer_feedbackFormat;
+
+/*
+ * @author: NSENGIYUMVA Gershom
+ * 
+ * @description
+ * This class sets the messages as response to the every action going on.
+ * */
 
 import java.io.Serializable;
 

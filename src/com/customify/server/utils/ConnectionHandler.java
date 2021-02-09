@@ -105,8 +105,8 @@ public class ConnectionHandler {
 //                businessController.getall();
                 break;
             case FEEDBACK:
-                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
-                fController.sendDataInDb();
+                // FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+                // fController.sendDataInDb();
 
                 break;
             case GET_ALL_PRODUCTS:

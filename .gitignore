@@ -29,3 +29,4 @@ output/
 .vscode
 .idea/
 .idea/workspace.xml
+/bin/

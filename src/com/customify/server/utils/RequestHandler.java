@@ -1,11 +1,11 @@
 package com.customify.server.utils;
 
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.Customer_feedbackService;
 import com.customify.server.Keys;
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
-import com.customify.server.services.BusinessService;
 import com.customify.server.services.ProductService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -17,7 +17,6 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;
-
 
 public class RequestHandler {
 
@@ -31,24 +30,23 @@ public class RequestHandler {
         this.clientSocket = socket;
     }
 
-    public void init() {
+    public void init() {        
         try {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
 
+            while (true) {
+                try {
+                    List<String> clientRequest = (List) this.objectInput.readObject();
+                    this.json_data = (String) clientRequest.get(0);
+                    ObjectMapper objectMapper = new ObjectMapper();                    
+                    JsonNode jsonNode = objectMapper.readTree(json_data);
+                    this.key = Keys.valueOf(jsonNode.get("key").asText());
 
-                while(true) {
-                    try {
-                        List<String> clientRequest = (List)this.objectInput.readObject();
-                        this.json_data = (String)clientRequest.get(0);
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        JsonNode jsonNode = objectMapper.readTree(json_data);
-                        this.key = Keys.valueOf(jsonNode.get("key").asText());
-
-                        this.handleRequest();
-                    } catch (Exception var5) {
-                    }
+                    this.handleRequest();
+                } catch (Exception var5) {
                 }
+            }
 
         } catch (IOException e) {
             System.out.println("Error in reading Object " + e.getMessage());
@@ -60,12 +58,8 @@ public class RequestHandler {
         CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
-<<<<<<< HEAD
-
-
-=======
+        Customer_feedbackService feedback = new Customer_feedbackService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
->>>>>>> f0a97b12655ca7b67386d113d791604c4485dff4
         switch (this.key) {
             case LOGIN:
 //                authController = new AuthController(this.clientSocket, this.request);
@@ -87,8 +81,8 @@ public class RequestHandler {
 //                productController.registerProduct();
                 break;
             case FEEDBACK:
-//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
-//                fController.sendDataInDb();
+            System.out.println("On feedback case");
+            feedback.Feedback(json_data);
 
                 break;
             case GET_ALL_PRODUCTS:

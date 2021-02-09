@@ -1,5 +1,7 @@
 package com.customify.client.views.CustomerFeedback;
 
+import com.customify.client.Keys;
+
 /**
  *  Author: Niyonzima Stecie
  * done on: 4 Feb 2021
@@ -18,7 +20,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class CustomerFeedbackView {
-    private Socket socket;
+    private final Socket socket;
 
     public CustomerFeedbackView(Socket socket) {
         this.socket = socket;
@@ -42,11 +44,9 @@ public class CustomerFeedbackView {
 
             /*
              * now check if the entered customer id are relevants to the one stored in the
-             * database.
-             * ---------------------------------
-             * -------------------------------
+             * database. --------------------------------- -------------------------------
              */
-            
+
             System.out.print("\tEnter the title: ");
             title = scan.next();
 
@@ -56,9 +56,9 @@ public class CustomerFeedbackView {
                 break feedbackLooop;
             feed = false;
 
-            FeedbackFormat format = new FeedbackFormat(customer_id, business_id, title, description);
+            FeedbackFormat format = new FeedbackFormat(Keys.FEEDBACK, customer_id, business_id, title, description);
             FeedbackService feedservice = new FeedbackService(this.socket);
-            feedservice.Comment(format);
+            feedservice.Feedback(format);
         } while (feed);
     }
 }

@@ -56,7 +56,7 @@ public class BusinessService {
     public void create(String data) throws SQLException, JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
-
+// System.out.println(data);
         Connection connection = Db.getConnection();
         String query = "INSERT INTO businesses VALUES(NULL, ?, ?, ?, ?, ?, ?, NOW())";
 
@@ -72,7 +72,7 @@ public class BusinessService {
         if(statement.execute()){
             System.out.println("Your query not working .... ");
         }else{
-            System.out.println("Query Ok !!! ");
+            System.out.println("Query Ok !!! h ");
         }
     }
 
