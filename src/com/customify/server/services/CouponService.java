@@ -17,7 +17,7 @@ public class CouponService {
 
   //TODO: add the functionality for the following methods
   public void coupingByProduct(String couponFormat){
-
+    System.out.println("Couponing the product"+couponFormat);
   }
   public void coupingByCustomer(){}
   public void redeemCoupon(){}
