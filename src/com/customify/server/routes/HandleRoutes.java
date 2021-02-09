@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import com.customify.shared.Keys;
 
+import static com.customify.shared.Keys.CREATE_PRODUCT;
+
 public class HandleRoutes {
     private final Keys key;
     Socket socket;
@@ -13,6 +15,8 @@ public class HandleRoutes {
     PointsRoutes pointsRoutes;
     ProductRoute productRoute;
     BusinessRoute businessRoute;
+    CustomerRoute customerRoute;
+
 
     public HandleRoutes(Keys key, Socket socket) throws IOException, SQLException {
         this.socket = socket;
@@ -39,6 +43,9 @@ public class HandleRoutes {
                 break;
             case DELETE_PRODUCT:
                 productRoute.deleteProduct();
+                break;
+            case DISABLE_CUSTOMER:
+                customerRoute.disableCustomer();
                 break;
         }
         authRoute.loginError();

@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class NewCustomerView {
 
-
     private Socket socket;
 
     public NewCustomerView(){ }

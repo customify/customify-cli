@@ -2,7 +2,8 @@ package com.customify.client.services;
 
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CreateCustomerFormat;
-import com.customify.client.data_format.CreateCustomerFormat;
+//import com.customify.client.data_format.customer.CreateCustomerFormat;
+import com.customify.client.data_format.DisableCustomerFormat;
 import com.customify.server.Keys;
 import com.customify.shared.Response;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -30,7 +31,6 @@ public class CustomerService {
         if (serverSend.send()) {
             this.handleCreateCustomerResponse();
         }
-
     }
 
 
@@ -56,10 +56,27 @@ public class CustomerService {
         }
     }
 
+    /**
+     * @author Murenzi Confiance Tracy
+     * @role
+     * this function is to handle response on the successfully disabled customer
+     * */
 
     public void update(){}
-    public void disable(){}
-    public void undisable(){}
+    public void disable(DisableCustomerFormat format) throws IOException, ClassNotFoundException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(format);
+
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()){
+            // this.handleCreateCustomerResponse();
+            System.out.println("\n\n\t\tCard was di-activated successfully\n");
+        }
+    }
     public void getAll(){}
     public void get(){}
+
+
+
+
 }

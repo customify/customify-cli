@@ -4,6 +4,7 @@ import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.customer.CreateCustomerFormat;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -75,8 +76,39 @@ public class CustomerService {
 
     }
 
+    /**
+     * @author Murenzi Confiance Tracy
+     * @role
+     * this function is to handle the backend disable of the customer from the database
+     * and sending back the response TO THE CLIENT SIDE
+     * */
+
     public void update() throws SQLException{}
-    public void disable() throws SQLException{}
+    public void disable() throws SQLException, JsonProcessingException {
+        System.out.println("The data has been successfully reached to the server");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(this.json_data);
+        String code = jsonNode.get("code").asText();
+        int createdById = jsonNode.get("createdById").asInt();
+
+        Connection connection = Db.getConnection();
+        try
+        {
+            PreparedStatement statement = connection.prepareStatement("UPDATE customers SET disabled = 1 WHERE code = ?");
+
+            // the prepared statement parameters
+            statement.setString(1,code);
+            // executeUpdate to execute our sql update statement and returns number of rows affected
+            int updateCount = statement.executeUpdate();
+            statement.close();
+        }
+        catch (Exception e)
+        {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+    }
     public void readOne() throws SQLException{}
     public void readAll() throws SQLException{}
 }
