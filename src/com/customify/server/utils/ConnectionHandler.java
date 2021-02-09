@@ -1,8 +1,8 @@
 /*
-*
-* By Verite &  Patrick
-* Desc: Dealing with Server connection configurations
-* */
+ *
+ * By Verite &  Patrick
+ * Desc: Dealing with Server connection configurations
+ * */
 
 package com.customify.server.utils;
 
@@ -73,7 +73,7 @@ public class ConnectionHandler {
         ProductController productController;
 //        new ProductController(this.clientSocket, this.request);
 //        BusinessController businessController;
-        
+
         PointsController pointsController = new PointsController(this.clientSocket,this.request);
 
         switch (request.getKey()) {

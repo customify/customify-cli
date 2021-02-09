@@ -3,14 +3,12 @@ package com.customify.server;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SendToClient {
     private Socket socket;
     private List<String> responseData;
     ObjectOutputStream objectOutput;
-
 
     public SendToClient(Socket socket, List<String> responseData) {
         this.socket = socket;

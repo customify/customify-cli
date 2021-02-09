@@ -2,6 +2,7 @@ package com.customify.client.services;
 
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CouponFormat;
+import com.customify.client.data_format.RedeemCoupon;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,6 +30,17 @@ public class CouponService {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
 
+    public void reedemCoupon(RedeemCoupon redeemCoupon){
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+            String json = objectMapper.writeValueAsString(redeemCoupon);
+            SendToServer sendToServer = new SendToServer(json,this.socket);
+        }catch (JsonProcessingException e){
+            System.out.println("Parsing reedem coupon "+e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

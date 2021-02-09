@@ -16,6 +16,7 @@ public enum Keys {
     GET_BUSINESS,
     CREATE_CUSTOMER,
     EDIT_BUSINESS,
+    CREATE_COUPON,
     CREATE_PLAN,
     UPDATE_PLAN,
     READ_PLAN,
