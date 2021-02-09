@@ -124,7 +124,7 @@ public class BusinessService {
      * @role
      * this function is for handling the response after fetching all the businesses
      * */
-    public void handleGetResponse(JsonNode jsonNode) throws IOException,ClassNotFoundException{
+    public void handleGetResponse(JsonNode jsonNode) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         businessReadFormat = objectMapper.treeToValue(jsonNode, BusinessReadFormat.class);
         System.out.println("------------------List of Businesses------------------");
@@ -166,7 +166,7 @@ public class BusinessService {
     }
 
     //remove business
-    public  void deleteBusiness(DeleteBusinessFormat format) throws IOException,ClassNotFoundException{
+    public  void deleteBusiness(DeleteBusinessFormat format) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(format);
         SendToServer serverSend = new SendToServer(json, this.socket);
@@ -183,7 +183,7 @@ public class BusinessService {
      * @role
      * General method for handling response from the server
      * */
-    public void handleResponse(String func_name) throws IOException,ClassNotFoundException{
+    public void handleResponse(String func_name) throws ClassNotFoundException{
         try {
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
