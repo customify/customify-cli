@@ -94,6 +94,7 @@ public class RequestHandler {
                 break;
 
             case UPDATE_PRODUCT:
+                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
                 System.out.println("CUSTOMER RECORDS RECEIVED "+json_data);

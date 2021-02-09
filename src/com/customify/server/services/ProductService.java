@@ -163,57 +163,50 @@ public class ProductService {
      * @version 1
      * */
 
-//
-//    public void updateProduct() throws IOException, SQLException {
-//        ProductFormat product = (ProductFormat) request.getObject();
-//
-//        OutputStream output = this.socket.getOutputStream();
-//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
-//
-//        Statement stmt = null;
-//        Connection conn = null;
-//
-//        try {
-//            conn = Db.getConnection();
-//
-//            System.out.println("Creating statement...");
-//            stmt = conn.createStatement();
-//
-//            String sql = "UPDATE products SET product_code = "+product.getProductCode()+",business_id = "+product.getBusiness_id()+
-//                    ",name="+product.getName()+",price="+product.getPrice()+",quantity="+product.getQuantity()+
-//                    ",description = "+product.getDescription()+",bonded_points="+product.getBondedPoints()+
-//                    ",registered_by = "+product.getRegistered_by()+",created_at = '2021-02-04' WHERE id = "+product.getId();
-//
-//            stmt.executeUpdate(sql);
-//
-////            if(preparedStatement.executeUpdate() > 0){
-////                preparedStatement.executeUpdate();
+
+    public void updateProduct(String data) throws IOException, SQLException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+
+        Statement stmt = null;
+        Connection conn = null;
+
+        try {
+            conn = Db.getConnection();
+
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+
+            String sql = "UPDATE products SET product_code = "+jsonNode.get("productCode").asText()+",business_id = "+jsonNode.get("business_id").asText()+
+                    ",name="+jsonNode.get("name").asText()+",price="+jsonNode.get("price").asText()+",quantity="+jsonNode.get("quantity").asText()+
+                    ",description = "+jsonNode.get("description").asText()+",bonded_points="+jsonNode.get("bondedPoints").asText()+
+                    ",registered_by = "+jsonNode.get("registered_by").asText()+",created_at = '2021-02-04' WHERE id = "+jsonNode.get("id").asText();
+
+            stmt.executeUpdate(sql);
+
 //            List responseData = new ArrayList<>();
 //            Response response = new Response(200,product);
 //            responseData.add(response);
-//
-//            //Sending the response to client
+
+            //Sending the response to client
 //            objectOutput.writeObject(responseData);
-////            }
-////            else{
-////                List responseData = new ArrayList<>();
-////                Response response = new Response(400,product);
-////                responseData.add(response);
-////                //Sending the response to client
-////                objectOutput.writeObject(responseData);
-////            }
-//            stmt.close();
-//            conn.close();
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(500,new ProductFormat());
-//            responseData.add(response);
-//            //Sending the response to client
-//            objectOutput.writeObject(responseData);
-//        }
-//    }
+
+            stmt.close();
+            conn.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            List responseData = new ArrayList<>();
+            Response response = new Response(500,new ProductFormat());
+            responseData.add(response);
+            //Sending the response to client
+            objectOutput.writeObject(responseData);
+        }
+    }
 
     // Tamara update this according to new Structure
 
