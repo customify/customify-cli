@@ -67,7 +67,7 @@ public class Home {
                 loginView.view();
                 break;
             case 3:
-                productView.createProduct();
+                productView.init();
                 break;
             case 4:
                 businessView.view();

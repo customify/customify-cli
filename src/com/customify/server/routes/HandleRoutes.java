@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import com.customify.shared.Keys;
 
+import static com.customify.shared.Keys.CREATE_PRODUCT;
+
 public class HandleRoutes {
     private final Keys key;
     Socket socket;
@@ -24,22 +26,23 @@ public class HandleRoutes {
     }
 
     public void switchRoutes() throws IOException, SQLException {
-        switch (this.key){
-            case LOGIN:
-                authRoute.loginRoute();
-                break;
-            case POINTS_BY_CUSTOMER_EMAIL:
-                 pointsRoutes.getPointsByCustomer();
-                 break;
-            case GET_PRODUT_BY_ID:
-                productRoute.registerProduct();
-               break;
-            case GET_ALL_BUSINESSES:
-                businessRoute.getAllBusinesses();
-                break;
-            case DELETE_PRODUCT:
-                productRoute.deleteProduct();
-                break;
+        if (this.key == Keys.LOGIN) {
+            authRoute.loginRoute();
+        }
+        if (this.key ==Keys.CREATE_PRODUCT){
+            productRoute.registerProduct();
+        }
+        if (this.key ==Keys.GET_PRODUT_BY_ID){
+            productRoute.registerProduct();
+        }
+        if (this.key ==Keys.POINTS_BY_CUSTOMER_EMAIL){
+            pointsRoutes.getPointsByCustomer();
+        }
+        if(this.key==Keys.UPDATE_PRODUCT){
+            productRoute.updateProduct();
+        }
+        if(this.key==Keys.DELETE_PRODUCT){
+            productRoute.deleteProduct();
         }
         authRoute.loginError();
 //        authRoute.loginError();
