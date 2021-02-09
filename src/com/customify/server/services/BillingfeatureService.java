@@ -4,6 +4,7 @@ package com.customify.server.services;
 
 import com.customify.server.Db.Db;
 import com.customify.shared.requests_data_formats.BillingFeature.*;
+import com.customify.shared.responses_data_format.BillingFeature.FeatureReadFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -121,7 +122,7 @@ public  void deleteFeature(String data)throws  IOException {
         //formatting the response into a data format
         Statement statement = Db.getStatement();
         String query = "Select * from businesses";
-        List<FeatureFormat> alldata = new ArrayList<>();
+        List<FeatureFormat> data = new ArrayList<>();
         try {
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
@@ -130,9 +131,9 @@ public  void deleteFeature(String data)throws  IOException {
                         res.getString(2),
                         res.getString(3)
                 );
-                alldata.add(bs);
+                data.add(bs);
             }
-            FeatureFormat format = new FeatureFormat(alldata);
+            FeatureReadFormat format = new FeatureReadFormat(data);
             String json = objectMapper.writeValueAsString(format);
 
             //Sending the response to server after it has been formated

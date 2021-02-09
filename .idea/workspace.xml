@@ -20,41 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/business/GetBusinessFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessEditView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/AwardsNotifications.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/CouponModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/PointsModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/BusinessRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/utils/CouponStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/BusinessFormats/DeleteBusinessFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/BusinessFormats/GetbusinessFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessRFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessReadFormat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Common.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/SendToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/SendToServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessRegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessRegisterView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/BusinessController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/PointsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/PointsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/BusinessFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/BusinessFormats/BusinessFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BillingFeature/FeatureReadFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/FeatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/FeatureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BillingfeatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BillingfeatureService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,14 +268,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1612811972712" />
-    <state x="358" y="81" key="FileChooserDialogImpl" timestamp="1612812405520">
+    <state x="358" y="81" key="FileChooserDialogImpl" timestamp="1612813381566">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="358" y="81" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1612812405520" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1612812410168">
+    <state x="358" y="81" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1612813381566" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1612813384895">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1612812410168" />
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1612813384895" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1612809469290">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -2,7 +2,10 @@ package com.customify.client.services;
 
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.BillingFeature.GetFeatureFormat;
+import com.customify.shared.requests_data_formats.BillingFeature.FeatureCode;
 import com.customify.shared.requests_data_formats.BillingFeature.FeatureFormat;
+import com.customify.shared.responses_data_format.BillingFeature.FeatureReadFormat;
+import com.customify.shared.responses_data_format.BillingFeature.MessageFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -10,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class FeatureService {
     private final Socket socket;
@@ -41,27 +45,14 @@ public class FeatureService {
         }
     }
 
-//    public void handleCreateBusinessResponse() throws IOException, ClassNotFoundException {
-//        System.out.println("Creaa 1");
-//        // here I am going to get the data from the server
-//        InputStream inputStream = this.socket.getInputStream();
-//        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-//        List<Response> response = (List<Response>) objectInputStream.readObject();
-//
-//        System.out.println("Creaa 2") ;
-//        // if the status code is 201 then I am going to output that The business is created
-//        if(response.get(0).getStatusCode() == 201){
-//            System.out.println("The business is created successfully ....");
-//        }
-//    }
 
 
-    public void getfeatures (GetFeatureFormat format) throws IOException, ClassNotFoundException{
+    public void getFeatures(GetFeatureFormat format) throws IOException, ClassNotFoundException{
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(format);
         SendToServer serverSend = new SendToServer(json, this.socket);
         if(serverSend.send()){
-            this.handleResponse("getall");
+            this.handleResponse("getAll");
         }
         else {
             System.out.println("Request failed...");
@@ -69,13 +60,26 @@ public class FeatureService {
     }
 
 
-    public void handleGetBYid(JsonNode jsonNode)throws IOException{
+    public void getFeaturesById(FeatureCode format) throws IOException, ClassNotFoundException{
         ObjectMapper objectMapper = new ObjectMapper();
-        BusinessRFormat data = objectMapper.treeToValue(jsonNode, BusinessRFormat.class);
-        System.out.println("-------------------Business "+data.getId()+"------------------");
-        System.out.format("%5s%20s%20s%25s%20s\n","ID","Name","Location","Address","Phone number");
-        System.out.println();
-        System.out.format("%5d%20s%20s%25s%20s\n",data.getId(),data.getName(),data.getLocation(),data.getAddress(),data.getPhone_number());
+        String json = objectMapper.writeValueAsString(format);
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if(serverSend.send()){
+            this.handleResponse("getById");
+        }
+        else {
+            System.out.println("Request failed...");
+        }
+    }
+
+
+    public void deleteFeature(FeatureCode format) throws IOException, ClassNotFoundException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(format);
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if(serverSend.send()){
+            this.handleResponse("getById");
+        }
     }
 
 
@@ -87,10 +91,10 @@ public class FeatureService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(json_data);
             switch (func_name){
-                case "getall":
+                case "getAll":
                     this.handleGetResponse(jsonNode);
                     break;
-                case "getbyid":
+                case "getById":
                     this.handleGetBYId(jsonNode);
                     break;
                 default:
@@ -100,6 +104,43 @@ public class FeatureService {
         } catch (IOException e) {
             System.out.println("Error in reading Object " + e.getMessage());
         }
+
+            }
+
+
+
+    public void handleGetBYId(JsonNode jsonNode)throws IOException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        FeatureFormat data = objectMapper.treeToValue(jsonNode, FeatureFormat.class);
+        System.out.println("-------------------Feature------------------------------");
+        System.out.format("%5s%20s%20s%25s%20s\n","FeatureCode","Name","Description");
+        System.out.println();
+        System.out.format("%5d%20s%20s%25s%20s\n",data.getFeatureCode(),data.getFeatureName(),data.getFeatureDescription());
     }
 
+    public void handleGetResponse(JsonNode jsonNode) throws IOException,ClassNotFoundException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        FeatureReadFormat featureReadFormat = objectMapper.treeToValue(jsonNode, FeatureReadFormat.class);
+        System.out.println("-------------------Feature------------------------------");
+        System.out.format("%5s%20s%20s%25s%20s\n","FeatureCode","Name","Description");
+        System.out.println();
+        for(FeatureFormat bs:featureReadFormat.getData()){
+            System.out.format("%5d%20s%20s%25s%20s\n",bs.getFeatureCode(),bs.getFeatureName(),bs.getFeatureDescription());
+        }
+    }
+
+    public void handleCreateFeature()  {
+        try {
+            InputStream inputStream = this.socket.getInputStream();
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+            List<String> response = (List<String>) objectInputStream.readObject();
+
+            String json_response = response.get(0);
+            System.out.println("HERE'S THE RESPONSE FROM THE SERVER => " + json_response);
+
+        }catch(Exception e)
+        {
+            System.out.println("RESPONSE ERROR =>"+e.getMessage());
+        }
+    }
 }
