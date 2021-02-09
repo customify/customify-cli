@@ -16,4 +16,7 @@ public enum Keys {
     GET_ALL_BUSINESSES,
     DELETE_PRODUCT,
     GET_PRODUT_BY_ID,
+    DISABLE_CUSTOMER,
+    UPDATE_PRODUCT,
+ 
 }

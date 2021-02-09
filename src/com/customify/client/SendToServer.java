@@ -15,7 +15,6 @@ public class SendToServer {
     private OutputStream output = null;
     private ObjectOutputStream objectOutput = null;
     private boolean isConnectionOn = true;
-    private String serverIP;
     InputStream input;
     ObjectInputStream objectInputStream;
     private String json;
@@ -32,7 +31,6 @@ public class SendToServer {
     public SendToServer(String json, Socket socket) throws IOException {
         this.socket = socket;
         this.json = json;
-        this.serverIP = "";
     }
 
     // NEW VERSION OF COMMON CLASS
