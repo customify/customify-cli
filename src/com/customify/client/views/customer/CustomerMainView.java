@@ -47,6 +47,8 @@ public class CustomerMainView {
                 case "3":
                     break;
                 case "4":
+                    UpdateCustomerView updatecustomer =new UpdateCustomerView(this.socket);
+                    updatecustomer.view();
                     break;
                 case "5":
                     DisableCustomerView customerView1= new DisableCustomerView(this.socket);

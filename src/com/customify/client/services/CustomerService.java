@@ -4,8 +4,10 @@ import com.customify.client.SendToServer;
 import com.customify.client.data_format.CreateCustomerFormat;
 //import com.customify.client.data_format.customer.CreateCustomerFormat;
 import com.customify.client.data_format.DisableCustomerFormat;
+import com.customify.client.data_format.UpdateCustomerFormat;
 import com.customify.server.Keys;
 import com.customify.shared.Response;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -57,12 +59,25 @@ public class CustomerService {
     }
 
     /**
+     * @author Nshimiye Emmy
+     * @role
+     * this service method is to update the customer
+     * */
+    public void update(UpdateCustomerFormat format) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(format);
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+        }
+
+    }
+
+
+    /**
      * @author Murenzi Confiance Tracy
      * @role
      * this function is to handle response on the successfully disabled customer
      * */
-
-    public void update(){}
     public void disable(DisableCustomerFormat format) throws IOException, ClassNotFoundException{
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(format);
@@ -75,8 +90,4 @@ public class CustomerService {
     }
     public void getAll(){}
     public void get(){}
-
-
-
-
 }
