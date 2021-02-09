@@ -1,7 +1,18 @@
-package com.customify.shared.requests_data_formats;
-import java.io.Serializable;
+/**
+ * @description
+ * Class to provide the Product's json format structure to be sent as Requests
+ * @author SAUVE Jean-Luc
+ * @version 1
+ * */
 
-public class ProductFormat  implements Serializable {
+package com.customify.client.data_format.products;
+
+import com.customify.client.Keys;
+
+public class ProductFormat  {
+
+    private Keys key;
+
     private int id;
     private long productCode;
     private int business_id;
@@ -88,12 +99,16 @@ public class ProductFormat  implements Serializable {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
+    }
+    public Keys getKey() {
+        return key;
+    }
+    public void setKey(Keys key) {
+        this.key = key;
     }
 }
