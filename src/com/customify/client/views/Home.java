@@ -67,13 +67,13 @@ public class Home {
                 loginView.view();
                 break;
             case 3:
-                productView.createProduct();
+                productView.init();
                 break;
             case 4:
                 businessView.view();
                 break;
             case 5:
-                System.out.println("Not Det Done");
+                System.out.println("Not Yet Done");
                 break;
             case 6:
                 feedbackView.view();

@@ -1,6 +1,3 @@
-// This lists all of our api like endpoints 
-
-
 package com.customify.client;
 
 public enum Keys {
@@ -14,7 +11,9 @@ public enum Keys {
     GET_PRODUCT_BY_ID,
     CREATE_BUSINESS,
     REMOVE_BUSINESS,
+    GET_ALL_BUSINESSES,
     GET_BUSINESS,
+    CREATE_CUSTOMER,
     EDIT_BUSINESS,
-    CREATE_CUSTOMER
+    DISABLE_CUSTOMER
 }
