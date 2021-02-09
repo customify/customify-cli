@@ -1,6 +1,5 @@
 package com.customify.client;
 
-// NEW VERSION
 public enum Keys {
     LOGIN,
     REGISTER,
@@ -10,11 +9,20 @@ public enum Keys {
     GET_ALL_PRODUCTS,
     DELETE_PRODUCT,
     GET_PRODUCT_BY_ID,
+    UPDATE_PRODUCT,
     CREATE_BUSINESS,
+    REMOVE_BUSINESS,
+    GET_ALL_BUSINESSES,
+    GET_BUSINESS,
+    CREATE_CUSTOMER,
     EDIT_BUSINESS,
+<<<<<<< HEAD
     CREATE_CUSTOMER,
     CREATE_PLAN,
     UPDATE_PLAN,
     READ_PLAN,
     DELETE_PLAN
+=======
+    DISABLE_CUSTOMER
+>>>>>>> 07d7c967a8dcf9ed257a4d668f4a21968cfece23
 }

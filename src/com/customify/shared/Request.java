@@ -11,10 +11,15 @@ public class Request implements Serializable {
         this.key = key;
     }
 
+    /**
+     * @param key
+     * @param data
+     */
     public Request(Keys key, Object data) {
         this.key = key;
         this.data = data;
     }
+
 
     public Keys getKey() {
         return this.key;

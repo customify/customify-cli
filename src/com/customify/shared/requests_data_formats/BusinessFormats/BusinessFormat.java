@@ -8,7 +8,7 @@
  * @since Wednesday, 3 February 2021 - 08:17 - Time in Nyabihu
  * */
 
-package com.customify.shared.requests_data_formats;
+package com.customify.shared.requests_data_formats.BusinessFormats;
 
 import com.customify.client.Keys;
 
