@@ -138,7 +138,7 @@ public class BusinessService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
 
-        //formatting the response into a dataformat
+        //formatting the response into a data format
         Statement statement = Db.getStatement();
         try{
             ResultSet res = statement.executeQuery("select * from businesses where id="+jsonNode.get("businessId"));
@@ -206,9 +206,6 @@ public class BusinessService {
         }
         catch (Exception e){
             e.printStackTrace();
-//            this.statusCode= 400;
-//            String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ this.statusCode +"\" }";
-//            objectOutput.writeObject(json);
         }
 
     }

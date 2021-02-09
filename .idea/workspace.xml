@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/BusinessFormats/DeleteBusinessFormat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/BusinessFormats/GetbusinessFormat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessRFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/data_format/business/BusinessRFormat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/BusinessFormats/BusinessReadFormat.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

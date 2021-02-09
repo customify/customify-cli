@@ -1,6 +1,7 @@
 /**
  * @description
- * View Class for reading  businesses/business
+ * View Class for reading all businesses or one business
+ * And for deleting businesses
  *
  * @author Kellia Umuhire
  * @since Wednesday, 3 February 2021
@@ -30,10 +31,16 @@ public class BusinessReadView {
         this.socket = socket;
     }
 
+    /**
+     * @author Kellia Umuhire
+     * @role
+     * This method is for getting all business
+     * It calls the business service
+     * */
     public void viewAll()throws IOException,ClassNotFoundException{
         String json = "{ \"key\" : \""+ Keys.GET_ALL_BUSINESSES +"\" }";
         BusinessService businessService = new BusinessService(socket);
-        businessService.getbusinesses(json);
+        businessService.getBusinesses(json);
     }
 
     public void viewById()throws IOException, ClassNotFoundException{
