@@ -13,7 +13,6 @@ package com.customify.client.services;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.business.GetBusinessFormat;
 import com.customify.client.data_format.business.BusinessFormat;
-import com.customify.client.data_format.business.BusinessFormat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -40,7 +39,8 @@ public class BusinessService {
     public BusinessService () {}
 
     /**
-     * @author IRUMVA Anselme
+     * Class Constructor
+     * @author IRUMVA HABUMUGISHA Anselme
      * @role Constructor it assigns socket to the variable socket
      * */
     public BusinessService(Socket socket) {
@@ -49,6 +49,8 @@ public class BusinessService {
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
+     * @param businessFormat the business detains in form of a format
+     * @return void
      * @role
      * this function is to create a new business
      * We send the request to the backend
@@ -66,6 +68,7 @@ public class BusinessService {
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
+     * @param businessFormat the business detains in form of a format
      * @role
      * this function is to edit an existing business
      * We send the request to the backend
