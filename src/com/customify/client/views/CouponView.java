@@ -77,7 +77,7 @@ public class CouponView {
         couponFormat.setExpiry(reader.nextLine());
 
         CouponService couponService = new CouponService(this.socket);
-        couponService.create(couponFormat);
+        //couponService.create(couponFormat);
     }
     public void redeemCoupon(){ }
     public void getAllCoupons(){}

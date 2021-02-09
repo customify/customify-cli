@@ -6,13 +6,13 @@
 
 package com.customify.server.models;
 
-public class PointsModel {
+public class PointModel {
     private int id;
     private String customer_id;
     private float number_of_points;
     private String last_update;
 
-    public PointsModel(int id, String customer_id, float number_of_points, String last_update) {
+    public PointModel(int id, String customer_id, float number_of_points, String last_update) {
         this.id = id;
         this.customer_id = customer_id;
         this.number_of_points = number_of_points;

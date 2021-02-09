@@ -1,5 +1,4 @@
 /*
-*
 * By Verite &  Patrick
 * Desc: Dealing with Server connection configurations
 * */
@@ -17,14 +16,11 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class ConnectionHandler {
-    private final Socket clientSocket;
+    private  Socket clientSocket;
     private InputStream input;
     private ObjectInputStream objectInput;
     private Request request;
 
-    public ConnectionHandler(Socket socket) {
-        this.clientSocket = socket;
-    }
 
     public void init() throws Exception {
         try {
@@ -43,23 +39,6 @@ public class ConnectionHandler {
         }
     }
 
-    // Method Commented due to that it is already defined below
-
-    // public void handleRequest() throws IOException, SQLException {
-    // AuthController authController;
-    //
-    // try{
-    // List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
-    // this.request = clientRequest.get(0);
-    // this.handleRequest();
-    // }
-    // catch(Exception e)
-    // {
-    // }
-    // catch (IOException e) {
-    // System.out.println("Error in reading Object " + e.getMessage());
-    // }
-    // }
 
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
@@ -86,11 +65,9 @@ public class ConnectionHandler {
                 pointsController.getPointsByCustomerEmail();
             case CREATE_PRODUCT:
                 productController.registerProduct();
-
             case FEEDBACK:
                 FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
                 fController.sendDataInDb();
-
                 break;
             case GET_ALL_PRODUCTS:
                 productController.getAllProducts();

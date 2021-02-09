@@ -1,6 +1,6 @@
 /*
  *
- * By Verite ,  Patrick & Samuel
+ * By Verite ,Patrick & Samuel
  * Desc: The core server loader
  *
  * */

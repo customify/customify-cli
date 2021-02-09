@@ -16,7 +16,7 @@ public class CouponService {
         this.socket = socket;
     }
 
-    public void create(CouponFormat couponFormat){
+    public void create(String couponFormat){
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String json = objectMapper.writeValueAsString(couponFormat);

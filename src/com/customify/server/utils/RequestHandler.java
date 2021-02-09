@@ -1,5 +1,6 @@
 package com.customify.server.utils;
 
+import com.customify.server.services.CouponService;
 import com.customify.server.Keys;
 import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
@@ -38,11 +39,9 @@ public class RequestHandler {
                     try {
                         List<String> clientRequest = (List)this.objectInput.readObject();
                         this.json_data = (String)clientRequest.get(0);
-                        System.out.println(json_data);
                         ObjectMapper objectMapper = new ObjectMapper();
                         JsonNode jsonNode = objectMapper.readTree(json_data);
                         this.key = Keys.valueOf(jsonNode.get("key").asText());
-
                         this.handleRequest();
                     } catch (Exception var5) {
                     }
@@ -57,6 +56,7 @@ public class RequestHandler {
         AuthController authController;
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
+        CouponService couponService = new CouponService(this.clientSocket);
 
         switch (this.key) {
             case LOGIN:
@@ -90,7 +90,10 @@ public class RequestHandler {
             case CREATE_CUSTOMER:
                 System.out.println("CUSTOMER RECORDS RECEIVED "+json_data);
                 break;
-
+            case CREATE_COUPON:
+                System.out.println("json formatted data"+json_data);
+                couponService.coupingByProduct(json_data);
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
