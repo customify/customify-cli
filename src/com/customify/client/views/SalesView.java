@@ -1,7 +1,9 @@
 package com.customify.client.views;
 
+
 import com.customify.client.data_format.SalesFormat;
 import com.customify.client.services.ProductService;
+import com.customify.client.services.SalesService;
 
 import java.net.Socket;
 import java.util.Scanner;
