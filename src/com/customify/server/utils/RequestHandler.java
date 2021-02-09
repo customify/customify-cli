@@ -46,9 +46,9 @@ public class RequestHandler {
                     ObjectMapper objectMapper = new ObjectMapper();
                     JsonNode jsonNode = objectMapper.readTree(json_data);
 
-                    System.out.println(jsonNode);
                     this.key = Keys.valueOf(jsonNode.get("key").asText());
 
+                    System.out.println(this.key);
                     this.handleRequest();
                 } catch (Exception var5) {
                 }
@@ -65,6 +65,9 @@ public class RequestHandler {
         BusinessService businessService = new BusinessService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
+
+        System.out.println("Handling routes");
+
         switch (this.key) {
             case LOGIN:
 //                authController = new AuthController(this.clientSocket, this.request);
@@ -118,6 +121,8 @@ public class RequestHandler {
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);
+            case GET_ALL_COUPONS:
+                couponService.getAllCoupons(json_data);
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
