@@ -10,29 +10,20 @@
 
 package com.customify.client.services;
 
-import com.customify.client.Common;
 import com.customify.client.SendToServer;
-import com.customify.client.data_format.business.GetBusinessFormat;
 import com.customify.shared.requests_data_formats.BusinessFormats.BusinessFormat;
 
-import com.customify.client.SendToServer;
-import com.customify.shared.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.customify.shared.Keys;
-import com.customify.shared.Request;
 import com.customify.shared.Response;
 
-import com.customify.shared.responses_data_format.BusinessFormats.BusinessRFormat;
-import com.customify.shared.requests_data_formats.BusinessFormats.DeleteBusinessFormat;
-import com.customify.shared.responses_data_format.BusinessFormats.BusinessReadFormat;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.Iterator;
 import java.util.List;
 
 public class BusinessService {
@@ -40,7 +31,6 @@ public class BusinessService {
     private InputStream input;
     private ObjectInputStream objectInput;
     private String json_data;
-    private BusinessReadFormat businessReadFormat;
 
     /**
      * @author IRUMVA Anselme
@@ -108,12 +98,11 @@ public class BusinessService {
      * @role
      * this function is for getting all business
      * */
-    public void getbusinesses (GetBusinessFormat format) throws IOException, ClassNotFoundException{
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(format);
+    public void getbusinesses (String json) throws IOException, ClassNotFoundException{
         SendToServer serverSend = new SendToServer(json, this.socket);
         if(serverSend.send()){
-            this.handleResponse("getall");
+//            this.handleResponse("getall");
+            this.handleGetResponse();
         }
         else {
             System.out.println("Request failed...");
@@ -125,14 +114,18 @@ public class BusinessService {
      * @role
      * this function is for handling the response after fetching all the businesses
      * */
-    public void handleGetResponse(JsonNode jsonNode) throws IOException,ClassNotFoundException{
+    public void handleGetResponse() throws IOException,ClassNotFoundException{
+        this.input = this.socket.getInputStream();
+        this.objectInput = new ObjectInputStream(this.input);
         ObjectMapper objectMapper = new ObjectMapper();
-        businessReadFormat = objectMapper.treeToValue(jsonNode, BusinessReadFormat.class);
+        List<String> data = (List<String>) this.objectInput.readObject();
+        Iterator itr = data.iterator();
         System.out.println("------------------List of Businesses------------------");
-        System.out.format("%5s%20s%20s%25s%20s\n","ID","Name","Location","Address","Phone number");
+        System.out.format("%5s%20s%20s%20s%20s%20s\n","ID","Name","Location","Address","Phone number","Created_at");
         System.out.println();
-        for(BusinessRFormat bs:businessReadFormat.getData()){
-                System.out.format("%5d%20s%20s%25s%20s\n",bs.getId(),bs.getName(),bs.getLocation(),bs.getAddress(),bs.getPhone_number());
+        while(itr.hasNext()){
+            JsonNode bs = objectMapper.readTree((String) itr.next());
+            System.out.format("%5d%20s%20s%20s%20s%20s\n",bs.get("id").asInt(),bs.get("name").asText(),bs.get("location").asText(),bs.get("address").asText(),bs.get("phone_number").asText(),bs.get("created_at").asText());
         }
     }
     /**
@@ -140,9 +133,7 @@ public class BusinessService {
      * @role
      * method for getting one business by its id
      * */
-    public void getById(GetBusinessFormat format) throws IOException,ClassNotFoundException{
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(format);
+    public void getById(String json) throws IOException,ClassNotFoundException{
         SendToServer serverSend = new SendToServer(json, this.socket);
         if(serverSend.send()){
             handleResponse("getbyid");
@@ -157,22 +148,37 @@ public class BusinessService {
      * @role
      * Method for handling business response from the server
      * */
-    public void handleGetBYId(JsonNode jsonNode)throws IOException{
-        ObjectMapper objectMapper = new ObjectMapper();
-        BusinessRFormat data = objectMapper.treeToValue(jsonNode, BusinessRFormat.class);
-        System.out.println("-------------------Business "+data.getId()+"------------------");
-        System.out.format("%5s%20s%20s%25s%20s\n","ID","Name","Location","Address","Phone number");
-        System.out.println();
-        System.out.format("%5d%20s%20s%25s%20s\n",data.getId(),data.getName(),data.getLocation(),data.getAddress(),data.getPhone_number());
+    public void handleGetBYId(JsonNode jsonNode)throws IOException {
+//        if (jsonNode.get("statusCode").asInt() == 400) {
+//            System.out.println("Error: "+jsonNode.get("message").asText());
+//            return;
+//        }
+//        if(jsonNode.get("statusCode")==null) {
+            System.out.println("-------------------Business " + jsonNode.get("id") + "------------------");
+            System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+            System.out.println();
+            System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(),jsonNode.get("created_at").asText());
+//        }
     }
 
-    //remove business
-    public  void deleteBusiness(DeleteBusinessFormat format) throws IOException,ClassNotFoundException{
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(format);
+    /**
+     * @author Kellia Umuhire
+     * @role
+     * Method for sending delete request to the server
+     * */
+    public  void deleteBusiness(String json) throws IOException,ClassNotFoundException{
         SendToServer serverSend = new SendToServer(json, this.socket);
         if(serverSend.send()){
-            System.out.println("--------Business deleted--------");
+            this.input = this.socket.getInputStream();
+            this.objectInput = new ObjectInputStream(this.input);
+            this.json_data = (String)this.objectInput.readObject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json_data);
+            if (jsonNode.get("statusCode").asInt() == 400) {
+                System.out.println("Error: "+jsonNode.get("message").asText());
+            } else {
+                System.out.println("-------------------Business deleted------------------");
+            }
         }
         else {
             System.out.println("Request failed...");
@@ -183,6 +189,7 @@ public class BusinessService {
      * @author Kellia Umuhire
      * @role
      * General method for handling response from the server
+     * It's not required to use this function for each response
      * */
     public void handleResponse(String func_name) throws IOException,ClassNotFoundException{
         try {
@@ -192,9 +199,6 @@ public class BusinessService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(json_data);
             switch (func_name){
-                case "getall":
-                    this.handleGetResponse(jsonNode);
-                    break;
                 case "getbyid":
                     this.handleGetBYId(jsonNode);
                     break;

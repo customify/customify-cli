@@ -9,10 +9,8 @@
 package com.customify.client.views.Business;
 
 import com.customify.client.services.BusinessService;
-import com.customify.server.Keys;
-import com.customify.shared.requests_data_formats.BusinessFormats.GetbusinessFormat;
-import com.customify.shared.requests_data_formats.BusinessFormats.DeleteBusinessFormat;
-import com.customify.client.data_format.business.GetBusinessFormat;
+import com.customify.client.Keys;
+
 
 import java.io.IOException;
 import java.net.Socket;
@@ -33,27 +31,27 @@ public class BusinessReadView {
     }
 
     public void viewAll()throws IOException,ClassNotFoundException{
-        GetBusinessFormat format = new GetBusinessFormat(Keys.GET_ALL_BUSINESSES);
+        String json = "{ \"key\" : \""+ Keys.GET_ALL_BUSINESSES +"\" }";
         BusinessService businessService = new BusinessService(socket);
-        businessService.getbusinesses(format);
+        businessService.getbusinesses(json);
     }
 
     public void viewById()throws IOException, ClassNotFoundException{
         Scanner scan=new Scanner(System.in);
         System.out.print("Enter businessId: \t");
         int businessId = scan.nextInt();
-        GetBusinessFormat format = new GetBusinessFormat(businessId,Keys.GET_BUSINESS);
+        String json = "{ \"businessId\" : \""+businessId+"\", \"key\" : \""+ Keys.GET_BUSINESS +"\" }";
         BusinessService businessService = new BusinessService(socket);
-        businessService.getById(format);
+        businessService.getById(json);
     }
 
     public void deleteBusiness()throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter businessId: \t");
         int businessId = scan.nextInt();
-        DeleteBusinessFormat format = new DeleteBusinessFormat(businessId);
+        String json = "{ \"businessId\" : \""+businessId+"\", \"key\" : \""+ Keys.REMOVE_BUSINESS +"\" }";
         BusinessService businessService = new BusinessService(socket);
-        businessService.deleteBusiness(format);
+        businessService.deleteBusiness(json);
     }
 
 }
