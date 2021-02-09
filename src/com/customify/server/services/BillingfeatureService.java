@@ -1,6 +1,11 @@
+/**
+ * @description
+ * server-side feature service for handling operations related to the billing feature
+ *
+ * @author fiston nshimiyandinze
+ * @since Wednesday, 5 February 2021
+ * */
 package com.customify.server.services;
-
-
 
 import com.customify.server.Db.Db;
 import com.customify.shared.requests_data_formats.BillingFeature.*;
@@ -29,7 +34,12 @@ this.socket =socket;
 this.output = socket.getOutputStream();
 this.objectoutput = new ObjectOutputStream(output);
 }
-
+    /**
+     * @author fiston nshimiyandinze
+     * @role
+     * this function is to handle the backend registering into the database
+     * and sending back the response
+     * */
 public void registerFeature(String data) throws SQLException, JsonProcessingException {
 ObjectMapper objectMapper = new ObjectMapper();
 JsonNode jsonNode = objectMapper.readTree(data);
@@ -47,6 +57,13 @@ JsonNode jsonNode = objectMapper.readTree(data);
     }
 
 }
+
+    /**
+     * @author fiston nshimiyandinze
+     * @role
+     * this function is to handle the backend updating into the database
+     * and sending back the response
+     * */
 public void  update(String data) throws SQLException, JsonProcessingException {
     ObjectMapper objectMapper = new ObjectMapper();
     JsonNode jsonNode = objectMapper.readTree(data);
@@ -64,6 +81,14 @@ public void  update(String data) throws SQLException, JsonProcessingException {
         System.out.println("Query Ok !!! ");
     }
 }
+
+    /**
+     * @author fiston nshimiyandinze
+     * @role
+     * this function is used to handle the backend get  deleting by id from the database
+     * and sending back the response
+     * */
+
 public  void deleteFeature(String data)throws  IOException {
     ObjectMapper objectMapper = new ObjectMapper();
     JsonNode jsonNode = objectMapper.readTree(data);
@@ -83,7 +108,12 @@ public  void deleteFeature(String data)throws  IOException {
 
 }
 
-
+    /**
+     * @author fiston nshimiyandinze
+     * @role
+     * this function is to handle the backend get all features from the database
+     * and sending back the response
+     * */
     public void getFeatureByCode(String data) throws IOException{
         //setting the response status code
         this.statusCode = 200;
@@ -113,6 +143,13 @@ public  void deleteFeature(String data)throws  IOException {
             e.printStackTrace();
         }
     }
+
+    /**
+     * @author fiston nshimiyandinze
+     * @role
+     * this function is to handle the backend get all features into the database
+     * and sending back the response
+     * */
 
     public void getAllFeature() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
