@@ -1,5 +1,12 @@
 package com.customify.shared.requests_data_formats;
 
+/*
+@author yassin hagenimana
+this is sales format
+9 feb 2021
+
+ */
+
 public class SaleDataFormat {
     private int customerId;
     private int productId;
