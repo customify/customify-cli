@@ -17,6 +17,7 @@ public class HandleRoutes {
     BusinessRoute businessRoute;
     CustomerRoute customerRoute;
 
+
     public HandleRoutes(Keys key, Socket socket) throws IOException, SQLException {
         this.socket = socket;
         this.authRoute = new AuthRoute(socket);
