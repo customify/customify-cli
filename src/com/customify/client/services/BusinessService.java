@@ -31,11 +31,13 @@ import java.net.Socket;
 import java.util.List;
 
 public class BusinessService {
-    private final Socket socket;
+    private Socket socket;
     private InputStream input;
     private ObjectInputStream objectInput;
     private String json_data;
     private BusinessReadFormat businessReadFormat;
+
+    public BusinessService () {}
 
     /**
      * @author IRUMVA Anselme
@@ -200,7 +202,4 @@ public class BusinessService {
             System.out.println("Error in reading Object " + e.getMessage());
         }
     }
-
-
-
 }
