@@ -5,8 +5,6 @@ import java.io.Serializable;
 public class Request implements Serializable {
     private Keys key;
     private Object data;
-
-
     /**
      * @param key
      * @param data
@@ -18,7 +16,7 @@ public class Request implements Serializable {
 
 
     public Keys getKey() {
-        return key;
+        return this.key;
     }
     public void setKey(Keys key){
         this.key = key;

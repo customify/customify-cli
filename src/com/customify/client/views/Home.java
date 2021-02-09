@@ -73,7 +73,7 @@ public class Home {
                 businessView.view();
                 break;
             case 5:
-                System.out.println("Not Det Done");
+                System.out.println("Not Yet Done");
                 break;
             case 6:
                 feedbackView.view();

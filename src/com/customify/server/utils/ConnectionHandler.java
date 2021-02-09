@@ -96,6 +96,7 @@ public class ConnectionHandler {
             case CREATE_PRODUCT:
                 productController = new ProductController(this.clientSocket, this.request);
                 productController.registerProduct();
+
                 break;
             case GET_PRODUT_BY_ID:
                 productController = new ProductController(this.clientSocket, this.request);

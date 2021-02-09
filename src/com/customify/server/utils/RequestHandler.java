@@ -57,7 +57,7 @@ public class RequestHandler {
 
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
-        CustomerService  customer;
+        CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
@@ -101,7 +101,6 @@ public class RequestHandler {
                 productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-            customer  = new CustomerService(this.clientSocket,this.json_data);
             customer.create();
                 break;
             case GET_ALL_BUSINESSES:
@@ -109,6 +108,9 @@ public class RequestHandler {
                 break;
             case GET_BUSINESS:
                 businessService.getBusinessById(json_data);
+                break;
+            case DISABLE_CUSTOMER:
+                customer.disable();
                 break;
 
             default:

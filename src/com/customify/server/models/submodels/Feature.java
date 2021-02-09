@@ -1,14 +1,14 @@
 package com.customify.server.models.submodels;
 // Create By Moss
 
-public class Feature <I,S>{
+public class Feature <I,N,D>{
     //    S represents data type for name, description
     //    I represents data type for Id
     private I featureId;
-    private S featureName;
-    private S featureDescription;
+    private N featureName;
+    private D featureDescription;
 
-    public Feature( I featureId, S featureName, S featureDescription){
+    public Feature( I featureId, N featureName, D featureDescription){
         this.featureId = featureId;
         this.featureName = featureName;
         this.featureDescription = featureDescription;
@@ -20,16 +20,16 @@ public class Feature <I,S>{
     public I getFeatureId() {
         return this.featureId;
     }
-    public void setFeatureName(S featureName) {
+    public void setFeatureName(N featureName) {
         this.featureName = featureName;
     }
-    public S getFeatureName() {
+    public N getFeatureName() {
         return this.featureName;
     }
-    public void setFeatureDescription(S featureDescription) {
+    public void setFeatureDescription(D featureDescription) {
         this.featureDescription = featureDescription;
     }
-    public S getFeatureDescription() {
+    public D getFeatureDescription() {
         return featureDescription;
     }
 }
