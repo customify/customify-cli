@@ -1,3 +1,7 @@
+// Hagenimana Yassin created at 3/2/2021
+// this is a service notification which sends email to customer who won an award.
+
+
 package com.customify.server.services;
 
 import com.customify.server.Db.Db;
@@ -16,8 +20,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-// Hagenimana Yassin created at 3/2/2021
-// this is a service notification which sends email to customer who won an award.
 
 public class NotificationService {
     /**

@@ -2,9 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ea3492f-a9b3-4ad6-a3f8-88cbfbf781af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/CouponFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/DisableCustomerFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/billing/PlanFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/products/ProductFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/CouponService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/CouponView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/DisableCustomerView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/SendToClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/BillingModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/submodels/Feature.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/submodels/Plan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/billing/PlanFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/customer/CreateCustomerFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/customer/DisableCustomerFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/CustomerRoute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/PlanRoutes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/CouponService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/PlanService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/PlanFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/BusinessController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customify.iml" beforeDir="false" afterPath="$PROJECT_DIR$/customify.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/SendToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/SendToServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/data_format/customer/CreateCustomerFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/CreateCustomerFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/NewCustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/NewCustomerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/AwardsNotifications.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/ProductRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/ProductRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/FeebackService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/ProductFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/ProductFormat.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +138,7 @@
       <workItem from="1612792966025" duration="4154000" />
       <workItem from="1612847688121" duration="972000" />
       <workItem from="1612863318747" duration="1892000" />
-      <workItem from="1612888810983" duration="1408000" />
+      <workItem from="1612888810983" duration="2351000" />
     </task>
     <task id="LOCAL-00001" summary="The Business Creation and Updating is now working with the rest support">
       <created>1612731371649</created>
@@ -138,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612889886338</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Now BusinessService.java at Server is now working">
+      <created>1612890271637</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1612890271637</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +214,8 @@
     <MESSAGE value="Finish documenting the BusinessService.java" />
     <MESSAGE value="Remove warning from the BusinessService.java" />
     <MESSAGE value="All Business Views are now working ..." />
-    <option name="LAST_COMMIT_MESSAGE" value="All Business Views are now working ..." />
+    <MESSAGE value="Now BusinessService.java at Server is now working" />
+    <MESSAGE value="Merge master with my branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge master with my branch" />
   </component>
 </project>
