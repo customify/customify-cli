@@ -11,6 +11,8 @@ import com.customify.server.models.ProductModel;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
 import com.customify.shared.requests_data_formats.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -86,73 +88,72 @@ public class ProductService {
      * @version 1
      * */
 
-//    public void getProductById() throws IOException {
-//        output = new DataOutputStream(this.socket.getOutputStream());
-//        ProductFormat productFormat = new ProductFormat();
-//        Integer productId = (Integer) request.getObject();
-//
-//        OutputStream output = this.socket.getOutputStream();
-//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
-//        Statement stmt = null;
-//        Connection conn = null;
-//        try{
-//
-//            //Open a connection
-//            conn = Db.getConnection();
-//
-//            //Execute a query
-//            System.out.println("Creating statement...");
-//            stmt = conn.createStatement();
-//
-//            String sql = "SELECT product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at FROM products WHERE id= "+productId+" ;";
-//            ResultSet rs = stmt.executeQuery(sql);
-//            //STEP 5: Extract data from result set
-//            while(rs.next()){
-//
-//                productFormat.setProductCode(rs.getLong("product_code"));
-//                productFormat.setBusiness_id(rs.getInt("business_id"));
-//                productFormat.setName(rs.getString("name"));
-//                productFormat.setPrice(rs.getFloat("price"));
-//                productFormat.setQuantity(rs.getInt("quantity"));
-//                productFormat.setDescription(rs.getString("description"));
-//                productFormat.setBondedPoints(rs.getDouble("bonded_points"));
-//                productFormat.setRegistered_by(rs.getInt("registered_by"));
-//                productFormat.setCreatedAt(rs.getString("created_at"));
-//
-//            }
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(200,productFormat);
-//            responseData.add(response);
-//
-//            //Sending the response to client
-//            objectOutput.writeObject(responseData);
-//
-//            rs.close();
-//            stmt.close();
-//            conn.close();
-//        }catch(SQLException se){
-//            //Handle errors for JDBC
-//            se.printStackTrace();
-//        }catch(Exception e){
-//            //Handle errors for Class.forName
-//            e.printStackTrace();
-//        }
-//        finally{
-//            //finally block used to close resources
-//            try{
-//                if(stmt!=null)
-//                    conn.close();
-//            }catch(SQLException se){
-//            }// do nothing
-//            try{
-//                if(conn!=null)
-//                    conn.close();
-//            }catch(SQLException se){
-//                se.printStackTrace();
-//            }//end finally try
-//        }//end try
-//
-//    }
+    public void getProductById(String data) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+
+
+        Statement stmt = null;
+        Connection conn = null;
+        try{
+
+            ProductFormat productFormat = new ProductFormat();
+
+            //Open a connection
+            conn = Db.getConnection();
+
+            //Execute a query
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+
+            String sql = "SELECT product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at FROM products WHERE id= "+jsonNode.get("id").asText()+" ;";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            //STEP 5: Extract data from result set
+            while(rs.next()){
+                System.out.println("Reached Here 5");
+                System.out.println("Sent ID: "+jsonNode.get("id").asText());
+
+                productFormat.setProductCode(rs.getLong("product_code"));
+                productFormat.setBusiness_id(rs.getInt("business_id"));
+                productFormat.setName(rs.getString("name"));
+                productFormat.setPrice(rs.getFloat("price"));
+                productFormat.setQuantity(rs.getInt("quantity"));
+                productFormat.setDescription(rs.getString("description"));
+                productFormat.setBondedPoints(rs.getDouble("bonded_points"));
+                productFormat.setRegistered_by(rs.getInt("registered_by"));
+                productFormat.setCreatedAt(rs.getString("created_at"));
+                System.out.println("Reached here 6");
+            }
+
+            System.out.println("Name: "+productFormat.getName());
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+        finally{
+            //finally block used to close resources
+            try{
+                if(stmt!=null)
+                    conn.close();
+            }catch(SQLException se){
+            }// do nothing
+            try{
+                if(conn!=null)
+                    conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+
+    }
 
 
     /**

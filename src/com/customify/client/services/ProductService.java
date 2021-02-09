@@ -1,12 +1,14 @@
 package com.customify.client.services;
 
 import com.customify.client.Common;
+import com.customify.client.SendToServer;
 import com.customify.server.models.ProductModel;
 import com.customify.shared.Keys;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.ProductFormat;
+import com.customify.client.data_format.products.ProductFormat;
 import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,11 +54,13 @@ public class ProductService {
      * @version 1
      * */
     public void getProductById(Integer productId) throws  Exception{
-        Request request = new Request(Keys.GET_PRODUT_BY_ID,productId);
-        Common common = new Common(request, this.socket);
+
+        String jsonToSend = "{\"key\" : \"GET_PRODUCT_BY_ID\", \"id\" : \""+productId+"\"}";
+        SendToServer sendToServer = new SendToServer(jsonToSend, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer() == true) {
+        if (sendToServer.send()) {
+            System.out.println("Reached here 1");
             this.handleGetProductByIdSuccess();
         }
         else{
@@ -186,9 +190,11 @@ public class ProductService {
      * */
 
     public void handleGetProductByIdSuccess() throws IOException, ClassNotFoundException{
+        System.out.println("Reached here 2");
         inputStream = this.getSocket().getInputStream();
+        System.out.println("Reached here 3");
         objectInputStream = new ObjectInputStream(inputStream);
-
+        System.out.println("Reached here 4");
         try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
             if(response.get(0).getStatusCode() == 200){

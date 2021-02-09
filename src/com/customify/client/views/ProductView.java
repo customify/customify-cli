@@ -1,8 +1,7 @@
 package com.customify.client.views;
 
 import com.customify.client.services.ProductService;
-import com.customify.shared.requests_data_formats.ProductFormat;
-
+import com.customify.client.data_format.products.*;
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.Date;

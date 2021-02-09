@@ -67,7 +67,7 @@ public class RequestHandler {
             case REGISTER:
 //                authController = new AuthController(this.clientSocket, this.request);
 //                authController.signup();
-
+                break;
             case CREATE_BUSINESS:
                 businessService.create(json_data);
                 break;
@@ -76,7 +76,7 @@ public class RequestHandler {
                 break;
             case CREATE_PRODUCT:
 //                productController.registerProduct();
-
+                break;
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
@@ -90,7 +90,7 @@ public class RequestHandler {
                 break;
 
             case GET_PRODUCT_BY_ID:
-
+                productService.getProductById(json_data);
                 break;
 
             case UPDATE_PRODUCT:
