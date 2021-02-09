@@ -1,12 +1,16 @@
 package com.customify.client.services;
 
 import com.customify.client.Common;
+import com.customify.client.SendToServer;
 import com.customify.server.models.ProductModel;
 import com.customify.shared.Keys;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.ProductFormat;
+//import com.customify.shared.requests_data_formats.ProductFormat;
+import com.customify.client.data_format.products.ProductFormat;
 import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +42,7 @@ public class ProductService {
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer() == true) {
+        if (common.sendToServer()) {
             this.handleRegisterProductSuccess();
         } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
@@ -56,7 +60,7 @@ public class ProductService {
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer() == true) {
+        if (common.sendToServer()) {
             this.handleGetProductByIdSuccess();
         }
         else{
@@ -64,17 +68,26 @@ public class ProductService {
         }
 
     }
-    //Method Created By Merlyne Iradukunda
-    // Due date: 6/2/2020
-    public void deleteProduct(Long productCode) throws  Exception{
-        Request request = new Request(Keys.DELETE_PRODUCT, productCode);
-        Common common = new Common(request, this.socket);
+
+    /**
+     * @description
+     * Service to Delete  Product By Product Code
+     * @author Tamara Iradukunda
+     * @version 1
+     *
+     * @param */
+    public void deleteProduct(ProductFormat product) throws  Exception{
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(product);
+        SendToServer serverSend = new SendToServer(json, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer()) {
+        if (serverSend.send()) {
+           // System.out.println("Products deleted successfully! ");
             this.handleDeleteProductSuccess();
         } else {
-            System.out.println("\n\nError occurred when trying to send request to server\n");
+            System.out.println("Error occured when deleting products ");
         }
     }
 
@@ -83,7 +96,7 @@ public class ProductService {
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer() == true) {
+        if (common.sendToServer()) {
             this.handleGetProductListSuccess();
         } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
@@ -102,7 +115,7 @@ public class ProductService {
         Common common = new Common(request, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer() == true) {
+        if (common.sendToServer()) {
             this.handleUpdateProductSuccess();
         }
         else{
@@ -221,30 +234,39 @@ public class ProductService {
 
         return;
     }
-    public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-        try {
-            List<Response> response = (List<Response>) objectInputStream.readObject();
 
-            if (response.get(0).getStatusCode() == 200) {
+    /**
+     * @description
+     * Function to Send Response when Product is Deleted Successfully
+     * @author Tamara Iradukunda
+     * @version 1
+     * */
+    public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
+        inputStream = this.socket.getInputStream();
+        objectInputStream = new ObjectInputStream(inputStream);
+        ObjectMapper objectMapper=new ObjectMapper();
+        System.out.println("Ready client!");
+//        try {
+             String data=(String)objectInputStream.readObject();
+             JsonNode jsonFormat=objectMapper.readTree(data);
+             //System.out.println(jsonFormat.get("StatusCode").asInt());
+             int statusCode=jsonFormat.get("StatusCode").asInt();
+
+             if(statusCode==200){
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("\t\t product deleted successfully");
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            } else if (response.get(0).getStatusCode() == 400) {
+             }
+             else if(statusCode==400){
                 System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-            } else if(response.get(0).getStatusCode() == 500){
-                System.out.println("Internal server error!!");
-            }else{
-                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-            }
-        } catch (IOException e) {
-            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-        } catch (ClassNotFoundException e) {
-            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-        }
+             }
+             else{
+                 System.out.println("Internal server error!!");
+             }
 
-        return;
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+//        }
     }
 
     /**

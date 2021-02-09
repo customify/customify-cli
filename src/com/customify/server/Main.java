@@ -18,7 +18,7 @@ public class Main {
 
     private static final int portNumber = 6000;
 
- main
+
 
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket;
