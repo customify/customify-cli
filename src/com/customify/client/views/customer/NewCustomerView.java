@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class NewCustomerView {
 
-
     private Socket socket;
 
     public NewCustomerView(){ }
@@ -18,7 +17,7 @@ public class NewCustomerView {
         this.socket = socket;
     }
 
-    public void view() throws IOException {
+    public void view() throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
 
         add:do{

@@ -23,7 +23,7 @@ public class CustomerMainView {
         this.socket = socket;
     }
 
-    public void view() throws IOException {
+    public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
 
         label:do {
@@ -33,6 +33,7 @@ public class CustomerMainView {
             System.out.println("         2. Read All Customer");
             System.out.println("         3. Search Customer");
             System.out.println("         4. Update Customer");
+            System.out.println("         5. Disable Customer");
             Scanner scan = new Scanner(System.in);
             String choice = scan.nextLine();
 
@@ -46,6 +47,10 @@ public class CustomerMainView {
                 case "3":
                     break;
                 case "4":
+                    break;
+                case "5":
+                    DisableCustomerView customerView1= new DisableCustomerView(this.socket);
+                    customerView1.view();
                     break;
                 case "00":
                     customerView = false;
