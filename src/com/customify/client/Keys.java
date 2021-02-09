@@ -21,5 +21,6 @@ public enum Keys {
     READ_PLAN,
     DELETE_PLAN,
     ADD_SALE,
-    CREATE_CUOPON
+    CREATE_CUOPON,
+    DISABLE_CUSTOMER
 }
