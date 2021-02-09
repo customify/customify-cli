@@ -1,5 +1,11 @@
 package com.customify.client.views.customer;
 
+/**
+ * @author Nshimiye Emmy
+ * @role
+ * this is the class to implement the update customer view to show interface of update customer
+ * */
+
 import com.customify.client.services.CustomerService;
 import com.customify.client.data_format.UpdateCustomerFormat;
 
@@ -17,7 +23,7 @@ public class UpdateCustomerView {
         this.socket = socket;
     }
 
-    public void view() throws IOException {
+    public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
         Scanner scan = new Scanner(System.in);
         update:do{

@@ -5,6 +5,7 @@ import com.customify.client.data_format.CreateCustomerFormat;
 //import com.customify.client.data_format.customer.CreateCustomerFormat;
 import com.customify.client.data_format.DisableCustomerFormat;
 import com.customify.client.data_format.UpdateCustomerFormat;
+import com.customify.client.data_format.products.ProductFormat;
 import com.customify.server.Keys;
 import com.customify.shared.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -58,16 +59,57 @@ public class CustomerService {
         }
     }
 
+    public Socket getSocket() {
+        return socket;
+    }
     /**
      * @author Nshimiye Emmy
      * @role
-     * this service method is to update the customer
+     * this service method is to update the customer on client side
      * */
-    public void update(UpdateCustomerFormat format) throws IOException {
+    public void handleUpdateCustomerSuccess() throws IOException, ClassNotFoundException {
+        InputStream inputStream = this.getSocket().getInputStream();
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        try {
+            List<Response> response = (List<Response>) objectInputStream.readObject();
+            System.out.println("Status: "+ response.get(0).getStatusCode());
+            if(response.get(0).getStatusCode() == 200){
+                UpdateCustomerFormat updatedCustomer = (UpdateCustomerFormat) response.get(0).getData();
+
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("\t\t Customer Updated successfully");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+            }
+            else if(response.get(0).getStatusCode() == 400){
+                System.out.println("\n\nInvalid Customer format.Please enter Customer details as required\n\n");
+            }
+            else{
+                System.out.println("\n\nUnknown error occurred.\n");
+            }
+
+        } catch (IOException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        } catch (ClassNotFoundException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        }
+
+        return;
+    }
+
+    /**
+     * @author Nshimiye Emmy
+     * @role
+     * this service method is to update the customer on client side
+     * */
+    public void update(UpdateCustomerFormat format) throws IOException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(format);
         SendToServer serverSend = new SendToServer(json, this.socket);
         if (serverSend.send()) {
+            this.handleUpdateCustomerSuccess();
+        }
+        else{
+            System.out.println("\n\nError occurred when trying to send request to server\n");
         }
 
     }

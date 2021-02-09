@@ -1,5 +1,9 @@
 package com.customify.client.data_format;
-
+/**
+ * @author Nshimiye Emmy
+ * @role
+ * this is the class format update customer data so that they can be sent and to the server
+ * */
 import com.customify.client.Keys;
 
 public class UpdateCustomerFormat {
