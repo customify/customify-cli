@@ -34,6 +34,12 @@ public class BusinessService {
     OutputStream output;
     ObjectOutputStream objectOutput;
 
+    /**
+     * Class Constructor
+     *
+     * @author IRUMVA HABUMUGISHA Anselme
+     * @param socket The Socket to use in our Sending and Receiving the request
+     * */
     public BusinessService(Socket socket)throws IOException{
         this.socket = socket;
         this.output = socket.getOutputStream();
@@ -42,6 +48,7 @@ public class BusinessService {
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
+     * @param data The data from the clint in the JSON Format
      * @role
      * this function is to handle the backend registering into the database
      * and sending back the response
@@ -75,6 +82,7 @@ public class BusinessService {
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
+     * @param data The data from the clint in the JSON Format
      * @role
      * this function is to handle the backend editing of the business into the database
      * and sending back the response

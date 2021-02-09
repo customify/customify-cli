@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ea3492f-a9b3-4ad6-a3f8-88cbfbf781af" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/BusinessController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
       <workItem from="1612792966025" duration="4154000" />
       <workItem from="1612847688121" duration="972000" />
       <workItem from="1612863318747" duration="1892000" />
-      <workItem from="1612888810983" duration="753000" />
+      <workItem from="1612888810983" duration="1408000" />
     </task>
     <task id="LOCAL-00001" summary="The Business Creation and Updating is now working with the rest support">
       <created>1612731371649</created>
@@ -124,7 +124,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612889508949</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Remove warning from the BusinessService.java">
+      <created>1612889597873</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1612889597873</updated>
+    </task>
+    <task id="LOCAL-00006" summary="All Business Views are now working ...">
+      <created>1612889886338</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612889886338</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +161,8 @@
     <MESSAGE value="testing the new main" />
     <MESSAGE value="Merging main into anselme's branch" />
     <MESSAGE value="Finish documenting the BusinessService.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish documenting the BusinessService.java" />
+    <MESSAGE value="Remove warning from the BusinessService.java" />
+    <MESSAGE value="All Business Views are now working ..." />
+    <option name="LAST_COMMIT_MESSAGE" value="All Business Views are now working ..." />
   </component>
 </project>
