@@ -61,7 +61,7 @@ public class BusinessRegisterView {
         // make my service manage by request
         var businessService = new BusinessService(this.socket);
 
-        // then try ti create the service
+        // then try ti call the function to create my business
         businessService.create(businessFormat);
     }
 }

@@ -51,11 +51,16 @@ public class BusinessEditView {
         System.out.print("Enter the id of the business you are going to edit : ");
         id = scan.nextInt();
 
+        // let me create the format for the business create
         var businessFormat = new BusinessFormat(Keys.EDIT_BUSINESS, name, location, phone_number, address, representative_id, plan_id);
+
+        // let me add the Id of the business to edit
         businessFormat.setId(id);
 
+        // make my service manage by request
         var businessService = new BusinessService(this.socket);
 
+        // then try ti call the function to edit my business
         businessService.update(businessFormat);
     }
 }
