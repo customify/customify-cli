@@ -100,6 +100,14 @@ public class ConnectionHandler {
             case GET_PRODUT_BY_ID:
                 productController = new ProductController(this.clientSocket, this.request);
                 productController.getProductById();
+            case GET_BUSINESS:
+//                businessController = new BusinessController(this.clientSocket,this.request);
+//                businessController.getall();
+                break;
+            case FEEDBACK:
+                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+                fController.sendDataInDb();
+
                 break;
             case GET_ALL_PRODUCTS:
                 productController = new ProductController(this.clientSocket, this.request);

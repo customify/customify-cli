@@ -28,20 +28,24 @@ public class Main {
 
             for (;;) {
                 Socket clientSocket = null;
-                try {
-                    Db.init();
-                    System.out.println("** Listening on port "+portNumber +" ***");
-                    clientSocket = serverSocket.accept();
-                    System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
-                } catch (IOException e) {
-                    Db.closeConnection();
-                    System.out.println("Terminating because of "+e.getMessage());
-                    //e.printStackTrace();
-                }
 
-                RequestHandler con = new RequestHandler(clientSocket);
+
+                    try {
+                        Db.init();
+                        System.out.println("** Listening on port ***");
+                        clientSocket = serverSocket.accept();
+                        System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
+                    } catch (IOException e) {
+                        Db.closeConnection();
+                        System.out.println("Terminating because of " + e.getMessage());
+
+                        //e.printStackTrace();
+                    }
+
+                    RequestHandler con = new RequestHandler(clientSocket);
 //                ConnectionHandler con = new ConnectionHandler(clientSocket);
-                con.init();
+                    con.init();
+
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
 
