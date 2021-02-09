@@ -1,6 +1,6 @@
 package com.customify.client.views.customer;
 
-import com.customify.client.data_format.customer.CreateCustomerFormat;
+import com.customify.client.data_format.CreateCustomerFormat;
 import com.customify.client.services.CustomerService;
 
 import java.io.IOException;

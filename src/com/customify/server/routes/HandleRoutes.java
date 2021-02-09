@@ -24,10 +24,6 @@ public class HandleRoutes {
     }
 
     public void switchRoutes() throws IOException, SQLException {
-//        if (this.key == Keys.LOGIN) {
-//            authRoute.loginRoute();
-//        }
-
         switch (this.key){
             case LOGIN:
                 authRoute.loginRoute();
@@ -35,9 +31,6 @@ public class HandleRoutes {
             case POINTS_BY_CUSTOMER_EMAIL:
                  pointsRoutes.getPointsByCustomer();
                  break;
-            case CREATE_PRODUCT:
-                productRoute.registerProduct();
-                break;
             case GET_PRODUT_BY_ID:
                 productRoute.registerProduct();
                break;
@@ -48,7 +41,6 @@ public class HandleRoutes {
                 productRoute.deleteProduct();
                 break;
         }
-
         authRoute.loginError();
 //        authRoute.loginError();
     }
