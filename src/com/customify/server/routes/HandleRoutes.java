@@ -44,11 +44,6 @@ public class HandleRoutes {
             case DELETE_PRODUCT:
                 productRoute.deleteProduct();
                 break;
-<<<<<<< HEAD
-            case CREATE_PLAN:
-
-
-=======
             case DISABLE_CUSTOMER:
                 customerRoute.disableCustomer();
                 break;
