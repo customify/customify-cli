@@ -16,15 +16,11 @@ public enum Keys {
     GET_ALL_BUSINESSES,
     DELETE_PRODUCT,
     GET_PRODUT_BY_ID,
-<<<<<<< HEAD
     CREATE_BUSINESS,
     CREATE_PLAN,
     UPDATE_PLAN,
     READ_PLAN,
-    DELETE_PLAN
-=======
+    DELETE_PLAN,
     DISABLE_CUSTOMER,
     UPDATE_PRODUCT,
- 
->>>>>>> 07d7c967a8dcf9ed257a4d668f4a21968cfece23
 }

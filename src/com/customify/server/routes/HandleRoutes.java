@@ -47,7 +47,6 @@ public class HandleRoutes {
             case DISABLE_CUSTOMER:
                 customerRoute.disableCustomer();
                 break;
->>>>>>> 07d7c967a8dcf9ed257a4d668f4a21968cfece23
         }
         authRoute.loginError();
 //        authRoute.loginError();

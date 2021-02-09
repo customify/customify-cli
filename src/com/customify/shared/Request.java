@@ -5,12 +5,6 @@ import java.io.Serializable;
 public class Request implements Serializable {
     private Keys key;
     private Object data;
-
-//    Added Request Constuctor Overlapping By Moss
-    public  Request(Keys key){
-        this.key = key;
-    }
-
     /**
      * @param key
      * @param data
