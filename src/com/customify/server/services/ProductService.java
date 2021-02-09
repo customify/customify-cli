@@ -10,7 +10,7 @@ import com.customify.server.Db.Db;
 import com.customify.server.models.ProductModel;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.*;
+import com.customify.server.response_data_format.products.ProductFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -111,7 +111,6 @@ public class ProductService {
 
             //STEP 5: Extract data from result set
             while(rs.next()){
-                System.out.println("Reached Here 5");
                 System.out.println("Sent ID: "+jsonNode.get("id").asText());
 
                 productFormat.setProductCode(rs.getLong("product_code"));
@@ -123,7 +122,6 @@ public class ProductService {
                 productFormat.setBondedPoints(rs.getDouble("bonded_points"));
                 productFormat.setRegistered_by(rs.getInt("registered_by"));
                 productFormat.setCreatedAt(rs.getString("created_at"));
-                System.out.println("Reached here 6");
             }
 
             System.out.println("Name: "+productFormat.getName());
