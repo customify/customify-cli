@@ -2,12 +2,18 @@ package com.customify.client.views;
 
 import com.customify.client.Keys;
 import com.customify.client.services.ProductService;
+<<<<<<< HEAD
 //import com.customify.shared.requests_data_formats.ProductFormat;
 import com.customify.client.data_format.products.ProductFormat;
+=======
+import com.customify.client.data_format.products.*;
+>>>>>>> 77c28e934a776a0617c61de1ce4a86fb60bc9433
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
+
+import static com.customify.client.Keys.UPDATE_PRODUCT;
 
 public class ProductView {
     private Socket socket;
@@ -114,6 +120,8 @@ public class ProductView {
 //        System.out.println("You are going to update the above product");
 
         ProductFormat newProduct = new ProductFormat();
+
+        newProduct.setKey(UPDATE_PRODUCT);
 
         System.out.println("Enter Product Id: ");
         newProduct.setId(Integer.parseInt(scanner.nextLine()));

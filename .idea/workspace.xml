@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ab9679f-7687-41ae-9b4e-2e4a8ae8cc04" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/products/ProductFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
+    <list default="true" id="6ea3492f-a9b3-4ad6-a3f8-88cbfbf781af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/CouponFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/DisableCustomerFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/billing/PlanFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/products/ProductFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/CouponService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/CouponView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/DisableCustomerView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/SendToClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/BillingModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/submodels/Feature.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/models/submodels/Plan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/billing/PlanFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/customer/CreateCustomerFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/customer/DisableCustomerFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/CustomerRoute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/PlanRoutes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/CouponService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/PlanService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/PlanFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customify.iml" beforeDir="false" afterPath="$PROJECT_DIR$/customify.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/SendToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/SendToServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/data_format/customer/CreateCustomerFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/CreateCustomerFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/NewCustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/NewCustomerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/AwardsNotifications.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/ProductRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/ProductRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/FeebackService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/ProductFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/ProductFormat.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1oEvjeglnB6FTvXmlxlEjwJUDQh" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1oADA76w8G9vAK5i6sHfq8k2aOz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.customify.client.Main" />
+      <module name="new-anselme" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.customify.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.customify.server.Main" />
+      <module name="new-anselme" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.customify.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ab9679f-7687-41ae-9b4e-2e4a8ae8cc04" name="Default Changelist" comment="" />
+      <created>1612864708465</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612864708465</updated>
+      <workItem from="1612864712951" duration="1268000" />
+      <workItem from="1612887924335" duration="3289000" />
+    </task>
+      <changelist id="6ea3492f-a9b3-4ad6-a3f8-88cbfbf781af" name="Default Changelist" comment="" />
+      <created>1612720355151</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612720355151</updated>
+      <workItem from="1612720362061" duration="1057000" />
+      <workItem from="1612721454934" duration="560000" />
+      <workItem from="1612722044814" duration="2474000" />
+      <workItem from="1612729655443" duration="1701000" />
+      <workItem from="1612758634881" duration="4164000" />
+      <workItem from="1612792966025" duration="4154000" />
+      <workItem from="1612847688121" duration="972000" />
+      <workItem from="1612863318747" duration="1892000" />
+      <workItem from="1612888810983" duration="2351000" />
+    </task>
+    <task id="LOCAL-00001" summary="The Business Creation and Updating is now working with the rest support">
+      <created>1612731371649</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612731371649</updated>
+    </task>
+    <task id="LOCAL-00002" summary="testing the new main">
+      <created>1612793075723</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612793075723</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merging main into anselme's branch">
+      <created>1612889077589</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1612889077589</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Finish documenting the BusinessService.java">
+      <created>1612889508949</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1612889508949</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Remove warning from the BusinessService.java">
+      <created>1612889597873</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1612889597873</updated>
+    </task>
+    <task id="LOCAL-00006" summary="All Business Views are now working ...">
+      <created>1612889886338</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612889886338</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Now BusinessService.java at Server is now working">
+      <created>1612890271637</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1612890271637</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="The Business Creation and Updating is now working with the rest support" />
+    <MESSAGE value="testing the new main" />
+    <MESSAGE value="Merging main into anselme's branch" />
+    <MESSAGE value="Finish documenting the BusinessService.java" />
+    <MESSAGE value="Remove warning from the BusinessService.java" />
+    <MESSAGE value="All Business Views are now working ..." />
+    <MESSAGE value="Now BusinessService.java at Server is now working" />
+    <MESSAGE value="Merge master with my branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge master with my branch" />
+  </component>
+</project>

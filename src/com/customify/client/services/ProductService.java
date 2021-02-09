@@ -56,11 +56,13 @@ public class ProductService {
      * @version 1
      * */
     public void getProductById(Integer productId) throws  Exception{
-        Request request = new Request(Keys.GET_PRODUT_BY_ID,productId);
-        Common common = new Common(request, this.socket);
+
+        String jsonToSend = "{\"key\" : \"GET_PRODUCT_BY_ID\", \"id\" : \""+productId+"\"}";
+        SendToServer sendToServer = new SendToServer(jsonToSend, this.socket);
 
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer()) {
+        if (sendToServer.send()) {
+            System.out.println("Reached here 1");
             this.handleGetProductByIdSuccess();
         }
         else{
@@ -111,11 +113,12 @@ public class ProductService {
      * */
 
     public void updateProduct(ProductFormat productFormat) throws  Exception{
-        Request request = new Request(Keys.UPDATE_PRODUCT,productFormat);
-        Common common = new Common(request, this.socket);
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(productFormat);
+        SendToServer serverSend = new SendToServer(json, this.socket);
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer()) {
+        if (serverSend.send()) {
             this.handleUpdateProductSuccess();
         }
         else{
@@ -199,9 +202,11 @@ public class ProductService {
      * */
 
     public void handleGetProductByIdSuccess() throws IOException, ClassNotFoundException{
+        System.out.println("Reached here 2");
         inputStream = this.getSocket().getInputStream();
+        System.out.println("Reached here 3");
         objectInputStream = new ObjectInputStream(inputStream);
-
+        System.out.println("Reached here 4");
         try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
             if(response.get(0).getStatusCode() == 200){

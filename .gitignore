@@ -24,7 +24,7 @@ hs_err_pid*
 production
 out/
 output/
+.idea/workspace.xml
 
 #editor config files
 .vscode
-.idea/

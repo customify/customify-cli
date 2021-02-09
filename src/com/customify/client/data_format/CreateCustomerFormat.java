@@ -1,4 +1,4 @@
-package com.customify.client.data_format.customer;
+package com.customify.client.data_format;
 
 import com.customify.client.Keys;
 

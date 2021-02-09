@@ -14,6 +14,9 @@ public class HandleRoutes {
     AuthRoute authRoute;
     PointsRoutes pointsRoutes;
     ProductRoute productRoute;
+    BusinessRoute businessRoute;
+    CustomerRoute customerRoute;
+
 
     public HandleRoutes(Keys key, Socket socket) throws IOException, SQLException {
         this.socket = socket;
@@ -25,24 +28,27 @@ public class HandleRoutes {
     }
 
     public void switchRoutes() throws IOException, SQLException {
-        if (this.key == Keys.LOGIN) {
-            authRoute.loginRoute();
+        switch (this.key){
+            case LOGIN:
+                authRoute.loginRoute();
+                break;
+            case POINTS_BY_CUSTOMER_EMAIL:
+                 pointsRoutes.getPointsByCustomer();
+                 break;
+            case GET_PRODUT_BY_ID:
+                productRoute.registerProduct();
+               break;
+            case GET_ALL_BUSINESSES:
+//                businessRoute.getAllBusinesses();
+                break;
+            case DELETE_PRODUCT:
+                productRoute.deleteProduct();
+                break;
+            case DISABLE_CUSTOMER:
+                customerRoute.disableCustomer();
+                break;
         }
-        if (this.key ==Keys.CREATE_PRODUCT){
-            productRoute.registerProduct();
-        }
-        if (this.key ==Keys.GET_PRODUT_BY_ID){
-            productRoute.registerProduct();
-        }
-        if (this.key ==Keys.POINTS_BY_CUSTOMER_EMAIL){
-            pointsRoutes.getPointsByCustomer();
-        }
-        if(this.key==Keys.UPDATE_PRODUCT){
-            productRoute.updateProduct();
-        }
-        if(this.key==Keys.DELETE_PRODUCT){
-            productRoute.deleteProduct();
-        }
+        authRoute.loginError();
 //        authRoute.loginError();
     }
 }
