@@ -41,7 +41,7 @@ public class RequestHandler {
                         this.json_data = (String)clientRequest.get(0);
                         ObjectMapper objectMapper = new ObjectMapper();
                         JsonNode jsonNode = objectMapper.readTree(json_data);
-                        this.key = Keys.valueOf(jsonNode.get("key").asText());
+                        System.out.println(jsonNode);
                         this.handleRequest();
                     } catch (Exception var5) {
                     }
@@ -53,20 +53,12 @@ public class RequestHandler {
     }
 
     public void handleRequest() throws IOException, SQLException {
-        AuthController authController;
-//        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
         switch (this.key) {
             case LOGIN:
-//                authController = new AuthController(this.clientSocket, this.request);
-//                authController.login();
-                break;
             case REGISTER:
-//                authController = new AuthController(this.clientSocket, this.request);
-//                authController.signup();
-
             case CREATE_BUSINESS:
                 businessService.create(json_data);
                 break;
@@ -74,19 +66,9 @@ public class RequestHandler {
                 businessService.update(json_data);
                 break;
             case CREATE_PRODUCT:
-//                productController.registerProduct();
-
             case FEEDBACK:
-//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
-//                fController.sendDataInDb();
-
-                break;
             case GET_ALL_PRODUCTS:
-//                productController.getAllProducts();
-                break;
             case DELETE_PRODUCT:
-//                productController.deleteProduct();
-                break;
             case CREATE_CUSTOMER:
                 System.out.println("CUSTOMER RECORDS RECEIVED "+json_data);
                 break;
