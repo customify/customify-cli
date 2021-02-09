@@ -8,10 +8,6 @@
  * */
 
 package com.customify.server.services;
-<<<<<<< HEAD
-=======
-
->>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -28,10 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-<<<<<<< HEAD
-
-=======
->>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -130,26 +122,17 @@ public class BusinessService {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         Statement statement = Db.getStatement();
-<<<<<<< HEAD
 
-=======
->>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
         try {
             int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
             if(ret==1){
-                this.statusCode = 200;
-                String json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ this.statusCode +"\" }";
+                String json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
                 objectOutput.writeObject(json);
             }
         }
         catch (SQLException e){
-<<<<<<< HEAD
-            this.statusCode= 400;
-            String json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ this.statusCode +"\" }";
+            String json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
             objectOutput.writeObject(json);
-=======
-            System.out.println("Error occured: "+e.getMessage());
->>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
         }
 
         objectOutput.close();
@@ -191,8 +174,7 @@ public class BusinessService {
 
         }
         catch (Exception e){
-            this.statusCode= 400;
-            String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ this.statusCode +"\" }";
+            String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 200 +"\" }";
             objectOutput.writeObject(json);
         }
     }
@@ -202,13 +184,8 @@ public class BusinessService {
      * @role
      * Method for fetching all businesses registered
      * */
-    public void getAll() {
+    public void getAll() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-<<<<<<< HEAD
-        this.statusCode = 200;
-=======
-        //setting the response status code
->>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
 
         //formatting the response into a data format
         Statement statement = Db.getStatement();
@@ -233,13 +210,8 @@ public class BusinessService {
                 alldata.add(json);
             }
 
-<<<<<<< HEAD
             //Sending the response to server after it has been formated
             objectOutput.writeObject(alldata);
-=======
-            //Sending the response to server after it has been formatted
-            objectOutput.writeObject(json);
->>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
         }
         catch (Exception e){
             e.printStackTrace();

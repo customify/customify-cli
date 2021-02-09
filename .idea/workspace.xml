@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ea3492f-a9b3-4ad6-a3f8-88cbfbf781af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/CheckCoupon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/RedeemCoupon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/CouponService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/CouponService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/CouponView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/CouponView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/SendToClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/SendToClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../temp/lastttttemp/customify" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -67,8 +62,10 @@
       </method>
     </configuration>
     <configuration name="Client" type="Application" factoryName="Application" temporary="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.customify.client.Main" />
-      <module name="new-anselme" />
+      <module name="Custemp" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.customify.client.*" />
@@ -80,8 +77,10 @@
       </method>
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" temporary="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.customify.server.Main" />
-      <module name="new-anselme" />
+      <module name="Custemp" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.customify.server.*" />
