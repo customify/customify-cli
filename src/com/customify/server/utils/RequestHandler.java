@@ -60,6 +60,10 @@ public class RequestHandler {
         CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
 //        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cbe0e1ba100a454cb4e52832c4cb007e03dd286c
         ProductService productService = new ProductService(this.clientSocket);
         switch (this.key) {
             case LOGIN:

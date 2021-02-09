@@ -19,8 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="fixed a typo: switch">
+    <list default="true" id="18516ea9-bb00-47a8-a077-07bb575e2823" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/FeatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/FeatureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BillingfeatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BillingfeatureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +134,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9ab2013c-8a4c-4794-bba8-d42a1c3ee75a" name="Default Changelist" comment="" />
+      <changelist id="18516ea9-bb00-47a8-a077-07bb575e2823" name="Default Changelist" comment="" />
       <created>1611084407271</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -269,6 +274,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="358" y="81" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1612813381566" />
+    <state width="661" height="179" key="GridCell.Tab.0.bottom" timestamp="1612888846181">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="661" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612888846181" />
+    <state width="661" height="179" key="GridCell.Tab.0.center" timestamp="1612888846181">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="661" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612888846181" />
+    <state width="661" height="179" key="GridCell.Tab.0.left" timestamp="1612888846181">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="661" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612888846181" />
+    <state width="661" height="179" key="GridCell.Tab.0.right" timestamp="1612888846181">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="661" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612888846181" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1612813384895">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
