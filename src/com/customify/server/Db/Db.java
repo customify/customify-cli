@@ -77,7 +77,7 @@ public class Db {
 
     /*
     * Statement to perform query on
-    * */
+     */
     public static Statement getStatement() {
         return statement;
     }
