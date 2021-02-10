@@ -5,7 +5,7 @@
  * @author fiston nshimiyandinze
  * @since Wednesday, 5 February 2021
  * */
-package com.customify.server.services;
+package com.customify.server.services.billing;
 
 import com.customify.server.Db.Db;
 import com.customify.shared.requests_data_formats.BillingFeature.*;
@@ -22,13 +22,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BillingfeatureService {
+public class FeatureService {
     Socket socket;
     OutputStream output;
     ObjectOutputStream objectoutput;
     private  int statusCode;
 
-public BillingfeatureService(Socket socket) throws IOException {
+public FeatureService(Socket socket) throws IOException {
 
 this.socket =socket;
 this.output = socket.getOutputStream();

@@ -11,7 +11,7 @@ import static com.customify.shared.Keys.CREATE_PRODUCT;
 public class HandleRoutes {
     private final Keys key;
     Socket socket;
-    AuthRoute authRoute;
+//    AuthRoute authRoute;
     PointsRoutes pointsRoutes;
     ProductRoute productRoute;
     BusinessRoute businessRoute;
@@ -20,7 +20,7 @@ public class HandleRoutes {
 
     public HandleRoutes(Keys key, Socket socket) throws IOException, SQLException {
         this.socket = socket;
-        this.authRoute = new AuthRoute(socket);
+//        this.authRoute = new AuthRoute(socket);
         this.pointsRoutes = new PointsRoutes(socket);
         this.productRoute = new ProductRoute(socket);
         this.key = key;
@@ -29,9 +29,9 @@ public class HandleRoutes {
 
     public void switchRoutes() throws IOException, SQLException {
         switch (this.key){
-            case LOGIN:
-                authRoute.loginRoute();
-                break;
+//            case LOGIN:
+//                authRoute.loginRoute();
+//                break;
             case POINTS_BY_CUSTOMER_EMAIL:
                  pointsRoutes.getPointsByCustomer();
                  break;
@@ -48,7 +48,7 @@ public class HandleRoutes {
                 customerRoute.disableCustomer();
                 break;
         }
-        authRoute.loginError();
+//        authRoute.loginError();
 //        authRoute.loginError();
     }
 }
