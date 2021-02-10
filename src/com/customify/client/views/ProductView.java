@@ -2,6 +2,7 @@ package com.customify.client.views;
 
 import com.customify.client.services.ProductService;
 import com.customify.client.data_format.products.*;
+
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.Date;
@@ -55,8 +56,8 @@ public class ProductView {
     }
 
     /*@author: Jacques TWIZEYIMANA
-    * This is a method to register a new product
-    * */
+     * This is a method to register a new product
+     * */
 
     public void createProduct() throws Exception {
         Scanner scanner = new Scanner(System.in);
@@ -90,27 +91,25 @@ public class ProductView {
     }
 
     /**
-     * @description
-     * Method to provide Required Id to Product Service for Retrieving product by id
+     * @description Method to provide Required Id to Product Service for Retrieving product by id
      * @author SAUVE Jean-Luc
      * @version 1
-     * */
+     */
     public Integer getProductById() throws Exception {
         Scanner scanner = new Scanner(System.in);
         Integer productId;
         System.out.println("Enter Product Id:");
-        productId =scanner.nextInt();
+        productId = scanner.nextInt();
         ProductService productService = new ProductService(this.socket);
         productService.getProductById(productId);
         return productId;
     }
 
     /**
-     * @description
-     * Method to provide Required Id to Product Service for Updating a product
+     * @description Method to provide Required Id to Product Service for Updating a product
      * @author SAUVE Jean-Luc
      * @version 1
-     * */
+     */
     public void updateProduct() throws Exception {
 //        productId = getProductById();
         Scanner scanner = new Scanner(System.in);
@@ -176,11 +175,11 @@ public class ProductView {
 
     //Delete method create by Merlyne Iradukunda
     // Due 6/02/2021
-    public void deleteProduct() throws Exception{
+    public void deleteProduct() throws Exception {
         Scanner scanner = new Scanner(System.in);
         long productCode;
         System.out.println("Enter product Code:");
-        productCode=scanner.nextLong();
+        productCode = scanner.nextLong();
         ProductService productService = new ProductService(this.socket);
         productService.deleteProduct(productCode);
     }

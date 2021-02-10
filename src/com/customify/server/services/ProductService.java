@@ -1,8 +1,8 @@
 /**
  * @description
  * A service to provide all required methods for Manipulating Products in DB.
- * @author SAUVE Jean-Luc
- * @version 1
+ * @author TWIZEYIMANA Jacques,SAUVE Jean-Luc
+ * @version 2
  * */
 package com.customify.server.services;
 
@@ -26,60 +26,60 @@ import java.util.List;
 public class ProductService {
 
     private Socket socket;
+    OutputStream output;
+    ObjectOutputStream objectOutput;
 
 
-    public ProductService(Socket socket){
+    public ProductService(Socket socket) throws IOException {
         this.socket = socket;
+        this.output = socket.getOutputStream();
+        this.objectOutput = new ObjectOutputStream(output);
     }
 
     // Jacques update this according to new Structure
 
-//    public void registerProduct() throws IOException, SQLException {
-//        ProductFormat product = (ProductFormat) request.getObject();
-//
-//        OutputStream output = this.socket.getOutputStream();
-//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
-//
-//        try {
-//            Connection connection = Db.getConnection();
-//            String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
-//                    " values(?,?,?,?,?,?,?,?,?)";
-//
-//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setLong(1,product.getProductCode());
-//            preparedStatement.setInt(2,product.getBusiness_id());
-//            preparedStatement.setString(3,product.getName());
-//            preparedStatement.setFloat(4,product.getPrice());
-//            preparedStatement.setInt(5,product.getQuantity());
-//            preparedStatement.setString(6,product.getDescription());
-//            preparedStatement.setDouble(7,product.getBondedPoints());
-//            preparedStatement.setInt(8,product.getRegistered_by());
-//            preparedStatement.setString(9,product.getCreatedAt());
-//
-//            if(preparedStatement.executeUpdate() > 0){
-//                List responseData = new ArrayList<>();
-//                Response response = new Response(200,product);
-//                responseData.add(response);
-//
-//                //Sending the response to client
-//                objectOutput.writeObject(responseData);
-//            }
-//            else{
-//                List responseData = new ArrayList<>();
-//                Response response = new Response(500,product);
-//                responseData.add(response);
-//                //Sending the response to client
-//                objectOutput.writeObject(responseData);
-//            }
-//        }
-//        catch (Exception e){
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(500,new ProductFormat());
-//            responseData.add(response);
-//            //Sending the response to client
-//            objectOutput.writeObject(responseData);
-//        }
-//    }
+    public void registerProduct(String data) throws IOException, SQLException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+
+        try {
+            OutputStream output = this.socket.getOutputStream();
+            ObjectOutputStream objectOutput = new ObjectOutputStream(output);
+
+            Connection connection = Db.getConnection();
+            String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
+                    " values(?,?,?,?,?,?,?,?,?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setLong(1,jsonNode.get("productCode").asLong());
+            preparedStatement.setInt(2,jsonNode.get("business_id").asInt());
+            preparedStatement.setString(3,jsonNode.get("name").asText());
+            preparedStatement.setFloat(4, (float) jsonNode.get("price").asDouble());
+            preparedStatement.setInt(5,jsonNode.get("quantity").asInt());
+            preparedStatement.setString(6,jsonNode.get("description").asText());
+            preparedStatement.setDouble(7,jsonNode.get("bondedPoints").asDouble());
+            preparedStatement.setInt(8,jsonNode.get("registered_by").asInt());
+            preparedStatement.setString(9,jsonNode.get("createdAt").asText());
+
+            if(preparedStatement.executeUpdate() > 0){
+                objectOutput.writeObject("{\"status\": 201}");
+                objectOutput.close();
+                System.out.println("Product was Created successfully!!! ");
+            }
+            else{
+                objectOutput.writeObject("{\"status\": 400}");
+                objectOutput.close();
+                System.out.println("\n\nProduct format received was incorrect\n ");
+            }
+        }
+        catch (Exception e){
+            objectOutput.writeObject("{\"status\": 500}");
+            objectOutput.close();
+            System.out.println("\n\nInternal server error\n ");
+            System.out.println(e.getMessage() + e.getCause());
+        }
+    }
 
     /**
      * @description

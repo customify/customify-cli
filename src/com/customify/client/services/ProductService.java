@@ -16,11 +16,12 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.List;
 
+import static com.customify.client.Keys.CREATE_PRODUCT;
+
 public class ProductService {
     private Socket socket;
-    private String data;
-    InputStream inputStream;
-    ObjectInputStream objectInputStream;
+    private InputStream inputStream;
+    private ObjectInputStream objectInputStream;
 
     public ProductService(Socket socket) {
         this.socket = socket;
@@ -35,16 +36,17 @@ public class ProductService {
 
     }
 
-    public void addNewProduct(ProductFormat productModel) throws Exception {
-        Request request = new Request(Keys.CREATE_PRODUCT, productModel);
-        Common common = new Common(request, this.socket);
+    public void addNewProduct(ProductFormat productFormat) throws Exception {
+        productFormat.setKey(CREATE_PRODUCT);
 
-        //if the sending is successful call a method to handle response from server
-        if (common.sendToServer()) {
-            this.handleRegisterProductSuccess();
-        } else {
-            System.out.println("\n\nError occurred when trying to send request to server\n");
+        var mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(productFormat);
+        SendToServer sendToServer = new SendToServer(json, this.socket);
+
+        if (sendToServer.send()) {
+            System.out.println("\n\nData was sent to server successfully..\n");
         }
+        else System.out.println("\n\nFailed to send the request to the server ....\n");
     }
 
     /**
