@@ -54,6 +54,10 @@ public class ProductView {
         }
     }
 
+    /*@author: Jacques TWIZEYIMANA
+    * This is a method to register a new product
+    * */
+
     public void createProduct() throws Exception {
         Scanner scanner = new Scanner(System.in);
         ProductFormat newProduct = new ProductFormat();
