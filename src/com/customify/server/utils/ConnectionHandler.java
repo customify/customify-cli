@@ -42,6 +42,7 @@ public class ConnectionHandler {
                     this.request = clientRequest.get(0);
                     this.handleRequest();
                 } catch (IOException | ClassNotFoundException | SQLException e) {
+
                 }
             }
         } catch (IOException e) {
@@ -79,7 +80,6 @@ public class ConnectionHandler {
             case FEEDBACK:
                 FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
                 fController.sendDataInDb();
-
                 break;
             case GET_ALL_PRODUCTS:
                 productController = new ProductController(this.clientSocket, this.request);
