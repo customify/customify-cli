@@ -8,11 +8,16 @@
  * @since Wednesday, 3 February 2021 - 08:17 - Time in Nyabihu
  * */
 
-package com.customify.shared.requests_data_formats;
+package com.customify.client.data_format.business;
+
+import com.customify.client.Keys;
 
 import java.io.Serializable;
 
 public class BusinessFormat implements Serializable {
+
+    private Keys key;
+    private int id;
     private String name;
     private String location;
     private String phone_number;
@@ -22,13 +27,30 @@ public class BusinessFormat implements Serializable {
 
     public BusinessFormat(){}
 
-    public BusinessFormat(String name, String location, String phone_number, String address, int representative, int plan) {
+    public BusinessFormat(Keys key, String name, String location, String phone_number, String address, int representative, int plan) {
+        this.key = key;
         this.name = name;
         this.location = location;
         this.phone_number = phone_number;
         this.address = address;
         this.representative = representative;
         this.plan = plan;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Keys getKey() {
+        return key;
+    }
+
+    public void setKey(Keys key) {
+        this.key = key;
     }
 
     public String getName() {

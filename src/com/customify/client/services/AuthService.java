@@ -4,7 +4,6 @@ import com.customify.client.Common;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
 import com.customify.shared.requests_data_formats.LoginFormat;
-import com.customify.shared.requests_data_formats.ProductFormat;
 import com.customify.shared.requests_data_formats.SignUpFormat;
 import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
 
@@ -62,7 +61,7 @@ public class AuthService {
               If the response status code is OK call SuccessLoginFormat to extract data from server
             */
             SuccessLoginFormat data = (SuccessLoginFormat) response.get(0).getData();
-            System.out.println("               Loggin success full");
+            System.out.println("               Login success full");
             System.out.println("               Registered Email: "+data.getEmail());
         }
     }

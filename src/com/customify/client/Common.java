@@ -38,21 +38,20 @@ public class Common {
         this.serverIP = "";
     }
 
+    // OLD VERSION
     public boolean sendToServer() throws IOException {
         try {
+
             List<Request> dataToSend = new ArrayList<>();
             dataToSend.add(request);
             this.output = socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(output);
             this.objectOutput.writeObject(dataToSend);
-
-
-
+            return true;
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
+            return false;
         }
-        return true;
     }
-
 }

@@ -1,9 +1,8 @@
 
 /*
-*
-*  created by veritem 29/01/2021
-*
-*  */
+*  created by Makuza Mugabo Verite 29/01/2021
+*  This is for dealing with database interactions
+**/
 
 package com.customify.server.Db;
 
@@ -16,11 +15,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import com.customify.server.services.NotificationService;
 
 public class Db {
 
   private static  Connection connection = null;
   private static Statement statement = null;
+
+  public Db(){}
 
     /**
      * for initializing the connections to the database
@@ -51,6 +53,15 @@ public class Db {
 
           System.out.println("Db connected......");
 
+          /*
+
+           @author Yassin
+           this is sendEmail method which sends email to customer who got an award;
+
+
+          NotificationService notification = new NotificationService();
+          notification.sendEmail();
+*/
       }catch (SQLException e){
           System.out.println("Db error: "+e.getMessage());
       }
@@ -66,14 +77,14 @@ public class Db {
 
     /*
     * Statement to perform query on
-    * */
+     */
     public static Statement getStatement() {
         return statement;
     }
 
     public static void closeConnection(){
-      try{
-          connection.close();
+       try{
+           connection.close();
       }catch (SQLException e){
           e.printStackTrace();
       }

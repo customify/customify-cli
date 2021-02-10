@@ -1,5 +1,5 @@
-/**
- * @description
+/*
+  @description
  * Routing for Product Requests
  * @author SAUVE Jean-Luc
  * @version 1
@@ -30,5 +30,20 @@ public class ProductRoute {
     public void  registerProduct() throws IOException, SQLException {
         productController.registerProduct();
     }
+    public void  getProductById() throws IOException, SQLException {
+        productController.getProductById();
+    }
+    public void  updateProduct() throws IOException, SQLException {
+        productController.updateProduct();
+    }
 
+    /*
+     * @description
+     * delete route for products
+     * @author: Tamara Iradukunda
+     */
+
+    public void  deleteProduct() throws IOException, SQLException {
+        productController.deleteProduct();
+    }
 }
