@@ -1,6 +1,6 @@
 
 /*
-*  created by veritem 29/01/2021
+*  created by Makuza Mugabo Verite 29/01/2021
 *  This is for dealing with database interactions
 **/
 
@@ -77,7 +77,7 @@ public class Db {
 
     /*
     * Statement to perform query on
-    * */
+     */
     public static Statement getStatement() {
         return statement;
     }

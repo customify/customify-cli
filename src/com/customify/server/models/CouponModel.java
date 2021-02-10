@@ -83,4 +83,9 @@ public class CouponModel {
     public void setCoupon_value(String coupon_value) {
         this.coupon_value = coupon_value;
     }
+
+    @Override
+    public String toString() {
+       return  "{"+this.coupon_id+","+this.coupon_code+","+this.coupon_value+","+this.couponStatus+","+this.created_at+","+this.customer_id+"}";
+    }
 }

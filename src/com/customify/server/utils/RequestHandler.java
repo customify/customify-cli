@@ -1,5 +1,6 @@
 package com.customify.server.utils;
 
+
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
 import com.customify.server.controllers.AuthController;
@@ -10,6 +11,7 @@ import com.customify.server.services.ProductService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.customify.server.services.CouponService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,18 +39,20 @@ public class RequestHandler {
             this.objectInput = new ObjectInputStream(this.input);
 
 
-                while(true) {
-                    try {
-                        List<String> clientRequest = (List)this.objectInput.readObject();
-                        this.json_data = (String)clientRequest.get(0);
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        JsonNode jsonNode = objectMapper.readTree(json_data);
-                        this.key = Keys.valueOf(jsonNode.get("key").asText());
+            while(true) {
+                try {
+                    List<String> clientRequest = (List)this.objectInput.readObject();
+                    this.json_data = (String)clientRequest.get(0);
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    JsonNode jsonNode = objectMapper.readTree(json_data);
 
-                        this.handleRequest();
-                    } catch (Exception var5) {
-                    }
+                    this.key = Keys.valueOf(jsonNode.get("key").asText());
+
+                    System.out.println(this.key);
+                    this.handleRequest();
+                } catch (Exception var5) {
                 }
+            }
 
         } catch (IOException e) {
             System.out.println("Error in reading Object " + e.getMessage());
@@ -58,9 +62,16 @@ public class RequestHandler {
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
         CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
-//        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cbe0e1ba100a454cb4e52832c4cb007e03dd286c
         ProductService productService = new ProductService(this.clientSocket);
+        CouponService couponService = new CouponService(this.clientSocket);
+
+        System.out.println("Handling routes");
+
         switch (this.key) {
             case LOGIN:
 //                authController = new AuthController(this.clientSocket, this.request);
@@ -101,7 +112,7 @@ public class RequestHandler {
                 productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-            customer.create();
+                customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -112,7 +123,10 @@ public class RequestHandler {
             case DISABLE_CUSTOMER:
                 customer.disable();
                 break;
-
+            case CREATE_COUPON:
+                couponService.coupingByProduct(json_data);
+            case GET_ALL_COUPONS:
+                couponService.getAllCoupons(json_data);
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

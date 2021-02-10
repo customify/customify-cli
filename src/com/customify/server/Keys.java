@@ -16,10 +16,20 @@ public enum Keys {
     GET_BUSINESS,
     CREATE_CUSTOMER,
     EDIT_BUSINESS,
+    CREATE_COUPON,
     CREATE_PLAN,
     UPDATE_PLAN,
     READ_PLAN,
     DELETE_PLAN,
     DISABLE_CUSTOMER,
+<<<<<<< HEAD
+    POINTS_BY_CUSTOMER_EMAIL,
+    GET_ALL_COUPONS
+=======
     POINTS_BY_CUSTOMER_EMAIL
+<<<<<<< HEAD
+=======
+
+>>>>>>> cbe0e1ba100a454cb4e52832c4cb007e03dd286c
+>>>>>>> 9f1807045df6f0cdd1e8325f992ff1ab153a60e0
 }
