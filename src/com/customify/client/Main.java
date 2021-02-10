@@ -35,7 +35,6 @@ public class Main {
                 Home home = new Home(socket);
                 home.view();
             }
-
         }catch (Exception e){
             this.isConnectionOn = false;
             System.out.println("Failed to connect to the server at port: "+ portNumber);
