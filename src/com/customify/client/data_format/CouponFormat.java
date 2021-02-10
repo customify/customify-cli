@@ -3,15 +3,17 @@
 
 package com.customify.client.data_format;
 
-import java.text.DateFormat;
+import com.customify.client.Keys;
 
 public class CouponFormat {
     private String customer_id;
     private String source;
     private String value;
     private String expiry;
+    private Keys key = Keys.CREATE_CUOPON;
 
     public CouponFormat(){}
+
 
     public CouponFormat(String customer_id, String source, String value, String expiry) {
         this.customer_id = customer_id;
@@ -50,5 +52,13 @@ public class CouponFormat {
 
     public void setExpiry(String expiry) {
         this.expiry = expiry;
+    }
+
+    public Keys getKey() {
+        return key;
+    }
+
+    public void setKey(Keys key) {
+        this.key = key;
     }
 }

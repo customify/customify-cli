@@ -1,14 +1,14 @@
 package com.customify.server.models.submodels;
 //Created by Moss
 
-public class Plan <S, I>{
+public class Plan <I,T,D>{
     //    S represents data type for title, description
     //    I represents data type for Id
     private I planId;
-    private S planTitle;
-    private S planDescription;
+    private T planTitle;
+    private D planDescription;
 
-    public Plan(I planId, S planTitle, S planDescription){
+    public Plan(I planId, T planTitle, D planDescription){
         this.planId = planId;
         this.planTitle = planTitle;
         this.planDescription = planDescription;
@@ -20,16 +20,16 @@ public class Plan <S, I>{
     public I getPlanId() {
         return this.planId;
     }
-    public void setPlanTitle(S planTitle) {
+    public void setPlanTitle(T planTitle) {
         this.planTitle = planTitle;
     }
-    public S getPlanTitle() {
+    public T getPlanTitle() {
         return this.planTitle;
     }
-    public void setPlanDescription(S planDescription) {
+    public void setPlanDescription(D planDescription) {
         this.planDescription = planDescription;
     }
-    public S getPlanDescription() {
+    public D getPlanDescription() {
         return this.planDescription;
     }
 }
