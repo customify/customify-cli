@@ -43,8 +43,6 @@ public class ProductService {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         try {
-            OutputStream output = this.socket.getOutputStream();
-            ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 
             Connection connection = Db.getConnection();
             String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
@@ -63,19 +61,19 @@ public class ProductService {
             preparedStatement.setString(9,jsonNode.get("createdAt").asText());
 
             if(preparedStatement.executeUpdate() > 0){
-                objectOutput.writeObject("{\"status\": 201}");
-                objectOutput.close();
+                this.objectOutput.writeObject("{\"status\": 201}");
+                this.objectOutput.close();
                 System.out.println("Product was Created successfully!!! ");
             }
             else{
-                objectOutput.writeObject("{\"status\": 400}");
-                objectOutput.close();
+                this.objectOutput.writeObject("{\"status\": 400}");
+                this.objectOutput.close();
                 System.out.println("\n\nProduct format received was incorrect\n ");
             }
         }
         catch (Exception e){
-            objectOutput.writeObject("{\"status\": 500}");
-            objectOutput.close();
+            this.objectOutput.writeObject("{\"status\": 500}");
+            this.objectOutput.close();
             System.out.println("\n\nInternal server error\n ");
             System.out.println(e.getMessage() + e.getCause());
         }

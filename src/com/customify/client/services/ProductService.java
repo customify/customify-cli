@@ -159,13 +159,13 @@ public class ProductService {
         return;
     }
 
-    public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
-
-        this.inputStream = this.socket.getInputStream();
-        this.objectInputStream = new ObjectInputStream(this.inputStream);
-
+    public void handleRegisterProductSuccess() throws Exception {
         try {
-            String json_data = (String)this.objectInputStream.readObject();
+            this.inputStream = this.socket.getInputStream();
+            this.objectInputStream = new ObjectInputStream(this.inputStream);
+
+            String json_data = (String) this.objectInputStream.readObject();
+
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(json_data);
 
@@ -180,9 +180,9 @@ public class ProductService {
             }
 
         } catch (IOException e) {
-            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+            System.out.println("\n\nError occurred io:" + e.getMessage() + "\n\n");
         } catch (ClassNotFoundException e) {
-            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+            System.out.println("\n\nError occurred c4:" + e.getMessage() + "\n\n");
         }
 
         return;
