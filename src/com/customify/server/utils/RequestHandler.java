@@ -3,11 +3,8 @@ package com.customify.server.utils;
 
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
-import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
-import com.customify.server.services.BusinessService;
 import com.customify.server.services.ProductService;
-import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -39,22 +36,16 @@ public class RequestHandler {
 
 
             while(true) {
-                try {
                     List<String> clientRequest = (List)this.objectInput.readObject();
                     this.json_data = (String)clientRequest.get(0);
                     ObjectMapper objectMapper = new ObjectMapper();
                     JsonNode jsonNode = objectMapper.readTree(json_data);
-
                     this.key = Keys.valueOf(jsonNode.get("key").asText());
-
                     this.handleRequest();
-                } catch (Exception var5) {
-                    System.out.println("Error with socket connection: "+var5.getMessage());
-                }
             }
-
-        } catch (IOException e) {
+        } catch (IOException | SQLException | ClassNotFoundException e) {
             System.out.println("Error in reading Object " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.*;
 import java.util.Collections;
@@ -19,6 +20,8 @@ import java.util.Random;
 
 public class CouponService {
   Socket socket;
+  ObjectOutputStream objectOutputStream;
+
 
   public CouponService(Socket socket){
       this.socket = socket;
@@ -64,21 +67,20 @@ public class CouponService {
 
 
   public void getAllCoupons(String jsonData){
+    ObjectMapper objectMapper = new ObjectMapper();
 
     System.out.println("Getting coups "+jsonData);
 
     try{
       Statement  statement = Db.getStatement();
       ResultSet rs = statement.executeQuery("select * from Coupon");
-      //ObjectMapper objectMapper = new ObjectMapper();
-      //String jsonCoupons =  objectMapper.writeValueAsString(rs);
-      //SendToClient sendToClient = new SendToClient(this.socket, Collections.singletonList(jsonCoupons));
 
       while (rs.next()){
-        CouponFormat couponFormat = new CouponFormat(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7));
+        CouponFormat couponFormat = new CouponFormat(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
+        String json = objectMapper.writeValueAsString(couponFormat);
+        System.out.println(json);
       }
-
-    }catch (SQLException  e){
+    }catch (SQLException | JsonProcessingException e){
       System.out.println("Sql error: "+e.getMessage());
     }
   }

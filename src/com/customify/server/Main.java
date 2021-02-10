@@ -30,10 +30,10 @@ public class Main {
                 Socket clientSocket = null;
 
                     try {
-                        Db.init();
                         System.out.println("** Listening on port ***");
                         clientSocket = serverSocket.accept();
                         System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
+                        Db.init();
                     } catch (IOException e) {
                         Db.closeConnection();
                         System.out.println("Terminating because of " + e.getMessage());
@@ -41,7 +41,6 @@ public class Main {
 
                     RequestHandler con = new RequestHandler(clientSocket);
                     con.init();
-
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
         } catch (IOException e) {

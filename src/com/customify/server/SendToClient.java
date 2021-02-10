@@ -37,6 +37,7 @@ public class SendToClient {
             OutputStream output = this.socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(output);
             objectOutput.writeObject(this.responseData);
+            objectOutput.close();
         } catch (Exception e) {
             System.out.println("MESSAGE => "+e.getMessage());
         }
