@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ea3492f-a9b3-4ad6-a3f8-88cbfbf781af" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new-anselme.iml" beforeDir="false" afterPath="$PROJECT_DIR$/new-anselme.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +95,7 @@
       <workItem from="1612888810983" duration="2351000" />
       <workItem from="1612891203373" duration="1509000" />
       <workItem from="1612899478917" duration="695000" />
-      <workItem from="1612930630148" duration="1569000" />
+      <workItem from="1612930630148" duration="2421000" />
     </task>
     <task id="LOCAL-00001" summary="The Business Creation and Updating is now working with the rest support">
       <created>1612731371649</created>
@@ -157,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612891397818</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Now the response from the server after any action is working">
+      <created>1612932286892</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1612932286892</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +171,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -185,6 +200,7 @@
     <MESSAGE value="Now BusinessService.java at Server is now working" />
     <MESSAGE value="Merge master with my branch" />
     <MESSAGE value="Merging main into my branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merging main into my branch" />
+    <MESSAGE value="Now the response from the server after any action is working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now the response from the server after any action is working" />
   </component>
 </project>
