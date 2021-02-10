@@ -1,7 +1,5 @@
 package com.customify.client;
 
-
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -41,10 +39,10 @@ public class SendToServer {
             this.output = this.socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(this.output);
             this.objectOutput.writeObject(dataToSend);
-//            this.objectOutput.flush();
-//            this.objectOutput.close();
-//            this.output.close();
         } catch (Exception e) {
+            this.objectOutput.flush();
+            this.objectOutput.close();
+            this.output.close();
             System.out.println(e.getMessage());
         }
         return true;

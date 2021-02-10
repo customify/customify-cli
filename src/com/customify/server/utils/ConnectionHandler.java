@@ -36,13 +36,13 @@ public class ConnectionHandler {
         try {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(input);
-            while (true) {
+            while (objectInput.readObject() != null) {
                 try {
                     List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
                     this.request = clientRequest.get(0);
                     this.handleRequest();
                 } catch (IOException | ClassNotFoundException | SQLException e) {
-
+                    System.out.println("Error occurred "+e.getMessage());
                 }
             }
         } catch (IOException e) {

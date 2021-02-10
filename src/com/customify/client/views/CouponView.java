@@ -77,7 +77,7 @@ public class CouponView {
         System.out.println("Enter the coupon value ");
         couponFormat.setValue(reader.nextLine());
 
-        System.out.println("Enter the coupon expiry date ");
+        System.out.println("Enter the coupon expiry date (YYY-MMM-dd)");
         couponFormat.setExpiry(reader.nextLine());
 
         CouponService couponService = new CouponService(this.socket);
@@ -105,6 +105,11 @@ public class CouponView {
         System.out.println("|     All available coupons                  |");
         System.out.println("|--------------------------------------------|");
         System.out.println("Coupon list");
+
+
+        CouponService couponService = new CouponService(this.socket);
+        couponService.getCoupons();
+
         this.init();
     }
     public void checkCoupon() throws Exception {

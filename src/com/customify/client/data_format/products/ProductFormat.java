@@ -9,7 +9,9 @@ package com.customify.client.data_format.products;
 
 import com.customify.client.Keys;
 
-public class ProductFormat  {
+import java.io.Serializable;
+
+public class ProductFormat implements Serializable {
 
     private Keys key;
 

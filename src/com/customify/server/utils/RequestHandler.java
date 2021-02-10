@@ -47,9 +47,9 @@ public class RequestHandler {
 
                     this.key = Keys.valueOf(jsonNode.get("key").asText());
 
-                    System.out.println(this.key);
                     this.handleRequest();
                 } catch (Exception var5) {
+                    System.out.println("Error with socket connection: "+var5.getMessage());
                 }
             }
 
@@ -64,7 +64,6 @@ public class RequestHandler {
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
-        System.out.println("Handling routes");
 
         switch (this.key) {
             case LOGIN:
@@ -117,10 +116,10 @@ public class RequestHandler {
             case DISABLE_CUSTOMER:
                 customer.disable();
                 break;
-            case CREATE_COUPON:
+            case CREATE_CUOPON:
                 couponService.coupingByProduct(json_data);
                 break;
-            case GET_ALL_COUPONS:
+            case GET_COUPONS:
                 couponService.getAllCoupons(json_data);
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");

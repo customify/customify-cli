@@ -2,7 +2,9 @@ package com.customify.client.services;
 
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CouponFormat;
+import com.customify.client.data_format.GetCouponsFormat;
 import com.customify.client.data_format.RedeemCoupon;
+import com.customify.server.Keys;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -39,6 +41,20 @@ public class CouponService {
             SendToServer sendToServer = new SendToServer(json,this.socket);
         }catch (JsonProcessingException e){
             System.out.println("Parsing reedem coupon "+e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getCoupons(){
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            GetCouponsFormat getCouponsFormat = new GetCouponsFormat();
+            String json = objectMapper.writeValueAsString(getCouponsFormat);
+            SendToServer sendToServer = new SendToServer(json,this.socket);
+            sendToServer.send();
+        }catch (JsonProcessingException e){
+
         } catch (IOException e) {
             e.printStackTrace();
         }
