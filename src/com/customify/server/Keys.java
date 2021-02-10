@@ -24,5 +24,6 @@ public enum Keys {
     REMOVE_BUSINESS,
     UPDATE_PLAN,
     UPDATE_PRODUCT,
-
+    POINTS_BY_CUSTOMER_EMAIL,
+    GET_ALL_COUPONS,
 }
