@@ -71,8 +71,12 @@ public class BusinessService {
 
             // Let me try to execute the query and write the result ....
             if(statement.execute()){
+                objectOutput.writeObject("{\"status\": 500}");
+                objectOutput.close();
                 System.out.println("Your query not working .... ");
             }else{
+                objectOutput.writeObject("{\"status\": 201}");
+                objectOutput.close();
                 System.out.println("Query Ok !!! ");
             }
         }catch (Exception e){
@@ -105,8 +109,12 @@ public class BusinessService {
 
             // Let me try to execute the query and write the result ....
             if(statement.execute()){
+                objectOutput.writeObject("{\"status\": 500}");
+                objectOutput.close();
                 System.out.println("Your query not working .... ");
             }else{
+                objectOutput.writeObject("{\"status\": 200}");
+                objectOutput.close();
                 System.out.println("Query Ok !!! ");
             }
         }catch (Exception e){
