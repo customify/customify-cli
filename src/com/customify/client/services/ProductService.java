@@ -8,6 +8,7 @@ import com.customify.shared.Request;
 import com.customify.shared.Response;
 import com.customify.client.data_format.products.ProductFormat;
 import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class ProductService {
 
         if (sendToServer.send()) {
             System.out.println("\n\nData was sent to server successfully..\n");
+            this.handleRegisterProductSuccess();
         }
         else System.out.println("\n\nFailed to send the request to the server ....\n");
     }
@@ -158,19 +160,20 @@ public class ProductService {
     }
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
+
+        this.inputStream = this.socket.getInputStream();
+        this.objectInputStream = new ObjectInputStream(this.inputStream);
 
         try {
-            List<Response> response = (List<Response>) objectInputStream.readObject();
-            ;
-            if (response.get(0).getStatusCode() == 200) {
-                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
+            String json_data = (String)this.objectInputStream.readObject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json_data);
 
+            if (jsonNode.get("status").asInt() == 201) {
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("\t\t product registered successfully");
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            } else if (response.get(0).getStatusCode() == 400) {
+            } else if (jsonNode.get("status").asInt() == 400) {
                 System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
             } else {
                 System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
