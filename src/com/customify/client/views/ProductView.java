@@ -165,8 +165,12 @@ public class ProductView {
     }
 
     public void getAll() throws Exception {
-        ProductService productService = new ProductService(this.socket);
-        productService.getAllProducts();
+        try {
+            ProductService productService = new ProductService(this.socket);
+            productService.getAllProducts();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
