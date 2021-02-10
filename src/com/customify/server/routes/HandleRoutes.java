@@ -31,9 +31,9 @@ public class HandleRoutes {
             case LOGIN:
                 authRoute.loginRoute();
                 break;
-            case POINTS_BY_CUSTOMER_EMAIL:
-                 pointsRoutes.getPointsByCustomer();
-                 break;
+//            case POINTS_BY_CUSTOMER_EMAIL:
+//                 pointsRoutes.getPointsByCustomer();
+//                 break;
             case CREATE_PRODUCT:
                 productRoute.registerProduct();
                 break;

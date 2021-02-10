@@ -2,8 +2,8 @@ package com.customify.server.utils;
 
 
 import com.customify.server.controllers.*;
+import com.customify.server.services.PointsController;
 import com.customify.shared.Request;
-import com.customify.shared.Keys;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -60,7 +60,6 @@ public class ConnectionHandler {
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
         ProductController productController = new ProductController(this.clientSocket, this.request);
-        BusinessController businessController;
         PointsController pointsController = new PointsController(this.clientSocket,this.request);
 
         switch (request.getKey()) {
@@ -73,14 +72,14 @@ public class ConnectionHandler {
                 authController.signup();
                 
             case CREATE_BUSINESS:
-                businessController = new BusinessController(this.clientSocket, this.request);
-                businessController.create();
+//                businessController = new BusinessController(this.clientSocket, this.request);
+//                businessController.create();
                 break;
             case GET_WINNERS:
                 pointsController.getWinners();
                 break;
-            case POINTS_BY_CUSTOMER_EMAIL:
-                pointsController.getPointsByCustomerEmail();
+//            case POINTS_BY_CUSTOMER_EMAIL:
+//                pointsController.getPointsByCustomerEmail();
             case CREATE_PRODUCT:
                 productController.registerProduct();
 

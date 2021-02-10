@@ -3,8 +3,10 @@
 */
 package com.customify.client.views;
 
+import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
+import com.customify.client.views.customer.CustomerMainView;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -33,20 +35,27 @@ public class Home {
         LoginView loginView = new LoginView(this.socket);
         SignupView signupView = new SignupView(this.socket);
         CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
+        CustomerMainView customer = new CustomerMainView(this.socket);
+
         ProductView productView = new ProductView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
+        BusinessEditView businessEditView = new BusinessEditView(this.socket);
         PointCountingView pointCountingView = new PointCountingView((this.socket));
 
-        System.out.println("---------------------------------------------");
-        System.out.println("--------------CUSTOMIFY HOME-----------------\n");
-        System.out.println("           1. SIGN UP");
-        System.out.println("           2. LOGIN");
-        System.out.println("           3. PRODUCT MANAGEMENT");
-        System.out.println("           4. REGISTER BUSINESS");
-        System.out.println("           5. GIVE FEEDBACK");
-        System.out.println("           6. PROVIDE FEEDBACK ");
-        System.out.println("           7. POINTS");
+        System.out.println("\t\t---------------------------------------------");
+        System.out.println("\t\t--------------CUSTOMIFY HOME-----------------");
+        System.out.println("\t\t---------------------------------------------");
+        System.out.println("\t           1. SIGN UP");
+        System.out.println("\t           2. LOGIN");
+        System.out.println("\t           3. PRODUCT MANAGEMENT");
+        System.out.println("\t           4. REGISTER BUSINESS");
+        System.out.println("\t           5. GIVE FEEDBACK");
+        System.out.println("\t           6. PROVIDE FEEDBACK ");
+        System.out.println("\t           7. POINTS");
+        System.out.println("\t           8. CUSTOMER MANAGEMENT");
+        System.out.println("\t\t---------------------------------------------");
 
+        System.out.print("\n\n\t\tEnter your choice: ");
         choice = scan.nextInt();
 
         switch (choice) {
@@ -68,8 +77,12 @@ public class Home {
             case 6:
                 feedbackView.view();
                 break;
+
             case 7:
                 pointCountingView.view();
+                break;
+            case 8:
+                customer.view();
                 break;
             default:
                 System.out.println("Invalid choice");

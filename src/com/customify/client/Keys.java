@@ -1,0 +1,18 @@
+package com.customify.client;
+
+// NEW VERSION
+public enum Keys {
+    LOGIN,
+    REGISTER,
+    FEEDBACK,
+    GET_USERS,
+    CREATE_PRODUCT,
+    GET_ALL_PRODUCTS,
+    GET_WINNERS,
+    POINTS_BY_CUSTOMER_EMAIL,
+    DELETE_PRODUCT,
+    GET_PRODUCT_BY_ID,
+    CREATE_BUSINESS,
+    EDIT_BUSINESS,
+    CREATE_CUSTOMER
+}

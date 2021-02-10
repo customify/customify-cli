@@ -1,6 +1,6 @@
 package com.customify.server.routes;
 
-import com.customify.server.controllers.PointsController;
+import com.customify.server.services.PointsController;
 import com.customify.shared.Request;
 
 import java.net.Socket;
@@ -17,7 +17,7 @@ public class PointsRoutes {
         this.socket = socket;
         this.pointsController = new PointsController(this.socket,this.request);
     }
-    public void getPointsByCustomer(){
-        pointsController.getPointsByCustomerEmail();
-    }
+//    public void getPointsByCustomer(){
+//        pointsController.getPointsByCustomerEmail();
+//    }
 }

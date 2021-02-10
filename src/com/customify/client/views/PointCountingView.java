@@ -1,6 +1,6 @@
 package com.customify.client.views;
 
-import com.customify.client.services.AuthService;
+//import com.customify.client.services.AuthService;
 import com.customify.client.services.PointsService;
 import com.customify.shared.requests_data_formats.LoginFormat;
 import com.customify.shared.requests_data_formats.PointsByCustomerEmailFormat;
@@ -16,6 +16,9 @@ import java.util.Scanner;
 public class PointCountingView {
     private Socket socket;
 
+    public PointCountingView() {
+
+    }
     public PointCountingView(Socket socket) {
         this.socket = socket;
     }
@@ -38,16 +41,19 @@ public class PointCountingView {
         String customerEmail = null;
 
         pointsLoop:do{
-            System.out.println("------------------POINTS---------------------");
-            System.out.println("\n         00. Return Home");
-            System.out.println("         1. Winners");
-            System.out.println("         2. Points by customer");
+            System.out.println("\n\n\t\t+++++++++++++++++++++++");
+            System.out.println("\t\t\t\tPOINTS");
+            System.out.println("\t\t***********************");
+            System.out.println("\t\t0.Back");
+            System.out.println("\t\t1.WINNERS");
+            System.out.println("\t\t2.Points by customer ID");
+            System.out.println("\t\t***********************");
 
-            System.out.print("\n\n           Enter your choice: ");
+            System.out.print("\n\n\t\tEnter your choice: ");
             choice=scan.nextLine();
 
-            if(choice.equals("00")) {
-                break pointsLoop;
+            if(choice.equals("0")) {
+                return;
             }
             else if(choice.equals("1")) {
                 PointsService pointsService = new PointsService(this.socket);
@@ -55,11 +61,10 @@ public class PointCountingView {
 
             }
             else if(choice.equals("2")){
-                System.out.print("\n           Enter Customer Email: ");
+                System.out.print("\n\n\t\tEnter Customer Email: ");
                 customerEmail = scan.nextLine();
-                PointsByCustomerEmailFormat format = new PointsByCustomerEmailFormat(customerEmail);
                 PointsService pointsService = new PointsService(socket);
-                pointsService.getPointsByCustomerEmail(format);
+                pointsService.getPointsByCustomerEmail(customerEmail);
             }
             else{
                 System.out.println("Bad choice");
