@@ -8,10 +8,7 @@
  * */
 
 package com.customify.server.services;
-<<<<<<< HEAD
-=======
 
->>>>>>> 0486c323dd5e1973af3f984c76f104f6647a08b3
 import com.customify.server.Db.Db;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessReadFormat;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessRFormat;
@@ -74,8 +71,12 @@ public class BusinessService {
 
             // Let me try to execute the query and write the result ....
             if(statement.execute()){
+                objectOutput.writeObject("{\"status\": 500}");
+                objectOutput.close();
                 System.out.println("Your query not working .... ");
             }else{
+                objectOutput.writeObject("{\"status\": 201}");
+                objectOutput.close();
                 System.out.println("Query Ok !!! ");
             }
         }catch (Exception e){
@@ -108,8 +109,12 @@ public class BusinessService {
 
             // Let me try to execute the query and write the result ....
             if(statement.execute()){
+                objectOutput.writeObject("{\"status\": 500}");
+                objectOutput.close();
                 System.out.println("Your query not working .... ");
             }else{
+                objectOutput.writeObject("{\"status\": 200}");
+                objectOutput.close();
                 System.out.println("Query Ok !!! ");
             }
         }catch (Exception e){
