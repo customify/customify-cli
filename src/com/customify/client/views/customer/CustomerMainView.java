@@ -34,6 +34,7 @@ public class CustomerMainView {
             System.out.println("         3. Search Customer");
             System.out.println("         4. Update Customer");
             System.out.println("         5. Disable Customer");
+            System.out.println("         6. Re-enable Customer");
             Scanner scan = new Scanner(System.in);
             String choice = scan.nextLine();
 
@@ -54,6 +55,9 @@ public class CustomerMainView {
                     DisableCustomerView customerView1= new DisableCustomerView(this.socket);
                     customerView1.view();
                     break;
+                case "6":
+
+                     break;
                 case "00":
                     customerView = false;
                     break;
