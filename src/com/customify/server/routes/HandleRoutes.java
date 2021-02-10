@@ -39,7 +39,7 @@ public class HandleRoutes {
                 productRoute.registerProduct();
                break;
             case GET_ALL_BUSINESSES:
-                businessRoute.getAllBusinesses();
+//                businessRoute.getAllBusinesses();
                 break;
             case DELETE_PRODUCT:
                 productRoute.deleteProduct();

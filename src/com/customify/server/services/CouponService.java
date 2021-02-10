@@ -3,18 +3,22 @@
 
 package com.customify.server.services;
 
+import com.customify.client.data_format.CouponFormat;
+
 import java.net.Socket;
 import java.util.Random;
 
 public class CouponService {
   Socket socket;
 
-  CouponService(Socket socket){
+  public CouponService(Socket socket){
       this.socket = socket;
   }
 
   //TODO: add the functionality for the following methods
-  public void coupingByProduct(){}
+  public void coupingByProduct(String couponFormat){
+
+  }
   public void coupingByCustomer(){}
   public void redeemCoupon(){}
   public void checkIfCouponIsValid(){}

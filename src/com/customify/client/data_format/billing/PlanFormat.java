@@ -1,4 +1,4 @@
-package com.customify.client.data_format.customer;
+package com.customify.client.data_format.billing;
 
 import com.customify.client.Keys;
 import com.customify.server.models.submodels.Plan;
@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 // Created BY Moss Aimelyse whole document
 
-public class PlanFormat extends Plan<Integer, String, String> implements Serializable {
+public class PlanFormat extends Plan<Integer, String, String>{
     private Keys key;
 
     public PlanFormat(Keys key, Integer planId, String planTitle, String planDescription) {

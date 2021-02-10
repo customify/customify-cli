@@ -87,6 +87,7 @@ public class Home {
                 break;
             case 9:
                 couponView.init();
+                break;
             default:
                 System.out.println("Invalid choice");
         }
