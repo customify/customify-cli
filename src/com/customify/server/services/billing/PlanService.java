@@ -1,15 +1,22 @@
-package com.customify.server.services;
+package com.customify.server.services.billing;
 
-//Created and Wrote Whole Document By Moss
+
+/**
+ * @author Mfuranziza Sekata Aimelyse Moss
+ * Created and Wrote Whole Document By Moss
+ * */
 
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
+import com.customify.server.response_data_format.billing.PlanFormat;
 import com.customify.shared.Keys;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 import java.net.Socket;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class PlanService {
     Socket socket;
@@ -44,9 +51,41 @@ public class PlanService {
             String query = "SELECT * from plans";
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery(query);
-
+            List<PlanFormat> response = new ArrayList<>();
+            while(results.next()){
+                PlanFormat planFormat = new PlanFormat(
+                        results.getInt(1),
+                        results.getString(2),
+                        results.getString(3)
+                );
+                response.add(planFormat);
+            }
             ObjectMapper objectMapper = new ObjectMapper();
-            String json = objectMapper.writeValueAsString(results);
+            String json = objectMapper.writeValueAsString(response);
+            SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(json));
+        }catch(SQLException | JsonProcessingException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    public String readById(String inputs) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(inputs);
+        try{
+            String query = "SELECT * from plans where planId=";
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery(query+jsonNode.get("planId"));
+            List<PlanFormat> response = new ArrayList<>();
+            while(results.next()){
+                PlanFormat planFormat = new PlanFormat(
+                        results.getInt(1),
+                        results.getString(2),
+                        results.getString(3)
+                );
+                response.add(planFormat);
+            }
+            ObjectMapper objectMapper1 = new ObjectMapper();
+            String json = objectMapper1.writeValueAsString(response);
             SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(json));
         }catch(SQLException | JsonProcessingException e){
             System.out.println(e.getMessage());
