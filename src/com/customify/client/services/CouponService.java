@@ -23,7 +23,7 @@ public class CouponService {
             String json = objectMapper.writeValueAsString(couponFormat);
             SendToServer sendToServer = new SendToServer(json,this.socket);
             if (sendToServer.send()){
-                //System.out.println("sen");
+                System.out.println("Data sent");
             }
         } catch (JsonProcessingException e) {
             System.out.println("Parsing create coupon "+e.getMessage());
