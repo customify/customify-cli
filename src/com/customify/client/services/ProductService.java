@@ -87,13 +87,13 @@ public class ProductService {
     }
 
     public void getAllProducts() throws Exception {
-        Request request = new Request(Keys.GET_ALL_PRODUCTS, new ProductFormat());
-        Common common = new Common(request, this.socket);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString("{\"Key\":\"GET_ALL_PRODUCTS\"}");
 
-        //if the sending is successful call a method to handle response from server
-        if (common.sendToServer()) {
-            this.handleGetProductListSuccess();
-        } else {
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if(serverSend.send()){
+            System.out.println("\n\nRequest to get all products was sent\n");
+        }else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
     }

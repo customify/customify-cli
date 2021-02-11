@@ -36,7 +36,7 @@ public class ProductService {
         this.objectOutput = new ObjectOutputStream(output);
     }
 
-    // Jacques update this according to new Structure
+    // Jacques TWIZEYIMANA
 
     public void registerProduct(String data) throws IOException, SQLException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -247,10 +247,10 @@ public class ProductService {
 //        }
 //    }
 
-    // Jacques update this according to new Structure
+//     Jacques TWIZEYIMANA
 
-//    public void getAllProducts() throws IOException, SQLException {
-//        System.out.println("request to get products was received");
+    public void getAllProducts() throws IOException, SQLException {
+        System.out.println("request to get all products was received");
 //        OutputStream output = this.socket.getOutputStream();
 //        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 //
@@ -282,7 +282,7 @@ public class ProductService {
 //            response.add(new Response(500,new Object()));
 //            objectOutput.writeObject(response);
 //        }
-//    }
+    }
 
 //    public void getProduct() throws IOException {
 //        output = new DataOutputStream(this.socket.getOutputStream());

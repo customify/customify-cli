@@ -89,10 +89,9 @@ public class RequestHandler {
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
-
                 break;
             case GET_ALL_PRODUCTS:
-//                productController.getAllProducts();
+                productService.getAllProducts();
                 break;
             case DELETE_PRODUCT:
 //                productController.deleteProduct();
