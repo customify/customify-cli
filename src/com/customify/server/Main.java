@@ -16,7 +16,7 @@ import java.net.Socket;
 
 public class Main {
 
-    private static final int portNumber = 9500;
+    private static final int portNumber = 4000;
 
 
     public static void main(String[] args) throws Exception {
@@ -29,7 +29,6 @@ public class Main {
             for (;;) {
                 Socket clientSocket = null;
 
-
                     try {
                         Db.init();
                         System.out.println("** Listening on port ***");
@@ -38,17 +37,13 @@ public class Main {
                     } catch (IOException e) {
                         Db.closeConnection();
                         System.out.println("Terminating because of " + e.getMessage());
-
-                        //e.printStackTrace();
                     }
 
                     RequestHandler con = new RequestHandler(clientSocket);
-//                ConnectionHandler con = new ConnectionHandler(clientSocket);
                     con.init();
 
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
-
         } catch (IOException e) {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
         }

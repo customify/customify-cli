@@ -3,7 +3,6 @@ package com.customify.server.utils;
 
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
-import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
 import com.customify.server.services.BusinessService;
@@ -60,13 +59,8 @@ public class RequestHandler {
     }
 
     public void handleRequest() throws IOException, SQLException {
-        AuthController authController;
         CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
         BusinessService businessService = new BusinessService(this.clientSocket);
-<<<<<<< HEAD
-=======
-
->>>>>>> cbe0e1ba100a454cb4e52832c4cb007e03dd286c
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
@@ -125,6 +119,7 @@ public class RequestHandler {
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);
+                break;
             case GET_ALL_COUPONS:
                 couponService.getAllCoupons(json_data);
             default:

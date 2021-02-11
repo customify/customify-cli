@@ -2,9 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ea3492f-a9b3-4ad6-a3f8-88cbfbf781af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/FeedbackController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/PointsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/routes/AuthRoute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/Response.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/LoginFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/requests_data_formats/SignUpFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/customify/shared/responses_data_format/AuthFromats/SuccessLoginFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/SendToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/SendToServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/CouponView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/CouponView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Keys.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

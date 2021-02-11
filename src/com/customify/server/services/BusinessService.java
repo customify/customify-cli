@@ -11,22 +11,17 @@ package com.customify.server.services;
 
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
 public class BusinessService {
     Socket socket;
@@ -70,8 +65,12 @@ public class BusinessService {
 
             // Let me try to execute the query and write the result ....
             if(statement.execute()){
+                objectOutput.writeObject("{\"status\": 500}");
+                objectOutput.close();
                 System.out.println("Your query not working .... ");
             }else{
+                objectOutput.writeObject("{\"status\": 201}");
+                objectOutput.close();
                 System.out.println("Query Ok !!! ");
             }
         }catch (Exception e){
@@ -104,8 +103,12 @@ public class BusinessService {
 
             // Let me try to execute the query and write the result ....
             if(statement.execute()){
+                objectOutput.writeObject("{\"status\": 500}");
+                objectOutput.close();
                 System.out.println("Your query not working .... ");
             }else{
+                objectOutput.writeObject("{\"status\": 200}");
+                objectOutput.close();
                 System.out.println("Query Ok !!! ");
             }
         }catch (Exception e){

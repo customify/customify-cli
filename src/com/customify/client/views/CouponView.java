@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class CouponView {
     Socket socket;
-    Home home;
 
     public CouponView(Socket socket) {
         this.socket = socket;
@@ -28,11 +27,11 @@ public class CouponView {
         System.out.println("|------------------------------------|");
         System.out.println("| COUPONS                            |");
         System.out.println("|____________________________________|");
-        System.out.println("|1. create a coupon                  |");
-        System.out.println("|2. Redeem a coupon                  |");
-        System.out.println("|3. Check a coupon                   |");
-        System.out.println("|4. Get available coupons            |");
-        System.out.println("|5. Back                             |");
+        System.out.println("|1.  create a coupon                  |");
+        System.out.println("|2.  Redeem a coupon                  |");
+        System.out.println("|3.  Check a coupon                   |");
+        System.out.println("|4.  Get available coupons            |");
+        System.out.println("|00. Back                             |");
         System.out.println("|____________________________________|");
         System.out.println("Enter option here -> ");
 
@@ -51,9 +50,6 @@ public class CouponView {
             case 4:
                 this.getAllCoupons();
                 break;
-            case 5:
-                System.out.println("Backkkkkkking");
-                this.home.view();
             default:
                 System.out.println("You entered incorrect option");
         }

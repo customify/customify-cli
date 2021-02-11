@@ -47,7 +47,6 @@ public class SendToServer {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         return true;
     }
 }
