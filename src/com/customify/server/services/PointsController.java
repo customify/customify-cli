@@ -98,5 +98,7 @@ public class PointsController {
         }
         System.out.println("Response sent to client");
 
+        //Sending the response to client
+//        objectOutput.writeObject(responseData);
     }
 }

@@ -1,3 +1,11 @@
+/*
+ *
+ * By Verite ,  Patrick & Samuel
+ * Desc: The core server loader
+ *
+ * */
+
+
 package com.customify.server;
 import com.customify.server.Db.*;
 import com.customify.server.utils.*;
@@ -7,7 +15,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
-    private static final int portNumber = 3000;
+
+    private static final int portNumber = 4000;
+
 
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket;
@@ -18,24 +28,22 @@ public class Main {
 
             for (;;) {
                 Socket clientSocket = null;
-                try {
-                    Db.init();
-                    System.out.println("** Listening on port ***");
-                    clientSocket = serverSocket.accept();
-                    System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
-                } catch (IOException e) {
-                    Db.closeConnection();
-                    System.out.println("Terminating because of "+e.getMessage());
 
-                    //e.printStackTrace();
-                }
+                    try {
+                        Db.init();
+                        System.out.println("** Listening on port ***");
+                        clientSocket = serverSocket.accept();
+                        System.out.println("Accepted socket connection from a client with address: " + clientSocket.getInetAddress().toString() + " on a port " + clientSocket.getPort());
+                    } catch (IOException e) {
+                        Db.closeConnection();
+                        System.out.println("Terminating because of " + e.getMessage());
+                    }
 
-                RequestHandler con = new RequestHandler(clientSocket);
-//                ConnectionHandler con = new ConnectionHandler(clientSocket);
-                con.init();
+                    RequestHandler con = new RequestHandler(clientSocket);
+                    con.init();
+
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
-
         } catch (IOException e) {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
         }

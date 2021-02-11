@@ -4,7 +4,6 @@ import com.customify.client.Common;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
 import com.customify.shared.requests_data_formats.LoginFormat;
-import com.customify.shared.requests_data_formats.ProductFormat;
 import com.customify.shared.requests_data_formats.SignUpFormat;
 import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
 

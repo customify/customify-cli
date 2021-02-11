@@ -5,6 +5,7 @@ package com.customify.client.views;
 
 import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
+import com.customify.client.views.Business.BusinessView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
 import com.customify.client.views.customer.CustomerMainView;
 
@@ -38,9 +39,12 @@ public class Home {
         CustomerMainView customer = new CustomerMainView(this.socket);
 
         ProductView productView = new ProductView(this.socket);
+
+        BusinessView businessView = new BusinessView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
         PointCountingView pointCountingView = new PointCountingView((this.socket));
+        CouponView couponView = new CouponView(this.socket);
 
         System.out.println("\t\t---------------------------------------------");
         System.out.println("\t\t--------------CUSTOMIFY HOME-----------------");
@@ -53,6 +57,7 @@ public class Home {
         System.out.println("\t           6. PROVIDE FEEDBACK ");
         System.out.println("\t           7. POINTS");
         System.out.println("\t           8. CUSTOMER MANAGEMENT");
+        System.out.println("\t           9. COUPONS");
         System.out.println("\t\t---------------------------------------------");
 
         System.out.print("\n\n\t\tEnter your choice: ");
@@ -66,14 +71,14 @@ public class Home {
                 loginView.view();
                 break;
             case 3:
-                productView.createProduct();
+                productView.init();
                 break;
             case 4:
-                businessRegisterView.view();
+                businessView.view();
                 break;
             case 5:
-               System.out.println("Not Det Done");
-                break;    
+                System.out.println("Not Yet Done");
+                break;
             case 6:
                 feedbackView.view();
                 break;
@@ -83,6 +88,9 @@ public class Home {
                 break;
             case 8:
                 customer.view();
+                break;
+            case 9:
+                couponView.init();
                 break;
             default:
                 System.out.println("Invalid choice");

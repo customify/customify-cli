@@ -15,7 +15,6 @@ public class SendToServer {
     private OutputStream output = null;
     private ObjectOutputStream objectOutput = null;
     private boolean isConnectionOn = true;
-    private String serverIP;
     InputStream input;
     ObjectInputStream objectInputStream;
     private String json;
@@ -32,7 +31,6 @@ public class SendToServer {
     public SendToServer(String json, Socket socket) throws IOException {
         this.socket = socket;
         this.json = json;
-        this.serverIP = "";
     }
 
     // NEW VERSION OF COMMON CLASS
@@ -43,13 +41,12 @@ public class SendToServer {
             this.output = this.socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(this.output);
             this.objectOutput.writeObject(dataToSend);
-            this.objectOutput.flush();
-            this.objectOutput.close();
-            this.output.close();
-        } catch (Exception var2) {
-            System.out.println(var2.getMessage());
+//            this.objectOutput.flush();
+//            this.objectOutput.close();
+//            this.output.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-
         return true;
     }
 }
