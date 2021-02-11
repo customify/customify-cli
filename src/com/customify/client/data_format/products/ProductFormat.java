@@ -9,6 +9,8 @@ package com.customify.client.data_format.products;
 
 import com.customify.client.Keys;
 
+import java.util.Objects;
+
 public class ProductFormat  {
 
     private Keys key;
@@ -23,6 +25,20 @@ public class ProductFormat  {
     private double bondedPoints;
     private int registered_by;
     private String createdAt;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductFormat that = (ProductFormat) o;
+        return getId() == that.getId() && getProductCode() == that.getProductCode() && getBusiness_id() == that.getBusiness_id();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getProductCode(), getBusiness_id());
+    }
+
     //Constructor
     public  ProductFormat(){
         this.productCode = this.generateCode();
