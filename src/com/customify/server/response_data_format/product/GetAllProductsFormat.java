@@ -1,8 +1,9 @@
-package com.customify.client.data_format.products;
+package com.customify.server.response_data_format.product;
 
 /*
-* @author: Jacques Twizeyimana
-* @description: response format for sending a list of products and HTTP status code*/
+ * @author: Jacques Twizeyimana
+ * @description: response format for sending a list of products and HTTP status code*/
+
 
 import java.util.List;
 
@@ -26,6 +27,14 @@ public class GetAllProductsFormat {
         this.status = status;
     }
 
+    public List<ProductFormat> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductFormat> products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "GetAllProductFormat{" +
@@ -34,11 +43,4 @@ public class GetAllProductsFormat {
                 '}';
     }
 
-    public List<ProductFormat> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<ProductFormat> products) {
-        this.products = products;
-    }
 }

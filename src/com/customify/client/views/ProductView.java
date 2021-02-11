@@ -181,6 +181,6 @@ public class ProductView {
         System.out.println("Enter product Code:");
         productCode = scanner.nextLong();
         ProductService productService = new ProductService(this.socket);
-        productService.deleteProduct(productCode);
+//        productService.deleteProduct(productCode);
     }
 }
