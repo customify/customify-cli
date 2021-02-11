@@ -22,9 +22,6 @@ public enum Keys {
     READ_PLAN,
     DELETE_PLAN,
     DISABLE_CUSTOMER,
-    POINTS_BY_CUSTOMER_EMAIL
-<<<<<<< HEAD
-=======
-
->>>>>>> cbe0e1ba100a454cb4e52832c4cb007e03dd286c
+    POINTS_BY_CUSTOMER_EMAIL,
+    GET_ALL_COUPONS,
 }

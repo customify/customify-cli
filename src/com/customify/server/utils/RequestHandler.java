@@ -1,8 +1,8 @@
 package com.customify.server.utils;
 
+
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
-import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
 import com.customify.server.services.BusinessService;
@@ -10,6 +10,7 @@ import com.customify.server.services.ProductService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.customify.server.services.CouponService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,8 +44,10 @@ public class RequestHandler {
                     this.json_data = (String)clientRequest.get(0);
                     ObjectMapper objectMapper = new ObjectMapper();
                     JsonNode jsonNode = objectMapper.readTree(json_data);
+
                     this.key = Keys.valueOf(jsonNode.get("key").asText());
 
+                    System.out.println(this.key);
                     this.handleRequest();
                 } catch (Exception var5) {
                 }
@@ -56,15 +59,13 @@ public class RequestHandler {
     }
 
     public void handleRequest() throws IOException, SQLException {
-        AuthController authController;
         CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
-//        ProductController productController = new ProductController(this.clientSocket, this.request);
         BusinessService businessService = new BusinessService(this.clientSocket);
-<<<<<<< HEAD
-=======
-
->>>>>>> cbe0e1ba100a454cb4e52832c4cb007e03dd286c
         ProductService productService = new ProductService(this.clientSocket);
+        CouponService couponService = new CouponService(this.clientSocket);
+
+        System.out.println("Handling routes");
+
         switch (this.key) {
             case LOGIN:
 //                authController = new AuthController(this.clientSocket, this.request);
@@ -116,6 +117,11 @@ public class RequestHandler {
             case DISABLE_CUSTOMER:
                 customer.disable();
                 break;
+            case CREATE_COUPON:
+                couponService.coupingByProduct(json_data);
+                break;
+            case GET_ALL_COUPONS:
+                couponService.getAllCoupons(json_data);
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
