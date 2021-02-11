@@ -2,12 +2,10 @@ package com.customify.client.services;
 
 import com.customify.client.Common;
 import com.customify.client.SendToServer;
-import com.customify.server.models.ProductModel;
-import com.customify.shared.Keys;
+import com.customify.client.Keys;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
 import com.customify.client.data_format.products.ProductFormat;
-import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,9 +13,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.customify.client.Keys.CREATE_PRODUCT;
+import static com.customify.client.Keys.GET_ALL_PRODUCTS;
 
 public class ProductService {
     private Socket socket;
@@ -36,6 +36,10 @@ public class ProductService {
         this.socket = socket;
 
     }
+
+    /*@author: JACQUES TWIZEYIMANA
+    * Description: a register a new product in database
+    * */
 
     public void addNewProduct(ProductFormat productFormat) throws Exception {
         productFormat.setKey(CREATE_PRODUCT);
@@ -74,7 +78,7 @@ public class ProductService {
     }
     //Method Created By Merlyne Iradukunda
     // Due date: 6/2/2020
-    public void deleteProduct(Long productCode) throws  Exception{
+  /*  public void deleteProduct(Long productCode) throws  Exception{
         Request request = new Request(Keys.DELETE_PRODUCT, productCode);
         Common common = new Common(request, this.socket);
 
@@ -84,15 +88,24 @@ public class ProductService {
         } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
-    }
+    }*/
 
+    /*@author: Jacques TWIZEYIMANA
+    * Description: get all products from database
+    * */
     public void getAllProducts() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString("{\"Key\":\"GET_ALL_PRODUCTS\"}");
+        ProductFormat format = new ProductFormat();
+        format.setKey(GET_ALL_PRODUCTS);
+
+        System.out.println("get all products from service");
+
+        String json = objectMapper.writeValueAsString(format);
 
         SendToServer serverSend = new SendToServer(json, this.socket);
         if(serverSend.send()){
             System.out.println("\n\nRequest to get all products was sent\n");
+            this.handleGetProductListSuccess();
         }else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
@@ -118,14 +131,22 @@ public class ProductService {
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
     }
-    public void handleGetProductListSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
 
+    /*@author: Jacques TWIZEYIMANA
+    * description: get handle get all products response
+    * */
+    public void handleGetProductListSuccess() throws IOException, ClassNotFoundException {
         try {
-            List<Response> response = (List<Response>) objectInputStream.readObject();
-            if (response.get(0).getStatusCode() == 200) {
-                List<ProductFormat> products = (List<ProductFormat>) response.get(0).getData();
+            this.inputStream = this.socket.getInputStream();
+            this.objectInputStream = new ObjectInputStream(this.inputStream);
+            String json_data = (String)this.objectInputStream.readObject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json_data);
+
+            if(jsonNode.get("status").asInt() == 200){
+
+                List<ProductFormat> products;
+                products = objectMapper.treeToValue(jsonNode.get("products"),new ArrayList<ProductFormat>().getClass()) ;
 
                 if (products.size() == 0) {
                     System.out.println("\n\nNo products registered so far.\n");
@@ -144,7 +165,7 @@ public class ProductService {
                     System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", product.getProductCode(), product.getName(), product.getQuantity(), product.getPrice(), product.getBondedPoints(), product.getCreatedAt()));
                 }
                 System.out.println("\n");
-            } else if (response.get(0).getStatusCode() == 400) {
+            } else if (jsonNode.get("status").asInt() == 400) {
                 System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
             } else {
                 System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
@@ -158,6 +179,10 @@ public class ProductService {
 
         return;
     }
+
+/*@author: Jacques TWIZEYIMANA
+* Description: handle register product response data
+* */
 
     public void handleRegisterProductSuccess() throws Exception {
         try {
