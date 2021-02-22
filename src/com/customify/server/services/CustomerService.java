@@ -46,6 +46,8 @@ public class CustomerService {
         Connection connection = Db.getConnection();
 
         String query = "INSERT INTO customers (customer_id,first_name,last_name,email,code) VALUES(?,?, ?, ?, ?)";
+        CreateCustomerFormat format;
+
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, 34333);
@@ -57,21 +59,27 @@ public class CustomerService {
             int i = statement.executeUpdate();
             if (i > 0) {
 //                System.out.println("success");
-            CreateCustomerFormat format = new CreateCustomerFormat("Successfully registered a customer",201);
+             format = new CreateCustomerFormat("Successfully registered a customer",201);
             format.setJson_data(json_data);
 
-            String response_json = objectMapper.writeValueAsString(format);
-            responseData.add(response_json);
 
-            SendToClient serverResponse =new  SendToClient(this.socket,this.responseData);
             } else {
                 System.out.println("stuck somewhere");
+                format = new CreateCustomerFormat("STUCK SOMEWHERE",201);
+
             }
+
         } catch (Exception e)
         {
+            format = new CreateCustomerFormat("STUCK SOMEWHERE",201);
+            String response_json = objectMapper.writeValueAsString(format);
+            responseData.add(response_json);
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
+        } finally{
+            SendToClient serverResponse =new  SendToClient(this.socket,this.responseData);
         }
+
 
     }
 

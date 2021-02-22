@@ -54,8 +54,8 @@ public class SignupView {
             if (email.equals("00"))
                 break signupLoop;
             SignUpFormat format = new SignUpFormat(email, lastName, firstName);
-            AuthService authService = new AuthService(socket);
-            authService.signUp(format);
+//            AuthService authService = new AuthService(socket);
+//            authService.signUp(format);
         } while (signup);
 
     }
