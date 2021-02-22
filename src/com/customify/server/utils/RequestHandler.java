@@ -3,13 +3,14 @@ package com.customify.server.utils;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
-import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.ProductService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.customify.server.services.CouponService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,9 +48,12 @@ public class RequestHandler {
         AuthController authController;
         CustomerService  customer;
         BusinessService businessService = new BusinessService(this.clientSocket);
+        ProductService productService = new ProductService(this.clientSocket);
+        CouponService couponService = new CouponService(this.clientSocket);
+
+        System.out.println("Handling routes");
 
         switch (this.key) {
-
             case CREATE_BUSINESS:
                 businessService.create(json_data);
                 break;
@@ -60,7 +64,7 @@ public class RequestHandler {
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
 //                productController.registerProduct();
-                    break;
+                break;
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
@@ -72,9 +76,16 @@ public class RequestHandler {
             case DELETE_PRODUCT:
 //                productController.deleteProduct();
                 break;
+
+            case GET_PRODUCT_BY_ID:
+                productService.getProductById(json_data);
+                break;
+
+            case UPDATE_PRODUCT:
+                productService.updateProduct(json_data);
+                break;
             case CREATE_CUSTOMER:
-            customer  = new CustomerService(this.clientSocket,this.json_data);
-            customer.create();
+                customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -85,6 +96,14 @@ public class RequestHandler {
             case AUTHENTICATION:
                 AuthService auth = new AuthService(this.clientSocket,this.json_data);
                 break;
+            case DISABLE_CUSTOMER:
+                customer.disable();
+                break;
+            case CREATE_COUPON:
+                couponService.coupingByProduct(json_data);
+                break;
+            case GET_ALL_COUPONS:
+                couponService.getAllCoupons(json_data);
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

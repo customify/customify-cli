@@ -1,20 +1,26 @@
 /*
-*
-* By Verite &  Patrick
-* Desc: Dealing with Server connection configurations
-* */
+ *
+ * By Verite &  Patrick
+ * Desc: Dealing with Server connection configurations
+ * */
 
 package com.customify.server.utils;
 
-import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.ProductController;
+//import com.customify.server.controllers.BusinessController;
 import com.customify.server.controllers.PointsController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.shared.Request;
+
+import com.customify.shared.Keys;
+
 import java.io.*;
 import java.net.*;
 import java.sql.SQLException;
 import java.util.*;
+
+import static com.customify.shared.Keys.GET_PRODUT_BY_ID;
+import static com.customify.shared.Keys.LOGIN;
 
 public class ConnectionHandler {
     private final Socket clientSocket;
@@ -26,7 +32,7 @@ public class ConnectionHandler {
         this.clientSocket = socket;
     }
 
-    public void init() throws Exception {
+    public void init() throws Exception{
         try {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(input);
@@ -36,6 +42,7 @@ public class ConnectionHandler {
                     this.request = clientRequest.get(0);
                     this.handleRequest();
                 } catch (IOException | ClassNotFoundException | SQLException e) {
+
                 }
             }
         } catch (IOException e) {
@@ -43,41 +50,17 @@ public class ConnectionHandler {
         }
     }
 
-    // Method Commented due to that it is already defined below
-
-    // public void handleRequest() throws IOException, SQLException {
-    // AuthController authController;
-    //
-    // try{
-    // List<Request> clientRequest = (List<Request>) this.objectInput.readObject();
-    // this.request = clientRequest.get(0);
-    // this.handleRequest();
-    // }
-    // catch(Exception e)
-    // {
-    // }
-    // catch (IOException e) {
-    // System.out.println("Error in reading Object " + e.getMessage());
-    // }
-    // }
-
     public void handleRequest() throws IOException, SQLException {
-        AuthController authController;
-        ProductController productController = new ProductController(this.clientSocket, this.request);
+        ProductController productController;
+
         PointsController pointsController = new PointsController(this.clientSocket,this.request);
 
         switch (request.getKey()) {
             case LOGIN:
-                authController = new AuthController(this.clientSocket, this.request);
-                authController.login();
                 break;
             case REGISTER:
-                authController = new AuthController(this.clientSocket, this.request);
-                authController.signup();
-                
+                break;
             case CREATE_BUSINESS:
-//                businessController = new BusinessController(this.clientSocket, this.request);
-//                businessController.create();
                 break;
             case GET_WINNERS:
                 pointsController.getWinners();
@@ -85,22 +68,26 @@ public class ConnectionHandler {
             case POINTS_BY_CUSTOMER_EMAIL:
                 pointsController.getPointsByCustomerEmail();
             case CREATE_PRODUCT:
+                productController = new ProductController(this.clientSocket, this.request);
                 productController.registerProduct();
+
                 break;
+            case GET_PRODUT_BY_ID:
+                productController = new ProductController(this.clientSocket, this.request);
+                productController.getProductById();
             case GET_BUSINESS:
-//                businessController = new BusinessController(this.clientSocket,this.request);
-//                businessController.getall();
                 break;
             case FEEDBACK:
                 FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
                 fController.sendDataInDb();
-
                 break;
             case GET_ALL_PRODUCTS:
+                productController = new ProductController(this.clientSocket, this.request);
                 productController.getAllProducts();
                 break;
-            case DELETE_PRODUCT:
-                productController.deleteProduct();
+            case UPDATE_PRODUCT:
+                productController = new ProductController(this.clientSocket, this.request);
+                productController.updateProduct();
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");

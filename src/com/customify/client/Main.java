@@ -25,7 +25,7 @@ public class Main {
     }
 
     private boolean connectTOServer(String serverIp){
-        int portNumber = 3000;
+        int portNumber = 4000;
         try{
             Socket socket = new Socket(serverIp, portNumber);
             System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
@@ -35,7 +35,6 @@ public class Main {
                 Login log = new Login(socket);
                 log.view();
             }
-
         }catch (Exception e){
             this.isConnectionOn = false;
             System.out.println("Failed to connect to the server at port: "+ portNumber);

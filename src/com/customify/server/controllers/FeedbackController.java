@@ -14,8 +14,6 @@ import com.customify.shared.responses_data_format.AuthFromats.FeedbackSuccessFor
 import com.customify.server.Db.Db;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-// import com.customify.shared.requests_data_formats.BusinessFormat;
-// import com.customify.shared.responses_data_format.BusinessFormats.BusinessCreate;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -32,19 +30,19 @@ public class FeedbackController {
     DataOutputStream output;
     private Socket socket;
     private Request request;
-    List<Response> responseData = new ArrayList<>();
-    ObjectOutputStream objectOutput;
 
     public FeedbackController(Socket socket, Request request) throws IOException {
         this.socket = socket;
         this.request = request;
     }
 
-    public void sendDataInDb() throws SQLException {
+    // method to send the feedback data to the database
+    public void sendDataInDb() throws IOException, SQLException {
+    	System.out.println("Something");
         FeedbackFormat format = (FeedbackFormat) request.getObject();
-        Connection connection = Db.getConnection();
-        String customerQuery = "INSERT INTO customerFeedback VALUES(?,?,?,?,NOW())";
 
+        OutputStream output = this.socket.getOutputStream();
+        ObjectOutputStream objectOutput = new ObjectOutputStream(output);
         /**
          * This is all about sending the feedback data to the database
          * 
@@ -54,27 +52,34 @@ public class FeedbackController {
          * 
          * --------------------------------------------
          */
-        PreparedStatement statement = connection.prepareStatement(customerQuery);
-        statement.setInt(10, format.getCustomerId());
-        statement.setInt(10, format.getBusinessId());
-        statement.setString(1, format.getTitle());
-        statement.setString(1, format.getDescription());
+
+        List responseData = new ArrayList<>();
+
         try {
-            if (statement.execute()) {
-                System.out.println("Something went wrong in the query");
+            Connection connection = Db.getConnection();
+            String customerQuery = "INSERT INTO customerFeedback(customer_id, business_id,"
+            		+ "title,description,creation_date) VALUES(?,?,?,?,NOW())";
+
+            PreparedStatement statement = connection.prepareStatement(customerQuery);
+            statement.setInt(1, format.getCustomerId());
+            statement.setInt(2, format.getBusinessId());
+            statement.setString(3, format.getTitle());
+            statement.setString(4, format.getDescription());
+
+            if (statement.executeUpdate() > 0) {
+                Response response = new Response(200, format);
+                responseData.add(response);                
             } else {
-                FeedbackSuccessFormat successFormat = new FeedbackSuccessFormat("Data sent successively");
-                Response response = new Response(201, successFormat);
-
-                OutputStream output = socket.getOutputStream();
-                this.objectOutput = new ObjectOutputStream(output);
-
+                Response response = new Response(400, format);
                 responseData.add(response);
-                objectOutput.writeObject(responseData);
-                System.out.println("The data sent successively");
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+            Response response = new Response(500, format);
+            responseData.add(response);
         }
+
+        // Sending the response to client
+        objectOutput.writeObject(responseData);
     }
 }

@@ -1,10 +1,13 @@
 package com.customify.client.views;
 
 import com.customify.client.services.ProductService;
-import com.customify.shared.requests_data_formats.ProductFormat;
-
+import com.customify.client.data_format.products.*;
 import java.net.Socket;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
+
+import static com.customify.client.Keys.UPDATE_PRODUCT;
 
 public class ProductView {
     private Socket socket;
@@ -36,6 +39,11 @@ public class ProductView {
             case 1:
                 this.createProduct();
                 break;
+            case 3:
+                this.getProductById();
+                break;
+            case 4:
+                this.updateProduct();
             case 2:
                 this.getAll();
                 break;
@@ -75,6 +83,73 @@ public class ProductView {
 
         ProductService productService = new ProductService(this.socket);
         productService.addNewProduct(newProduct);
+    }
+
+    /**
+     * @description
+     * Method to provide Required Id to Product Service for Retrieving product by id
+     * @author SAUVE Jean-Luc
+     * @version 1
+     * */
+    public Integer getProductById() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        Integer productId;
+        System.out.println("Enter Product Id:");
+        productId =scanner.nextInt();
+        ProductService productService = new ProductService(this.socket);
+        productService.getProductById(productId);
+        return productId;
+    }
+
+    /**
+     * @description
+     * Method to provide Required Id to Product Service for Updating a product
+     * @author SAUVE Jean-Luc
+     * @version 1
+     * */
+    public void updateProduct() throws Exception {
+//        productId = getProductById();
+        Scanner scanner = new Scanner(System.in);
+
+//        System.out.println("You are going to update the above product");
+
+        ProductFormat newProduct = new ProductFormat();
+
+        newProduct.setKey(UPDATE_PRODUCT);
+
+        System.out.println("Enter Product Id: ");
+        newProduct.setId(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("Enter NEW product code");
+        newProduct.setProductCode(Long.parseLong(scanner.nextLine()));
+
+        System.out.println("Enter NEW business_id:");
+        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("Enter NEW product name:");
+        newProduct.setName(scanner.nextLine());
+
+        System.out.println("Enter NEW product price:");
+        newProduct.setPrice(Float.parseFloat(scanner.nextLine()));
+
+        System.out.println("Enter NEW quantity you have:");
+        newProduct.setQuantity(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("Enter NEW product description:");
+        newProduct.setDescription(scanner.nextLine());
+
+        System.out.println("Enter NEW points to bind with:");
+        newProduct.setBondedPoints(Double.parseDouble(scanner.nextLine()));
+
+        System.out.println("Who is NEWLY registering this product?");
+        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+
+//        LocalDate myObj = LocalDate.now();
+        newProduct.setCreatedAt("2021-02-04");
+
+        ProductService productService = new ProductService(this.socket);
+        productService.updateProduct(newProduct);
+
     }
 
     public Socket getSocket() {
