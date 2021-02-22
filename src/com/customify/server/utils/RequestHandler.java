@@ -1,5 +1,6 @@
 package com.customify.server.utils;
 
+import com.customify.server.controllers.AuthController;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
@@ -46,7 +47,7 @@ public class RequestHandler {
 
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
-        CustomerService  customer;
+//        CustomerService  customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
@@ -85,7 +86,7 @@ public class RequestHandler {
                 productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-                customer.create();
+//                customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -97,7 +98,7 @@ public class RequestHandler {
                 AuthService auth = new AuthService(this.clientSocket,this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-                customer.disable();
+//                customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);
