@@ -76,12 +76,12 @@ public void login() throws IOException, SQLException {
         String json = objectMapper.writeValueAsString(format);
         responseData.add(json);
     }finally{
+
        this.output = socket.getOutputStream();
         this.objectOutput = new CustomizedObjectOutputStream(this.output);
         objectOutput.writeObject(this.responseData);
-        objectOutput.flush();
-        this.output.flush();
-        System.out.println("Response "+responseData.get(0));
+        System.out.println("RECEIVED JSON: "+json_data);
+
     }
 }
 }

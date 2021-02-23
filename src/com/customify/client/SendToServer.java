@@ -44,9 +44,6 @@ public class SendToServer {
             this.objectOutput = new ObjectOutputStream(this.output);
 //            System.out.println(this.output.available);
             this.objectOutput.writeObject(dataToSend);
-//            this.objectOutput.flush();
-//            this.objectOutput.reset();
-//            this.output.close();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

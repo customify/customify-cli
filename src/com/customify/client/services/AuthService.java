@@ -44,8 +44,6 @@ public class AuthService {
 
         String json = objectMapper.writeValueAsString(this.data);
 
-
-
         SendToServer serverSend = new SendToServer(json, this.socket);
         if (serverSend.send()) {
             this.handleLoginResponse();
@@ -57,10 +55,10 @@ public class AuthService {
         ObjectMapper objectMapper = new ObjectMapper();
         String employeeId = null;
         String json = objectMapper.writeValueAsString(this.data);
-        SendToServer serverSend = new SendToServer(json, this.socket);
-        if (serverSend.send()) {
-//            this.handle
-        }
+//        SendToServer serverSend = new SendToServer(json, this.socket);
+//        if (serverSend.send()) {
+////            this.handle
+//        }
 return employeeId;
     }
 
