@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
-
+    List<String> responseData = new ArrayList<>();
     private Socket socket;
     ObjectOutputStream objectOutput;
     OutputStream output;
@@ -31,6 +31,7 @@ public class ProductService {
         this.socket = socket;
         this.output=socket.getOutputStream();
         this.objectOutput= new ObjectOutputStream(output);
+        //this.objectOutput= new CustomizedObjectOutputStream(this.output);
     }
 
     public static void deleteProduct() {
@@ -210,38 +211,27 @@ public class ProductService {
         }
     }
 
-     //Tamara update this according to new Structure
 
-    public void deleteProduct(String data) throws IOException {
+    public void deleteProduct(String data) throws IOException,StreamCorruptedException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
-        String jsonSendStatusCode;
-        System.out.println("Ready!");
+        String jsonSendStatusCode = null;
         int statusCode;
         try {
+            //To do delete by productId,productName,productCode
+            //To do add valid date in the product,user(Too)
             Connection connection = Db.getConnection();
             String sql = "DELETE from products where product_code= ?;";
-
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1,jsonNode.get("productCode").asLong());
-
-            if(preparedStatement.executeUpdate() == 1){
-//                Response response = new Response(200,data);
-                statusCode=200;
-                jsonSendStatusCode= "{ \"StatusCode\" : \""+statusCode+"\"}";
-            }
-            else{
-                statusCode=400;
-                jsonSendStatusCode= "{ \"StatusCode\" : \""+statusCode+"\"}";
-            }
-            System.out.println("Ready!");
-            objectOutput.writeObject(jsonSendStatusCode);
-            System.out.println("Ready Set!");
-        }
-        catch (Exception e){
-            statusCode=500;
+            statusCode=(preparedStatement.executeUpdate() >0) ? 200 : 400;
             jsonSendStatusCode= "{ \"StatusCode\" : \""+statusCode+"\"}";
+           // System.out.println("Status code [Server side]:"+jsonSendStatusCode);
             objectOutput.writeObject(jsonSendStatusCode);
+            objectOutput.close();
+        }catch (Exception e){
+               objectOutput.flush();
+               System.out.println("Exception Message ==> "+e.getMessage());
         }
     }
 

@@ -17,13 +17,11 @@ public class Main {
             System.out.println("Failed to connect to the server to: "+serverIP);
         }
     }
-
     public static void main(String[] args){
         System.out.println("Customify  is starting..........");
         new Main("localhost");
         System.out.println("Ending................");
     }
-
     private boolean connectTOServer(String serverIp){
         int portNumber = 6000;
         try{

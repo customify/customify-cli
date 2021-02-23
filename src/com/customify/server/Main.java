@@ -45,7 +45,6 @@ public class Main {
                     RequestHandler con = new RequestHandler(clientSocket);
 //                ConnectionHandler con = new ConnectionHandler(clientSocket);
                     con.init();
-
                 System.out.println("-- Finished communicating with client --" + clientSocket.getInetAddress().toString());
             }
 

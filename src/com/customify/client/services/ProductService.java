@@ -21,6 +21,7 @@ import java.util.List;
 public class ProductService {
     private Socket socket;
     private String data;
+
     InputStream inputStream;
     ObjectInputStream objectInputStream;
 
@@ -72,21 +73,18 @@ public class ProductService {
     }
 
     /**
-     * @description
-     * Service to Delete  Product By Product Code
+     * @description Service to Delete  Product By Product Code
      * @author Tamara Iradukunda
      * @version 1
      *
      * @param */
     public void deleteProduct(ProductFormat product) throws  Exception{
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(product);
-        SendToServer serverSend = new SendToServer(json, this.socket);
-
-        //if the sending is successful call a method to handle response from server
+        // ObjectMapper provides functionality for reading and writing in JSON
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonProductFormat = mapper.writeValueAsString(product);
+        SendToServer serverSend = new SendToServer(jsonProductFormat, this.socket);
         if (serverSend.send()) {
-           // System.out.println("Products deleted successfully! ");
+            System.out.println("Send Products to the server successfully! ");
             this.handleDeleteProductSuccess();
         } else {
             System.out.println("Error occured when deleting products ");
@@ -246,32 +244,32 @@ public class ProductService {
      * @author Tamara Iradukunda
      * @version 1
      * */
-    public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
-        inputStream = this.socket.getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-        ObjectMapper objectMapper=new ObjectMapper();
-        System.out.println("Ready client!");
-//        try {
-             String data=(String)objectInputStream.readObject();
-             JsonNode jsonFormat=objectMapper.readTree(data);
-             //System.out.println(jsonFormat.get("StatusCode").asInt());
-             int statusCode=jsonFormat.get("StatusCode").asInt();
+    public void handleDeleteProductSuccess() throws  Exception,ClassNotFoundException {
+        try {
+            inputStream = this.socket.getInputStream();
+            objectInputStream = new ObjectInputStream(inputStream);
+            ObjectMapper objectMapper=new ObjectMapper();
 
-             if(statusCode==200){
+            String data = (String) objectInputStream.readObject();
+            System.out.println("+++++++++++++\n" +
+                    " data got from the server  is\n" +
+                    " =>"+data+"+++++\n");
+            JsonNode jsonFormat = objectMapper.readTree(data);
+            int statusCode = jsonFormat.get("StatusCode").asInt();
+            System.out.println(statusCode);
+
+            if (statusCode == 200) {
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("\t\t product deleted successfully");
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-             }
-             else if(statusCode==400){
-                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-             }
-             else{
-                 System.out.println("Internal server error!!");
-             }
-
-//        } catch (IOException | ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        }
+            }
+            // product test code 6503709,47462944,57191349,80316413
+            else{
+                System.out.println("\n\nInvalid product format!\n\n");
+            }
+        } catch (Exception e) {
+            System.out.println("\n\nError occurred :" + e.getMessage() + "\n\n");
+        }
     }
 
     /**

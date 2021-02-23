@@ -2,12 +2,7 @@ package com.customify.client.views;
 
 import com.customify.client.Keys;
 import com.customify.client.services.ProductService;
-<<<<<<< HEAD
-//import com.customify.shared.requests_data_formats.ProductFormat;
-import com.customify.client.data_format.products.ProductFormat;
-=======
 import com.customify.client.data_format.products.*;
->>>>>>> 77c28e934a776a0617c61de1ce4a86fb60bc9433
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.Date;
@@ -33,7 +28,7 @@ public class ProductView {
         System.out.println("\t\t2.get all products");
         System.out.println("\t\t3.get product by id");
         System.out.println("\t\t4.update product");
-        System.out.println("\t\t5.delete product");
+        System.out.println("\t\t5.Delete product");
         System.out.println("\t\t00.back");
 
         System.out.print("\nEnter option:\t");
@@ -55,6 +50,7 @@ public class ProductView {
                 break;
             case 5:
                 this.deleteProduct();
+                break;
             default:
                 System.out.println("Your entered Incorrect option");
         }
@@ -181,11 +177,14 @@ public class ProductView {
      * */
     public void deleteProduct() throws Exception{
         Scanner scanner = new Scanner(System.in);
-        ProductFormat newProduct = new ProductFormat();
-        newProduct.setKey(Keys.DELETE_PRODUCT);
-        System.out.println("Enter product Code:");
-        newProduct.setProductCode(Long.parseLong(scanner.nextLine()));
+        ProductFormat oldProduct = new ProductFormat();
+        //set key for deleting a product to send to the server
+        oldProduct.setKey(Keys.DELETE_PRODUCT);
+
+
+
+
         ProductService productService = new ProductService(this.socket);
-        productService.deleteProduct(newProduct);
+        productService.deleteProduct(oldProduct);
     }
 }

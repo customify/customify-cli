@@ -34,5 +34,4 @@ public class PrepareJson {
     public String getJson(){
         return this.json;
     }
-
 }
