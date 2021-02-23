@@ -75,7 +75,7 @@ public class RequestHandler {
 //                productController.getAllProducts();
                 break;
             case DELETE_PRODUCT:
-//                productController.deleteProduct();
+                productService.deleteProduct(json_data);
                 break;
 
             case GET_PRODUCT_BY_ID:

@@ -6,30 +6,36 @@
  * */
 package com.customify.server.services;
 
+import com.customify.client.Keys;
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.models.ProductModel;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.*;
+import com.customify.server.response_data_format.products.ProductFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
-
+    List<String> responseData = new ArrayList<>();
     private Socket socket;
+    ObjectOutputStream objectOutput;
+    OutputStream output;
 
-
-    public ProductService(Socket socket){
+    public ProductService(Socket socket) throws IOException {
         this.socket = socket;
+        this.output=socket.getOutputStream();
+      //  this.objectOutput= new ObjectOutputStream(output);
+          this.objectOutput= new CustomizedObjectOutputStream(this.output);
+    }
+
+    public static void deleteProduct() {
     }
 
     // Jacques update this according to new Structure
@@ -111,7 +117,6 @@ public class ProductService {
 
             //STEP 5: Extract data from result set
             while(rs.next()){
-                System.out.println("Reached Here 5");
                 System.out.println("Sent ID: "+jsonNode.get("id").asText());
 
                 productFormat.setProductCode(rs.getLong("product_code"));
@@ -123,7 +128,6 @@ public class ProductService {
                 productFormat.setBondedPoints(rs.getDouble("bonded_points"));
                 productFormat.setRegistered_by(rs.getInt("registered_by"));
                 productFormat.setCreatedAt(rs.getString("created_at"));
-                System.out.println("Reached here 6");
             }
 
             System.out.println("Name: "+productFormat.getName());
@@ -208,46 +212,29 @@ public class ProductService {
         }
     }
 
-    // Tamara update this according to new Structure
 
-//    public void deleteProduct() throws IOException {
-//        Long product = (Long) request.getObject();
-//        OutputStream output = this.socket.getOutputStream();
-//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
-//
-//        try {
-//
-//            Connection connection = Db.getConnection();
-//            String sql = "DELETE from products where product_code= ?;";
-//
-//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setLong(1,product);
-//
-//
-//            if(preparedStatement.executeUpdate() > 0){
-//                List responseData = new ArrayList<>();
-//                Response response = new Response(200,product);
-//                responseData.add(response);
-//
-//                //Sending the response to client
-//                objectOutput.writeObject(responseData);
-//            }
-//            else{
-//                List responseData = new ArrayList<>();
-//                Response response = new Response(400,product);
-//                responseData.add(response);
-//                //Sending the response to client
-//                objectOutput.writeObject(responseData);
-//            }
-//        }
-//        catch (Exception e){
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(500,new ProductFormat());
-//            responseData.add(response);
-//            //Sending the response to client
-//            objectOutput.writeObject(responseData);
-//        }
-//    }
+    public void deleteProduct(String data) throws IOException,StreamCorruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+        String jsonSendStatusCode = null;
+        int statusCode;
+        try {
+            //To do delete by productId,productName,productCode
+            //To do add valid date in the product,user(Too)
+            Connection connection = Db.getConnection();
+            String sql = "DELETE from products where product_code= ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1,jsonNode.get("productCode").asLong());
+            statusCode=(preparedStatement.executeUpdate() >0) ? 200 : 400;
+            jsonSendStatusCode= "{ \"StatusCode\" : \""+statusCode+"\"}";
+           // System.out.println("Status code [Server side]:"+jsonSendStatusCode);
+            objectOutput.writeObject(jsonSendStatusCode);
+            objectOutput.close();
+        }catch (Exception e){
+               objectOutput.flush();
+               System.out.println("Exception Message ==> "+e.getMessage());
+        }
+    }
 
     // Jacques update this according to new Structure
 
