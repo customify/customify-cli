@@ -9,6 +9,7 @@
 
 package com.customify.server.services;
 
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -128,10 +129,14 @@ public class BusinessService {
         Statement statement = Db.getStatement();
 
         try {
-            int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
+            int ret = statement.executeUpdate("delete from business where id="+jsonNode.get("businessId").asInt());
             if(ret==1){
                 String json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
+//                objectOutput.writeObject(json);
+                this.objectOutput = new CustomizedObjectOutputStream(this.output);
                 objectOutput.writeObject(json);
+                objectOutput.flush();
+                this.output.flush();
             }
         }
         catch (SQLException e){
@@ -169,9 +174,13 @@ public class BusinessService {
                         res.getDate(8).toString()
                 );
                 String json = objectMapper.writeValueAsString(bs);
-
-                //send
+                this.objectOutput = new CustomizedObjectOutputStream(this.output);
                 objectOutput.writeObject(json);
+                objectOutput.flush();
+                this.output.flush();
+                System.out.println("Sent");
+                //send
+//                objectOutput.writeObject(json);
 
             }
 
@@ -215,7 +224,11 @@ public class BusinessService {
             }
 
             //Sending the response to server after it has been formated
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(alldata);
+            objectOutput.flush();
+            this.output.flush();
+//            objectOutput.writeObject(alldata);
         }
         catch (Exception e){
             e.printStackTrace();

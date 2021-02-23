@@ -13,13 +13,9 @@
 package com.customify.client.services;
 
 import com.customify.client.SendToServer;
-//import com.customify.shared.requests_data_formats.BusinessFormats.BusinessFormat;
-import com.customify.client.data_format.business.GetBusinessFormat;
 import com.customify.client.data_format.business.BusinessFormat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.customify.shared.Response;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

@@ -21,7 +21,7 @@ public class Login {
         this.socket = socket;
     }
 
-    public void view() throws IOException, ClassNotFoundException {
+    public void view() throws IOException, ClassNotFoundException, Exception {
 
         authorize:while(true){
             System.out.println("\n\n\n\t\t\t\t\tWELCOME ON  CUSTOMIFY  SYSTEM\n\n");
@@ -65,6 +65,7 @@ public class Login {
                 ObjectMapper objectMapper = new ObjectMapper();
                 JsonNode jsonNode = objectMapper.readTree(employeeJsonObj);
                 String title = jsonNode.get("title").asText();
+
 
                 if(title.equals("ADMIN"))
                 {
