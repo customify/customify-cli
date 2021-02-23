@@ -17,7 +17,7 @@ private AuthService authService;
     public AuthController(Socket socket, Request request) throws IOException {
         this.socket = socket;
         this.request = request;
-        this.authService = new AuthService(this.socket);
+//        this.authService = new AuthService(this.socket);
     }
 
     public void login()throws IOException{
@@ -30,7 +30,7 @@ private AuthService authService;
         /*
          Call the authService to handle the request
         */
-        authService.login(format);
+//        authService.login(format);
 
     }
 

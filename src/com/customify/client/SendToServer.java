@@ -38,16 +38,19 @@ public class SendToServer {
         try {
             List<String> dataToSend = new ArrayList();
             dataToSend.add(this.json);
+
             this.output = this.socket.getOutputStream();
+//            System.out.println(output.available());
             this.objectOutput = new ObjectOutputStream(this.output);
+//            System.out.println(this.output.available);
             this.objectOutput.writeObject(dataToSend);
 //            this.objectOutput.flush();
-//            this.objectOutput.close();
+//            this.objectOutput.reset();
 //            this.output.close();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         return true;
     }
 }
