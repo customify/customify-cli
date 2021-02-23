@@ -7,6 +7,7 @@
 package com.customify.server.services;
 
 import com.customify.client.Keys;
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.models.ProductModel;
 import com.customify.shared.Request;
@@ -30,8 +31,8 @@ public class ProductService {
     public ProductService(Socket socket) throws IOException {
         this.socket = socket;
         this.output=socket.getOutputStream();
-        this.objectOutput= new ObjectOutputStream(output);
-        //this.objectOutput= new CustomizedObjectOutputStream(this.output);
+      //  this.objectOutput= new ObjectOutputStream(output);
+          this.objectOutput= new CustomizedObjectOutputStream(this.output);
     }
 
     public static void deleteProduct() {

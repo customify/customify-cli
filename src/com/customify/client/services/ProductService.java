@@ -84,7 +84,7 @@ public class ProductService {
         String jsonProductFormat = mapper.writeValueAsString(product);
         SendToServer serverSend = new SendToServer(jsonProductFormat, this.socket);
         if (serverSend.send()) {
-            System.out.println("Send Products to the server successfully! ");
+           // System.out.println("Send Products to the server successfully! ");
             this.handleDeleteProductSuccess();
         } else {
             System.out.println("Error occured when deleting products ");
@@ -251,21 +251,19 @@ public class ProductService {
             ObjectMapper objectMapper=new ObjectMapper();
 
             String data = (String) objectInputStream.readObject();
-            System.out.println("+++++++++++++\n" +
-                    " data got from the server  is\n" +
-                    " =>"+data+"+++++\n");
+            //System.out.println("+++++++++++++\n" +" data got from the server  is\n" +"=>"+data+"+++++\n");
             JsonNode jsonFormat = objectMapper.readTree(data);
             int statusCode = jsonFormat.get("StatusCode").asInt();
-            System.out.println(statusCode);
+           // System.out.println(statusCode);
 
             if (statusCode == 200) {
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("\t\t product deleted successfully");
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++\n\n");
             }
             // product test code 6503709,47462944,57191349,80316413
             else{
-                System.out.println("\n\nInvalid product format!\n\n");
+                System.out.println("\nInvalid product Code!\n");
             }
         } catch (Exception e) {
             System.out.println("\n\nError occurred :" + e.getMessage() + "\n\n");

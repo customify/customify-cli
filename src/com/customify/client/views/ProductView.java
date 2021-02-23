@@ -180,10 +180,9 @@ public class ProductView {
         ProductFormat oldProduct = new ProductFormat();
         //set key for deleting a product to send to the server
         oldProduct.setKey(Keys.DELETE_PRODUCT);
-
-
-
-
+        System.out.println("Enter product Code:");
+        //set key for one product code deletion
+        oldProduct.setProductCode(Long.parseLong(scanner.nextLine()));
         ProductService productService = new ProductService(this.socket);
         productService.deleteProduct(oldProduct);
     }
