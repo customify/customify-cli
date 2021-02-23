@@ -6,10 +6,9 @@
  * @author Kellia Umuhire
  * @since Wednesday, 3 February 2021
  * */
-package com.customify.shared.responses_data_format.BusinessFormats;
+package com.customify.server.data_format.business;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class BusinessRFormat implements Serializable{
     private int id;
@@ -19,9 +18,9 @@ public class BusinessRFormat implements Serializable{
     private String phone_number;
     private int representative_id;
     private int plan_id;
-    private LocalDate created_at;
+    private String created_at;
     public BusinessRFormat(){};
-    public BusinessRFormat(int id, String location, String address, String phone_number, String name, int representative_id, int plan_id){
+    public BusinessRFormat(int id, String location, String address, String phone_number, String name, int representative_id, int plan_id, String created_at){
         this.id=id;
         this.name=name;
         this.location=location;
@@ -29,6 +28,7 @@ public class BusinessRFormat implements Serializable{
         this.phone_number=phone_number;
         this.representative_id=representative_id;
         this.plan_id=plan_id;
+        this.created_at=created_at;
     };
 
     public String getName() {
@@ -57,5 +57,13 @@ public class BusinessRFormat implements Serializable{
 
     public String getPhone_number() {
         return phone_number;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 }
