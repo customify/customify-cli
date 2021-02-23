@@ -26,6 +26,7 @@ public class Db {
 
     /**
      * for initializing the connections to the database
+     * @param
      */
     public static void init() {
       System.out.println("Db is connecting...........");
@@ -89,4 +90,6 @@ public class Db {
           e.printStackTrace();
       }
   }
+
+
 }

@@ -50,8 +50,8 @@ public class LoginView {
             login = false;
 
             LoginFormat format = new LoginFormat(email,password);
-            AuthService authService = new AuthService(socket);
-            authService.login(format);
+//            AuthService authService = new AuthService(socket);
+//            authService.login(format);
         }while(login);
 
     }
