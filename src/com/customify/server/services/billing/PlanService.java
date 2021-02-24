@@ -39,6 +39,11 @@ public class PlanService {
             if(statement.execute()){
                 this.response = "Plan created successfully";
                 SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(response));
+                if(sendToClient.send()){
+                    System.out.println("Response sent!");
+                }else{
+                    System.out.println("Response failed !");
+                }
             }else{
                 System.out.println("Ops failed to execute");
             }
@@ -63,6 +68,11 @@ public class PlanService {
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(response);
             SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(json));
+            if(sendToClient.send()){
+                System.out.println("Response sent!");
+            }else{
+                System.out.println("Response failed !");
+            }
         }catch(SQLException | JsonProcessingException e){
             System.out.println(e.getMessage());
         }
@@ -87,6 +97,11 @@ public class PlanService {
             ObjectMapper objectMapper1 = new ObjectMapper();
             String json = objectMapper1.writeValueAsString(response);
             SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(json));
+            if(sendToClient.send()){
+                System.out.println("Response sent!");
+            }else{
+                System.out.println("Response failed !");
+            }
         }catch(SQLException | JsonProcessingException e){
             System.out.println(e.getMessage());
         }
@@ -105,6 +120,11 @@ public class PlanService {
             if(statement.execute()){
                 this.response = "Plan updated successfully";
                 SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(response));
+                if(sendToClient.send()){
+                    System.out.println("Response sent!");
+                }else{
+                    System.out.println("Response failed !");
+                }
             }else{
                 System.out.println("Ops failed to execute");
             }
@@ -125,6 +145,11 @@ public class PlanService {
             if (statement.execute()){
                 this.response = "Plan Deleted Successfully ";
                 SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(response));
+                if(sendToClient.send()){
+                    System.out.println("Response sent!");
+                }else{
+                    System.out.println("Response failed !");
+                }
             }else{
                 System.out.println("Ops Failed to execute");
             }

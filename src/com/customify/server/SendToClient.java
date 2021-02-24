@@ -32,7 +32,7 @@ public class SendToClient {
         this.responseData = responseData;
     }
 
-    public void send(){
+    public boolean send(){
         try {
             OutputStream output = this.socket.getOutputStream();
             this.objectOutput = new ObjectOutputStream(output);
@@ -40,6 +40,7 @@ public class SendToClient {
         } catch (Exception e) {
             System.out.println("MESSAGE => "+e.getMessage());
         }
+        return false;
     }
 
 }

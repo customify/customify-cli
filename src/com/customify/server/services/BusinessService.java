@@ -8,10 +8,7 @@
  * */
 
 package com.customify.server.services;
-<<<<<<< HEAD
-=======
 
->>>>>>> ba2f9af4b4649a338581a6e027f0f9cb372b39ff
 import com.customify.server.Db.Db;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessRFormat;
 import com.customify.shared.responses_data_format.BusinessFormats.BusinessReadFormat;
