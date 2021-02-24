@@ -167,6 +167,12 @@ public class CustomerService {
     public void readOne() throws SQLException{}
     public void readAll() throws SQLException{}
 
+    /**
+     * @author Murenzi Confiance Tracy
+     * @role
+     * this function is to handle the backend deactivate the customer from the database
+     * and sending back the response TO THE CLIENT SIDE
+     * */
     public void renableCard(String request) throws JsonProcessingException, SQLException {
         System.out.println("Request to re-enable card was received at server");
 

@@ -135,13 +135,13 @@ public class CustomerService {
     public void get(){}
 
     public void reEnableCard(String code) throws IOException {
-        DeActivateCustomerFormat format = new DeActivateCustomerFormat(Keys.RENABLE_CUSTOMER,code);
+        DeActivateCustomerFormat format = new DeActivateCustomerFormat(code);
         ObjectMapper objectMapper = new ObjectMapper();
         String request = objectMapper.writeValueAsString(format);
         SendToServer sendToServer = new SendToServer(request,socket);
 
         if (sendToServer.send()){
-            System.out.println("\t\tUser activated successfully");
+            System.out.println("\t\tCard was activated successfully\n");
         }
     }
 }
