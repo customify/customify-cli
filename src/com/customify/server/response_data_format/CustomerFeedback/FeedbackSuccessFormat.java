@@ -1,4 +1,4 @@
-package com.customify.shared.responses_data_format.customer_feedbackFormat;
+package com.customify.server.response_data_format.CustomerFeedback;
 
 /*
  * @author: NSENGIYUMVA Gershom

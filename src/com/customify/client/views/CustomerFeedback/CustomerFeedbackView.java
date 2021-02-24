@@ -1,6 +1,7 @@
 package com.customify.client.views.CustomerFeedback;
 
 import com.customify.client.Keys;
+import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 
 /**
  *  Author: Niyonzima Stecie
@@ -13,8 +14,8 @@ import com.customify.client.Keys;
  * of the business he/she has written to.
  */
 
-import com.customify.client.services.FeedbackService;
-import com.customify.shared.requests_data_formats.FeedbackFormat;
+import com.customify.client.services.CustomerFeedbackService;
+import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
@@ -36,28 +37,28 @@ public class CustomerFeedbackView {
         String title, description;
 
         feedbackLooop: do {
-            System.out.print("\n         Enter the customer id: ");
-            customer_id = scan.nextInt();
-
-            System.out.print("\tEnter the business id: ");
-            business_id = scan.nextInt();
-
             /*
              * now check if the entered customer id are relevants to the one stored in the
              * database. --------------------------------- -------------------------------
              */
 
             System.out.print("\tEnter the title: ");
-            title = scan.next();
+            title = scan.nextLine();
 
             System.out.print("\tEnter the description: ");
-            description = scan.next();
+            description = scan.nextLine();
             if (description.equals("00"))
                 break feedbackLooop;
+
+            System.out.print("\n         Enter the customer id: ");
+            customer_id = scan.nextInt();
+
+            System.out.print("\tEnter the business id: ");
+            business_id = scan.nextInt();
             feed = false;
 
-            FeedbackFormat format = new FeedbackFormat(Keys.FEEDBACK, customer_id, business_id, title, description);
-            FeedbackService feedservice = new FeedbackService(this.socket);
+            CustomerFeedbackDataFormat format = new CustomerFeedbackDataFormat(Keys.FEEDBACK, customer_id, business_id, title, description);
+            CustomerFeedbackService feedservice = new CustomerFeedbackService(this.socket);
             feedservice.Feedback(format);
         } while (feed);
     }
