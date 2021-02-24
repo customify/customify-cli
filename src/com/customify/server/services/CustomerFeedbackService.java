@@ -8,9 +8,7 @@ package com.customify.server.services;
    * done on 9 Feb 2021
 */
 
-import com.customify.shared.Response;
 import com.customify.server.Db.Db;
-import com.customify.shared.responses_data_format.customer_feedbackFormat.FeedbackSuccessFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,20 +17,16 @@ import java.sql.SQLException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-public class Customer_feedbackService {
+public class CustomerFeedbackService {
     Socket socket;
     OutputStream output;
     ObjectOutputStream objectOutput;
 
-    public Customer_feedbackService(Socket socket) throws IOException {
+    public CustomerFeedbackService(Socket socket) throws IOException {
         this.socket = socket;
         this.output = socket.getOutputStream();
         this.objectOutput = new ObjectOutputStream(output);

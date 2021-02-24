@@ -1,4 +1,4 @@
-package com.customify.shared.requests_data_formats;
+package com.customify.client.data_format.CustomerFeedback;
 
 /**
  * @author: NSENGIYUMVA Gershom
@@ -12,12 +12,12 @@ package com.customify.shared.requests_data_formats;
 import java.io.Serializable;
 import com.customify.client.Keys;
 
-public class FeedbackFormat implements Serializable{
+public class CustomerFeedbackDataFormat implements Serializable{
     private Keys key;
     private int customer_id, business_id;
     private String title, description;
 
-    public FeedbackFormat(Keys key,int customer_id, int business_id, String title, String description) {
+    public CustomerFeedbackDataFormat(Keys key,int customer_id, int business_id, String title, String description) {
         this.key = key;
         this.customer_id = customer_id;
         this.business_id = business_id;

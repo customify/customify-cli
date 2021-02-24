@@ -9,20 +9,20 @@ package com.customify.client.services;
  * 
  * */
 
-import com.customify.client.Common;
+// import com.customify.client.Common;
 import com.customify.client.SendToServer;
-import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackFormat;
-import com.customify.shared.requests_data_formats.FeedbackFormat;
+// import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
+import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 
-import com.customify.shared.*;
+// import com.customify.shared.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.customify.shared.Keys;
-import com.customify.shared.Request;
-import com.customify.shared.Response;
+// import com.customify.shared.Keys;
+// import com.customify.shared.Request;
+// import com.customify.shared.Response;
 
-import com.customify.shared.responses_data_format.customer_feedbackFormat.FeedbackSuccessFormat;
-import com.fasterxml.jackson.databind.JsonNode;
+// import com.customify.shared.responses_data_format.customer_feedbackFormat.FeedbackSuccessFormat;
+// import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,17 +30,17 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.List;
 
-public class FeedbackService {
+public class CustomerFeedbackService {
     private final Socket socket;
 
-    public FeedbackService(Socket socket) {
+    public CustomerFeedbackService(Socket socket) {
         this.socket = socket;
     }
 
     /**
      * @author NIYONZIMA Stecie
      */
-    public void Feedback(FeedbackFormat format) throws IOException, ClassNotFoundException {
+    public void Feedback(CustomerFeedbackDataFormat format) throws IOException, ClassNotFoundException {
         var mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(format);
         SendToServer sendToServer = new SendToServer(json, this.socket);
