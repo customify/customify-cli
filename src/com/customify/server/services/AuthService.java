@@ -63,7 +63,7 @@ public void login() throws IOException, SQLException {
                 firstName = rs.getString("firName");
                 lastName = rs.getString("lasName");
                 tel = rs.getString("tel");
-                id = rs.getString("emp_id");
+                id = rs.getString("id");
                 mail = rs.getString("email");
                 AuthSuperAdmin superAdminFormat;
                 superAdminFormat = new AuthSuperAdmin("SUPER_ADMIN",mail,firstName,lastName, id,tel,201);
@@ -100,6 +100,7 @@ public void login() throws IOException, SQLException {
     }finally{
         this.output = socket.getOutputStream();
         this.objectOutput = new CustomizedObjectOutputStream(this.output);
+        System.out.println("Response "+responseData.get(0));
         objectOutput.writeObject(this.responseData);
     }
 }

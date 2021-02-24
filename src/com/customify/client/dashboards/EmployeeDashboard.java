@@ -1,6 +1,7 @@
 package com.customify.client.dashboards;
 
 import com.customify.client.utils.authorization.UserSession;
+import com.customify.client.views.customer.CustomerMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.net.Socket;
@@ -30,12 +31,13 @@ public class EmployeeDashboard {
 
     public EmployeeDashboard(){}
 
-    public EmployeeDashboard(Socket socket) throws JsonProcessingException {
+    public EmployeeDashboard(Socket socket) throws Exception {
         this.socket = socket;
         this.userSession= new UserSession();
-        if(userSession.isLoggedIn())
+        if(userSession.isLoggedIn()) {
+            this.setLoggedIn(true);
             this.view();
-        else
+        }else
             System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST");
     }
 
@@ -49,9 +51,9 @@ public class EmployeeDashboard {
     }
 
 
-    public void view() throws JsonProcessingException {
+    public void view() throws Exception {
         Scanner scan = new Scanner(System.in);
-
+        if(isLoggedIn()){
         do {
             System.out.println("---------------------------------------------");
             System.out.println("--------------CUSTOMIFY HOME-----------------\n");
@@ -63,6 +65,7 @@ public class EmployeeDashboard {
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
+                    CustomerMainView customer = new CustomerMainView(this.socket,this.isLoggedIn());
                     break;
                 case 2:
                     break;
@@ -80,5 +83,6 @@ public class EmployeeDashboard {
                     System.out.println("INVALID CHOICE");
             }
         }while(loggedIn);
+        }
     }
 }

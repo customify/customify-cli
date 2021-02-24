@@ -1,13 +1,11 @@
 package com.customify.client.utils.authorization;
 
-import com.customify.client.utils.authorization.models.AdminUser;
-import com.customify.client.utils.authorization.models.EmployeeUser;
-import com.customify.client.utils.authorization.models.SuperAdminUser;
+import com.customify.client.utils.authorization.structure.AdminUser;
+import com.customify.client.utils.authorization.structure.EmployeeUser;
+import com.customify.client.utils.authorization.structure.SuperAdminUser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.*;
 
 public class UserSession {
     private boolean loggedIn;
@@ -46,7 +44,7 @@ public class UserSession {
         String title = jsonNode.get("title").asText();
         String firName = jsonNode.get("firName").asText();
         String lasName = jsonNode.get("lasName").asText();
-        String id = jsonNode.get("emp_id").asText();
+        String id = jsonNode.get("id").asText();
 
 
         EmployeeUser user = new EmployeeUser();

@@ -1,8 +1,8 @@
 package com.customify.client.utils.authorization;
 
-import com.customify.client.utils.authorization.models.AdminUser;
-import com.customify.client.utils.authorization.models.EmployeeUser;
-import com.customify.client.utils.authorization.models.SuperAdminUser;
+import com.customify.client.utils.authorization.structure.AdminUser;
+import com.customify.client.utils.authorization.structure.EmployeeUser;
+import com.customify.client.utils.authorization.structure.SuperAdminUser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -104,6 +104,10 @@ public class RetrieveLoggedInUser {
                         user.setTitle(listeMots[5]);
                         user.setSessionStart(listeMots[6]);
                         user.setCreatedAt(listeMots[7]);
+
+                        user.setAppUser("EMPLOYEE");
+
+
                         this.setLoggedEdInEmployee(user);
                     }
 
@@ -149,7 +153,8 @@ public class RetrieveLoggedInUser {
                         user.setBusiness_id(listeMots[4]);
                         user.setTitle(listeMots[5]);
                         user.setSessionStart(listeMots[6]);
-                        System.out.println("HERE'S THE FOUND LENGTH "+listeMots.length);
+                        user.setAppUser("BUSINESS_ADMIN");
+
                         this.setLoggedEdInAdmin(user);
                     }
 
@@ -195,8 +200,8 @@ public class RetrieveLoggedInUser {
                         user.setEmail(listeMots[3]);
                         user.setTel(listeMots[4]);
                         user.setSessionStart(listeMots[5]);
+                        user.setAppUser("SUPER_ADMIN");
                         this.setLoggedEdInSuperAdmin(user);
-                        System.out.println("HERE'S THE FOUND LENGTH "+listeMots.length);
                     }
                 }
                 counter++;

@@ -1,10 +1,20 @@
-package com.customify.client.utils.authorization.models;
+package com.customify.client.utils.authorization.structure;
 
 public class User {
     private String firName;
     private String lasName;
     private String email;
     private String sessionStart;
+
+    public String getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(String appUser) {
+        this.appUser = appUser;
+    }
+
+    private String appUser;
 
     public String getSessionStart() {
         return sessionStart;

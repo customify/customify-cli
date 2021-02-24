@@ -1,8 +1,8 @@
 package com.customify.client.utils.authorization;
 
-import com.customify.client.utils.authorization.models.AdminUser;
-import com.customify.client.utils.authorization.models.EmployeeUser;
-import com.customify.client.utils.authorization.models.SuperAdminUser;
+import com.customify.client.utils.authorization.structure.AdminUser;
+import com.customify.client.utils.authorization.structure.EmployeeUser;
+import com.customify.client.utils.authorization.structure.SuperAdminUser;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -48,7 +48,7 @@ public class SaveUser {
                     SuperAdminUser super_admin_user =(SuperAdminUser)user;
                     file = new File("src/com/customify/client/utils/authorization/files/SuperAdmin.csv");
                     writer = new FileWriter(file,true);
-                    writer.write("\n"+super_admin_user.getId()+""+super_admin_user.getFirName()+"\t "+super_admin_user.getLasName()+"\t "+super_admin_user.getEmail()+"\t"+super_admin_user.getTel()+"\t"+"5-21-2021");
+                    writer.write("\n"+super_admin_user.getId()+"\t"+super_admin_user.getFirName()+"\t "+super_admin_user.getLasName()+"\t "+super_admin_user.getEmail()+"\t"+super_admin_user.getTel()+"\t"+"5-21-2021");
                     writer.close();
                     this.setSaved(true);
 
