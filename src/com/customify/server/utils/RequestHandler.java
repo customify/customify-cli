@@ -1,10 +1,9 @@
 package com.customify.server.utils;
 
-
 import com.customify.server.services.BusinessService;
 import com.customify.server.services.Customer_feedbackService;
 import com.customify.server.Keys;
-import com.customify.server.controllers.AuthController;
+// import com.customify.server.controllers.AuthController;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
 import com.customify.server.services.ProductService;
@@ -32,28 +31,17 @@ public class RequestHandler {
         this.clientSocket = socket;
     }
 
-    public void init() {        
+    public void init() {
         try {
             this.input = this.clientSocket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
-
             while (true) {
                 try {
                     List<String> clientRequest = (List) this.objectInput.readObject();
                     this.json_data = (String) clientRequest.get(0);
-                    ObjectMapper objectMapper = new ObjectMapper();                    
-                    JsonNode jsonNode = objectMapper.readTree(json_data);
-                    this.key = Keys.valueOf(jsonNode.get("key").asText());
-
-            while(true) {
-                try {
-                    List<String> clientRequest = (List)this.objectInput.readObject();
-                    this.json_data = (String)clientRequest.get(0);
                     ObjectMapper objectMapper = new ObjectMapper();
                     JsonNode jsonNode = objectMapper.readTree(json_data);
-
                     this.key = Keys.valueOf(jsonNode.get("key").asText());
-
                     System.out.println(this.key);
                     this.handleRequest();
                 } catch (Exception var5) {
@@ -66,13 +54,10 @@ public class RequestHandler {
     }
 
     public void handleRequest() throws IOException, SQLException {
-        AuthController authController;
+        // AuthController authController;
         CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
         BusinessService businessService = new BusinessService(this.clientSocket);
-<<<<<<< HEAD
-=======
-
->>>>>>> cbe0e1ba100a454cb4e52832c4cb007e03dd286c
+        Customer_feedbackService feedback = new Customer_feedbackService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 

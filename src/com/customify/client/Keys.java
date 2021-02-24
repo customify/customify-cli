@@ -16,13 +16,6 @@ public enum Keys {
     GET_BUSINESS,
     CREATE_CUSTOMER,
     EDIT_BUSINESS,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    CREATE_CUOPON,
->>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
-=======
->>>>>>> 572e5d1d326f42ffe07c0f5612d5a6434549bf86
     CREATE_PLAN,
     UPDATE_PLAN,
     READ_PLAN,
@@ -32,6 +25,5 @@ public enum Keys {
     CREATE_CUOPON,
     REDEEMING_COUPON,
     DISABLE_CUSTOMER,
-    CHECK_COUPON;
-    CREATE_CUOPON
+    CHECK_COUPON;    
 }

@@ -24,11 +24,4 @@ public enum Keys {
     DISABLE_CUSTOMER,
     POINTS_BY_CUSTOMER_EMAIL,
     GET_ALL_COUPONS
-=======
-    POINTS_BY_CUSTOMER_EMAIL
-<<<<<<< HEAD
-=======
-
->>>>>>> cbe0e1ba100a454cb4e52832c4cb007e03dd286c
->>>>>>> 9f1807045df6f0cdd1e8325f992ff1ab153a60e0
 }
