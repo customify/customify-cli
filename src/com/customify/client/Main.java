@@ -32,6 +32,8 @@ public class Main {
             while(isConnectionOn){
                Login log = new Login(socket);
                log.view();
+ //                 Home home = new Home(socket);
+//                 home.view();
             }
         }catch (Exception e){
             this.isConnectionOn = false;

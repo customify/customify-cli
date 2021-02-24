@@ -3,10 +3,10 @@ package com.customify.server.utils;
 import com.customify.server.controllers.AuthController;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.Customer_feedbackService;
 import com.customify.server.Keys;
 import com.customify.server.controllers.FeedbackController;
 import com.customify.server.services.CustomerService;
-import com.customify.server.services.BusinessService;
 import com.customify.server.services.ProductService;
 import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -19,7 +19,6 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;
-
 
 public class RequestHandler {
 
@@ -49,6 +48,7 @@ public class RequestHandler {
         AuthController authController;
 //        CustomerService  customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
+        Customer_feedbackService feedback = new Customer_feedbackService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
@@ -67,8 +67,8 @@ public class RequestHandler {
 //                productController.registerProduct();
                 break;
             case FEEDBACK:
-//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
-//                fController.sendDataInDb();
+            System.out.println("On feedback case");
+            feedback.Feedback(json_data);
 
                 break;
             case GET_ALL_PRODUCTS:
