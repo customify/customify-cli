@@ -1,6 +1,7 @@
 package com.customify.client.services;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.AuthenticationDataFormat;
+import com.customify.client.views.Home;
 import com.customify.shared.Keys;
 import com.customify.client.Common;
 import com.customify.shared.Request;
@@ -71,7 +72,10 @@ return employeeId;
             InputStream input =this.socket.getInputStream();
             ObjectInputStream objectInput = new ObjectInputStream(input);
             List<String> data = (List) objectInput.readObject();
-                System.out.println(data.get(0));
+            System.out.println(data.get(0));
+            Home home = new Home(socket);
+            home.view();
+
         }catch(Exception e){
             System.out.println("Exception Caught");
         }

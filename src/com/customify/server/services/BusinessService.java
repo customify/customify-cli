@@ -129,7 +129,7 @@ public class BusinessService {
         Statement statement = Db.getStatement();
 
         try {
-            int ret = statement.executeUpdate("delete from business where id="+jsonNode.get("businessId").asInt());
+            int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
             if(ret==1){
                 String json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
 //                objectOutput.writeObject(json);

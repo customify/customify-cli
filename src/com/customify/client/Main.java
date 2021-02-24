@@ -1,8 +1,5 @@
 package com.customify.client;
 
-
-import com.customify.client.views.*;
-
 import java.io.*;
 import java.net.*;
 
@@ -32,10 +29,9 @@ public class Main {
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
             while(isConnectionOn){
-//                Login log = new Login(socket);
-//                log.view();
-                Home home = new Home(socket);
-                home.view();
+                Login log = new Login(socket);
+                log.view();
+
             }
         }catch (Exception e){
             this.isConnectionOn = false;
