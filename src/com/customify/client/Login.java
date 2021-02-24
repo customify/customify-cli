@@ -5,6 +5,7 @@ import com.customify.client.dashboards.EmployeeDashboard;
 import com.customify.client.dashboards.SuperAdminDashboard;
 import com.customify.client.data_format.AuthenticationDataFormat;
 import com.customify.client.services.AuthService;
+import com.customify.client.utils.authorization.UserSession;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,19 +14,32 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Login {
-    public Login() {
-    }
 
     private Socket socket;
 
-    public Login(Socket socket) {
+    public Login()  { }
+    public Login(Socket socket) throws Exception{
         this.socket = socket;
+        UserSession userSession = new UserSession();
+        if(userSession.isLoggedIn())
+        {
+            String json = userSession.getUserJsonObject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json);
+            route(jsonNode.get("appUser").asText());
+        }else{
+           openLogin=true;
+            this.view();
+        }
+
     }
 
-    public void view() throws IOException, ClassNotFoundException {
+    private boolean openLogin = false;
 
-        authorize:
-        while (true) {
+
+    public void view() throws Exception{
+
+        authorize:do{
             System.out.println("\n\n\n\t\t\t\t\tWELCOME ON  CUSTOMIFY  SYSTEM\n\n");
 
             Scanner scan = new Scanner(System.in);
@@ -51,25 +65,29 @@ public class Login {
 
             AuthenticationDataFormat format = new AuthenticationDataFormat(email, password);
             AuthService authService = new AuthService(this.socket, format);
-//            authService.authenticateAdmin();
 
             if (authService.authenticate()) {
-//                switch (authService.getLoggedInUser()) {
-//                    case "BUSINESS_ADMIN":
-//                        BusinessAdminDashboard bussDashboard = new BusinessAdminDashboard(this.socket);
-//                        break;
-//                    case "EMPLOYEE":
-//                        EmployeeDashboard empDashboard = new EmployeeDashboard(this.socket);
-//                        break;
-//                    case "SUPER_ADMIN":
-//                        SuperAdminDashboard admDashboard = new SuperAdminDashboard(this.socket);
-//                        break;
-//                    default:
-//                        System.out.println("\t\t\tINVALID CHOICE");
-//                }
+              route(authService.getLoggedInUser());
             } else {
                 System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
             }
+        }while(openLogin);
+    }
+
+    public void route(String appUser) throws Exception{
+        switch (appUser) {
+            case "BUSINESS_ADMIN":
+                BusinessAdminDashboard bussDashboard = new BusinessAdminDashboard(this.socket);
+                break;
+            case "EMPLOYEE":
+                EmployeeDashboard empDashboard = new EmployeeDashboard(this.socket);
+                break;
+            case "SUPER_ADMIN":
+                SuperAdminDashboard admDashboard = new SuperAdminDashboard(this.socket);
+                break;
+            default:
+                System.out.println("\t\t\tINVALID CHOICE");
         }
     }
+
 }

@@ -35,7 +35,7 @@ public class Home {
         Scanner scan = new Scanner(System.in);
 
         CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
-        CustomerMainView customer = new CustomerMainView(this.socket);
+        CustomerMainView customer = new CustomerMainView(this.socket,true);
 
         ProductView productView = new ProductView(this.socket);
 

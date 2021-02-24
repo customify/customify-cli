@@ -1,4 +1,4 @@
-package com.customify.client.utils.authorization.models;
+package com.customify.client.utils.authorization.structure;
 
 public class SuperAdminUser extends User{
     private String tel;

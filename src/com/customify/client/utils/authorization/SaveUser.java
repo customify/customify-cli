@@ -1,8 +1,8 @@
 package com.customify.client.utils.authorization;
 
-import com.customify.client.utils.authorization.models.AdminUser;
-import com.customify.client.utils.authorization.models.EmployeeUser;
-import com.customify.client.utils.authorization.models.SuperAdminUser;
+import com.customify.client.utils.authorization.structure.AdminUser;
+import com.customify.client.utils.authorization.structure.EmployeeUser;
+import com.customify.client.utils.authorization.structure.SuperAdminUser;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -30,7 +30,7 @@ public class SaveUser {
                     EmployeeUser emp_user =(EmployeeUser)user;
                     file = new File("src/com/customify/client/utils/authorization/files/Employee.csv");
                     writer   = new FileWriter(file,true);
-                    writer.write("\n"+emp_user.getId()+"\t"+emp_user.getFirName()+"\t "+emp_user.getLasName()+"\t "+emp_user.getEmail()+"\t"+emp_user.getBusiness_id()+"\t"+emp_user.getTitle()+"\t"+"5-21-2021"+"\t5-21-2021");
+                    writer.write("\n"+emp_user.getId()+"\t"+emp_user.getFirName()+"\t "+emp_user.getLasName()+"\t "+emp_user.getEmail()+"\t"+emp_user.getBusiness_id()+"\t"+emp_user.getTitle()+"\t"+emp_user.getCreatedAt()+"\t5-21-2021");
                     writer.close();
                     this.setSaved(true);
                     break;
@@ -48,7 +48,7 @@ public class SaveUser {
                     SuperAdminUser super_admin_user =(SuperAdminUser)user;
                     file = new File("src/com/customify/client/utils/authorization/files/SuperAdmin.csv");
                     writer = new FileWriter(file,true);
-                    writer.write("\n"+super_admin_user.getId()+""+super_admin_user.getFirName()+"\t "+super_admin_user.getLasName()+"\t "+super_admin_user.getEmail()+"\t"+super_admin_user.getTel()+"\t"+"5-21-2021");
+                    writer.write("\n"+super_admin_user.getId()+"\t"+super_admin_user.getFirName()+"\t "+super_admin_user.getLasName()+"\t "+super_admin_user.getEmail()+"\t"+super_admin_user.getTel()+"\t"+"5-21-2021");
                     writer.close();
                     this.setSaved(true);
 

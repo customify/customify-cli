@@ -33,7 +33,6 @@ public class Main {
 
             while(isConnectionOn){
                 Login log = new Login(socket);
-                log.view();
             }
         }catch (Exception e){
             this.isConnectionOn = false;

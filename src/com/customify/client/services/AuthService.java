@@ -88,22 +88,20 @@ public class AuthService {
             if(jsonNode.get("status").asInt() == 201)
             {
                 UserSession session =new UserSession();
-//                switch(jsonNode.get("appUser").asText()){
-//                    case "EMPLOYEE":
-//                        session.setEmployee(res.get(0));
-//                        break;
-//                    case "BUSINESS_ADMIN":
-//                        session.setBusinessAdmin(res.get(0));
-//                        break;
-//                    case "SUPER_ADMIN":
-//                        session.setSuperAdmin(res.get(0));
-//                        break;
-//
-//                    default:
-//                        System.out.println("Invalid Title");
-//                }
-                System.out.println(jsonNode.get("appUser").asText());
-//                setLoggedInUser(jsonNode.get("appUser").asText());
+                switch(jsonNode.get("appUser").asText()){
+                    case "EMPLOYEE":
+                        session.setEmployee(res.get(0));
+                        break;
+                    case "BUSINESS_ADMIN":
+                        session.setBusinessAdmin(res.get(0));
+                        break;
+                    case "SUPER_ADMIN":
+                        session.setSuperAdmin(res.get(0));
+                        break;
+                    default:
+                        System.out.println("Invalid Title");
+                }
+                setLoggedInUser(jsonNode.get("appUser").asText());
                 setAuthenticated(true);
             }
         }catch(Exception e){

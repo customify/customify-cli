@@ -1,13 +1,11 @@
 package com.customify.client.utils.authorization;
 
-import com.customify.client.utils.authorization.models.AdminUser;
-import com.customify.client.utils.authorization.models.EmployeeUser;
-import com.customify.client.utils.authorization.models.SuperAdminUser;
+import com.customify.client.utils.authorization.structure.AdminUser;
+import com.customify.client.utils.authorization.structure.EmployeeUser;
+import com.customify.client.utils.authorization.structure.SuperAdminUser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.*;
 
 public class UserSession {
     private boolean loggedIn;
@@ -39,6 +37,7 @@ public class UserSession {
 
 
     public boolean setEmployee(String json_object) throws JsonProcessingException {
+
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(json_object);
         String email = jsonNode.get("email").asText();
@@ -46,9 +45,8 @@ public class UserSession {
         String title = jsonNode.get("title").asText();
         String firName = jsonNode.get("firName").asText();
         String lasName = jsonNode.get("lasName").asText();
-        String id = jsonNode.get("emp_id").asText();
-
-
+        String id = jsonNode.get("id").asText();
+        String createdAt =  jsonNode.get("createdAt").asText();
         EmployeeUser user = new EmployeeUser();
 
         user.setEmail(email);
@@ -57,7 +55,7 @@ public class UserSession {
         user.setLasName(lasName);
         user.setTitle(title);
         user.setId(id);
-
+        user.setCreatedAt(createdAt);
 
         SaveUser savedUser = new SaveUser("EMPLOYEE",user);
         setUserJsonObject(json_object);

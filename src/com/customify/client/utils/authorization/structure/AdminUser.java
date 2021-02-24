@@ -1,4 +1,4 @@
-package com.customify.client.utils.authorization.models;
+package com.customify.client.utils.authorization.structure;
 
 public class AdminUser extends User{
     private String title;

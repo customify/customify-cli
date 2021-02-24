@@ -1,6 +1,8 @@
 package com.customify.client.dashboards;
 
+import com.customify.client.Login;
 import com.customify.client.utils.authorization.UserSession;
+import com.customify.client.views.customer.CustomerMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.net.Socket;
@@ -10,7 +12,7 @@ public class BusinessAdminDashboard {
 
     private Socket socket;
     private   UserSession  userSession;
-    private boolean loggedIn = false;
+    private boolean loggedIn = true;
 
     public UserSession getUserSession() {
         return userSession;
@@ -30,13 +32,16 @@ public class BusinessAdminDashboard {
 
     public BusinessAdminDashboard(){}
 
-    public BusinessAdminDashboard(Socket socket) throws JsonProcessingException {
+    public BusinessAdminDashboard(Socket socket) throws Exception {
         this.socket = socket;
         this.userSession= new UserSession();
         if(userSession.isLoggedIn())
             this.view();
-        else
-            System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST");
+        else{
+            System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST\n\n");
+            Login login =new Login(this.socket);
+        }
+
     }
 
 
@@ -49,7 +54,7 @@ public class BusinessAdminDashboard {
     }
 
 
-    public void view(){
+    public void view()throws Exception{
         Scanner scan = new Scanner(System.in);
 
 
@@ -68,6 +73,8 @@ public class BusinessAdminDashboard {
                 case 1:
                     break;
                 case 2:
+                    CustomerMainView customer = new CustomerMainView();
+                    customer.view();
                     break;
                 case 3:
                     break;
@@ -78,7 +85,8 @@ public class BusinessAdminDashboard {
 //                    loggedIn=false;
                     break;
                 case 6:
-                    loggedIn=false;
+                        if(userSession.unSet())
+                            loggedIn=false;
                     break;
                 default:
                     System.out.println("INVALID CHOICE");
