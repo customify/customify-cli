@@ -4,8 +4,6 @@ import com.customify.client.Common;
 import com.customify.client.SendToServer;
 import com.customify.client.Keys;
 import com.customify.server.CustomizedObjectOutputStream;
-import com.customify.shared.Request;
-import com.customify.shared.Response;
 import com.customify.client.data_format.products.ProductFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,8 +15,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.customify.client.Keys.CREATE_PRODUCT;
-import static com.customify.client.Keys.GET_ALL_PRODUCTS;
+import com.customify.client.Keys.*;
 
 public class ProductService {
     private Socket socket;
@@ -43,7 +40,7 @@ public class ProductService {
     * */
 
     public void addNewProduct(ProductFormat productFormat) throws Exception {
-        productFormat.setKey(CREATE_PRODUCT);
+        productFormat.setKey(Keys.CREATE_PRODUCT);
 
         var mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(productFormat);
@@ -77,19 +74,25 @@ public class ProductService {
         }
 
     }
-    //Method Created By Merlyne Iradukunda
-    // Due date: 6/2/2020
-  /*  public void deleteProduct(Long productCode) throws  Exception{
-        Request request = new Request(Keys.DELETE_PRODUCT, productCode);
-        Common common = new Common(request, this.socket);
 
-        //if the sending is successful call a method to handle response from server
-        if (common.sendToServer()) {
+    /**
+     * @description Service to Delete  Product By Product Code
+     * @author Tamara Iradukunda
+     * @version 1
+     *
+     * @param */
+    public void deleteProduct(ProductFormat product) throws  Exception{
+        // ObjectMapper provides functionality for reading and writing in JSON
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonProductFormat = mapper.writeValueAsString(product);
+        SendToServer serverSend = new SendToServer(jsonProductFormat, this.socket);
+        if (serverSend.send()) {
+           // System.out.println("Send Products to the server successfully! ");
             this.handleDeleteProductSuccess();
         } else {
-            System.out.println("\n\nError occurred when trying to send request to server\n");
+            System.out.println("Error occured when deleting products ");
         }
-    }*/
+    }
 
     /*@author: Jacques TWIZEYIMANA
     * Description: get all products from database
@@ -97,7 +100,7 @@ public class ProductService {
     public void getAllProducts() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         ProductFormat format = new ProductFormat();
-        format.setKey(GET_ALL_PRODUCTS);
+        format.setKey(Keys.GET_ALL_PRODUCTS);
 
         System.out.println("get all products from service");
 
@@ -228,7 +231,7 @@ public class ProductService {
         System.out.println("Reached here 3");
         objectInputStream = new ObjectInputStream(inputStream);
         System.out.println("Reached here 4");
-        try {
+        /*try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
             if(response.get(0).getStatusCode() == 200){
                 ProductFormat retrievedProduct = (ProductFormat) response.get(0).getData();
@@ -256,34 +259,41 @@ public class ProductService {
             System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
         } catch (ClassNotFoundException e) {
             System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
-        }
+        }*/
 
         return;
     }
-    public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-        try {
-            List<Response> response = (List<Response>) objectInputStream.readObject();
 
-            if (response.get(0).getStatusCode() == 200) {
+    /**
+     * @description
+     * Function to Send Response when Product is Deleted Successfully
+     * @author Tamara Iradukunda
+     * @version 1
+     * */
+    public void handleDeleteProductSuccess() throws  Exception,ClassNotFoundException {
+        try {
+            inputStream = this.socket.getInputStream();
+            objectInputStream = new ObjectInputStream(inputStream);
+            ObjectMapper objectMapper=new ObjectMapper();
+
+            String data = (String) objectInputStream.readObject();
+            //System.out.println("+++++++++++++\n" +" data got from the server  is\n" +"=>"+data+"+++++\n");
+            JsonNode jsonFormat = objectMapper.readTree(data);
+            int statusCode = jsonFormat.get("StatusCode").asInt();
+           // System.out.println(statusCode);
+
+            if (statusCode == 200) {
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("\t\t product deleted successfully");
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            } else if (response.get(0).getStatusCode() == 400) {
-                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-            } else if(response.get(0).getStatusCode() == 500){
-                System.out.println("Internal server error!!");
-            }else{
-                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++\n\n");
             }
-        } catch (IOException e) {
-            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-        } catch (ClassNotFoundException e) {
-            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+            // product test code 6503709,47462944,57191349,80316413
+            else{
+                System.out.println("\nInvalid product Code!\n");
+            }
+        } catch (Exception e) {
+            System.out.println("\n\nError occurred :" + e.getMessage() + "\n\n");
         }
-
-        return;
     }
 
     /**
@@ -296,7 +306,7 @@ public class ProductService {
     public void handleUpdateProductSuccess() throws IOException, ClassNotFoundException {
         inputStream = this.getSocket().getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
-        try {
+        /*try {
             List<Response> response = (List<Response>) objectInputStream.readObject();
             System.out.println("Status: "+ response.get(0).getStatusCode());
             if(response.get(0).getStatusCode() == 200){
@@ -318,7 +328,7 @@ public class ProductService {
         } catch (ClassNotFoundException e) {
             System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
         }
-
+*/
         return;
     }
 

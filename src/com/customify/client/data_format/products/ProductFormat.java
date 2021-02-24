@@ -14,7 +14,6 @@ import java.util.Objects;
 public class ProductFormat  {
 
     private Keys key;
-
     private int id;
     private long productCode;
     private int business_id;
@@ -60,6 +59,7 @@ public class ProductFormat  {
 
         return (long) (Math.random() * (max - min + 1) + min);
     }
+
     //Getters and Setters
     public long getProductCode() {
         return productCode;
