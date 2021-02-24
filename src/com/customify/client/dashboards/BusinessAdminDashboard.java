@@ -1,27 +1,44 @@
 package com.customify.client.dashboards;
 
+import com.customify.client.utils.authorization.UserSession;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.net.Socket;
 import java.util.Scanner;
 
 public class BusinessAdminDashboard {
 
     private Socket socket;
-    private String userJson;
+    private   UserSession  userSession;
+    private boolean loggedIn = false;
+
+    public UserSession getUserSession() {
+        return userSession;
+    }
+
+    public void setUserSession(UserSession userSession) {
+        this.userSession = userSession;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
 
     public BusinessAdminDashboard(){}
 
-    public BusinessAdminDashboard(Socket socket, String userJson) {
+    public BusinessAdminDashboard(Socket socket) throws JsonProcessingException {
         this.socket = socket;
-        this.userJson = userJson;
+        this.userSession= new UserSession();
+        if(userSession.isLoggedIn())
+            this.view();
+        else
+            System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST");
     }
 
-    public String getUserJson() {
-        return userJson;
-    }
-
-    public void setUserJson(String userJson) {
-        this.userJson = userJson;
-    }
 
     public Socket getSocket() {
         return socket;
@@ -34,10 +51,12 @@ public class BusinessAdminDashboard {
 
     public void view(){
         Scanner scan = new Scanner(System.in);
-        boolean loggedIn = true;
+
+
         do {
             System.out.println("---------------------------------------------");
             System.out.println("--------------CUSTOMIFY HOME-----------------\n");
+            System.out.println("--------------BUSINESS ADMIN DASHBOARD-----------------\n");
             System.out.println("           1. EMPLOYEE MANAGEMENT");
             System.out.println("           2. CUSTOMER MANAGEMENT");
             System.out.println("           3. TODAY'S REPORT");

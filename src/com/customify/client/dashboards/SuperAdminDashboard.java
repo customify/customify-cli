@@ -5,19 +5,9 @@ import java.util.Scanner;
 
 public class SuperAdminDashboard {
     private Socket socket;
-    private String userJson;
 
-    public SuperAdminDashboard(Socket socket, String userJson) {
+    public SuperAdminDashboard(Socket socket) {
         this.socket = socket;
-        this.userJson = userJson;
-    }
-
-    public String getUserJson() {
-        return userJson;
-    }
-
-    public void setUserJson(String userJson) {
-        this.userJson = userJson;
     }
 
     public Socket getSocket() {

@@ -1,27 +1,44 @@
 package com.customify.client.dashboards;
 
+import com.customify.client.utils.authorization.UserSession;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.net.Socket;
 import java.util.Scanner;
 
 public class EmployeeDashboard {
 
     private Socket socket;
-    private String userJson;
+    private   UserSession  userSession;
+    private boolean loggedIn = false;
+
+    public UserSession getUserSession() {
+        return userSession;
+    }
+
+    public void setUserSession(UserSession userSession) {
+        this.userSession = userSession;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
 
     public EmployeeDashboard(){}
 
-    public EmployeeDashboard(Socket socket, String userJson) {
+    public EmployeeDashboard(Socket socket) throws JsonProcessingException {
         this.socket = socket;
-        this.userJson = userJson;
+        this.userSession= new UserSession();
+        if(userSession.isLoggedIn())
+            this.view();
+        else
+            System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST");
     }
 
-    public String getUserJson() {
-        return userJson;
-    }
-
-    public void setUserJson(String userJson) {
-        this.userJson = userJson;
-    }
 
     public Socket getSocket() {
         return socket;
@@ -32,10 +49,9 @@ public class EmployeeDashboard {
     }
 
 
-    public void view(){
+    public void view() throws JsonProcessingException {
         Scanner scan = new Scanner(System.in);
 
-        boolean loggedIn = true;
         do {
             System.out.println("---------------------------------------------");
             System.out.println("--------------CUSTOMIFY HOME-----------------\n");
@@ -56,7 +72,9 @@ public class EmployeeDashboard {
 //                    loggedIn=false;
                     break;
                 case 5:
-                    loggedIn=false;
+                    if(userSession.unSet())
+                        loggedIn=false;
+
                     break;
                 default:
                     System.out.println("INVALID CHOICE");
