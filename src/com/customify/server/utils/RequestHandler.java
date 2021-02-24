@@ -30,32 +30,23 @@ public class RequestHandler {
         this.clientSocket = socket;
     }
 
-    public void init() {
-        try {
-            this.input = this.clientSocket.getInputStream();
-            this.objectInput = new ObjectInputStream(this.input);
-            while (true) {
-                try {
-                    List<String> clientRequest = (List) this.objectInput.readObject();
-                    this.json_data = (String) clientRequest.get(0);
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    JsonNode jsonNode = objectMapper.readTree(json_data);
-                    this.key = Keys.valueOf(jsonNode.get("key").asText());
-                    System.out.println(this.key);
-                    this.handleRequest();
-                } catch (Exception var5) {
-                }
-            }
 
-        } catch (IOException e) {
-            System.out.println("Error in reading Object " + e.getMessage());
-        }
+    public void init(InputStream inputStream) throws IOException, ClassNotFoundException, SQLException {
+
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        List<String> clientRequest = (List) objectInputStream.readObject();
+        this.json_data = (String) clientRequest.get(0);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(json_data);
+        this.key = Keys.valueOf(jsonNode.get("key").asText());
+        this.handleRequest();
     }
 
 
     public void handleRequest() throws IOException, SQLException {
-        // AuthController authController;
-        CustomerService  customer = new CustomerService(this.clientSocket,this.json_data);
+        AuthController authController;
+//        CustomerService  customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
         Customer_feedbackService feedback = new Customer_feedbackService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
