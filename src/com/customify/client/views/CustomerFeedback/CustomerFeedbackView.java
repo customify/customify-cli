@@ -15,7 +15,6 @@ import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFor
  */
 
 import com.customify.client.services.CustomerFeedbackService;
-import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
