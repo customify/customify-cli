@@ -1,14 +1,10 @@
 package com.customify.server.utils;
 
-import com.customify.server.controllers.AuthController;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
-import com.customify.server.controllers.FeedbackController;
-import com.customify.server.services.CustomerService;
-import com.customify.server.services.BusinessService;
 import com.customify.server.services.ProductService;
-import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -46,7 +42,7 @@ public class RequestHandler {
         AuthController authController;
          CustomerService customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
-
+        CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
 
 //        ProductService productService = new ProductService(this.clientSocket);
@@ -67,16 +63,15 @@ public class RequestHandler {
                 // productController.registerProduct();
                 break;
             case FEEDBACK:
-                // FeedbackController fController = new FeedbackController(this.clientSocket,
-                // this.request);
-                // fController.sendDataInDb();
+                System.out.println("On feedback case");
+                feedback.Feedback(json_data);
 
                 break;
             case GET_ALL_PRODUCTS:
                 // productController.getAllProducts();
                 break;
             case DELETE_PRODUCT:
-                // productController.deleteProduct();
+                productService.deleteProduct(json_data);
                 break;
 
             case GET_PRODUCT_BY_ID:

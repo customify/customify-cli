@@ -12,6 +12,7 @@
 package com.customify.server.routes;
 
 import com.customify.server.controllers.ProductController;
+import com.customify.server.services.ProductService;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -44,6 +45,6 @@ public class ProductRoute {
      */
 
     public void  deleteProduct() throws IOException, SQLException {
-        productController.deleteProduct();
+        ProductService.deleteProduct();
     }
 }

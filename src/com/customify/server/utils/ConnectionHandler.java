@@ -6,10 +6,10 @@
 
 package com.customify.server.utils;
 
-import com.customify.server.controllers.ProductController;
-//import com.customify.server.controllers.BusinessController;
-import com.customify.server.controllers.PointsController;
-import com.customify.server.controllers.FeedbackController;
+// import com.customify.server.controllers.ProductController;
+// //import com.customify.server.controllers.BusinessController;
+// import com.customify.server.controllers.PointsController;
+// import com.customify.server.controllers.FeedbackController;
 import com.customify.shared.Request;
 
 import com.customify.shared.Keys;
@@ -78,8 +78,9 @@ public class ConnectionHandler {
             case GET_BUSINESS:
                 break;
             case FEEDBACK:
-                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
-                fController.sendDataInDb();
+                // FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+                // fController.sendDataInDb();
+
                 break;
             case GET_ALL_PRODUCTS:
                 productController = new ProductController(this.clientSocket, this.request);

@@ -1,7 +1,15 @@
-package com.customify.shared.requests_data_formats;
-import java.io.Serializable;
+/**
+ * @description
+ * Class to provide the format of Responses sent to client regarding Products.
+ * @author SAUVE Jean-Luc
+ * @version 1
+ * */
 
-public class ProductFormat  implements Serializable {
+package com.customify.server.response_data_format.products;
+
+
+public class ProductFormat{
+    private int status;
     private int id;
     private long productCode;
     private int business_id;
@@ -95,5 +103,13 @@ public class ProductFormat  implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
