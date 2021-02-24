@@ -1,7 +1,7 @@
 package com.customify.client.services;
 
 import com.customify.client.SendToServer;
-import com.customify.client.data_format.CreateCustomerFormat;
+//import com.customify.client.data_format.CreateCustomerFormat;
 //import com.customify.client.data_format.customer.CreateCustomerFormat;
 import com.customify.client.data_format.DisableCustomerFormat;
 import com.customify.client.data_format.UpdateCustomerFormat;
@@ -11,6 +11,7 @@ import com.customify.shared.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.customify.client.data_format.CreateCustomerFormat;
 
 import java.io.IOException;
 import java.io.InputStream;

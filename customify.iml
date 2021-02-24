@@ -7,9 +7,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="libs" level="project" />
-    <orderEntry type="library" name="jackson-annotations-2.12.11" level="project" />
-    <orderEntry type="library" name="jackson-core-2.12.11" level="project" />
-    <orderEntry type="library" name="jackson-databind-2.12.11" level="project" />
+    <orderEntry type="library" name="activation" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.12.1" level="project" />
+    <orderEntry type="library" name="jackson-core-2.12.1" level="project" />
+    <orderEntry type="library" name="jackson-databind-2.12.1" level="project" />
+    <orderEntry type="library" name="mail" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.19" level="project" />
   </component>
 </module>

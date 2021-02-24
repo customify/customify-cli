@@ -3,6 +3,7 @@ package com.customify.client.services;
 import com.customify.client.Common;
 import com.customify.client.SendToServer;
 import com.customify.client.Keys;
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
 import com.customify.client.data_format.products.ProductFormat;
@@ -139,6 +140,7 @@ public class ProductService {
         try {
             this.inputStream = this.socket.getInputStream();
             this.objectInputStream = new ObjectInputStream(this.inputStream);
+
             String json_data = (String)this.objectInputStream.readObject();
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(json_data);

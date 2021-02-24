@@ -10,7 +10,8 @@ import java.util.Scanner;
 
 import static com.customify.client.Keys.UPDATE_PRODUCT;
 
-public class ProductView {
+public class
+ProductView {
     private Socket socket;
 
     public ProductView(Socket socket) {
