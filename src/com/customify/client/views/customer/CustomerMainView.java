@@ -56,7 +56,8 @@ public class CustomerMainView {
                     customerView1.view();
                     break;
                 case "6":
-
+                        ReEnableCustomerView reEnableCustomerView = new ReEnableCustomerView(this.socket);
+                        reEnableCustomerView.init();
                      break;
                 case "00":
                     customerView = false;

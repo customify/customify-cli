@@ -1,0 +1,43 @@
+package com.customify.client.views.customer;
+
+import com.customify.client.SendToServer;
+import com.customify.client.services.CustomerService;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Scanner;
+
+/**
+ * @author Murenzi Confiance Tracy
+ * @role
+ * this view is to be displayed to the customer who wants to re-enable a card using customer code
+ * */
+
+public class ReEnableCustomerView {
+
+    public ReEnableCustomerView(){}
+
+    private Socket socket;
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
+    public ReEnableCustomerView(Socket socket){this.socket=socket;}
+    Scanner scan = new Scanner(System.in);
+    String code;
+
+public void init() throws IOException {
+    System.out.println("\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> RE-ENABLE -CUSTOMER---------------------");
+    System.out.println("         Enter  Customer's code:");
+    code = scan.nextLine();
+    System.out.println("         Are you sure you want to di-activate this card? (y/N): \t");
+
+    CustomerService service = new CustomerService(socket);
+    service.reEnableCard(code);
+}
+
+}

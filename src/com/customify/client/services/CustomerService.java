@@ -1,12 +1,13 @@
 package com.customify.client.services;
 
+import com.customify.client.Keys;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CreateCustomerFormat;
 //import com.customify.client.data_format.customer.CreateCustomerFormat;
+import com.customify.client.data_format.DeActivateCustomerFormat;
 import com.customify.client.data_format.DisableCustomerFormat;
 import com.customify.client.data_format.UpdateCustomerFormat;
 import com.customify.client.data_format.products.ProductFormat;
-import com.customify.server.Keys;
 //import com.customify.shared.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -70,28 +71,28 @@ public class CustomerService {
     public void handleUpdateCustomerSuccess() throws IOException, ClassNotFoundException {
         InputStream inputStream = this.getSocket().getInputStream();
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-        try {
-            List<Response> response = (List<Response>) objectInputStream.readObject();
-            System.out.println("Status: "+ response.get(0).getStatusCode());
-            if(response.get(0).getStatusCode() == 200){
-                UpdateCustomerFormat updatedCustomer = (UpdateCustomerFormat) response.get(0).getData();
-
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-                System.out.println("\t\t Customer Updated successfully");
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            }
-            else if(response.get(0).getStatusCode() == 400){
-                System.out.println("\n\nInvalid Customer format.Please enter Customer details as required\n\n");
-            }
-            else{
-                System.out.println("\n\nUnknown error occurred.\n");
-            }
-
-        } catch (IOException e) {
-            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
-        } catch (ClassNotFoundException e) {
-            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
-        }
+//        try {
+//            List<Response> response = (List<Response>) objectInputStream.readObject();
+//            System.out.println("Status: "+ response.get(0).getStatusCode());
+//            if(response.get(0).getStatusCode() == 200){
+//                UpdateCustomerFormat updatedCustomer = (UpdateCustomerFormat) response.get(0).getData();
+//
+//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("\t\t Customer Updated successfully");
+//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//            }
+//            else if(response.get(0).getStatusCode() == 400){
+//                System.out.println("\n\nInvalid Customer format.Please enter Customer details as required\n\n");
+//            }
+//            else{
+//                System.out.println("\n\nUnknown error occurred.\n");
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//        }
 
         return;
     }
@@ -132,4 +133,15 @@ public class CustomerService {
     }
     public void getAll(){}
     public void get(){}
+
+    public void reEnableCard(String code) throws IOException {
+        DeActivateCustomerFormat format = new DeActivateCustomerFormat(Keys.RENABLE_CUSTOMER,code);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String request = objectMapper.writeValueAsString(format);
+        SendToServer sendToServer = new SendToServer(request,socket);
+
+        if (sendToServer.send()){
+            System.out.println("\t\tUser activated successfully");
+        }
+    }
 }

@@ -44,12 +44,12 @@ public class RequestHandler {
 
     public void handleRequest() throws IOException, SQLException {
         AuthController authController;
-        // CustomerService customer = new CustomerService(this.clientSocket);
+         CustomerService customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
 
         ProductService productService = new ProductService(this.clientSocket);
 
-        ProductService productService = new ProductService(this.clientSocket);
+//        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
         System.out.println("Handling routes");
@@ -106,6 +106,9 @@ public class RequestHandler {
                 break;
             case GET_ALL_COUPONS:
                 couponService.getAllCoupons(json_data);
+                break;
+            case RENABLE_CUSTOMER:
+                customer.renableCard(json_data);
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

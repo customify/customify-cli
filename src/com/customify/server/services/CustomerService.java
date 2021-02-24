@@ -31,6 +31,10 @@ public class CustomerService {
         this.socket = socket;
     }
 
+    public CustomerService(Socket clientSocket) {
+        this.socket = clientSocket;
+    }
+
     /**
      * @author SAMUEL DUSHIMIMANA
      * @role
@@ -162,4 +166,21 @@ public class CustomerService {
     }
     public void readOne() throws SQLException{}
     public void readAll() throws SQLException{}
+
+    public void renableCard(String request) throws JsonProcessingException, SQLException {
+        System.out.println("Request to re-enable card was received at server");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(request);
+        String code = jsonNode.get("code").asText();
+
+        String query = "UPDATE customers SET disabled = 0 WHERE code = ?";
+        PreparedStatement preparedStatement = Db.getConnection().prepareStatement(query);
+        preparedStatement.setString(1,code);
+
+        if(preparedStatement.executeUpdate() > 0){
+            System.out.println("Card was re-enabled");
+        }
+
+    }
 }
