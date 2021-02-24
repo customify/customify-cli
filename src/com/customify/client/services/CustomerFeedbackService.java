@@ -1,5 +1,3 @@
-package com.customify.client.services;
-
 /**
  * Author: Niyonzima Stecie
  * done on: 4 Feb 2021
@@ -8,21 +6,11 @@ package com.customify.client.services;
  * for the services they got from various businesses.
  * 
  * */
+package com.customify.client.services;
 
-// import com.customify.client.Common;
 import com.customify.client.SendToServer;
-// import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
-
-// import com.customify.shared.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-// import com.customify.shared.Keys;
-// import com.customify.shared.Request;
-// import com.customify.shared.Response;
-
-// import com.customify.shared.responses_data_format.customer_feedbackFormat.FeedbackSuccessFormat;
-// import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,12 +33,11 @@ public class CustomerFeedbackService {
         String json = mapper.writeValueAsString(format);
         SendToServer sendToServer = new SendToServer(json, this.socket);
         if (sendToServer.send()) {
-            System.out.println("The feedback sent successfully to the backend.");
+            System.out.println("\nFeeback Sent");
         } else {
             System.out.println("Failed to send the feedback data!! You need to check well");
         }
     }
-
     // delete the feedback from the database
 
     // get the response from the server confirming the flow of data

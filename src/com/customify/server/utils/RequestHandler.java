@@ -58,8 +58,7 @@ public class RequestHandler {
             case CREATE_PRODUCT:
                 // productController.registerProduct();
                 break;
-            case FEEDBACK:
-                System.out.println("On feedback case");
+            case FEEDBACK:                
                 feedback.Feedback(json_data);
 
                 break;

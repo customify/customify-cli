@@ -1,5 +1,3 @@
-package com.customify.client.data_format.CustomerFeedback;
-
 /**
  * @author: NSENGIYUMVA Gershom
  * 
@@ -8,23 +6,24 @@ package com.customify.client.data_format.CustomerFeedback;
  * Setting and getting feedback data to be formatted
  * 
  * done 7 Feb 2021
- * */ 
+ * */
+package com.customify.client.data_format.CustomerFeedback;
+
 import java.io.Serializable;
 import com.customify.client.Keys;
 
-public class CustomerFeedbackDataFormat implements Serializable{
+public class CustomerFeedbackDataFormat implements Serializable {
     private Keys key;
     private int customer_id, business_id;
     private String title, description;
 
-    public CustomerFeedbackDataFormat(Keys key,int customer_id, int business_id, String title, String description) {
+    public CustomerFeedbackDataFormat(Keys key, int customer_id, int business_id, String title, String description) {
         this.key = key;
         this.customer_id = customer_id;
         this.business_id = business_id;
         this.title = title;
         this.description = description;
     }
-
 
     // define the getters and setters
     public Keys getKey() {
@@ -34,7 +33,6 @@ public class CustomerFeedbackDataFormat implements Serializable{
     public void setKey(Keys key) {
         this.key = key;
     }
-
 
     public int getCustomerId() {
         return customer_id;

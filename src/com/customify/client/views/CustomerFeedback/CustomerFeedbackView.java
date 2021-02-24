@@ -1,8 +1,3 @@
-package com.customify.client.views.CustomerFeedback;
-
-import com.customify.client.Keys;
-import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
-
 /**
  *  Author: Niyonzima Stecie
  * done on: 4 Feb 2021
@@ -13,6 +8,10 @@ import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFor
  * The data that he/she will provide are the ones to be inserted into the database on the side
  * of the business he/she has written to.
  */
+ 
+package com.customify.client.views.CustomerFeedback;
+import com.customify.client.Keys;
+import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 
 import com.customify.client.services.CustomerFeedbackService;
 import java.io.IOException;
