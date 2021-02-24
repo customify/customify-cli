@@ -1,5 +1,6 @@
 package com.customify.client.views;
 
+import com.customify.client.Keys;
 import com.customify.client.services.ProductService;
 import com.customify.client.data_format.products.*;
 import java.net.Socket;
@@ -27,7 +28,7 @@ public class ProductView {
         System.out.println("\t\t2.get all products");
         System.out.println("\t\t3.get product by id");
         System.out.println("\t\t4.update product");
-        System.out.println("\t\t5.delete product");
+        System.out.println("\t\t5.Delete product");
         System.out.println("\t\t00.back");
 
         System.out.print("\nEnter option:\t");
@@ -49,6 +50,7 @@ public class ProductView {
                 break;
             case 5:
                 this.deleteProduct();
+                break;
             default:
                 System.out.println("Your entered Incorrect option");
         }
@@ -148,7 +150,7 @@ public class ProductView {
         newProduct.setCreatedAt("2021-02-04");
 
         ProductService productService = new ProductService(this.socket);
-        productService.updateProduct(newProduct);
+       //productService.updateProduct(newProduct);
 
     }
 
@@ -166,14 +168,22 @@ public class ProductView {
 
     }
 
-    //Delete method create by Merlyne Iradukunda
-    // Due 6/02/2021
+
+    /**
+     * @description
+     * Method to delete a product from using it's code
+     * @author Tamara Iradukunda
+     * @version 1
+     * */
     public void deleteProduct() throws Exception{
         Scanner scanner = new Scanner(System.in);
-        long productCode;
+        ProductFormat oldProduct = new ProductFormat();
+        //set key for deleting a product to send to the server
+        oldProduct.setKey(Keys.DELETE_PRODUCT);
         System.out.println("Enter product Code:");
-        productCode=scanner.nextLong();
+        //set key for one product code deletion
+        oldProduct.setProductCode(Long.parseLong(scanner.nextLine()));
         ProductService productService = new ProductService(this.socket);
-        productService.deleteProduct(productCode);
+        productService.deleteProduct(oldProduct);
     }
 }

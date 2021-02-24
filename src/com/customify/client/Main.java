@@ -17,25 +17,22 @@ public class Main {
             System.out.println("Failed to connect to the server to: "+serverIP);
         }
     }
-
     public static void main(String[] args){
         System.out.println("Customify  is starting..........");
         new Main("localhost");
         System.out.println("Ending................");
     }
-
     private boolean connectTOServer(String serverIp){
-        int portNumber = 4000;
+        int portNumber = 3000;
         try{
             Socket socket = new Socket(serverIp, portNumber);
             System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
             while(isConnectionOn){
-                Home home = new Home(socket);
-                home.view();
+                Login log = new Login(socket);
+                log.view();
             }
-
         }catch (Exception e){
             this.isConnectionOn = false;
             System.out.println("Failed to connect to the server at port: "+ portNumber);

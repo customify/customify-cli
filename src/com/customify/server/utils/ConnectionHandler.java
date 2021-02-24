@@ -42,6 +42,7 @@ public class ConnectionHandler {
                     this.request = clientRequest.get(0);
                     this.handleRequest();
                 } catch (IOException | ClassNotFoundException | SQLException e) {
+
                 }
             }
         } catch (IOException e) {

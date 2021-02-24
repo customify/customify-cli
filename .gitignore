@@ -29,8 +29,12 @@ output/
 #editor config files
 .vscode
 <<<<<<< HEAD
+<<<<<<< HEAD
 .idea/
 .idea/workspace.xml
 /bin/
 =======
 >>>>>>> 7b4a02880ce3083be703a32012a6f90229b7c3ae
+=======
+/.idea/
+>>>>>>> 44711f8e81e81781fb248609d64e6c74dc2d7437
