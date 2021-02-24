@@ -30,8 +30,8 @@ public class Main {
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
             while(isConnectionOn){
-                Login log = new Login(socket);
-                log.view();
+               Login log = new Login(socket);
+               log.view();
             }
         }catch (Exception e){
             this.isConnectionOn = false;
