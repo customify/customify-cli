@@ -33,17 +33,16 @@ public class Home {
 
         int choice;
         Scanner scan = new Scanner(System.in);
-        LoginView loginView = new LoginView(this.socket);
-        SignupView signupView = new SignupView(this.socket);
+
         CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
-        CustomerMainView customer = new CustomerMainView(this.socket);
+        CustomerMainView customer = new CustomerMainView(this.socket,true);
 
         ProductView productView = new ProductView(this.socket);
 
         BusinessView businessView = new BusinessView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
-        PointCountingView pointCountingView = new PointCountingView((this.socket));
+//        PointCountingView pointCountingView = new PointCountingView((this.socket));
         CouponView couponView = new CouponView(this.socket);
 
         System.out.println("---------------------------------------------");
@@ -61,10 +60,10 @@ public class Home {
 
         switch (choice) {
             case 1:
-                signupView.view();
+//                signupView.view();
                 break;
             case 2:
-                loginView.view();
+//                loginView.view();
                 break;
             case 3:
                 productView.init();
@@ -80,7 +79,7 @@ public class Home {
                 break;
 
             case 7:
-                pointCountingView.view();
+//                pointCountingView.view();
                 break;
             case 8:
                 customer.view();

@@ -1,14 +1,10 @@
 package com.customify.server.utils;
 
-import com.customify.server.controllers.AuthController;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
-import com.customify.server.controllers.FeedbackController;
-import com.customify.server.services.CustomerService;
-import com.customify.server.services.BusinessService;
-import com.customify.server.services.ProductService;
-import com.customify.shared.Request;
+
+//import com.customify.server.services.ProductService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -46,10 +42,9 @@ public class RequestHandler {
 
 
     public void handleRequest() throws IOException, SQLException {
-        AuthController authController;
 //        CustomerService  customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
-        ProductService productService = new ProductService(this.clientSocket);
+//        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
         System.out.println("Handling routes");
@@ -79,11 +74,11 @@ public class RequestHandler {
                 break;
 
             case GET_PRODUCT_BY_ID:
-                productService.getProductById(json_data);
+//                productService.getProductById(json_data);
                 break;
 
             case UPDATE_PRODUCT:
-                productService.updateProduct(json_data);
+//                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
 //                customer.create();

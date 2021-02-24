@@ -2,10 +2,9 @@ package com.customify.server.services;
 
 import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
-import com.customify.server.SendToClient;
-import com.customify.server.response_data_format.AuthenticationResponseFormat;
-import com.customify.shared.Response;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.customify.server.response_data_format.authentication.AuthAdmin;
+import com.customify.server.response_data_format.authentication.AuthEmployee;
+import com.customify.server.response_data_format.authentication.AuthSuperAdmin;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,7 +24,6 @@ public class AuthService {
     OutputStream output;
     ObjectOutputStream objectOutput;
     private int statusCode;
-    Response response;
     List responseData = new ArrayList<String>();
 private String json_data;
 
@@ -35,13 +33,6 @@ private String json_data;
        this.json_data = json_data;
        this.login();
    }
-   /*
-     Method to send feedback to client.
-     A serializable class 'Response' Is used to to cast the response
-     Like SuccessLoginFormat is used, each response is to have Class to format a response type
-     In this case we consider the login process to have been successful & returning 200 statusCode
-   */
-
 
 public void login() throws IOException, SQLException {
 
@@ -57,31 +48,60 @@ public void login() throws IOException, SQLException {
     try {
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
-        String employee_id = "", firstName = "", mail = "", title = "", lastName = "", pass = "";
-        while (rs.next()) {
+        String id = "", firstName = "", mail = "",tel="" ,title = "", lastName = "", pass = "", createdAt = "", business_id = "";
+
+        String json;
+
+        if (!rs.next()) {
+            query = "SELECT * FROM SuperAdmin WHERE password='"+password+"' AND email='"+email+"'";
+            rs = st.executeQuery(query);
+
+            if (!rs.next()){
+                json = "{ \"status\" : \"401\"}";
+            }else{
+                pass = rs.getString("password");
+                firstName = rs.getString("firName");
+                lastName = rs.getString("lasName");
+                tel = rs.getString("tel");
+                id = rs.getString("id");
+                mail = rs.getString("email");
+                AuthSuperAdmin superAdminFormat;
+                superAdminFormat = new AuthSuperAdmin("SUPER_ADMIN",mail,firstName,lastName, id,tel,201);
+                json = objectMapper.writeValueAsString(superAdminFormat);
+            }
+        }else{
             pass = rs.getString("password");
             firstName = rs.getString("firName");
             lastName = rs.getString("lasName");
             title = rs.getString("title");
-            employee_id = rs.getString("emp_id");
+            id = rs.getString("emp_id");
             mail = rs.getString("email");
+            business_id = rs.getString("business_id");
+            createdAt = rs.getString("createdAt");
+            AuthAdmin  adminFormat;
+            AuthEmployee empFormat;
+
+            if(title.equals("BUSINESS_ADMIN"))
+            {
+                adminFormat = new AuthAdmin("BUSINESS_ADMIN",mail,firstName,lastName, id,business_id,title,201);
+                json = objectMapper.writeValueAsString(adminFormat);
+            } else{
+                empFormat = new AuthEmployee("EMPLOYEE",mail,firstName,lastName, id,business_id,title,201,createdAt);
+                json = objectMapper.writeValueAsString(empFormat);
+            }
+
         }
 
-        AuthenticationResponseFormat   format = new AuthenticationResponseFormat(mail, firstName, lastName, employee_id, title, 0, 201);
-        String json = objectMapper.writeValueAsString(format);
         responseData.add(json);
     }catch(Exception ex){
         System.out.println(ex);
-        AuthenticationResponseFormat  format  = new AuthenticationResponseFormat(null,null, null, null,null,0,401);
-        String json = objectMapper.writeValueAsString(format);
+       String json = "{ \"status\" : \"401\"}";
         responseData.add(json);
     }finally{
-       this.output = socket.getOutputStream();
+        this.output = socket.getOutputStream();
         this.objectOutput = new CustomizedObjectOutputStream(this.output);
-        objectOutput.writeObject(this.responseData);
-        objectOutput.flush();
-        this.output.flush();
         System.out.println("Response "+responseData.get(0));
+        objectOutput.writeObject(this.responseData);
     }
 }
 }
