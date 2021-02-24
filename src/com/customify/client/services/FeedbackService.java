@@ -5,47 +5,62 @@ package com.customify.client.services;
  * done on: 4 Feb 2021
  * 
  * This is is the service class for the customers to provide the feedbacks
- * for the services they got.
+ * for the services they got from various businesses.
  * 
  * */
 
-import com.customify.shared.Keys;
 import com.customify.client.Common;
-import com.customify.shared.Request;
-import com.customify.shared.Response;
+import com.customify.client.SendToServer;
+import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackFormat;
 import com.customify.shared.requests_data_formats.FeedbackFormat;
 
+import com.customify.shared.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.customify.shared.Keys;
+import com.customify.shared.Request;
+import com.customify.shared.Response;
+
+import com.customify.shared.responses_data_format.customer_feedbackFormat.FeedbackSuccessFormat;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.List;
-import java.io.*;
 
 public class FeedbackService {
-    private Socket socket;
+    private final Socket socket;
 
     public FeedbackService(Socket socket) {
         this.socket = socket;
     }
-   
+
     /**
-     * This method is for tracking the choice of the customer(feedback) and 
-     * then this choice can be sent to the server
-     * */ 
-    public void Comment(FeedbackFormat format) throws IOException, ClassNotFoundException {
-        Request request = new Request(Keys.FEEDBACK, format);
-        Common common = new Common(request, this.socket);
-        if (common.sendToServer()) {
-            this.handleFeedbackResponse();
+     * @author NIYONZIMA Stecie
+     */
+    public void Feedback(FeedbackFormat format) throws IOException, ClassNotFoundException {
+        var mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(format);
+        SendToServer sendToServer = new SendToServer(json, this.socket);
+        if (sendToServer.send()) {
+            System.out.println("The feedback sent successfully to the backend.");
+        } else {
+            System.out.println("Failed to send the feedback data!! You need to check well");
         }
     }
 
+    // delete the feedback from the database
+
+    // get the response from the server confirming the flow of data
     public void handleFeedbackResponse() throws IOException, ClassNotFoundException {
         InputStream inputStream = this.socket.getInputStream();
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         List<Response> response = (List<Response>) objectInputStream.readObject();
 
-        if (response.get(0).getStatusCode() == 200) {            
-            System.out.println("Feedback successfully sent");
+        if (response.get(0).getStatusCode() == 201) {
+            System.out.println("All done. The feedback has been sent.");
         }
     }
 }
