@@ -257,7 +257,13 @@ public class ProductService {
             System.out.println(e.getMessage());
         }
         finally {
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(products);
+            objectOutput.flush();
+            this.output.flush();
 
+            System.out.println(products);
         }
     }
 
