@@ -12,7 +12,7 @@ public class HandleRoutes {
     private final Keys key;
     Socket socket;
     AuthRoute authRoute;
-    PointsRoutes pointsRoutes;
+//    PointsRoutes pointsRoutes;
     ProductRoute productRoute;
     BusinessRoute businessRoute;
     CustomerRoute customerRoute;
@@ -21,7 +21,7 @@ public class HandleRoutes {
     public HandleRoutes(Keys key, Socket socket) throws IOException, SQLException {
         this.socket = socket;
         this.authRoute = new AuthRoute(socket);
-        this.pointsRoutes = new PointsRoutes(socket);
+//        this.pointsRoutes = new PointsRoutes(socket);
         this.productRoute = new ProductRoute(socket);
         this.key = key;
         this.switchRoutes();
@@ -33,7 +33,7 @@ public class HandleRoutes {
                 authRoute.loginRoute();
                 break;
             case POINTS_BY_CUSTOMER_EMAIL:
-                 pointsRoutes.getPointsByCustomer();
+//                 pointsRoutes.getPointsByCustomer();
                  break;
             case GET_PRODUT_BY_ID:
                 productRoute.registerProduct();

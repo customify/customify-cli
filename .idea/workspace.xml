@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f082859-419d-42e4-a1e2-47bf42746195" name="Default Changelist" comment="">
+    <list default="true" id="6711743e-c338-46f0-bc29-03b23d63af5d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/data_format/products/ProductFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/products/ProductFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/controllers/FeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/controllers/FeedbackController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/routes/HandleRoutes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,10 +20,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1ouqW8eaiaRZerWGqSC2RswdbcC" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="ProjectId" id="1oxZ79txuOy5VnnA9Y2uBn69r51" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -24,11 +31,17 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.19.jar" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager" selected="Application.Client">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true">
+    <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.customify.client.Main" />
-      <module name="Custemp" />
+      <module name="customify" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.customify.client.*" />
@@ -39,9 +52,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true">
+    <configuration name="Server" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.customify.server.Main" />
-      <module name="Custemp" />
+      <module name="customify" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.customify.server.*" />
@@ -52,59 +65,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.Server" />
-      <item itemvalue="Application.Client" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Client" />
-        <item itemvalue="Application.Server" />
-      </list>
-    </recent_temporary>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="sent response to the client for product deletion">
-      <created>1614107283155</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1614107283155</updated>
-    </task>
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4f082859-419d-42e4-a1e2-47bf42746195" name="Default Changelist" comment="" />
-      <created>1614146902372</created>
+      <changelist id="6711743e-c338-46f0-bc29-03b23d63af5d" name="Default Changelist" comment="" />
+      <created>1614230033832</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1614146902372</updated>
+      <updated>1614230033832</updated>
+      <workItem from="1614230036704" duration="6597000" />
     </task>
-    <task id="LOCAL-00002" summary="Conflict resolved">
-      <created>1614147865077</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1614147865077</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="conflicts solved" />
-    <MESSAGE value="sent response to the client for product deletion" />
-    <MESSAGE value="Conflict resolved" />
-    <option name="LAST_COMMIT_MESSAGE" value="Conflict resolved" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

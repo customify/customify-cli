@@ -40,53 +40,51 @@ public class ProductService {
 
     // Jacques update this according to new Structure
 
-//    public void registerProduct() throws IOException, SQLException {
-//        ProductFormat product = (ProductFormat) request.getObject();
-//
-//        OutputStream output = this.socket.getOutputStream();
-//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
-//
-//        try {
-//            Connection connection = Db.getConnection();
-//            String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
-//                    " values(?,?,?,?,?,?,?,?,?)";
-//
-//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setLong(1,product.getProductCode());
-//            preparedStatement.setInt(2,product.getBusiness_id());
-//            preparedStatement.setString(3,product.getName());
-//            preparedStatement.setFloat(4,product.getPrice());
-//            preparedStatement.setInt(5,product.getQuantity());
-//            preparedStatement.setString(6,product.getDescription());
-//            preparedStatement.setDouble(7,product.getBondedPoints());
-//            preparedStatement.setInt(8,product.getRegistered_by());
-//            preparedStatement.setString(9,product.getCreatedAt());
-//
-//            if(preparedStatement.executeUpdate() > 0){
-//                List responseData = new ArrayList<>();
-//                Response response = new Response(200,product);
-//                responseData.add(response);
-//
-//                //Sending the response to client
-//                objectOutput.writeObject(responseData);
-//            }
-//            else{
-//                List responseData = new ArrayList<>();
-//                Response response = new Response(500,product);
-//                responseData.add(response);
-//                //Sending the response to client
-//                objectOutput.writeObject(responseData);
-//            }
-//        }
-//        catch (Exception e){
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(500,new ProductFormat());
-//            responseData.add(response);
-//            //Sending the response to client
-//            objectOutput.writeObject(responseData);
-//        }
-//    }
+    public void registerProduct(String data) throws IOException, SQLException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
 
+        String response="";
+
+        try {
+
+            Connection connection = Db.getConnection();
+            String sql = "INSERT INTO products(product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at)" +
+                    " values(?,?,?,?,?,?,?,?,?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setLong(1, jsonNode.get("productCode").asLong());
+            preparedStatement.setInt(2, jsonNode.get("businessId").asInt());
+            preparedStatement.setString(3, jsonNode.get("name").asText());
+            preparedStatement.setFloat(4, (float) jsonNode.get("price").asDouble());
+            preparedStatement.setInt(5, jsonNode.get("quantity").asInt());
+            preparedStatement.setString(6, jsonNode.get("description").asText());
+            preparedStatement.setDouble(7, jsonNode.get("bondedPoints").asDouble());
+            preparedStatement.setInt(8, jsonNode.get("registeredBy").asInt());
+            preparedStatement.setString(9, jsonNode.get("createdAt").asText());
+
+            if (preparedStatement.executeUpdate() > 0) {
+                response = "{\"status\": \"201\"}";
+                System.out.println("Product was Created successfully!!! ");
+            } else {
+                response = "{\"status\": \"400\"}";
+                System.out.println("\n\nProduct format received was incorrect\n ");
+            }
+        } catch (Exception e) {
+            response = "{\"status\": \"500\"}";
+            System.out.println("\n\nInternal server error:" + e.getMessage() + e.getCause());
+        }
+        finally {
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(this.responseData);
+            objectOutput.flush();
+            this.output.flush();
+            responseData.add(response);
+            System.out.println("Response "+responseData.get(0));
+        }
+    }
     /**
      * @description
      * Function to Get Product by ID from DB and send Response to Client
@@ -238,40 +236,30 @@ public class ProductService {
 
     // Jacques update this according to new Structure
 
-//    public void getAllProducts() throws IOException, SQLException {
-//        System.out.println("request to get products was received");
-//        OutputStream output = this.socket.getOutputStream();
-//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
-//
-//        List products = null;
-//        List response = new ArrayList<>();
-//
-//        try {
-//            Statement statement = Db.getStatement();
-//            ResultSet records = statement.executeQuery("SELECT * FROM products");
-//
-//            products = new ArrayList<ProductFormat>();
-//
-//            while (records.next()){
-//                products.add(
-//                        new ProductFormat(
-//                                records.getInt("business_id"), records.getString("name"),
-//                                records.getFloat("price"), records.getInt("quantity"),
-//                                records.getString("description"),records.getDouble("bonded_points"),
-//                                records.getInt("registered_by"), records.getString("created_at")
-//                        )
-//                );
-//            }
-//
-//            response.add(new Response(200,products));
-//            objectOutput.writeObject(response);
-//
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//            response.add(new Response(500,new Object()));
-//            objectOutput.writeObject(response);
-//        }
-//    }
+    public void getAllProducts() throws IOException, SQLException {
+        List products  = new ArrayList<ProductFormat>();
+
+        try {
+            Statement statement = Db.getStatement();
+            ResultSet records = statement.executeQuery("SELECT * FROM products");
+
+            while (records.next()){
+                products.add(
+                        new ProductFormat(
+                                records.getInt("business_id"), records.getString("name"),
+                                records.getFloat("price"), records.getInt("quantity"),
+                                records.getString("description"),records.getDouble("bonded_points"),
+                                records.getInt("registered_by"), records.getString("created_at")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        finally {
+
+        }
+    }
 
 //    public void getProduct() throws IOException {
 //        output = new DataOutputStream(this.socket.getOutputStream());

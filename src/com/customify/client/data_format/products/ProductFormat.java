@@ -14,27 +14,27 @@ public class ProductFormat  {
     private Keys key;
     private int id;
     private long productCode;
-    private int business_id;
+    private int businessId;
     private String name;
     private float price;
     private int quantity;
     private String description;
     private double bondedPoints;
-    private int registered_by;
+    private int registeredBy;
     private String createdAt;
     //Constructor
     public  ProductFormat(){
         this.productCode = this.generateCode();
     }
-    public ProductFormat(int business_id, String name, float price, int quantity, String description, double bondedPoints, int registered_by, String createdAt) {
+    public ProductFormat(int businessId, String name, float price, int quantity, String description, double bondedPoints, int registeredBy, String createdAt) {
         this.productCode = this.generateCode();
-        this.business_id = business_id;
+        this.businessId = businessId;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
         this.bondedPoints = bondedPoints;
-        this.registered_by = registered_by;
+        this.registeredBy = registeredBy;
         this.createdAt = createdAt;
     }
     public long generateCode(){
@@ -51,11 +51,11 @@ public class ProductFormat  {
     public void setProductCode(long productCode) {
         this.productCode = productCode;
     }
-    public int getBusiness_id() {
-        return business_id;
+    public int getBusinessId() {
+        return businessId;
     }
-    public void setBusiness_id(int business_id) {
-        this.business_id = business_id;
+    public void setBusinessId(int businessId) {
+        this.businessId = businessId;
     }
     public String getName() {
         return name;
@@ -87,11 +87,11 @@ public class ProductFormat  {
     public void setBondedPoints(double bondedPoints) {
         this.bondedPoints = bondedPoints;
     }
-    public int getRegistered_by() {
-        return registered_by;
+    public int getRegisteredBy() {
+        return registeredBy;
     }
-    public void setRegistered_by(int registered_by) {
-        this.registered_by = registered_by;
+    public void setRegisteredBy(int registeredBy) {
+        this.registeredBy = registeredBy;
     }
     public String getCreatedAt() {
         return createdAt;

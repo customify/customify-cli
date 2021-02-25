@@ -64,7 +64,7 @@ public class RequestHandler {
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
-//                productController.registerProduct();
+                productService.registerProduct(json_data);
                 break;
             case FEEDBACK:
             System.out.println("On feedback case");
@@ -72,7 +72,7 @@ public class RequestHandler {
 
                 break;
             case GET_ALL_PRODUCTS:
-//                productController.getAllProducts();
+                productService.getAllProducts();
                 break;
             case DELETE_PRODUCT:
                 productService.deleteProduct(json_data);

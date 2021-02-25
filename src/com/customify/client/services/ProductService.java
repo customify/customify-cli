@@ -2,13 +2,11 @@ package com.customify.client.services;
 
 import com.customify.client.Common;
 import com.customify.client.SendToServer;
-import com.customify.server.models.ProductModel;
 import com.customify.shared.Keys;
 import com.customify.shared.Request;
 import com.customify.shared.Response;
 //import com.customify.shared.requests_data_formats.ProductFormat;
 import com.customify.client.data_format.products.ProductFormat;
-import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -39,12 +37,12 @@ public class ProductService {
     }
 
     public void addNewProduct(ProductFormat productModel) throws Exception {
-        Request request = new Request(Keys.CREATE_PRODUCT, productModel);
-        Common common = new Common(request, this.socket);
+        String request =new ObjectMapper().writeValueAsString(productModel);
+        SendToServer sendToServer = new SendToServer(request,this.socket);
 
-        //if the sending is successful call a method to handle response from server
-        if (common.sendToServer()) {
+        if (sendToServer.send()) {
             this.handleRegisterProductSuccess();
+            System.out.println("Request was sent successfully");
         } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
@@ -92,11 +90,11 @@ public class ProductService {
     }
 
     public void getAllProducts() throws Exception {
-        Request request = new Request(Keys.GET_ALL_PRODUCTS, new ProductFormat());
-        Common common = new Common(request, this.socket);
+        String request = "\"key\":\"GET_ALL_PRODUCTS\"";
 
+        SendToServer sendToServer = new SendToServer(request,this.getSocket());
         //if the sending is successful call a method to handle response from server
-        if (common.sendToServer()) {
+        if (sendToServer.send()) {
             this.handleGetProductListSuccess();
         } else {
             System.out.println("\n\nError occurred when trying to send request to server\n");
@@ -165,30 +163,21 @@ public class ProductService {
     }
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-
         try {
-            List<Response> response = (List<Response>) objectInputStream.readObject();
-            ;
-            if (response.get(0).getStatusCode() == 200) {
-                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
+            InputStream input =this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
 
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-                System.out.println("\t\t product registered successfully");
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            } else if (response.get(0).getStatusCode() == 400) {
-                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-            } else {
-                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-            }
+            List<String> res = (List) objectInput.readObject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode response = objectMapper.readTree(res.get(0));
 
-        } catch (IOException e) {
-            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-        } catch (ClassNotFoundException e) {
-            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+            if (response.get("status").asInt() == 201) System.out.println("\n\n\t\tPRODUCT CREATED SUCCESSFULLY\n\n");
+            else if(response.get("status").asInt() == 400) System.out.println("\n\n\t\tBAD FORMAT WAS SUPPLIED TO SOME FIELDS\n\n");
+            else if(response.get("status").asInt() == 500) System.out.println("\n\n\t\tBACKEND INTERNAL SERVER ERROR.\n\n");
+            else System.out.println("\n\n\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
+        }catch(Exception e){
+            System.out.println("\n\nException Caught\n\n");
         }
-
         return;
     }
 
@@ -212,13 +201,13 @@ public class ProductService {
 
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("Product Code: " + retrievedProduct.getProductCode());
-                System.out.println("Business Id: "+ retrievedProduct.getBusiness_id());
+                System.out.println("Business Id: "+ retrievedProduct.getBusinessId());
                 System.out.println("Name: " + retrievedProduct.getName());
                 System.out.println("Price: " + retrievedProduct.getPrice() );
                 System.out.println("Quantity: " + retrievedProduct.getQuantity());
                 System.out.println("Description: " + retrievedProduct.getDescription());
                 System.out.println("Bonded Points: " + retrievedProduct.getBondedPoints());
-                System.out.println("Registered By: " + retrievedProduct.getRegistered_by());
+                System.out.println("Registered By: " + retrievedProduct.getRegisteredBy());
                 System.out.println("Created At: " + retrievedProduct.getCreatedAt());
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
             }

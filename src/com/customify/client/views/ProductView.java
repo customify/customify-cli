@@ -4,8 +4,6 @@ import com.customify.client.Keys;
 import com.customify.client.services.ProductService;
 import com.customify.client.data_format.products.*;
 import java.net.Socket;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Scanner;
 
 import static com.customify.client.Keys.UPDATE_PRODUCT;
@@ -64,7 +62,7 @@ public class ProductView {
         newProduct.setName(scanner.nextLine());
 
         System.out.println("Enter business_id:");
-        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+        newProduct.setBusinessId(Integer.parseInt(scanner.nextLine()));
 
         System.out.println("Enter product price:");
         newProduct.setPrice(Float.parseFloat(scanner.nextLine()));
@@ -79,9 +77,10 @@ public class ProductView {
         newProduct.setBondedPoints(Double.parseDouble(scanner.nextLine()));
 
         System.out.println("Who is registering this product?");
-        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+        newProduct.setRegisteredBy(Integer.parseInt(scanner.nextLine()));
 
         newProduct.setCreatedAt("2021/02/04");
+        newProduct.setKey(Keys.CREATE_PRODUCT);
 
         ProductService productService = new ProductService(this.socket);
         productService.addNewProduct(newProduct);
@@ -126,7 +125,7 @@ public class ProductView {
         newProduct.setProductCode(Long.parseLong(scanner.nextLine()));
 
         System.out.println("Enter NEW business_id:");
-        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+        newProduct.setBusinessId(Integer.parseInt(scanner.nextLine()));
 
         System.out.println("Enter NEW product name:");
         newProduct.setName(scanner.nextLine());
@@ -144,7 +143,7 @@ public class ProductView {
         newProduct.setBondedPoints(Double.parseDouble(scanner.nextLine()));
 
         System.out.println("Who is NEWLY registering this product?");
-        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+        newProduct.setRegisteredBy(Integer.parseInt(scanner.nextLine()));
 
 //        LocalDate myObj = LocalDate.now();
         newProduct.setCreatedAt("2021-02-04");
