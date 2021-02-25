@@ -1,6 +1,8 @@
 package com.customify.client.dashboards;
 
 import com.customify.client.utils.authorization.UserSession;
+import com.customify.client.views.CouponingMain.CouponMainView;
+import com.customify.client.views.Sales.SalesMain;
 import com.customify.client.views.customer.CustomerMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -58,18 +60,21 @@ public class EmployeeDashboard {
             System.out.println("---------------------------------------------");
             System.out.println("--------------CUSTOMIFY HOME-----------------\n");
             System.out.println("           1. CUSTOMER MANAGEMENT");
-            System.out.println("           2. TRANSACTION MANAGEMENT");
-            System.out.println("           3. MY PROFILE");
-            System.out.println("           4. PROFILE SETTINGS");
-            System.out.println("           5. LOGOUT !!!");
+            System.out.println("           2. SALES MANAGEMENT");
+            System.out.println("           3. COUPON MANAGEMENT");
+            System.out.println("           4. MY PROFILE");
+            System.out.println("           5. PROFILE SETTINGS");
+            System.out.println("           6. LOGOUT !!!");
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
                     CustomerMainView customer = new CustomerMainView(this.socket,this.isLoggedIn());
                     break;
                 case 2:
+                    SalesMain salesMain = new SalesMain(this.socket,this.isLoggedIn());
                     break;
                 case 3:
+                    CouponMainView couponMainView = new CouponMainView(this.socket,this.isLoggedIn());
                     break;
                 case 4:
 //                    loggedIn=false;

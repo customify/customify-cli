@@ -42,8 +42,6 @@ public class CustomerService {
      * this function is to handle response on the successfully registration of the customer
      * */
     public void handleCreateCustomerResponse() throws IOException, ClassNotFoundException {
-
-
         try {
             InputStream inputStream = this.socket.getInputStream();
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
@@ -52,8 +50,7 @@ public class CustomerService {
             String json_response = response.get(0);
             System.out.println("HERE'S THE RESPONSE FROM THE SERVER => " + json_response);
 
-        }catch(Exception e)
-        {
+        }catch(Exception e) {
             System.out.println("RESPONSE ERROR =>"+e.getMessage());
         }
     }
@@ -110,7 +107,6 @@ public class CustomerService {
         else{
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
-
     }
 
 

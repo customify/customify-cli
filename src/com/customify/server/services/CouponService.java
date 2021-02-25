@@ -27,7 +27,9 @@ public class CouponService {
   public void coupingByProduct(String couponFormat){
     System.out.println("Couponing the product"+couponFormat);
   }
-  public void coupingByCustomer(){}
+  public void coupingByCustomer(){
+
+  }
   public void redeemCoupon(){}
   public void checkIfCouponIsValid(){}
 
@@ -39,11 +41,9 @@ public class CouponService {
       ObjectMapper objectMapper = new ObjectMapper();
       String jsonCoupons =  objectMapper.writeValueAsString(rs);
       SendToClient sendToClient = new SendToClient(this.socket, Collections.singletonList(jsonCoupons));
-
       while (rs.next()){
         System.out.println(rs.getInt(0)+" "+rs.getInt(1)+" "+rs.getString(2)+" "+rs.getDate(3)+" "+rs.getDate(4)+" "+rs.getString(5)+" "+rs.getString(6));
       }
-
     }catch (SQLException | JsonProcessingException e){
       System.out.println("Sql error: "+e.getMessage());
     }

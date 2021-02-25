@@ -47,8 +47,6 @@ public class RequestHandler {
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
-        System.out.println("Handling routes");
-
         switch (this.key) {
             case CREATE_BUSINESS:
                 businessService.create(json_data);
@@ -64,7 +62,6 @@ public class RequestHandler {
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
-
                 break;
             case GET_ALL_PRODUCTS:
 //                productController.getAllProducts();
@@ -72,11 +69,9 @@ public class RequestHandler {
             case DELETE_PRODUCT:
 //                productController.deleteProduct();
                 break;
-
             case GET_PRODUCT_BY_ID:
 //                productService.getProductById(json_data);
                 break;
-
             case UPDATE_PRODUCT:
 //                productService.updateProduct(json_data);
                 break;
