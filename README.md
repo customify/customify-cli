@@ -51,17 +51,38 @@ The password is
 
 ### Authentication
 
-**SUPER-ADMIN** : { email: superadmin@gmail.com , password: 123 }<br/>
-Dashboard Options  - 1.  Business Management ,  ….
+#### SUPER-ADMIN
+```bash
+email: superadmin@gmail.com
+password: 123
 
+Dashboard Options
+1. Business Management
+2. Profile management
+```
 --------------------------------------------------------------------------------------
-**BUSINESS_ADMIN** : { email: sam@gmail.com , password: 123 }<br/>
-Dashboard Options  - 1.  Employee Management ,  2. Customer Management ….
+#### BUSINESS_ADMIN
+```bash
+email: sam@gmail.com 
+password: 123
 
+Dashboard Options
+1. Employee Management
+2. Customer Management
+3. Report Management
+4. Profile settings
+```
 --------------------------------------------------------------------------------------
-**EMPLOYEE** : { email: sandberg@gmail.com  , password: 123 }<br/>
-Dashboard Options  - 1.  Customer Management ,  2. Transactions Management …
+#### EMPLOYEE
+```bash
+email: sandberg@gmail.com
+password: 123
 
+Dashboard Options
+1. Customer Management
+2. Transactions Management
+3. Profile settings
+```
 
 Resources
 
