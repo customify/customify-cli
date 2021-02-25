@@ -47,6 +47,8 @@ public class RequestHandler {
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
+        System.out.println("Handling routes "+this.key);
+
         switch (this.key) {
             case CREATE_BUSINESS:
                 businessService.create(json_data);
