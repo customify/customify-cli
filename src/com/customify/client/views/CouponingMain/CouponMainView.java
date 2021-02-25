@@ -20,7 +20,6 @@ public class CouponMainView {
     }
 
 
-
     public CouponMainView(Socket socket, boolean isLoggedIn) throws Exception {
         this.socket = socket;
         this.setLoggedIn(isLoggedIn);
@@ -118,7 +117,9 @@ public class CouponMainView {
         System.out.println("|     All available coupons                  |");
         System.out.println("|--------------------------------------------|");
         System.out.println("Coupon list");
-        this.init();
+
+        CouponService couponService = new CouponService(this.socket);
+        couponService.getCoupons();
     }
     public void checkCoupon() throws Exception {
         Scanner scanner = new Scanner(System.in);
@@ -131,9 +132,6 @@ public class CouponMainView {
         System.out.println("Enter a coupon code");
         checkCoupon.setCouponCode(scanner.nextLine());
 
-        //TODO: add response from the server here
-        System.out.println("Response from server here");
-        this.init();
     }
 
     public boolean isLoggedIn() {
