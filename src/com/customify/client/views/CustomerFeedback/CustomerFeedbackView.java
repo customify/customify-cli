@@ -11,8 +11,7 @@ package com.customify.client.views.CustomerFeedback;
  * of the business he/she has written to.
  */
 
-import com.customify.client.services.FeedbackService;
-import com.customify.shared.requests_data_formats.FeedbackFormat;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
@@ -56,9 +55,9 @@ public class CustomerFeedbackView {
                 break feedbackLooop;
             feed = false;
 
-            FeedbackFormat format = new FeedbackFormat(customer_id, business_id, title, description);
-            FeedbackService feedservice = new FeedbackService(this.socket);
-            feedservice.Comment(format);
+//            FeedbackFormat format = new FeedbackFormat(customer_id, business_id, title, description);
+//            FeedbackService feedservice = new FeedbackService(this.socket);
+//            feedservice.Comment(format);
         } while (feed);
     }
 }

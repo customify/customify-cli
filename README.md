@@ -31,7 +31,6 @@ git push origin <your branch>
 
 **Note** Please don't `commit to the main branch`
 
-
 ### Doc backend
 
 The `database` we are using is hosted on the cloud you don't have even to know its  name
@@ -49,6 +48,20 @@ The password is
 ```bash
    jaW3mRUAAwzTAiOTVkZu
 ```
+
+### Authentication
+
+**SUPER-ADMIN** : { email: superadmin@gmail.com , password: 123 }<br/>
+Dashboard Options  - 1.  Business Management ,  ….
+
+--------------------------------------------------------------------------------------
+**BUSINESS_ADMIN** : { email: sam@gmail.com , password: 123 }<br/>
+Dashboard Options  - 1.  Employee Management ,  2. Customer Management ….
+
+--------------------------------------------------------------------------------------
+**EMPLOYEE** : { email: sandberg@gmail.com  , password: 123 }<br/>
+Dashboard Options  - 1.  Customer Management ,  2. Transactions Management …
+
 
 Resources
 

@@ -1,69 +1,114 @@
 package com.customify.client.services;
-import com.customify.shared.Keys;
-import com.customify.client.Common;
-import com.customify.shared.Request;
-import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.LoginFormat;
-import com.customify.shared.requests_data_formats.SignUpFormat;
-import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
+import com.customify.client.SendToServer;
+import com.customify.client.data_format.AuthenticationDataFormat;
+
+import com.customify.client.utils.authorization.UserSession;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AuthService {
 
     private Socket socket;
-    private String data;
+    private AuthenticationDataFormat data;
+   private  boolean authenticated = false;
+     private String loggedInUser = null;
 
-    InputStream inputStream;
-    ObjectInputStream objectInputStream;
-
-    public AuthService(Socket socket){
-        this.socket = socket;
+    public String getLoggedInUser() {
+        return loggedInUser;
     }
+
+    public void setLoggedInUser(String loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
+
+    public AuthenticationDataFormat getData() {
+        return data;
+    }
+
+    public void setData(AuthenticationDataFormat data) {
+        this.data = data;
+    }
+
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
+
+    public void setAuthenticated(boolean authenticated) {
+        this.authenticated = authenticated;
+    }
+
+    public AuthService(){}
+    public AuthService(Socket socket,AuthenticationDataFormat data){
+        this.socket = socket;
+        this.data = data;
+    }
+
     public Socket getSocket()
     {
         return socket;
     }
+
     public void setSocket(Socket socket) throws IOException {
         this.socket = socket;
-        inputStream = this.socket.getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-
     }
 
-    public void login(LoginFormat format) throws IOException, ClassNotFoundException {
-        Request request = new Request(Keys.LOGIN,format);
-        Common common = new Common(request,this.socket);
-        //if the sending is successful call a method to handle response from server
-        if(common.sendToServer()==true){
-            this.handleLoginResponse();
+
+    public boolean authenticate() throws IOException, ClassNotFoundException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(this.data);
+
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+          this.handleLoginResponse();
         }
+     return isAuthenticated();
     }
-    public void signUp(SignUpFormat format) throws IOException, ClassNotFoundException {
-        Request request = new Request(Keys.REGISTER,format);
-        Common common = new Common(request,this.socket);
-        if(common.sendToServer()){
-            this.handleLoginResponse();
-        }
-    }
+
+
+
+
 
     public void handleLoginResponse() throws IOException, ClassNotFoundException {
-        //reading and extracting response from the server
-        inputStream = this.socket.getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-        List<Response> response = (List<Response>) objectInputStream.readObject();
-        if(response.get(0).getStatusCode() == 200){
-            /*
-              If the response status code is OK call SuccessLoginFormat to extract data from server
-            */
-            SuccessLoginFormat data = (SuccessLoginFormat) response.get(0).getData();
-            System.out.println("               Login success full");
-            System.out.println("               Registered Email: "+data.getEmail());
+
+        try {
+            InputStream input =this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
+            List<String> res = (List) objectInput.readObject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(res.get(0));
+
+            if(jsonNode.get("status").asInt() == 201)
+            {
+                UserSession session =new UserSession();
+                switch(jsonNode.get("appUser").asText()){
+                    case "EMPLOYEE":
+                        session.setEmployee(res.get(0));
+                        break;
+                    case "BUSINESS_ADMIN":
+                        session.setBusinessAdmin(res.get(0));
+                        break;
+                    case "SUPER_ADMIN":
+                        session.setSuperAdmin(res.get(0));
+                        break;
+                    default:
+                        System.out.println("Invalid Title");
+                }
+                setLoggedInUser(jsonNode.get("appUser").asText());
+                setAuthenticated(true);
+            }
+        }catch(Exception e){
+            System.out.println( "Exception Caught "+e.getMessage());
         }
+
+
     }
 
 }
