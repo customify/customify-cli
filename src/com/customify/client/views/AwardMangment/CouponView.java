@@ -1,7 +1,7 @@
 // By Makuza  Mugabo Verite on Feb 08 2021
 // This handles all views related to coupons
 
-package com.customify.client.views;
+package com.customify.client.views.AwardMangment;
 
 import com.customify.client.data_format.CheckCoupon;
 import com.customify.client.data_format.CouponFormat;
