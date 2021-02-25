@@ -122,10 +122,19 @@ public class ProductService {
         }
     }
     public void handleGetProductListSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-
         try {
+            InputStream input =this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
+
+            List<String> res = (List) objectInput.readObject();
+            System.out.println(res);
+
+            return;
+            /*
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode response = objectMapper.readTree(res.get(0));
+
+
             List<Response> response = (List<Response>) objectInputStream.readObject();
             if (response.get(0).getStatusCode() == 200) {
                 List<ProductFormat> products = (List<ProductFormat>) response.get(0).getData();
@@ -151,7 +160,7 @@ public class ProductService {
                 System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
             } else {
                 System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-            }
+            }*/
 
         } catch (IOException e) {
             System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
@@ -176,7 +185,8 @@ public class ProductService {
             else if(response.get("status").asInt() == 500) System.out.println("\n\n\t\tBACKEND INTERNAL SERVER ERROR.\n\n");
             else System.out.println("\n\n\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
         }catch(Exception e){
-            System.out.println("\n\nException Caught\n\n");
+//            System.out.println("\n\n" + e.getMessage()+"\n\n");
+            e.printStackTrace();
         }
         return;
     }
