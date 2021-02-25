@@ -160,6 +160,7 @@ public class BusinessService {
 
         //formatting the response into a data format
         Statement statement = Db.getStatement();
+        String json = "";
         try{
             ResultSet res = statement.executeQuery("select * from businesses where id="+jsonNode.get("businessId"));
             if(res.next()){
@@ -173,22 +174,21 @@ public class BusinessService {
                         res.getInt(7),
                         res.getDate(8).toString()
                 );
-                String json = objectMapper.writeValueAsString(bs);
-                this.objectOutput = new CustomizedObjectOutputStream(this.output);
-                objectOutput.writeObject(json);
-                objectOutput.flush();
-                this.output.flush();
-                System.out.println("Sent");
-                //send
-//                objectOutput.writeObject(json);
+                bs.statusCode=200;
+                json = objectMapper.writeValueAsString(bs);
 
             }
 
 
         }
         catch (Exception e){
-            String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 200 +"\" }";
+            json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 500 +"\" }";
+        }
+        finally {
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(json);
+            objectOutput.flush();
+            this.output.flush();
         }
     }
 

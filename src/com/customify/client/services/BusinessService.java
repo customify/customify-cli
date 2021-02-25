@@ -175,11 +175,14 @@ public class BusinessService {
                     this.handleGetResponse();
                     break;
                 case "getbyid":
-                    //Display the business
-                    System.out.println("-------------------Business " + jsonNode.get("id") + "------------------\n");
-                    System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-                    System.out.println();
-                    System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
+                    if(jsonNode.get("statusCode").asInt()==500) System.out.println("An error occured");
+                    else{
+                        //Display the business
+                        System.out.println("-------------------Business " + jsonNode.get("id") + "------------------\n");
+                        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+                        System.out.println();
+                        System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
+                    }
                     break;
                 case "create":
                     if (jsonNode.get("status").asInt() == 201) System.out.println("Successfully created a Business");
