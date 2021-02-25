@@ -78,10 +78,10 @@ public class ProductService {
         finally {
             this.output = socket.getOutputStream();
             this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            responseData.add(response);
             objectOutput.writeObject(this.responseData);
             objectOutput.flush();
             this.output.flush();
-            responseData.add(response);
             System.out.println("Response "+responseData.get(0));
         }
     }
