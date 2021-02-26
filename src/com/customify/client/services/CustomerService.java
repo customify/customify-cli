@@ -7,7 +7,6 @@ import com.customify.client.data_format.DisableCustomerFormat;
 import com.customify.client.data_format.UpdateCustomerFormat;
 import com.customify.client.data_format.products.ProductFormat;
 import com.customify.server.Keys;
-import com.customify.shared.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,8 +42,6 @@ public class CustomerService {
      * this function is to handle response on the successfully registration of the customer
      * */
     public void handleCreateCustomerResponse() throws IOException, ClassNotFoundException {
-
-
         try {
             InputStream inputStream = this.socket.getInputStream();
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
@@ -53,8 +50,7 @@ public class CustomerService {
             String json_response = response.get(0);
             System.out.println("HERE'S THE RESPONSE FROM THE SERVER => " + json_response);
 
-        }catch(Exception e)
-        {
+        }catch(Exception e) {
             System.out.println("RESPONSE ERROR =>"+e.getMessage());
         }
     }
@@ -68,30 +64,30 @@ public class CustomerService {
      * this service method is to update the customer on client side
      * */
     public void handleUpdateCustomerSuccess() throws IOException, ClassNotFoundException {
-        InputStream inputStream = this.getSocket().getInputStream();
-        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-        try {
-            List<Response> response = (List<Response>) objectInputStream.readObject();
-            System.out.println("Status: "+ response.get(0).getStatusCode());
-            if(response.get(0).getStatusCode() == 200){
-                UpdateCustomerFormat updatedCustomer = (UpdateCustomerFormat) response.get(0).getData();
-
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-                System.out.println("\t\t Customer Updated successfully");
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-            }
-            else if(response.get(0).getStatusCode() == 400){
-                System.out.println("\n\nInvalid Customer format.Please enter Customer details as required\n\n");
-            }
-            else{
-                System.out.println("\n\nUnknown error occurred.\n");
-            }
-
-        } catch (IOException e) {
-            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
-        } catch (ClassNotFoundException e) {
-            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
-        }
+//        InputStream inputStream = this.getSocket().getInputStream();
+//        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+//        try {
+//            List<Response> response = (List<Response>) objectInputStream.readObject();
+//            System.out.println("Status: "+ response.get(0).getStatusCode());
+//            if(response.get(0).getStatusCode() == 200){
+//                UpdateCustomerFormat updatedCustomer = (UpdateCustomerFormat) response.get(0).getData();
+//
+//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("\t\t Customer Updated successfully");
+//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//            }
+//            else if(response.get(0).getStatusCode() == 400){
+//                System.out.println("\n\nInvalid Customer format.Please enter Customer details as required\n\n");
+//            }
+//            else{
+//                System.out.println("\n\nUnknown error occurred.\n");
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//        }
 
         return;
     }
@@ -111,7 +107,6 @@ public class CustomerService {
         else{
             System.out.println("\n\nError occurred when trying to send request to server\n");
         }
-
     }
 
 
