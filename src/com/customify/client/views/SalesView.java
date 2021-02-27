@@ -96,6 +96,7 @@ public class SalesView {
 
         this.SaleView();
     }
+
     public void getSaleById(){
         Scanner reading = new Scanner(System.in);
         String saleId;
@@ -106,6 +107,4 @@ public class SalesView {
 
         this.SaleView();
     }
-
-
 }

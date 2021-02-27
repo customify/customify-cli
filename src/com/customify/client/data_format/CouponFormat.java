@@ -10,7 +10,7 @@ public class CouponFormat {
     private String source;
     private String value;
     private String expiry;
-    private Keys key = Keys.CREATE_CUOPON;
+    private Keys key = Keys.CREATE_COUPON;
 
     public CouponFormat(){}
 

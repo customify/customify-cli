@@ -3,13 +3,13 @@
 */
 package com.customify.client.views;
 
+import com.customify.client.views.CouponingMain.CouponMainView;
 import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.Business.BusinessView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
 import com.customify.client.views.customer.CustomerMainView;
 
-import java.io.IOException;
 import java.net.Socket;
 import java.util.*;
 
@@ -42,8 +42,7 @@ public class Home {
         BusinessView businessView = new BusinessView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
-//        PointCountingView pointCountingView = new PointCountingView((this.socket));
-        CouponView couponView = new CouponView(this.socket);
+        CouponMainView couponView = new CouponMainView(this.socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------\n");
