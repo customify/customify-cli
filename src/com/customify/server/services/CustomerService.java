@@ -1,10 +1,14 @@
 package com.customify.server.services;
 
+import com.customify.client.SendToServer;
+import com.customify.client.data_format.DeActivateCustomer;
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.customer.CreateCustomerFormat;
-import com.customify.shared.Response;
-import com.customify.shared.requests_data_formats.ProductFormat;
+
+//import com.customify.shared.Response;
+//import com.customify.shared.requests_data_formats.ProductFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,10 +17,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +25,19 @@ public class CustomerService {
     List<String> responseData = new ArrayList<>();
     ObjectOutputStream objectOutput;
     Socket socket;
+    OutputStream output;
      String json_data;
+    private int statusCode;
 
-    public CustomerService(Socket socket, String json_data){
+    public CustomerService(Socket socket, String json_data) throws IOException, SQLException {
         this.json_data = json_data;
         this.socket = socket;
+        System.out.println(socket);
+
+    }
+
+    public CustomerService(Socket clientSocket) {
+        this.socket = clientSocket;
     }
 
     public CustomerService(Socket clientSocket) {
@@ -87,8 +96,6 @@ public class CustomerService {
         } finally{
             SendToClient serverResponse =new  SendToClient(this.socket,this.responseData);
         }
-
-
     }
 
     /**
@@ -118,13 +125,6 @@ public class CustomerService {
 
             stmt.executeUpdate(sql);
 
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(200,customers);
-//            responseData.add(response);
-
-            //Sending the response to client
-//            objectOutput.writeObject(responseData);
-
             stmt.close();
             conn.close();
         }
@@ -139,29 +139,46 @@ public class CustomerService {
      * this function is to handle the backend disable of the customer from the database
      * and sending back the response TO THE CLIENT SIDE
      * */
-    public void disable() throws SQLException, JsonProcessingException {
-        System.out.println("The data has been successfully reached to the server");
+    public void disable() throws SQLException, IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(this.json_data);
         String code = jsonNode.get("code").asText();
-        int createdById = jsonNode.get("createdById").asInt();
-
-        Connection connection = Db.getConnection();
+        String json="";
         try
         {
+            Connection connection = Db.getConnection();
             PreparedStatement statement = connection.prepareStatement("UPDATE customers SET disabled = 1 WHERE code = ?");
-
             // the prepared statement parameters
             statement.setString(1,code);
             // executeUpdate to execute our sql update statement and returns number of rows affected
             int updateCount = statement.executeUpdate();
             statement.close();
+
+
+            if(updateCount > 0){
+                json = "{ \"status\" : \"200\"}";
+                System.out.println("Successfully updated");
+            }
+            else{
+                json = "{ \"status\" : \"401\"}";
+                System.out.println("Not successfully updated");
+            }
+
         }
         catch (Exception e)
         {
+
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
+            json = "{ \"status\" : \"500\"}";
+
+        }finally {
+            responseData.add(json);
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            System.out.println("Response "+responseData.get(0));
+            objectOutput.writeObject(this.responseData);
         }
     }
     public void readOne() throws SQLException{}

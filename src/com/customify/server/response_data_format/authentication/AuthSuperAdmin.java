@@ -1,49 +1,39 @@
-package com.customify.server.response_data_format;
+package com.customify.server.response_data_format.authentication;
 
-import java.io.Serializable;
-
-public class AuthenticationResponseFormat {
+public class AuthSuperAdmin {
 
     private String email;
     private String firName;
     private String lasName;
     private String id;
-    private int business_id;
-    private String title;
-private int status;
+    private String tel;
+    private int status;
+    private String appUser;
 
-    public int getStatus() {
-        return status;
+    public String getAppUser() {
+        return appUser;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setAppUser(String appUser) {
+        this.appUser = appUser;
     }
 
-    public int getBusiness_id() {
-        return business_id;
+    public String getTel() {
+        return tel;
     }
 
-    public void setBusiness_id(int business_id) {
-        this.business_id = business_id;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public void AuthenticationDataFormat(){}
-
-    public AuthenticationResponseFormat(String email, String firName, String lasName, String id,String title,int business_id,int status) {
+    public AuthSuperAdmin(String appUser,String email, String firName, String lasName, String id, String tel, int status) {
         this.email = email;
         this.firName = firName;
         this.lasName = lasName;
         this.id = id;
-        this.business_id = business_id;
         this.status = status;
+        this.tel = tel;
+        this.appUser = appUser;
     }
 
     public String getEmail() {
@@ -76,5 +66,13 @@ private int status;
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

@@ -4,7 +4,9 @@ import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
 import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
-import com.customify.server.services.ProductService;
+
+//import com.customify.server.services.ProductService;
+import com.customify.server.services.CustomerService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -39,16 +41,12 @@ public class RequestHandler {
     }
 
     public void handleRequest() throws IOException, SQLException {
-        AuthController authController;
-         CustomerService customer = new CustomerService(this.clientSocket);
+        CustomerService customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
-        CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
-        ProductService productService = new ProductService(this.clientSocket);
-
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
-        System.out.println("Handling routes");
+        System.out.println("Handling routes "+this.key);
 
         switch (this.key) {
             case CREATE_BUSINESS:
@@ -63,9 +61,8 @@ public class RequestHandler {
                 // productController.registerProduct();
                 break;
             case FEEDBACK:
-                System.out.println("On feedback case");
-                feedback.Feedback(json_data);
-
+//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+//                fController.sendDataInDb();
                 break;
             case GET_ALL_PRODUCTS:
                 // productController.getAllProducts();
@@ -73,13 +70,11 @@ public class RequestHandler {
             case DELETE_PRODUCT:
                 productService.deleteProduct(json_data);
                 break;
-
             case GET_PRODUCT_BY_ID:
-                productService.getProductById(json_data);
+//                productService.getProductById(json_data);
                 break;
-
             case UPDATE_PRODUCT:
-                productService.updateProduct(json_data);
+//                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
                 // customer.create();
@@ -94,7 +89,8 @@ public class RequestHandler {
                 AuthService auth = new AuthService(this.clientSocket, this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-                 customer.disable();
+               customer = new CustomerService(this.clientSocket,this.json_data);
+               customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);

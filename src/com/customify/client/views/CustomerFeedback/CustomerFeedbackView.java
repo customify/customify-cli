@@ -14,8 +14,6 @@ import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFor
  * of the business he/she has written to.
  */
 
-import com.customify.client.services.CustomerFeedbackService;
-import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
@@ -57,9 +55,9 @@ public class CustomerFeedbackView {
             business_id = scan.nextInt();
             feed = false;
 
-            CustomerFeedbackDataFormat format = new CustomerFeedbackDataFormat(Keys.FEEDBACK, customer_id, business_id, title, description);
-            CustomerFeedbackService feedservice = new CustomerFeedbackService(this.socket);
-            feedservice.Feedback(format);
+//            FeedbackFormat format = new FeedbackFormat(customer_id, business_id, title, description);
+//            FeedbackService feedservice = new FeedbackService(this.socket);
+//            feedservice.Comment(format);
         } while (feed);
     }
 }
