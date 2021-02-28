@@ -1,5 +1,6 @@
 package com.customify.client.services;
 
+import com.customify.client.Keys;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CreateCustomerFormat;
 //import com.customify.client.data_format.customer.CreateCustomerFormat;
@@ -7,7 +8,6 @@ import com.customify.client.data_format.DeActivateCustomer;
 import com.customify.client.data_format.DisableCustomerFormat;
 import com.customify.client.data_format.UpdateCustomerFormat;
 import com.customify.client.data_format.products.ProductFormat;
-import com.customify.server.Keys;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,13 +53,8 @@ public class CustomerService {
             String json_response = response.get(0);
             System.out.println("HERE'S THE RESPONSE FROM THE SERVER => " + json_response);
 
-<<<<<<< HEAD
-        } catch (Exception e) {
-            System.out.println("RESPONSE ERROR =>" + e.getMessage());
-=======
         }catch(Exception e) {
             System.out.println("RESPONSE ERROR =>"+e.getMessage());
->>>>>>> 3e42702ff3e7b2bd378145ee9818a1d0214d1ad3
         }
     }
 
@@ -72,6 +67,8 @@ public class CustomerService {
      * @role this service method is to update the customer on client side
      */
     public void handleUpdateCustomerSuccess() throws IOException, ClassNotFoundException {
+        InputStream inputStream = this.getSocket().getInputStream();
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 //        InputStream inputStream = this.getSocket().getInputStream();
 //        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 //        try {
@@ -157,10 +154,18 @@ public class CustomerService {
             }
         }
     }
-<<<<<<< HEAD
 
-=======
     public void getAll(){}
     public void get(){}
+
+    public void reEnableCard(String code) throws IOException {
+        DeActivateCustomerFormat format = new DeActivateCustomerFormat(code);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String request = objectMapper.writeValueAsString(format);
+        SendToServer sendToServer = new SendToServer(request,socket);
+
+        if (sendToServer.send()){
+            System.out.println("\t\tCard was activated successfully\n");
+        }
+    }
 }
->>>>>>> 3e42702ff3e7b2bd378145ee9818a1d0214d1ad3

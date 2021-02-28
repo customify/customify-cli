@@ -25,6 +25,7 @@ public enum Keys {
     CREATE_PLAN,
     UPDATE_PLAN,
     READ_PLAN,
+    RENABLE_CUSTOMER,
     DELETE_PLAN,
     ADD_SALE,
     UPDATE_CUSTOMER,

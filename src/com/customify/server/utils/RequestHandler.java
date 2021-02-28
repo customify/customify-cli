@@ -2,6 +2,7 @@ package com.customify.server.utils;
 
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
@@ -17,7 +18,6 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;
 
-
 public class RequestHandler {
 
     private final Socket clientSocket;
@@ -27,7 +27,6 @@ public class RequestHandler {
     public RequestHandler(Socket socket) {
         this.clientSocket = socket;
     }
-
 
     public void init(InputStream inputStream) throws IOException, ClassNotFoundException, SQLException {
 
@@ -40,7 +39,6 @@ public class RequestHandler {
         this.key = Keys.valueOf(jsonNode.get("key").asText());
         this.handleRequest();
     }
-
 
     public void handleRequest() throws IOException, SQLException {
         CustomerService customer = new CustomerService(this.clientSocket);
@@ -60,17 +58,17 @@ public class RequestHandler {
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
-//                productController.registerProduct();
+                // productController.registerProduct();
                 break;
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
                 break;
             case GET_ALL_PRODUCTS:
-//                productController.getAllProducts();
+                // productController.getAllProducts();
                 break;
             case DELETE_PRODUCT:
-//                productController.deleteProduct();
+                productService.deleteProduct(json_data);
                 break;
             case GET_PRODUCT_BY_ID:
 //                productService.getProductById(json_data);
@@ -79,7 +77,7 @@ public class RequestHandler {
 //                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-//                customer.create();
+                // customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -88,7 +86,7 @@ public class RequestHandler {
                 businessService.getBusinessById(json_data);
                 break;
             case AUTHENTICATION:
-                AuthService auth = new AuthService(this.clientSocket,this.json_data);
+                AuthService auth = new AuthService(this.clientSocket, this.json_data);
                 break;
             case DISABLE_CUSTOMER:
                customer = new CustomerService(this.clientSocket,this.json_data);
