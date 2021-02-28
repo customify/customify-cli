@@ -94,7 +94,7 @@ public class RequestHandler {
                 AuthService auth = new AuthService(this.clientSocket, this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-                // customer.disable();
+                 customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);
