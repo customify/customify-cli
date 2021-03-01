@@ -74,16 +74,16 @@ public class AuthService {
 
 
 
-
-
     public void handleLoginResponse() throws IOException, ClassNotFoundException {
 
         try {
+
             InputStream input =this.socket.getInputStream();
             ObjectInputStream objectInput = new ObjectInputStream(input);
             List<String> res = (List) objectInput.readObject();
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(res.get(0));
+
 
             if(jsonNode.get("status").asInt() == 201)
             {

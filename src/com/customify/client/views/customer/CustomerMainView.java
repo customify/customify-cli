@@ -4,6 +4,7 @@ import com.customify.client.Login;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class CustomerMainView {
@@ -35,7 +36,7 @@ public class CustomerMainView {
     public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
 
-        if(!loggedIn)
+        if(loggedIn)
         {
             label:do {
                 System.out.println("------------------HOME >> CUSTOMER MANAGEMENT---------------------");
@@ -45,6 +46,7 @@ public class CustomerMainView {
                 System.out.println("         3. Search Customer");
                 System.out.println("         4. Update Customer");
                 System.out.println("         5. Disable Customer");
+                System.out.println("         6. Activate Customer");
                 Scanner scan = new Scanner(System.in);
                 String choice = scan.nextLine();
 
@@ -64,6 +66,10 @@ public class CustomerMainView {
                     case "5":
                         DisableCustomerView customerView1= new DisableCustomerView(this.socket);
                         customerView1.view();
+                        break;
+                    case "6":
+                        ReEnableCustomer activateCustomer = new ReEnableCustomer(this.socket);
+                        activateCustomer.init();
                         break;
                     case "00":
                         customerView = false;

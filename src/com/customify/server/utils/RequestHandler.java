@@ -2,9 +2,11 @@ package com.customify.server.utils;
 
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
+import com.customify.server.services.CustomerService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -16,7 +18,6 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;
 
-
 public class RequestHandler {
 
     private final Socket clientSocket;
@@ -26,7 +27,6 @@ public class RequestHandler {
     public RequestHandler(Socket socket) {
         this.clientSocket = socket;
     }
-
 
     public void init(InputStream inputStream) throws IOException, ClassNotFoundException, SQLException {
 
@@ -40,14 +40,13 @@ public class RequestHandler {
         this.handleRequest();
     }
 
-
     public void handleRequest() throws IOException, SQLException {
-//        CustomerService  customer = new CustomerService(this.clientSocket);
+        CustomerService customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
-        System.out.println("Handling routes");
+        System.out.println("Handling routes "+this.key);
 
         switch (this.key) {
             case CREATE_BUSINESS:
@@ -59,29 +58,26 @@ public class RequestHandler {
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
-//                productController.registerProduct();
+                // productController.registerProduct();
                 break;
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
-
                 break;
             case GET_ALL_PRODUCTS:
-//                productController.getAllProducts();
+                // productController.getAllProducts();
                 break;
             case DELETE_PRODUCT:
-//                productController.deleteProduct();
+                productService.deleteProduct(json_data);
                 break;
-
             case GET_PRODUCT_BY_ID:
 //                productService.getProductById(json_data);
                 break;
-
             case UPDATE_PRODUCT:
 //                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-//                customer.create();
+                // customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -90,16 +86,20 @@ public class RequestHandler {
                 businessService.getBusinessById(json_data);
                 break;
             case AUTHENTICATION:
-                AuthService auth = new AuthService(this.clientSocket,this.json_data);
+                AuthService auth = new AuthService(this.clientSocket, this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-//                customer.disable();
+               customer = new CustomerService(this.clientSocket,this.json_data);
+               customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);
                 break;
             case GET_ALL_COUPONS:
                 couponService.getAllCoupons(json_data);
+                break;
+            case RENABLE_CUSTOMER:
+                customer.renableCard(json_data);
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
