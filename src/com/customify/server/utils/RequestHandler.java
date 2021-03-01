@@ -5,6 +5,8 @@ import com.customify.server.services.BusinessService;
 import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
 import com.customify.server.services.ProductService;
+
+//import com.customify.server.services.ProductService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -58,7 +60,7 @@ public class RequestHandler {
             case CREATE_PRODUCT:
                 // productController.registerProduct();
                 break;
-            case FEEDBACK:                
+            case FEEDBACK:
                 feedback.Feedback(json_data);
 
                 break;
@@ -70,11 +72,11 @@ public class RequestHandler {
                 break;
 
             case GET_PRODUCT_BY_ID:
-                productService.getProductById(json_data);
+                // productService.getProductById(json_data);
                 break;
 
             case UPDATE_PRODUCT:
-                productService.updateProduct(json_data);
+                // productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
                 // customer.create();
