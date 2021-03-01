@@ -26,5 +26,6 @@ public enum Keys {
     READ_PLAN,
     DELETE_PLAN,
     ADD_SALE,
-    UPDATE_CUSTOMER
+    UPDATE_CUSTOMER,
+    GET_ALL_CUSTOMER
 }

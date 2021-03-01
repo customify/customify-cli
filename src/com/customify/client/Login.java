@@ -20,6 +20,7 @@ public class Login {
     public Login()  { }
     public Login(Socket socket) throws Exception{
         this.socket = socket;
+
         UserSession userSession = new UserSession();
         if(userSession.isLoggedIn())
         {
@@ -77,10 +78,14 @@ public class Login {
     public void route(String appUser) throws Exception{
         switch (appUser) {
             case "BUSINESS_ADMIN":
+
+
                 BusinessAdminDashboard bussDashboard = new BusinessAdminDashboard(this.socket);
+
                 break;
             case "EMPLOYEE":
                 EmployeeDashboard empDashboard = new EmployeeDashboard(this.socket);
+
                 break;
             case "SUPER_ADMIN":
                 SuperAdminDashboard admDashboard = new SuperAdminDashboard(this.socket);

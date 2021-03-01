@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerService {
@@ -22,11 +23,11 @@ public class CustomerService {
     public CustomerService(){}
 
     public  CustomerService(Socket socket)
-    {this.socket = socket;}
+    {this.socket = socket;
+    }
 
 
     public void create(CreateCustomerFormat format) throws IOException, ClassNotFoundException {
-
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(format);
         SendToServer serverSend = new SendToServer(json, this.socket);
@@ -129,6 +130,33 @@ public class CustomerService {
             System.out.println("\n\n\t\tCard was di-activated successfully\n");
         }
     }
-    public void getAll(){}
+    public List getAll() throws IOException {
+        String json = "{ \"key\" : \""+Keys.GET_ALL_CUSTOMERS+"\"}";
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        List<String> res = new ArrayList<>();
+        if (serverSend.send()) {
+
+            try {
+                InputStream input = this.socket.getInputStream();
+                ObjectInputStream objectInput = new ObjectInputStream(input);
+                 res = (List) objectInput.readObject();
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                JsonNode jsonNode = objectMapper.readTree(res.get(0));
+
+                if(jsonNode.get("status").asInt() == 500)
+                {
+                    System.out.println("\t\t\t\t---- INTERNAL SERVER ERROR -----");
+                    return null;
+                }
+
+            }catch(Exception e){
+                System.out.println("RESPONSE ERROR"+e.getMessage());
+            }
+        }
+        return res;
+
+    }
     public void get(){}
 }
+

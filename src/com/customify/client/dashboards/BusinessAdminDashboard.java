@@ -73,7 +73,7 @@ public class BusinessAdminDashboard {
                 case 1:
                     break;
                 case 2:
-                    CustomerMainView customer = new CustomerMainView();
+                    CustomerMainView customer = new CustomerMainView(this.getSocket(),true);
                     customer.view();
                     break;
                 case 3:

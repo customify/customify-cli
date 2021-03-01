@@ -1,11 +1,10 @@
 package com.customify.server.services;
 
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.customer.CreateCustomerFormat;
-
-//import com.customify.shared.Response;
-//import com.customify.shared.requests_data_formats.ProductFormat;
+import com.customify.server.response_data_format.customer.GetAll;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,11 +13,9 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CustomerService {
@@ -26,6 +23,8 @@ public class CustomerService {
     ObjectOutputStream objectOutput;
     Socket socket;
      String json_data;
+    OutputStream output;
+
 
     public CustomerService(Socket socket, String json_data){
         this.json_data = json_data;
@@ -162,5 +161,47 @@ public class CustomerService {
         }
     }
     public void readOne() throws SQLException{}
-    public void readAll() throws SQLException{}
+    public void readAll() throws SQLException, IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Connection connection = Db.getConnection();
+        String query = "SELECT * FROM customers";
+        String firstName,lastName,email,code;
+
+        int customerId;
+        String json ="";
+
+        try{
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(!rs.next()){
+                System.out.println("NO CUSTOMER REGISTERED");
+                 json = "{ \"status\" : \"200\"}";
+                responseData.add(json);
+            }else{
+                while(rs.next())
+                {
+                    customerId = rs.getInt("customer_id");
+                    firstName = rs.getString("first_name");
+                    lastName = rs.getString("last_name");
+                    email = rs.getString("email");
+                    code = rs.getString("code");
+                    GetAll format = new   GetAll(firstName,lastName,email,code,customerId,200);
+                    json = objectMapper.writeValueAsString(format);
+                    responseData.add(json);
+                }
+
+            }
+        }catch(Exception ex){
+            System.out.println("DB-ERROR "+ex.getMessage());
+            json = "{ \"status\" : \"500\"}";
+            responseData.add(json);
+        }finally {
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+
+
+            objectOutput.writeObject(this.responseData);
+        }
+    }
 }

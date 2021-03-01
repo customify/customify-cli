@@ -35,7 +35,7 @@ public class CustomerMainView {
     public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
 
-        if(!loggedIn)
+        if(loggedIn)
         {
             label:do {
                 System.out.println("------------------HOME >> CUSTOMER MANAGEMENT---------------------");
@@ -54,6 +54,8 @@ public class CustomerMainView {
                         customer.view();
                         break;
                     case "2":
+                        ReadAll customers = new ReadAll(this.socket);
+                        customers.view();
                         break;
                     case "3":
                         break;
