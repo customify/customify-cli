@@ -81,7 +81,7 @@ public class BusinessService {
 
     /**
      * @author IRUMVA HABUMUGISHA Anselme
-     * @param data The data from the clint in the JSON Format
+     * @param data The data from the client in the JSON Format
      * @role
      * this function is to handle the backend editing of the business into the database
      * and sending back the response
@@ -119,6 +119,7 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
+     * @param data The data from the client in the JSON Format
      * @role
      * Method for handling delete of business
      * */
@@ -127,21 +128,22 @@ public class BusinessService {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         Statement statement = Db.getStatement();
+        String json = "";
 
         try {
             int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
             if(ret==1){
-                String json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
-//                objectOutput.writeObject(json);
-                this.objectOutput = new CustomizedObjectOutputStream(this.output);
-                objectOutput.writeObject(json);
-                objectOutput.flush();
-                this.output.flush();
+                json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
             }
         }
         catch (SQLException e){
-            String json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
+            json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
+        }
+        finally {
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(json);
+            objectOutput.flush();
+            this.output.flush();
         }
 
         objectOutput.close();
@@ -150,6 +152,7 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
+     * @param data The data from the client in the JSON Format
      * @role
      * Method for handling request for fetching one business by its id
      * */
@@ -163,6 +166,7 @@ public class BusinessService {
         String json = "";
         try{
             ResultSet res = statement.executeQuery("select * from businesses where id="+jsonNode.get("businessId"));
+            System.out.println(res.next());
             if(res.next()){
                 BusinessRFormat bs = new BusinessRFormat(
                         res.getInt(1),
@@ -178,17 +182,21 @@ public class BusinessService {
                 json = objectMapper.writeValueAsString(bs);
 
             }
+            System.out.println(json);
 
 
         }
         catch (Exception e){
             json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 500 +"\" }";
+            System.out.println(json);
         }
         finally {
+            System.out.println("Sending");
             this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(json);
             objectOutput.flush();
             this.output.flush();
+            System.out.println(json);
         }
     }
 
@@ -223,12 +231,11 @@ public class BusinessService {
                 alldata.add(json);
             }
 
-            //Sending the response to server after it has been formated
+            //Sending the response to server after it has been formatted
             this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(alldata);
             objectOutput.flush();
             this.output.flush();
-//            objectOutput.writeObject(alldata);
         }
         catch (Exception e){
             e.printStackTrace();

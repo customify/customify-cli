@@ -59,9 +59,9 @@ public class BusinessAdminDashboard {
 
 
         do {
-            System.out.println("---------------------------------------------");
-            System.out.println("--------------CUSTOMIFY HOME-----------------\n");
-            System.out.println("--------------BUSINESS ADMIN DASHBOARD-----------------\n");
+            System.out.println("|---------------------------------------------|");
+            System.out.println("|              CUSTOMIFY HOME                 |\n");
+            System.out.println("|--------------BUSINESS ADMIN DASHBOARD-------|\n");
             System.out.println("           1. EMPLOYEE MANAGEMENT");
             System.out.println("           2. CUSTOMER MANAGEMENT");
             System.out.println("           3. TODAY'S REPORT");

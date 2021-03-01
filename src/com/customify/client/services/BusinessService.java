@@ -96,6 +96,7 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
+     * @param json Object key to send to the server
      * @role this function is for getting all business
      */
     public void getBusinesses(String json) throws IOException, ClassNotFoundException {
@@ -104,6 +105,36 @@ public class BusinessService {
             this.handleGetResponse();
         } else {
             System.out.println("Request failed...");
+        }
+    }
+
+
+
+    /**
+     * @author Kellia Umuhire
+     * @param json Object holding businessId and key to send to the server
+     * @role method for getting one business by its id
+     */
+    public void getById(String json) throws IOException, ClassNotFoundException {
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+            handleResponse("getbyid");
+        } else {
+            System.out.println("Request failed...");
+        }
+    }
+
+    /**
+     * @author Kellia Umuhire
+     * @param json Object holding businessId and key to send to the server
+     * @role Method for sending a delete request to the server
+     */
+    public void deleteBusiness(String json) throws IOException, ClassNotFoundException {
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+            handleResponse("delete_business");
+        } else {
+            System.out.println("An error occured");
         }
     }
 
@@ -133,43 +164,19 @@ public class BusinessService {
     }
 
     /**
-     * @author Kellia Umuhire
-     * @role method for getting one business by its id
-     */
-    public void getById(String json) throws IOException, ClassNotFoundException {
-        SendToServer serverSend = new SendToServer(json, this.socket);
-        if (serverSend.send()) {
-            handleResponse("getbyid");
-        } else {
-            System.out.println("Request failed...");
-        }
-    }
-
-    /**
-     * @author Kellia Umuhire
-     * @role Method for sending a delete request to the server
-     */
-    public void deleteBusiness(String json) throws IOException, ClassNotFoundException {
-        SendToServer serverSend = new SendToServer(json, this.socket);
-        if (serverSend.send()) {
-            handleResponse("delete_business");
-        } else {
-            System.out.println("An error occured");
-        }
-    }
-
-
-    /**
      * @author Kellia Umuhire, IRUMVA HABUMUGISHA Anselme
+     * @param func_name the name of the function to pass the response to
      * @role General method for handling response from the server
      */
     public void handleResponse(String func_name) throws ClassNotFoundException {
+        System.out.println("Received");
         try {
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
             this.json_data = (String) this.objectInput.readObject();
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(json_data);
+            System.out.println(jsonNode);
             switch (func_name) {
                 case "getall":
                     this.handleGetResponse();
