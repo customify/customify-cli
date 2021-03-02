@@ -28,4 +28,6 @@ output/
 
 #editor config files
 .vscode
-#/.idea/
+.idea/
+.idea/workspace.xml
+/bin/
