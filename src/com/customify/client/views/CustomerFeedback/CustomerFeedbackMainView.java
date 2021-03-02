@@ -21,7 +21,7 @@ public class CustomerFeedbackMainView {
     }
 
     public void view() throws IOException, ClassNotFoundException {
-        CustomerReadFeedbacks mainView = new CustomerReadFeedbacks(this.socket);
+        CustomerReadFeedbacks readFeedbacks = new CustomerReadFeedbacks(this.socket);
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         int choice;
@@ -33,7 +33,7 @@ public class CustomerFeedbackMainView {
 
         switch (choice) {
             case 1:
-                mainView.GetFeedbacks();
+                readFeedbacks.GetFeedbacks();
                 break;
             case 2:
                 System.out.println("On choice 2");

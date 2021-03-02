@@ -3,6 +3,7 @@ package com.customify.client.dashboards;
 import com.customify.client.Login;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.customer.CustomerMainView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.net.Socket;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 public class BusinessAdminDashboard {
 
     private Socket socket;
-    private   UserSession  userSession;
+    private UserSession userSession;
     private boolean loggedIn = true;
 
     public UserSession getUserSession() {
@@ -30,20 +31,20 @@ public class BusinessAdminDashboard {
         this.loggedIn = loggedIn;
     }
 
-    public BusinessAdminDashboard(){}
+    public BusinessAdminDashboard() {
+    }
 
     public BusinessAdminDashboard(Socket socket) throws Exception {
         this.socket = socket;
-        this.userSession= new UserSession();
-        if(userSession.isLoggedIn())
+        this.userSession = new UserSession();
+        if (userSession.isLoggedIn())
             this.view();
-        else{
+        else {
             System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST\n\n");
-            Login login =new Login(this.socket);
+            Login login = new Login(this.socket);
         }
 
     }
-
 
     public Socket getSocket() {
         return socket;
@@ -53,10 +54,8 @@ public class BusinessAdminDashboard {
         this.socket = socket;
     }
 
-
-    public void view()throws Exception{
+    public void view() throws Exception {
         Scanner scan = new Scanner(System.in);
-
 
         do {
             System.out.println("---------------------------------------------");
@@ -64,10 +63,11 @@ public class BusinessAdminDashboard {
             System.out.println("--------------BUSINESS ADMIN DASHBOARD-----------------\n");
             System.out.println("           1. EMPLOYEE MANAGEMENT");
             System.out.println("           2. CUSTOMER MANAGEMENT");
-            System.out.println("           3. TODAY'S REPORT");
-            System.out.println("           4. MY PROFILE");
-            System.out.println("           5. PROFILE SETTINGS");
-            System.out.println("           6. LOGOUT !!!");
+            System.out.println("           3. CUSTOMER FEEDBACKS");
+            System.out.println("           4. TODAY'S REPORT");
+            System.out.println("           5. MY PROFILE");
+            System.out.println("           6. PROFILE SETTINGS");
+            System.out.println("           7. LOGOUT !!!");
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -77,21 +77,23 @@ public class BusinessAdminDashboard {
                     customer.view();
                     break;
                 case 3:
+                    CustomerFeedbackMainView mainView = new CustomerFeedbackMainView(socket);
+                    mainView.view();
                     break;
                 case 4:
-//                    loggedIn=false;
+                    // loggedIn=false;
                     break;
-                    case 5:
-//                    loggedIn=false;
+                case 5:
+                    // loggedIn=false;
                     break;
                 case 6:
-                        if(userSession.unSet())
-                            loggedIn=false;
+                    if (userSession.unSet())
+                        loggedIn = false;
                     break;
                 default:
                     System.out.println("INVALID CHOICE");
             }
-        }while(loggedIn);
+        } while (loggedIn);
     }
 
 }
