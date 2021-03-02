@@ -80,6 +80,4 @@ public class Db {
             e.printStackTrace();
         }
     }
-
-
 }
