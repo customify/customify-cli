@@ -10,12 +10,9 @@ package com.customify.server;
 import com.customify.server.Db.*;
 import com.customify.server.utils.*;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.List;
-import java.util.Scanner;
+
 
 public class Main {
 
@@ -27,9 +24,9 @@ public class Main {
         ServerSocket serverSocket;
 
         try {
-            Db.init();
             serverSocket = new ServerSocket(portNumber);
             System.out.println("New server has been listening on port: " + portNumber);
+            Db.init();
             while(true){
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("New Client is connected on the Server");
@@ -38,9 +35,7 @@ public class Main {
                     con.init(clientSocket.getInputStream());
                 }
             }
-
-
-        } catch (Exception e ) {
+        } catch (Exception e) {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
         }
     }

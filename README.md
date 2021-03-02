@@ -31,7 +31,6 @@ git push origin <your branch>
 
 **Note** Please don't `commit to the main branch`
 
-
 ### Doc backend
 
 The `database` we are using is hosted on the cloud you don't have even to know its  name
@@ -42,12 +41,58 @@ To access database in the shell run
 
 
 ```bash
-  mysql -h bsnlibok3ll8qs778xbx-mysql.services.clever-cloud.com -P 3306 -u uqq6c1ewt1hkbzwd -p bsnlibok3ll8qs778xbx
+mysql -h bfdc6au0tcay6gxeuohp-mysql.services.clever-cloud.com -P 3306 -u uqq6c1ewt1hkbzwd -p bfdc6au0tcay6gxeuohp
 ```
+
+
 
 The password is 
 ```bash
    jaW3mRUAAwzTAiOTVkZu
+```
+
+Then Run
+
+```bash
+USE bfdc6au0tcay6gxeuohp;
+```
+
+
+You are already there!
+
+### Authentication
+
+#### SUPER-ADMIN
+```bash
+email: superadmin@gmail.com
+password: 123
+
+Dashboard Options
+1. Business Management
+2. Profile management
+```
+--------------------------------------------------------------------------------------
+#### BUSINESS_ADMIN
+```bash
+email: sam@gmail.com 
+password: 123
+
+Dashboard Options
+1. Employee Management
+2. Customer Management
+3. Report Management
+4. Profile settings
+```
+--------------------------------------------------------------------------------------
+#### EMPLOYEE
+```bash
+email: sandberg@gmail.com
+password: 123
+
+Dashboard Options
+1. Customer Management
+2. Transactions Management
+3. Profile settings
 ```
 
 Resources

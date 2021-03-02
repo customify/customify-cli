@@ -9,7 +9,6 @@ import com.customify.client.utils.authorization.UserSession;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -71,7 +70,6 @@ public class Login {
             String superAdminJsonObj =authService.authenticateAdmin();
             String employeeJsonObj = authService.authenticateEmployee();
 
-
             if(superAdminJsonObj != null)
             {
                 // SuperAdminDashboard dashboard = new SuperAdminDashboard(this.socket,superAdminJsonObj);
@@ -87,6 +85,7 @@ public class Login {
                 // }else{
                 //     EmployeeDashboard dashboard = new EmployeeDashboard(this.socket,employeeJsonObj);
                 // }
+            AuthService authService = new AuthService(this.socket, format);
 
             if (authService.authenticate()) {
               route(authService.getLoggedInUser());

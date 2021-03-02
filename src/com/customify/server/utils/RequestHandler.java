@@ -46,7 +46,7 @@ public class RequestHandler {
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
-        System.out.println("Handling routes");
+        System.out.println("Handling routes "+this.key);
 
         switch (this.key) {
             case CREATE_BUSINESS:
@@ -70,11 +70,9 @@ public class RequestHandler {
             case DELETE_PRODUCT:
                 productService.deleteProduct(json_data);
                 break;
-
             case GET_PRODUCT_BY_ID:
                 // productService.getProductById(json_data);
                 break;
-
             case UPDATE_PRODUCT:
                 // productService.updateProduct(json_data);
                 break;
@@ -91,13 +89,17 @@ public class RequestHandler {
                 AuthService auth = new AuthService(this.clientSocket, this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-                // customer.disable();
+               customer = new CustomerService(this.clientSocket,this.json_data);
+               customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);
                 break;
             case GET_ALL_COUPONS:
                 couponService.getAllCoupons(json_data);
+                break;
+            case RENABLE_CUSTOMER:
+                customer.renableCard(json_data);
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
