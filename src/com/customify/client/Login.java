@@ -3,6 +3,9 @@ package com.customify.client;
 // import com.customify.client.dashboards.BusinessAdminDashboard;
 // import com.customify.client.dashboards.EmployeeDashboard;
 // import com.customify.client.dashboards.SuperAdminDashboard;
+import com.customify.client.dashboards.BusinessAdminDashboard;
+import com.customify.client.dashboards.EmployeeDashboard;
+import com.customify.client.dashboards.SuperAdminDashboard;
 import com.customify.client.data_format.AuthenticationDataFormat;
 import com.customify.client.services.AuthService;
 import com.customify.client.utils.authorization.UserSession;
@@ -38,7 +41,7 @@ public class Login {
 
     public void view() throws Exception{
 
-        authorize:do{
+        authorize:do {
             System.out.println("\n\n\n\t\t\t\t\tWELCOME ON  CUSTOMIFY  SYSTEM\n\n");
 
             Scanner scan = new Scanner(System.in);
@@ -63,18 +66,16 @@ public class Login {
 
 
             AuthenticationDataFormat format = new AuthenticationDataFormat(email, password);
-            AuthService authService = new AuthService(this.socket,format);
+            AuthService authService = new AuthService(this.socket, format);
 
 //            Dashboards dashboard = new Dashboards();
 
-            String superAdminJsonObj =authService.authenticateAdmin();
+            String superAdminJsonObj = authService.authenticateAdmin();
             String employeeJsonObj = authService.authenticateEmployee();
 
-            if(superAdminJsonObj != null)
-            {
+            if (superAdminJsonObj != null) {
                 // SuperAdminDashboard dashboard = new SuperAdminDashboard(this.socket,superAdminJsonObj);
-            }else if(employeeJsonObj != null)
-            {
+            } else if (employeeJsonObj != null) {
                 ObjectMapper objectMapper = new ObjectMapper();
                 JsonNode jsonNode = objectMapper.readTree(employeeJsonObj);
                 String title = jsonNode.get("title").asText();
@@ -85,14 +86,16 @@ public class Login {
                 // }else{
                 //     EmployeeDashboard dashboard = new EmployeeDashboard(this.socket,employeeJsonObj);
                 // }
-            AuthService authService = new AuthService(this.socket, format);
+//                AuthService authService = new AuthService(this.socket, format);
 
-            if (authService.authenticate()) {
-              route(authService.getLoggedInUser());
-            } else {
-                System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
+                if (authService.authenticate()) {
+                    route(authService.getLoggedInUser());
+                } else {
+                    System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
+                }
             }
-        }while(openLogin);
+        }
+            while(openLogin);
     }
 
     public void route(String appUser) throws Exception{

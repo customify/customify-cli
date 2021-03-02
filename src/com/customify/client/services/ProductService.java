@@ -66,7 +66,8 @@ public class ProductService {
     }
     //Method Created By Merlyne Iradukunda
     // Due date: 6/2/2020
-    public void deleteProduct(Long productCode) throws  Exception{
+    public void deleteProduct(String json_data) throws  Exception{
+        Long productCode;
 //        Request request = new Request(Keys.DELETE_PRODUCT, productCode);
 //        Common common = new Common(request, this.socket);
 //

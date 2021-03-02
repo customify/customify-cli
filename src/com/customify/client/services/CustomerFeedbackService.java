@@ -57,10 +57,10 @@ public class CustomerFeedbackService {
     public void handleFeedbackResponse() throws IOException, ClassNotFoundException {
         InputStream inputStream = this.socket.getInputStream();
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-        List<Response> response = (List<Response>) objectInputStream.readObject();
-
-        if (response.get(0).getStatusCode() == 201) {
-            System.out.println("All done. The feedback has been sent.");
-        }
+//        List<Response> response = (List<Response>) objectInputStream.readObject();
+//
+//        if (response.get(0).getStatusCode() == 201) {
+//            System.out.println("All done. The feedback has been sent.");
+//        }
     }
 }

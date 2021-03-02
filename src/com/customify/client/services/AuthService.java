@@ -111,4 +111,11 @@ public class AuthService {
 
     }
 
+    public String authenticateAdmin() {
+        return  "";
+    }
+
+    public String authenticateEmployee() {
+        return  "";
+    }
 }

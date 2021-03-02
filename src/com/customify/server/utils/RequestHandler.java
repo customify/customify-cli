@@ -1,5 +1,6 @@
 package com.customify.server.utils;
 
+import com.customify.client.services.ProductService;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
 import com.customify.server.services.CustomerFeedbackService;
@@ -28,7 +29,7 @@ public class RequestHandler {
         this.clientSocket = socket;
     }
 
-    public void init(InputStream inputStream) throws IOException, ClassNotFoundException, SQLException {
+    public void init(InputStream inputStream) throws Exception {
 
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         List<String> clientRequest = (List) objectInputStream.readObject();
@@ -40,10 +41,10 @@ public class RequestHandler {
         this.handleRequest();
     }
 
-    public void handleRequest() throws IOException, SQLException {
+    public void handleRequest() throws Exception {
         CustomerService customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
-//        ProductService productService = new ProductService(this.clientSocket);
+        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
         System.out.println("Handling routes "+this.key);
