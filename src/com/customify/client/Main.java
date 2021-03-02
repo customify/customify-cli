@@ -30,7 +30,9 @@ public class Main {
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
             while(isConnectionOn){
-                new Home(socket).view();
+               // new Home(socket).view();
+                ProductView productView=new ProductView(socket);
+                productView.init();
 //                Login log = new Login(socket);
 //                log.view();
             }

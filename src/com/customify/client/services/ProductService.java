@@ -68,17 +68,17 @@ public class ProductService {
     }
     //Method Created By Merlyne Iradukunda
     // Due date: 6/2/2020
-    public void deleteProduct(String json_data) throws  Exception{
-        Long productCode;
-//        Request request = new Request(Keys.DELETE_PRODUCT, productCode);
-//        Common common = new Common(request, this.socket);
-//
-//        //if the sending is successful call a method to handle response from server
-//        if (common.sendToServer()) {
-//            this.handleDeleteProductSuccess();
-//        } else {
-//            System.out.println("\n\nError occurred when trying to send request to server\n");
-//        }
+    public void deleteProduct(ProductFormat product) throws  Exception{
+        // ObjectMapper provides functionality for reading and writing in JSON
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonProductFormat = mapper.writeValueAsString(product);
+        SendToServer serverSend = new SendToServer(jsonProductFormat, this.socket);
+        if (serverSend.send()) {
+            // System.out.println("Send Products to the server successfully! ");
+            this.handleDeleteProductSuccess();
+        } else {
+            System.out.println("Error occured when deleting products ");
+        }
     }
 
     public void getAllProducts() throws Exception {
@@ -126,8 +126,21 @@ public class ProductService {
                 System.out.println("\n\n\t\t\t---- INTERNAL SERVER ERROR -----\n");
                 return;
             }
-            else if (response.get("status").asInt() == 200)
-                System.out.println("\n\n\t\t A LIST OF PRODUCTS WAS RECEIVED");
+
+
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+//            List<String> products = (List<String>) new JsonNode().readTreeresponse.get("products").asText()
+            for(int i = 0;i<res.size();i++)
+            {
+                JsonNode jsonNode = objectMapper.readTree(res.get(i));
+                System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", jsonNode.get("code").asText(), jsonNode.get("firstName").asText(), jsonNode.get("lastName").asText(), jsonNode.get("email").asText()));
+
+
+            }
+
         }catch(Exception e){
             System.out.println("RESPONSE ERROR"+e.getMessage());
         }
@@ -141,10 +154,10 @@ public class ProductService {
 ////                    System.out.println("\n\nNo products registered so far.\n");
 ////                    return;
 ////                }
-////
-////                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-////                System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
-////                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+//////
+//                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
+//                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 ////
 ////                System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
 ////
@@ -234,29 +247,29 @@ public class ProductService {
         return;
     }
     public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-//        try {
-//            List<Response> response = (List<Response>) objectInputStream.readObject();
-//
-//            if (response.get(0).getStatusCode() == 200) {
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//                System.out.println("\t\t product deleted successfully");
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//            } else if (response.get(0).getStatusCode() == 400) {
-//                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-//            } else if(response.get(0).getStatusCode() == 500){
-//                System.out.println("Internal server error!!");
-//            }else{
-//                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-//            }
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        }
+        try {
+            inputStream = this.socket.getInputStream();
+            objectInputStream = new ObjectInputStream(inputStream);
+            ObjectMapper objectMapper=new ObjectMapper();
 
-        return;
+            String data = (String) objectInputStream.readObject();
+            //System.out.println("+++++++++++++\n" +" data got from the server  is\n" +"=>"+data+"+++++\n");
+            JsonNode jsonFormat = objectMapper.readTree(data);
+            int statusCode = jsonFormat.get("StatusCode").asInt();
+            // System.out.println(statusCode);
+
+            if (statusCode == 200) {
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("\t\t product deleted successfully");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++\n\n");
+            }
+            // product test code 6503709,47462944,57191349,80316413
+            else{
+                System.out.println("\nInvalid product Code!\n");
+            }
+        } catch (Exception e) {
+            System.out.println("\n\nError occurred :" + e.getMessage() + "\n\n");
+        }
     }
 
     /**
