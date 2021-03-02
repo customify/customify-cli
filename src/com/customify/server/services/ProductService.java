@@ -9,6 +9,7 @@ package com.customify.server.services;
 import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
+import com.customify.server.response_data_format.products.GetAllProductsFormat;
 import com.customify.server.response_data_format.products.ProductFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -230,6 +231,7 @@ public class ProductService {
 
     public void getAllProducts() throws IOException, SQLException {
         List products  = new ArrayList<ProductFormat>();
+        GetAllProductsFormat allProductsFormat = new GetAllProductsFormat();
 
         try {
             Statement statement = Db.getStatement();
@@ -245,17 +247,19 @@ public class ProductService {
                         )
                 );
             }
+            allProductsFormat.setProducts(products);
+            allProductsFormat.setStatus(200);
         } catch (SQLException e) {
+            allProductsFormat.setStatus(500);
             System.out.println(e.getMessage());
         }
         finally {
             this.output = socket.getOutputStream();
             this.objectOutput = new CustomizedObjectOutputStream(this.output);
-            objectOutput.writeObject(products);
-            objectOutput.flush();
-            this.output.flush();
 
-            System.out.println(products);
+            responseData.clear();
+            responseData.add(new ObjectMapper().writeValueAsString(allProductsFormat));
+            objectOutput.writeObject(this.responseData);
         }
     }
 
