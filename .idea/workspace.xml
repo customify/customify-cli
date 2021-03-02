@@ -47,7 +47,7 @@
     <property name="project.structure.proportion" value="0.11" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -78,17 +78,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
@@ -109,7 +98,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1614146902372</updated>
-      <workItem from="1614657328085" duration="7577000" />
+      <workItem from="1614657328085" duration="10154000" />
+      <workItem from="1614708729915" duration="2547000" />
     </task>
     <task id="LOCAL-00002" summary="Conflict resolved">
       <created>1614147865077</created>
@@ -160,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614663942207</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="did get all products client">
+      <created>1614665668145</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1614665668145</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +184,7 @@
     <MESSAGE value="handle product routes" />
     <MESSAGE value="finished create product" />
     <MESSAGE value="finished get all products backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished get all products backend" />
+    <MESSAGE value="did get all products client" />
+    <option name="LAST_COMMIT_MESSAGE" value="did get all products client" />
   </component>
 </project>

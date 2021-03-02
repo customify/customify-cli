@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
@@ -126,8 +127,21 @@ public class ProductService {
                 System.out.println("\n\n\t\t\t---- INTERNAL SERVER ERROR -----\n");
                 return;
             }
-            else if (response.get("status").asInt() == 200)
-                System.out.println("\n\n\t\t A LIST OF PRODUCTS WAS RECEIVED");
+
+
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+//            List<String> products = (List<String>) new JsonNode().readTreeresponse.get("products").asText()
+            for(int i = 0;i<res.size();i++)
+            {
+                JsonNode jsonNode = objectMapper.readTree(res.get(i));
+                System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", jsonNode.get("code").asText(), jsonNode.get("firstName").asText(), jsonNode.get("lastName").asText(), jsonNode.get("email").asText()));
+
+
+            }
+
         }catch(Exception e){
             System.out.println("RESPONSE ERROR"+e.getMessage());
         }
@@ -141,10 +155,10 @@ public class ProductService {
 ////                    System.out.println("\n\nNo products registered so far.\n");
 ////                    return;
 ////                }
-////
-////                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-////                System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
-////                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+//////
+//                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
+//                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 ////
 ////                System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
 ////
