@@ -4,6 +4,7 @@
 
 package com.customify.server.models;
 
+
 public class SalesModel {
     private String customer_id;
     private String product_id;
