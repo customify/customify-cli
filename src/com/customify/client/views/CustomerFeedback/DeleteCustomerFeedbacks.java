@@ -30,11 +30,11 @@ public class DeleteCustomerFeedbacks {
 
     public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
-        System.out.print("Enter feedback id: \t");
-        int businessId = scan.nextInt();
-        String json = "{ \"businessId\" : \"" + businessId + "\", \"key\" : \"" + Keys.REMOVE_BUSINESS + "\" }";
+        System.out.print("Enter customer id: \t");
+        int customerId = scan.nextInt();
+        String json = "{ \"custmerId\" : \"" + customerId + "\", \"key\" : \"" + Keys.REMOVE_FEEDBACK + "\" }";
         CustomerFeedbackService cFeedbackService = new CustomerFeedbackService(socket);
         cFeedbackService.getAllCustomerFeedbacks(json);
+        // scan.close();
     }
-
 }
