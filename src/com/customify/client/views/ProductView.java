@@ -81,7 +81,7 @@ public class ProductView {
         System.out.println("Who is registering this product?");
         newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
 
-        newProduct.setCreatedAt("2021/02/04");
+        newProduct.setCreatedAt(LocalDate.now().toString());
 
         ProductService productService = new ProductService(this.socket);
         productService.addNewProduct(newProduct);
@@ -147,7 +147,8 @@ public class ProductView {
         newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
 
 //        LocalDate myObj = LocalDate.now();
-        newProduct.setCreatedAt("2021-02-04");
+
+        newProduct.setCreatedAt(LocalDate.now().toString());
 
         ProductService productService = new ProductService(this.socket);
        //productService.updateProduct(newProduct);

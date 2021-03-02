@@ -1,8 +1,10 @@
 package com.customify.client.services;
 
+import com.customify.client.Keys;
 import com.customify.client.SendToServer;
 
 import com.customify.client.data_format.products.ProductFormat;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -31,16 +33,16 @@ public class ProductService {
 
     }
 
-    public void addNewProduct(ProductFormat productModel) throws Exception {
-//        Request request = new Request(Keys.CREATE_PRODUCT, productModel);
-//        Common common = new Common(request, this.socket);
-//
-//        //if the sending is successful call a method to handle response from server
-//        if (common.sendToServer()) {
-//            this.handleRegisterProductSuccess();
-//        } else {
-//            System.out.println("\n\nError occurred when trying to send request to server\n");
-//        }
+    public void addNewProduct(ProductFormat product) throws Exception {
+        product.setKey(Keys.CREATE_PRODUCT);
+        String request = new ObjectMapper().writeValueAsString(product);
+
+        SendToServer sendToServer = new SendToServer(request,this.socket);
+        if (sendToServer.send()){
+            System.out.println("\n\n\t\t\tREQUEST WAS SENT TO SERVER\n");
+            this.handleRegisterProductSuccess();
+        }
+        else System.out.println("\n\n\t\tSENDING REQUEST TO SERVER FAILED\n");
     }
 
     /**
@@ -153,29 +155,21 @@ public class ProductService {
     }
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
+        try {
+            InputStream input =this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
 
-//        try {
-//            List<Response> response = (List<Response>) objectInputStream.readObject();
-//            ;
-//            if (response.get(0).getStatusCode() == 200) {
-//                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
-//
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//                System.out.println("\t\t product registered successfully");
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//            } else if (response.get(0).getStatusCode() == 400) {
-//                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-//            } else {
-//                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-//            }
-//
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        } catch (ClassNotFoundException e) {
-//        }//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+            List<String> res = (List) objectInput.readObject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode response = objectMapper.readTree(res.get(0));
 
+            if (response.get("status").asInt() == 201) System.out.println("\n\n\t\tPRODUCT CREATED SUCCESSFULLY\n\n");
+            else if(response.get("status").asInt() == 400) System.out.println("\n\n\t\tBAD FORMAT WAS SUPPLIED TO SOME FIELDS\n\n");
+            else if(response.get("status").asInt() == 500) System.out.println("\n\n\t\tBACKEND INTERNAL SERVER ERROR.\n\n");
+            else System.out.println("\n\n\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return;
     }
 
