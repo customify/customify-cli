@@ -15,7 +15,9 @@ public class SalesService {
 
     public void deleteSale(String salesId){}
 
-    public void getAllSales(){}
+    public void getAllSales(){
+        System.out.println("Getting all sales!");
+    }
 
     public void create(SalesFormat salesFormat){}
 

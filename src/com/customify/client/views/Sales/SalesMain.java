@@ -45,6 +45,7 @@ public class SalesMain {
                         this.SaleProductView();
                         break;
                     case 2:
+                        this.ViewAllSales();
                         break;
                     case 4:
                         break;
@@ -89,4 +90,12 @@ public class SalesMain {
         System.out.println("Product id "+productId);
     }
 
+    public void ViewAllSales(){
+
+        System.out.println("|---------------------------------------------------|");
+        System.out.println("|              ALL SALES                            |");
+        System.out.println("|___________________________________________________|");
+
+
+    }
 }
