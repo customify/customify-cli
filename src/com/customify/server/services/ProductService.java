@@ -8,6 +8,7 @@ package com.customify.server.services;
 
 import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
+import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.products.ProductFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,21 +21,21 @@ import java.util.List;
 
 public class ProductService {
     List<String> responseData = new ArrayList<>();
-    private Socket socket;
     ObjectOutputStream objectOutput;
+    Socket socket;
+    String json_data;
     OutputStream output;
 
     public ProductService(Socket socket) throws IOException {
         this.socket = socket;
-        this.output=socket.getOutputStream();
-        //  this.objectOutput= new ObjectOutputStream(output);
-        this.objectOutput= new CustomizedObjectOutputStream(this.output);
     }
 
     public static void deleteProduct() {
     }
-
-    // Jacques update this according to new Structure
+    /*
+    * @author: Jacques TWIZEYIMANA
+    * description: Register a new product in database*
+    */
 
     public void registerProduct(String data) throws IOException, SQLException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -72,13 +73,8 @@ public class ProductService {
             System.out.println("\n\nInternal server error:" + e.getMessage() + e.getCause());
         }
         finally {
-            this.output = socket.getOutputStream();
-            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             responseData.add(response);
-            objectOutput.writeObject(this.responseData);
-            objectOutput.flush();
-            this.output.flush();
-            System.out.println("Response "+responseData.get(0));
+            SendToClient sendToClient =  new SendToClient(this.socket,responseData);
         }
     }
     /**

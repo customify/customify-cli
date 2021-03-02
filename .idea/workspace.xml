@@ -4,7 +4,6 @@
     <list default="true" id="4f082859-419d-42e4-a1e2-47bf42746195" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +107,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1614146902372</updated>
-      <workItem from="1614657328085" duration="3970000" />
+      <workItem from="1614657328085" duration="4489000" />
     </task>
     <task id="LOCAL-00002" summary="Conflict resolved">
       <created>1614147865077</created>
@@ -131,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614661484550</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="handle product routes">
+      <created>1614661957979</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1614661957979</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +161,7 @@
     <MESSAGE value="Conflict resolved" />
     <MESSAGE value="added keys to server to mach those from client" />
     <MESSAGE value="handle register product client" />
-    <option name="LAST_COMMIT_MESSAGE" value="handle register product client" />
+    <MESSAGE value="handle product routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="handle product routes" />
   </component>
 </project>
