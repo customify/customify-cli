@@ -185,6 +185,6 @@ public class ProductView {
         //set key for one product code deletion
         oldProduct.setProductCode(Long.parseLong(scanner.nextLine()));
         ProductService productService = new ProductService(this.socket);
-        productService.deleteProduct(oldProduct.toString());
-    }
+        productService.deleteProduct(oldProduct);}
+
 }

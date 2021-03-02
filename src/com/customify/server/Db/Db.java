@@ -49,9 +49,11 @@ public class Db {
 
 
       try{
+//          String url = "jdbc:mysql://localhost:3306/bsnlibok3ll8qs778xbx?useSSL=false";
+//          connection = DriverManager.getConnection(url, "Tamara", "123");
+
           connection = DriverManager.getConnection(prop.getProperty("dbUrl"),prop.getProperty("user"),prop.getProperty("password"));
           statement = connection.createStatement();
-
           System.out.println("Db connected......");
 
           /*

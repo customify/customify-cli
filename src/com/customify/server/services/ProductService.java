@@ -28,7 +28,8 @@ public class ProductService {
     OutputStream output;
 
     public ProductService(Socket socket) throws IOException {
-        this.socket = socket;
+       this.objectOutput = new CustomizedObjectOutputStream(this.output);
+       this.socket = socket;
     }
 
     public static void deleteProduct() {
@@ -204,14 +205,12 @@ public class ProductService {
     }
 
 
-    public void deleteProduct(String data) throws IOException,StreamCorruptedException {
+    public void deleteProduct(String data) throws IOException{
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
         String jsonSendStatusCode = null;
         int statusCode;
         try {
-            //To do delete by productId,productName,productCode
-            //To do add valid date in the product,user(Too)
             Connection connection = Db.getConnection();
             String sql = "DELETE from products where product_code= ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -222,7 +221,6 @@ public class ProductService {
             objectOutput.writeObject(jsonSendStatusCode);
             objectOutput.close();
         }catch (Exception e){
-            objectOutput.flush();
             System.out.println("Exception Message ==> "+e.getMessage());
         }
     }
