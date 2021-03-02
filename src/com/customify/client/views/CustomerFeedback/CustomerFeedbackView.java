@@ -8,8 +8,9 @@
  * The data that he/she will provide are the ones to be inserted into the database on the side
  * of the business he/she has written to.
  */
- 
+
 package com.customify.client.views.CustomerFeedback;
+
 import com.customify.client.Keys;
 import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 
@@ -55,7 +56,8 @@ public class CustomerFeedbackView {
             business_id = scan.nextInt();
             feed = false;
 
-            CustomerFeedbackDataFormat format = new CustomerFeedbackDataFormat(Keys.FEEDBACK, customer_id, business_id, title, description);
+            CustomerFeedbackDataFormat format = new CustomerFeedbackDataFormat(Keys.FEEDBACK, customer_id, business_id,
+                    title, description);
             CustomerFeedbackService feedservice = new CustomerFeedbackService(this.socket);
             feedservice.Feedback(format);
         } while (feed);

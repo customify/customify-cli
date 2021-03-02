@@ -48,14 +48,14 @@ public class CustomerFeedbackService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
         Connection connection = Db.getConnection();
-        String feedbackQuery = "INSERT INTO customerFeedback values (?,?,?,?,NOW())";
+        String feedbackQuery = "INSERT INTO CustomerFeedbacks values (?,?,?,?,NOW())";
 
         Statement stmt = Db.getStatement();
         ResultSet checkBusiness = stmt.executeQuery("SELECT * FROM businesses");
 
         try {
 
-            // prepare the statement to be sent to the database
+            // prepare the statement for the query
             while (checkBusiness.next()) {
                 if (jsonNode.get("businessId").asInt() == checkBusiness.getInt("id")) {
                     PreparedStatement statement = connection.prepareStatement(feedbackQuery);
@@ -85,14 +85,14 @@ public class CustomerFeedbackService {
         ObjectMapper objectMapper = new ObjectMapper();
 
         Statement stmt = Db.getStatement();
-        String query = "SELECT * FROM customerFeedback";
+        String query = "SELECT * FROM CustomerFeedbacks";
         List<String> feedbacks = new ArrayList<>();
 
         try {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                CustomerFeedbackDataFormat cf = new CustomerFeedbackDataFormat(
-                        rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDate(8).toString());
+                CustomerFeedbackDataFormat cf = new CustomerFeedbackDataFormat(rs.getInt(1), rs.getInt(2),
+                        rs.getString(3), rs.getString(4), rs.getDate(8).toString());
                 String json = objectMapper.writeValueAsString(cf);
                 feedbacks.add(json);
             }

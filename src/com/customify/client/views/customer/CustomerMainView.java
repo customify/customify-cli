@@ -20,7 +20,8 @@ public class CustomerMainView {
         Login login;
         setLoggedIn(loggedIn);
         if(this.loggedIn)
-            this.view();
+            // this.view();
+            System.out.println("");
         else
              login = new Login(socket);
     }

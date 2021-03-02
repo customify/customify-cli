@@ -10,8 +10,8 @@ import com.customify.client.Keys;
 import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.models.ProductModel;
-import com.customify.shared.Request;
-import com.customify.shared.Response;
+//import com.customify.shared.Request;
+//import com.customify.shared.Response;
 import com.customify.server.response_data_format.products.ProductFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -307,9 +307,9 @@ public class ProductService {
         }
         catch (Exception e){
             e.printStackTrace();
-            List responseData = new ArrayList<>();
-            Response response = new Response(500,new ProductFormat());
-            responseData.add(response);
+            // // List responseData = new ArrayList<>();
+            // // Response response = new Response(500,new ProductFormat());
+            // responseData.add(response);
             //Sending the response to client
             objectOutput.writeObject(responseData);
         }
@@ -338,6 +338,7 @@ public class ProductService {
                System.out.println("Exception Message ==> "+e.getMessage());
         }
     }
+}
 
     // Jacques update this according to new Structure
 

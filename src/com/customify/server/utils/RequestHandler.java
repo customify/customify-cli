@@ -89,8 +89,8 @@ public class RequestHandler {
                 AuthService auth = new AuthService(this.clientSocket, this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-               customer = new CustomerService(this.clientSocket,this.json_data);
-               customer.disable();
+            //    customer = new CustomerService(this.clientSocket,this.json_data);
+            //    customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);
@@ -99,7 +99,8 @@ public class RequestHandler {
                 couponService.getAllCoupons(json_data);
                 break;
             case RENABLE_CUSTOMER:
-                customer.renableCard(json_data);
+                // customer.renableCard(json_data);
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
