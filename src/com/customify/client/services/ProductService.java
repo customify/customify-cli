@@ -82,15 +82,15 @@ public class ProductService {
     }
 
     public void getAllProducts() throws Exception {
-//        Request request = new Request(Keys.GET_ALL_PRODUCTS, new ProductFormat());
-//        Common common = new Common(request, this.socket);
-//
-//        //if the sending is successful call a method to handle response from server
-//        if (common.sendToServer()) {
-//            this.handleGetProductListSuccess();
-//        } else {
-//            System.out.println("\n\nError occurred when trying to send request to server\n");
-//        }
+        ProductFormat format = new ProductFormat();
+        format.setKey(Keys.GET_ALL_PRODUCTS);
+
+        SendToServer sendToServer = new SendToServer(new ObjectMapper().writeValueAsString(format),this.socket);
+        if (sendToServer.send()) {
+            System.out.println("\n\n\t\t\tREQUEST WAS SENT TO SERVER\n");
+            this.handleGetProductListSuccess();
+        }
+        else System.out.println("\n\n\t\t\tERROR OCCURRED WHEN SENDING REQUEST TO SERVER\n");
     }
 
     /**
@@ -114,8 +114,23 @@ public class ProductService {
         }
     }
     public void handleGetProductListSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
+        try {
+            InputStream input = this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
+            List<String> res = (List) objectInput.readObject();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode response = objectMapper.readTree(res.get(0));
+
+            if(response.get("status").asInt() == 500){
+                System.out.println("\n\n\t\t\t---- INTERNAL SERVER ERROR -----\n");
+                return;
+            }
+            else if (response.get("status").asInt() == 200)
+                System.out.println("\n\n\t\t A LIST OF PRODUCTS WAS RECEIVED");
+        }catch(Exception e){
+            System.out.println("RESPONSE ERROR"+e.getMessage());
+        }
 //
 //        try {
 ////            List<Response> response = (List<Response>) objectInputStream.readObject();
