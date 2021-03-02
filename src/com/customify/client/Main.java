@@ -17,13 +17,11 @@ public class Main {
             System.out.println("Failed to connect to the server to: "+serverIP);
         }
     }
-
     public static void main(String[] args){
         System.out.println("Customify  is starting..........");
         new Main("localhost");
         System.out.println("Ending................");
     }
-
     private boolean connectTOServer(String serverIp){
         int portNumber = 3000;
         try{
@@ -32,8 +30,9 @@ public class Main {
             System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
             while(isConnectionOn){
-                Login log = new Login(socket);
-                log.view();
+                new Home(socket).view();
+//                Login log = new Login(socket);
+//                log.view();
             }
         }catch (Exception e){
             this.isConnectionOn = false;
