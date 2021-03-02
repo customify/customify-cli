@@ -97,6 +97,8 @@ public class RequestHandler {
                 break;
             case GET_ALL_COUPONS:
                 couponService.getAllCoupons(json_data);
+            case GET_ALL_SALES:
+
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
