@@ -24,9 +24,9 @@ public class Main {
         ServerSocket serverSocket;
 
         try {
-            Db.init();
             serverSocket = new ServerSocket(portNumber);
             System.out.println("New server has been listening on port: " + portNumber);
+            Db.init();
             while(true){
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("New Client is connected on the Server");
@@ -35,7 +35,7 @@ public class Main {
                     con.init(clientSocket.getInputStream());
                 }
             }
-        } catch (Exception e ) {
+        } catch (Exception e) {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
         }
     }
