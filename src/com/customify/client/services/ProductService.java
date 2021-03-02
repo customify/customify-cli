@@ -1,19 +1,8 @@
 package com.customify.client.services;
 
 import com.customify.client.SendToServer;
-<<<<<<< HEAD
-import com.customify.server.models.ProductModel;
-import com.customify.shared.Keys;
-import com.customify.shared.Request;
-import com.customify.shared.Response;
-//import com.customify.shared.requests_data_formats.ProductFormat;
-import com.customify.client.data_format.products.ProductFormat;
-import com.customify.shared.responses_data_format.AuthFromats.SuccessLoginFormat;
-import com.fasterxml.jackson.databind.JsonNode;
-=======
 
 import com.customify.client.data_format.products.ProductFormat;
->>>>>>> 00c0dc401d8d60ac3aa9e7e19a4a163278a737d0
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -75,26 +64,6 @@ public class ProductService {
         }
 
     }
-<<<<<<< HEAD
-
-    /**
-     * @description Service to Delete  Product By Product Code
-     * @author Tamara Iradukunda
-     * @version 1
-     *
-     * @param */
-    public void deleteProduct(ProductFormat product) throws  Exception{
-        // ObjectMapper provides functionality for reading and writing in JSON
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonProductFormat = mapper.writeValueAsString(product);
-        SendToServer serverSend = new SendToServer(jsonProductFormat, this.socket);
-        if (serverSend.send()) {
-           // System.out.println("Send Products to the server successfully! ");
-            this.handleDeleteProductSuccess();
-        } else {
-            System.out.println("Error occured when deleting products ");
-        }
-=======
     //Method Created By Merlyne Iradukunda
     // Due date: 6/2/2020
     public void deleteProduct(Long productCode) throws  Exception{
@@ -107,7 +76,6 @@ public class ProductService {
 //        } else {
 //            System.out.println("\n\nError occurred when trying to send request to server\n");
 //        }
->>>>>>> 00c0dc401d8d60ac3aa9e7e19a4a163278a737d0
     }
 
     public void getAllProducts() throws Exception {
@@ -255,39 +223,6 @@ public class ProductService {
 
         return;
     }
-<<<<<<< HEAD
-
-    /**
-     * @description
-     * Function to Send Response when Product is Deleted Successfully
-     * @author Tamara Iradukunda
-     * @version 1
-     * */
-    public void handleDeleteProductSuccess() throws  Exception,ClassNotFoundException {
-        try {
-            inputStream = this.socket.getInputStream();
-            objectInputStream = new ObjectInputStream(inputStream);
-            ObjectMapper objectMapper=new ObjectMapper();
-
-            String data = (String) objectInputStream.readObject();
-            //System.out.println("+++++++++++++\n" +" data got from the server  is\n" +"=>"+data+"+++++\n");
-            JsonNode jsonFormat = objectMapper.readTree(data);
-            int statusCode = jsonFormat.get("StatusCode").asInt();
-           // System.out.println(statusCode);
-
-            if (statusCode == 200) {
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-                System.out.println("\t\t product deleted successfully");
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++\n\n");
-            }
-            // product test code 6503709,47462944,57191349,80316413
-            else{
-                System.out.println("\nInvalid product Code!\n");
-            }
-        } catch (Exception e) {
-            System.out.println("\n\nError occurred :" + e.getMessage() + "\n\n");
-        }
-=======
     public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
         inputStream = this.getSocket().getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
@@ -312,7 +247,6 @@ public class ProductService {
 //        }
 
         return;
->>>>>>> 00c0dc401d8d60ac3aa9e7e19a4a163278a737d0
     }
 
     /**

@@ -10,18 +10,24 @@ package com.customify.server.services;
 import com.customify.server.Db.Db;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jdk.jshell.spi.ExecutionControl.ExecutionControlException;
+
 // import com.mysql.cj.protocol.Resultset;
 // import com.mysql.cj.protocol.x.ResultMessageListener;
 // import com.mysql.cj.xdevapi.Statement;
-
+// import com.mysql.cj.protocol.Resultset;
+import com.customify.server.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.Connection;
+import java.util.List;
 import java.sql.PreparedStatement;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -66,12 +72,32 @@ public class CustomerFeedbackService {
                     }
                 } else {
                     System.out
-                            .println("The business whith id " + jsonNode.get("businessId").asInt() + " does not exist");                    
-                }     
+                            .println("The business whith id " + jsonNode.get("businessId").asInt() + " does not exist");
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public void getAllFeedbacks() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Statement stmt = Db.getStatement();
+        String query = "SELECT * FROM customerFeedback";
+        List<String> feedbacks = new ArrayList<>();
+
+        try {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                CustomerFeedbackDataFormat cf = new CustomerFeedbackDataFormat(
+                        rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDate(8).toString());
+                String json = objectMapper.writeValueAsString(cf);
+                feedbacks.add(json);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

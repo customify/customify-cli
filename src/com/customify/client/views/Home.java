@@ -7,6 +7,7 @@ import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.Business.BusinessView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackMainView;
 import com.customify.client.views.customer.CustomerMainView;
 
 import java.io.IOException;
@@ -35,6 +36,7 @@ public class Home {
         Scanner scan = new Scanner(System.in);
 
         CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
+        CustomerFeedbackMainView cfMainView =  new CustomerFeedbackMainView(socket)
         CustomerMainView customer = new CustomerMainView(this.socket,true);
 
         ProductView productView = new ProductView(this.socket);
@@ -52,6 +54,7 @@ public class Home {
         System.out.println("           3. PRODUCT MANAGEMENT");
         System.out.println("           4. BUSINESS");
         System.out.println("           5. GIVE FEEDBACK");
+        System.out.println("           10.OPERATE");
         System.out.println("           6. PROVIDE FEEDBACK ");
         System.out.println("           7. POINTS");
         System.out.println("           8. CUSTOMER MANAGEMENT");
@@ -86,6 +89,9 @@ public class Home {
                 break;
             case 9:
                 couponView.init();
+                break;
+            case 10:
+                cfMainView.view();
                 break;
             default:
                 System.out.println("Invalid choice");
