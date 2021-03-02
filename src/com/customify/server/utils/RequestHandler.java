@@ -1,17 +1,11 @@
 package com.customify.server.utils;
 
-import com.customify.server.services.AuthService;
-import com.customify.server.services.BusinessService;
+import com.customify.server.services.*;
 import com.customify.server.Keys;
-
-//import com.customify.server.services.ProductService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.customify.server.services.CouponService;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;
@@ -45,7 +39,9 @@ public class RequestHandler {
 //        CustomerService  customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
 //        ProductService productService = new ProductService(this.clientSocket);
+        PointsService pointsService = new PointsService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
+
 
         System.out.println("Handling routes");
 
@@ -64,7 +60,6 @@ public class RequestHandler {
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();
-
                 break;
             case GET_ALL_PRODUCTS:
 //                productController.getAllProducts();
@@ -88,6 +83,9 @@ public class RequestHandler {
                 break;
             case GET_BUSINESS:
                 businessService.getBusinessById(json_data);
+                break;
+            case GET_WINNERS:
+                pointsService.getWinners();
                 break;
             case AUTHENTICATION:
                 AuthService auth = new AuthService(this.clientSocket,this.json_data);

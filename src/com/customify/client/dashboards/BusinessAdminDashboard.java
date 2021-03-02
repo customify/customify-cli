@@ -1,7 +1,9 @@
 package com.customify.client.dashboards;
 
 import com.customify.client.Login;
+import com.customify.client.services.PointsService;
 import com.customify.client.utils.authorization.UserSession;
+import com.customify.client.views.PointCountingView;
 import com.customify.client.views.customer.CustomerMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -65,9 +67,10 @@ public class BusinessAdminDashboard {
             System.out.println("           1. EMPLOYEE MANAGEMENT");
             System.out.println("           2. CUSTOMER MANAGEMENT");
             System.out.println("           3. TODAY'S REPORT");
-            System.out.println("           4. MY PROFILE");
-            System.out.println("           5. PROFILE SETTINGS");
-            System.out.println("           6. LOGOUT !!!");
+            System.out.println("           4. POINTS");
+            System.out.println("           5. MY PROFILE");
+            System.out.println("           6. PROFILE SETTINGS");
+            System.out.println("           7. LOGOUT !!!");
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -79,14 +82,19 @@ public class BusinessAdminDashboard {
                 case 3:
                     break;
                 case 4:
-//                    loggedIn=false;
+                    PointCountingView pointCountingView = new PointCountingView(this.socket);
+                    pointCountingView.view();
                     break;
-                    case 5:
+                case 5:
 //                    loggedIn=false;
                     break;
                 case 6:
-                        if(userSession.unSet())
-                            loggedIn=false;
+//                  loggedIn=false;
+                    break;
+                case 7:
+                    if(userSession.unSet()) {
+                        loggedIn = false;
+                    }
                     break;
                 default:
                     System.out.println("INVALID CHOICE");
