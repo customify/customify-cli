@@ -2,11 +2,8 @@ package com.customify.client.services;
 
 import com.customify.client.Keys;
 import com.customify.client.SendToServer;
-import com.customify.client.data_format.CreateCustomerFormat;
+import com.customify.client.data_format.*;
 //import com.customify.client.data_format.customer.CreateCustomerFormat;
-import com.customify.client.data_format.DeActivateCustomer;
-import com.customify.client.data_format.DisableCustomerFormat;
-import com.customify.client.data_format.UpdateCustomerFormat;
 import com.customify.client.data_format.products.ProductFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
