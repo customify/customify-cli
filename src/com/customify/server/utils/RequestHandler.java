@@ -64,9 +64,9 @@ public class RequestHandler {
             case FEEDBACK:
                 feedback.Feedback(json_data);
                 break;
-//            case GET_ALL_FEEDBACKS:
-//                feedback.getAllFeedbacks();
-//                break;
+           case GET_ALL_FEEDBACKS:
+               feedback.getAllFeedbacks();
+               break;
             case GET_ALL_PRODUCTS:
                 // productController.getAllProducts();
                 break;
@@ -108,5 +108,4 @@ public class RequestHandler {
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
     }
-
 }

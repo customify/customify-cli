@@ -91,6 +91,7 @@ public class CustomerFeedbackService {
                 String json = objectMapper.writeValueAsString(cf);
                 feedbacks.add(json);
             }
+            objectOutput.writeObject(feedbacks);
         } catch (Exception e) {
             e.printStackTrace();
         }
