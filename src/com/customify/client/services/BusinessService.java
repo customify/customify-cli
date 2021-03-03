@@ -13,12 +13,9 @@
 package com.customify.client.services;
 
 import com.customify.client.SendToServer;
-//import com.customify.shared.requests_data_formats.BusinessFormats.BusinessFormat;
-import com.customify.client.data_format.business.GetBusinessFormat;
 import com.customify.client.data_format.business.BusinessFormat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -100,6 +97,7 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
+     * @param json Object key to send to the server
      * @role this function is for getting all business
      */
     public void getBusinesses(String json) throws IOException, ClassNotFoundException {
@@ -111,6 +109,7 @@ public class BusinessService {
         }
     }
 
+<<<<<<< HEAD
     /**
      * @author Kellia Umuhire
      * @role this function is for handling the response after fetching all the businesses from the server
@@ -137,9 +136,13 @@ public class BusinessService {
             }
         }
     }
+=======
+
+>>>>>>> 93b917112a332e0d3e3067e117105d03439be102
 
     /**
      * @author Kellia Umuhire
+     * @param json Object holding businessId and key to send to the server
      * @role method for getting one business by its id
      */
     public void getById(String json) throws IOException, ClassNotFoundException {
@@ -153,6 +156,7 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
+     * @param json Object holding businessId and key to send to the server
      * @role Method for sending a delete request to the server
      */
     public void deleteBusiness(String json) throws IOException, ClassNotFoundException {
@@ -164,22 +168,54 @@ public class BusinessService {
         }
     }
 
+    /**
+     * @author Kellia Umuhire
+     * @role this function is for handling the response after fetching all the businesses from the server
+     * and displaying the response
+     */
+    public void handleGetResponse() throws IOException, ClassNotFoundException {
+        //Get response
+        this.input = this.socket.getInputStream();
+        this.objectInput = new ObjectInputStream(this.input);
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        //Casting the response data to list
+        List<String> data = (List<String>) this.objectInput.readObject();
+        Iterator itr = data.iterator();
+
+        //display the businesses
+        System.out.println("------------------------------------------List of Businesses----------------------------------\n");
+        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+        System.out.println();
+        while (itr.hasNext()) {
+            JsonNode bs = objectMapper.readTree((String) itr.next());
+            System.out.format("%5d%20s%20s%20s%20s%20s\n", bs.get("id").asInt(), bs.get("name").asText(), bs.get("location").asText(), bs.get("address").asText(), bs.get("phone_number").asText(), bs.get("created_at").asText());
+        }
+    }
 
     /**
      * @author Kellia Umuhire, IRUMVA HABUMUGISHA Anselme
+     * @param func_name the name of the function to pass the response to
      * @role General method for handling response from the server
      */
     public void handleResponse(String func_name) throws ClassNotFoundException {
+        System.out.println("Received");
         try {
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
             ObjectMapper objectMapper = new ObjectMapper();
+<<<<<<< HEAD
 
+=======
+            JsonNode jsonNode = objectMapper.readTree(json_data);
+            System.out.println(jsonNode);
+>>>>>>> 93b917112a332e0d3e3067e117105d03439be102
             switch (func_name) {
                 case "getall":
                     this.handleGetResponse();
                     break;
                 case "getbyid":
+<<<<<<< HEAD
                     response = (List<String>) this.objectInput.readObject();
                     if(response.get(0) =="500") System.out.println(response.get(1));
                     else if(response.get(0)=="400") System.out.println(response.get(1));
@@ -191,6 +227,15 @@ public class BusinessService {
                         System.out.println();
                         System.out.format("%5d%20s%20s%20s%20s%20s\n", node.get("id").asInt(), node.get("name").asText(), node.get("location").asText(), node.get("address").asText(), node.get("phone_number").asText(), node.get("created_at").asText());
 
+=======
+                    if(jsonNode.get("statusCode").asInt()==500) System.out.println("An error occured");
+                    else{
+                        //Display the business
+                        System.out.println("-------------------Business " + jsonNode.get("id") + "------------------\n");
+                        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+                        System.out.println();
+                        System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
+>>>>>>> 93b917112a332e0d3e3067e117105d03439be102
                     }
                     break;
                 case "create":

@@ -1,8 +1,5 @@
 package com.customify.client;
 
-
-import com.customify.client.views.*;
-
 import java.io.*;
 import java.net.*;
 

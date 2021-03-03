@@ -17,8 +17,8 @@ public class AuthService {
 
     private Socket socket;
     private AuthenticationDataFormat data;
-   private  boolean authenticated = false;
-     private String loggedInUser = null;
+    private  boolean authenticated = false;
+    private String loggedInUser = null;
 
     public String getLoggedInUser() {
         return loggedInUser;
@@ -67,9 +67,9 @@ public class AuthService {
 
         SendToServer serverSend = new SendToServer(json, this.socket);
         if (serverSend.send()) {
-          this.handleLoginResponse();
+            this.handleLoginResponse();
         }
-     return isAuthenticated();
+        return isAuthenticated();
     }
 
 
