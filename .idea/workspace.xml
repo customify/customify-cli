@@ -4,7 +4,6 @@
     <list default="true" id="4f082859-419d-42e4-a1e2-47bf42746195" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +44,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.19.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.11" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -102,7 +101,7 @@
       <updated>1614146902372</updated>
       <workItem from="1614657328085" duration="10154000" />
       <workItem from="1614708729915" duration="3293000" />
-      <workItem from="1614744609835" duration="3514000" />
+      <workItem from="1614744609835" duration="8219000" />
     </task>
     <task id="LOCAL-00002" summary="Conflict resolved">
       <created>1614147865077</created>
@@ -174,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614745046216</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="get response is now working!">
+      <created>1614748299351</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1614748299351</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +210,7 @@
     <MESSAGE value="did get all products client" />
     <MESSAGE value="Merge branch 'Products-2' of https://github.com/PatrickNiyogitare28/customify" />
     <MESSAGE value="update our branch with main" />
-    <option name="LAST_COMMIT_MESSAGE" value="update our branch with main" />
+    <MESSAGE value="get response is now working!" />
+    <option name="LAST_COMMIT_MESSAGE" value="get response is now working!" />
   </component>
 </project>

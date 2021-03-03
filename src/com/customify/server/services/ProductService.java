@@ -81,11 +81,6 @@ public class ProductService {
         }
     }
 
-    public void respond(){
-        String call = "Hello Sam";
-        responseData.add(call);
-    }
-
     /**
      * @description
      * Function to Get Product by ID from DB and send Response to Client
@@ -235,6 +230,7 @@ public class ProductService {
     // Jacques update this according to new Structure
 
     public void getAllProducts() throws IOException, SQLException {
+        System.out.println("Request to get all products");
         List products  = new ArrayList<ProductFormat>();
         GetAllProductsFormat allProductsFormat = new GetAllProductsFormat();
 
@@ -259,12 +255,9 @@ public class ProductService {
             System.out.println(e.getMessage());
         }
         finally {
-            this.output = socket.getOutputStream();
-            this.objectOutput = new CustomizedObjectOutputStream(this.output);
-
             responseData.clear();
             responseData.add(new ObjectMapper().writeValueAsString(allProductsFormat));
-            objectOutput.writeObject(this.responseData);
+            objectOutput.writeObject(responseData);
         }
     }
 

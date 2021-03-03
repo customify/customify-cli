@@ -4,6 +4,7 @@ import com.customify.client.Keys;
 import com.customify.client.SendToServer;
 
 import com.customify.client.data_format.products.ProductFormat;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -40,7 +41,6 @@ public class ProductService {
 
         SendToServer sendToServer = new SendToServer(request,this.socket);
         if (sendToServer.send()){
-            System.out.println("\n\n\t\t\tREQUEST WAS SENT TO SERVER\n");
             this.handleRegisterProductSuccess();
         }
         else System.out.println("\n\n\t\tSENDING REQUEST TO SERVER FAILED\n");
@@ -89,7 +89,6 @@ public class ProductService {
 
         SendToServer sendToServer = new SendToServer(new ObjectMapper().writeValueAsString(format),this.socket);
         if (sendToServer.send()) {
-            System.out.println("\n\n\t\t\tREQUEST WAS SENT TO SERVER\n");
             this.handleGetProductListSuccess();
         }
         else System.out.println("\n\n\t\t\tERROR OCCURRED WHEN SENDING REQUEST TO SERVER\n");
@@ -117,8 +116,9 @@ public class ProductService {
     }
     public void handleGetProductListSuccess() throws IOException, ClassNotFoundException {
         try {
-            InputStream input = this.socket.getInputStream();
+            InputStream input =this.socket.getInputStream();
             ObjectInputStream objectInput = new ObjectInputStream(input);
+
             List<String> res = (List) objectInput.readObject();
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -129,57 +129,21 @@ public class ProductService {
                 return;
             }
 
-
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-
-//            List<String> products = (List<String>) new JsonNode().readTreeresponse.get("products").asText()
-            for(int i = 0;i<res.size();i++)
-            {
-                JsonNode jsonNode = objectMapper.readTree(res.get(i));
-                System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", jsonNode.get("code").asText(), jsonNode.get("firstName").asText(), jsonNode.get("lastName").asText(), jsonNode.get("email").asText()));
-
-
+            final JsonNode products = response.get("products");
+            if (products.isArray()) {
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------");
+                System.out.println("\t\t\t\t\t\t\t\t\t\tHere is a list of products registered so far");
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println(String.format("\t\t\t%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
+                for (final JsonNode product : products) {
+                    System.out.println(String.format("\t\t\t%-15s %-30s %-10s %10s %20s %20s", product.get("productCode").asText(), product.get("name").asText(), product.get("quantity").asText(), product.get("price").asText(), product.get("bondedPoints").asText(), product.get("createdAt").asText()));
+                }
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
             }
-
         }catch(Exception e){
-            System.out.println("RESPONSE ERROR"+e.getMessage());
+            System.out.println("RESPONSE ERROR" + e.getMessage());
         }
-//
-//        try {
-////            List<Response> response = (List<Response>) objectInputStream.readObject();
-////            if (response.get(0).getStatusCode() == 200) {
-////                List<ProductFormat> products = (List<ProductFormat>) response.get(0).getData();
-////
-////                if (products.size() == 0) {
-////                    System.out.println("\n\nNo products registered so far.\n");
-////                    return;
-////                }
-//////
-//                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-//                System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
-//                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-////
-////                System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
-////
-////                for (int i = 0; i < products.size(); i++) {
-////                    ProductFormat product = products.get(i);
-////
-////                    System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", product.getProductCode(), product.getName(), product.getQuantity(), product.getPrice(), product.getBondedPoints(), product.getCreatedAt()));
-////                }
-////                System.out.println("\n");
-////            } else if (response.get(0).getStatusCode() == 400) {
-////                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-////            } else {
-////                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-////            }
-//
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        }
 
         return;
     }
@@ -222,17 +186,17 @@ public class ProductService {
 //            if(response.get(0).getStatusCode() == 200){
 //                ProductFormat retrievedProduct = (ProductFormat) response.get(0).getData();
 //
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//                System.out.println("Product Code: " + retrievedProduct.getProductCode());
-//                System.out.println("Business Id: "+ retrievedProduct.getBusiness_id());
-//                System.out.println("Name: " + retrievedProduct.getName());
-//                System.out.println("Price: " + retrievedProduct.getPrice() );
-//                System.out.println("Quantity: " + retrievedProduct.getQuantity());
-//                System.out.println("Description: " + retrievedProduct.getDescription());
-//                System.out.println("Bonded Points: " + retrievedProduct.getBondedPoints());
-//                System.out.println("Registered By: " + retrievedProduct.getRegistered_by());
-//                System.out.println("Created At: " + retrievedProduct.getCreatedAt());
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("-------------------------------------------");
+//                System.out.println("Product Code: " - retrievedProduct.getProductCode());
+//                System.out.println("Business Id: "- retrievedProduct.getBusiness_id());
+//                System.out.println("Name: " - retrievedProduct.getName());
+//                System.out.println("Price: " - retrievedProduct.getPrice() );
+//                System.out.println("Quantity: " - retrievedProduct.getQuantity());
+//                System.out.println("Description: " - retrievedProduct.getDescription());
+//                System.out.println("Bonded Points: " - retrievedProduct.getBondedPoints());
+//                System.out.println("Registered By: " - retrievedProduct.getRegistered_by());
+//                System.out.println("Created At: " - retrievedProduct.getCreatedAt());
+//                System.out.println("-------------------------------------------");
 //            }
 //            else if(response.get(0).getStatusCode() == 400){
 //                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
@@ -242,9 +206,9 @@ public class ProductService {
 //            }
 
 //        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
 //        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
 //        }
 
         return;
@@ -256,15 +220,15 @@ public class ProductService {
             ObjectMapper objectMapper=new ObjectMapper();
 
             String data = (String) objectInputStream.readObject();
-            //System.out.println("+++++++++++++\n" +" data got from the server  is\n" +"=>"+data+"+++++\n");
+            //System.out.println("-------------\n" -" data got from the server  is\n" -"=>"-data-"-----\n");
             JsonNode jsonFormat = objectMapper.readTree(data);
             int statusCode = jsonFormat.get("StatusCode").asInt();
             // System.out.println(statusCode);
 
             if (statusCode == 200) {
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("-------------------------------------------");
                 System.out.println("\t\t product deleted successfully");
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++\n\n");
+                System.out.println("-------------------------------------------\n\n");
             }
             // product test code 6503709,47462944,57191349,80316413
             else{
@@ -287,13 +251,13 @@ public class ProductService {
         objectInputStream = new ObjectInputStream(inputStream);
 //        try {
 //            List<Response> response = (List<Response>) objectInputStream.readObject();
-//            System.out.println("Status: "+ response.get(0).getStatusCode());
+//            System.out.println("Status: "- response.get(0).getStatusCode());
 //            if(response.get(0).getStatusCode() == 200){
 //                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
 //
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("-------------------------------------------");
 //                System.out.println("\t\t product Updated successfully");
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("-------------------------------------------");
 //            }
 //            else if(response.get(0).getStatusCode() == 400){
 //                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
@@ -303,9 +267,9 @@ public class ProductService {
 //            }
 
 //        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
 //        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
 //        }
 
         return;
