@@ -63,7 +63,7 @@ public class ProductView {
         System.out.println("Enter product name:");
         newProduct.setName(scanner.nextLine());
 
-        System.out.println("Enter business_id:");
+        System.out.println("Enter business id:");
         newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
 
         System.out.println("Enter product price:");

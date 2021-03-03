@@ -46,6 +46,7 @@ public class ProductService {
         else System.out.println("\n\n\t\tSENDING REQUEST TO SERVER FAILED\n");
     }
 
+
     /**
      * @description
      * Service to Retrieve Product By Id
@@ -189,6 +190,7 @@ public class ProductService {
             ObjectInputStream objectInput = new ObjectInputStream(input);
 
             List<String> res = (List) objectInput.readObject();
+
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode response = objectMapper.readTree(res.get(0));
 
@@ -197,7 +199,7 @@ public class ProductService {
             else if(response.get("status").asInt() == 500) System.out.println("\n\n\t\tBACKEND INTERNAL SERVER ERROR.\n\n");
             else System.out.println("\n\n\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("\n\n\t\tERROR OCCURRED.TRY AGAIN\n\n");
         }
         return;
     }

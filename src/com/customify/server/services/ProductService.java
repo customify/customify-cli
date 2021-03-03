@@ -28,6 +28,7 @@ public class ProductService {
     OutputStream output;
 
     public ProductService(Socket socket) throws IOException {
+        this.output = socket.getOutputStream();
        this.objectOutput = new CustomizedObjectOutputStream(this.output);
        this.socket = socket;
     }
@@ -54,13 +55,13 @@ public class ProductService {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setLong(1, jsonNode.get("productCode").asLong());
-            preparedStatement.setInt(2, jsonNode.get("businessId").asInt());
+            preparedStatement.setInt(2, jsonNode.get("business_id").asInt());
             preparedStatement.setString(3, jsonNode.get("name").asText());
             preparedStatement.setFloat(4, (float) jsonNode.get("price").asDouble());
             preparedStatement.setInt(5, jsonNode.get("quantity").asInt());
             preparedStatement.setString(6, jsonNode.get("description").asText());
             preparedStatement.setDouble(7, jsonNode.get("bondedPoints").asDouble());
-            preparedStatement.setInt(8, jsonNode.get("registeredBy").asInt());
+            preparedStatement.setInt(8, jsonNode.get("registered_by").asInt());
             preparedStatement.setString(9, jsonNode.get("createdAt").asText());
 
             if (preparedStatement.executeUpdate() > 0) {
@@ -76,9 +77,15 @@ public class ProductService {
         }
         finally {
             responseData.add(response);
-            SendToClient sendToClient =  new SendToClient(this.socket,responseData);
+            objectOutput.writeObject(responseData);
         }
     }
+
+    public void respond(){
+        String call = "Hello Sam";
+        responseData.add(call);
+    }
+
     /**
      * @description
      * Function to Get Product by ID from DB and send Response to Client
