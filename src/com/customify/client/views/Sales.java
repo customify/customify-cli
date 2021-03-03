@@ -6,6 +6,7 @@ package com.customify.client.views;
 * On Feb 25/02/2021
 * */
 
+import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.data_format.Sale.NewSale;
 import com.customify.client.data_format.Sale.SaleDataFormat;
@@ -37,19 +38,15 @@ public class Sales {
         boolean showView = true;
 
       do {
-                System.out.println("|---------------------------------------------------|");
-                System.out.println("|              SALES MANAGEMENT                     |");
-                System.out.println("|___________________________________________________|");
-                System.out.println("| 1. Sell Product                                   |");
-                System.out.println("| 2. List all sales                                 |");
-                System.out.println("| 3. View sales Made by a customer                  |");
-                System.out.println("| 4. Reports about sales                            |");
-                System.out.println("| 00. Back                                          |");
-                System.out.println("|---------------------------------------------------|");
+              this.Header();
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. Sell Product");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. List all sales");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. View sales Made by a customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. Reports about sales");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t00. Back \n");
+                System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-00>"+Colors.ANSI_RESET+": ");
 
-                System.out.println("Enter your choice here: ");
-                int choice = scanner.nextInt();
-
+          int choice = scanner.nextInt();
                 switch (choice){
                     case 1:
                         this.SaleProductView();
@@ -106,22 +103,20 @@ public class Sales {
 
             SalesService salesService = new SalesService(this.socket);
 
-            System.out.println("|---------------------------------------------------|");
-            System.out.println("|              SALES MANAGEMENT                     |");
-            System.out.println("|___________________________________________________|");
+ this.Header();
 
-            System.out.print("Enter Product id: ");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter Product id: ");
             productId = scanner.nextLine();
-            System.out.print("Enter customer id: ");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter customer id: ");
             customerId = scanner.nextLine();
 
-            System.out.print("Enter product id: ");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product id: ");
             productID = scanner.nextLine();
 
-            System.out.print("Enter Price for each Product in numbers: ");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter Price for each Product in numbers: ");
             pricePerEach = scanner.nextFloat();
 
-            System.out.print("Enter the quantity: ");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter the quantity: ");
             quantity = scanner.nextFloat();
 
             amount  = pricePerEach * quantity;
@@ -141,9 +136,7 @@ public class Sales {
         String json = "{ \"key\" : \""+ Keys.GET_ALL_SALES +"\" }";
         SalesService salesService = new SalesService(this.socket);
 
-        System.out.println("|---------------------------------------------------|");
-        System.out.println("|              ALL SALES                            |");
-        System.out.println("|___________________________________________________|");
+       this.Header();
 
         try{
             salesService.getAllSales(json);
@@ -151,4 +144,12 @@ public class Sales {
             System.out.println("Error happened along the way");
         }
     }
+
+    public void Header(){
+
+        System.out.println(Colors.ANSI_GREEN);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCUSTOMIFY SALES MANAGEMENT");
+        System.out.println(Colors.ANSI_RESET);
+    }
 }
+

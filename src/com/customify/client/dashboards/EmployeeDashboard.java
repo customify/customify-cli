@@ -60,12 +60,12 @@ public class EmployeeDashboard {
             System.out.println(Colors.ANSI_CYAN);
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCUSTOMIFY HOME");
             System.out.println(Colors.ANSI_RESET);
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. CUSTOMER MANAGEMENT");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. SALES MANAGEMENT");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. COUPON MANAGEMENT");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. MY PROFILE");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. PROFILE SETTINGS");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. LOGOUT\n");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. Customer Management");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. Sales Management");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. Coupon Management");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. My Profile");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. Profile Settings");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. Logout\n");
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-6>"+Colors.ANSI_RESET+": ");
             int choice = scan.nextInt();
             switch (choice) {
@@ -88,7 +88,7 @@ public class EmployeeDashboard {
                         loggedIn=false;
                     break;
                 default:
-                    System.out.println("INVALID CHOICE");
+                    System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
             }
         }while(loggedIn);
         }
