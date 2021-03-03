@@ -5,11 +5,11 @@ public class GetAll {
     String lastName;
     String email;
     String code;
-    int customerId;
+    String customerId;
     int status;
 
 
-    public GetAll(String firstName, String lastName, String email, String code, int customerId,int status) {
+    public GetAll(String firstName, String lastName, String email, String code, String customerId,int status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -59,12 +59,11 @@ public class GetAll {
         this.code = code;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 }

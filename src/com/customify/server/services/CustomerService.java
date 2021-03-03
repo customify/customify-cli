@@ -180,14 +180,63 @@ public class CustomerService {
             objectOutput.writeObject(this.responseData);
         }
     }
-    public void readOne() throws SQLException{}
+    public void readOne() throws SQLException, IOException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(this.json_data);
+        String received_code = jsonNode.get("customerCode").asText();
+
+        Connection connection = Db.getConnection();
+        String query = "SELECT * FROM Customer WHERE code = " + received_code +" ";
+        String firstName, lastName, email, code,customerId;
+
+
+        String json = "";
+
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+
+            if (!rs.next()) {
+                System.out.println("NO CUSTOMER FOUND");
+                json = "{ \"status\" : \"404\"}";
+                responseData.add(json);
+            } else {
+                while (rs.next()) {
+
+                    customerId = rs.getString("customer_id");
+                    firstName = rs.getString("first_name");
+                    lastName = rs.getString("last_name");
+                    email = rs.getString("email");
+                    code = rs.getString("code");
+                    GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200);
+                    json = objectMapper.writeValueAsString(format);
+                    responseData.add(json);
+                    System.out.println(json);
+                }
+
+            }
+            System.out.println(responseData.get(0));
+
+        } catch (Exception ex) {
+            System.out.println("DB-ERROR " + ex.getMessage());
+            json = "{ \"status\" : \"500\"}";
+            responseData.add(json);
+        } finally {
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(this.responseData);
+        }
+
+    }
     public void readAll() throws SQLException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         Connection connection = Db.getConnection();
-        String query = "SELECT * FROM customers";
-        String firstName, lastName, email, code;
+        String query = "SELECT * FROM Customer";
+        String firstName, lastName, email, code,customerId;
 
-        int customerId;
+
         String json = "";
 
         try {
@@ -200,7 +249,7 @@ public class CustomerService {
                 responseData.add(json);
             } else {
                 while (rs.next()) {
-                    customerId = rs.getInt("customer_id");
+                    customerId = rs.getString("customer_id");
                     firstName = rs.getString("first_name");
                     lastName = rs.getString("last_name");
                     email = rs.getString("email");
@@ -245,4 +294,5 @@ public class CustomerService {
         }
 
     }
+
 }

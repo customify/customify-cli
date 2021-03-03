@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,13 +163,37 @@ public class CustomerService {
                 }
 
             }catch(Exception e){
-                System.out.println("RESPONSE ERROR"+e.getMessage());
+                System.out.println("RESPONSE ERROR HERE"+e.getMessage());
             }
         }
         return res;
 
     }
-    public void get(){}
+
+    public List get(GetCustomer format) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(format);
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        List<String> res = new ArrayList<>();
+        if (serverSend.send()) {
+            try {
+                InputStream input = this.socket.getInputStream();
+                ObjectInputStream objectInput = new ObjectInputStream(input);
+                res = (List) objectInput.readObject();
+                JsonNode jsonNode = objectMapper.readTree(res.get(0));
+
+                if(jsonNode.get("status").asInt() == 500)
+                {
+                    System.out.println("\t\t\t\t---- INTERNAL SERVER ERROR -----");
+                    return null;
+                }
+
+            }catch(Exception e){
+                System.out.println("RESPONSE ERROR HERE"+e.getMessage());
+            }
+        }
+        return res;
+    }
 
     public void reEnableCard(String code) throws IOException {
         DeActivateCustomerFormat format = new DeActivateCustomerFormat(code);

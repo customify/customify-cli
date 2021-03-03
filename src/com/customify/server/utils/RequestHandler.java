@@ -106,6 +106,11 @@ public class RequestHandler {
               customer.readAll();
 
                 break;
+            case GET_CUSTOMER:
+                customer  = new CustomerService(this.clientSocket,this.json_data);
+                customer.readOne();
+
+                break;
             case RENABLE_CUSTOMER:
                 customer.renableCard(json_data);
             default:
