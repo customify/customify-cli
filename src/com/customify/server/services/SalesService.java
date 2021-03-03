@@ -16,6 +16,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SalesService {
   private Socket socket;
@@ -30,25 +32,26 @@ public class SalesService {
     }
 
     public void getAllSales() throws IOException {
-      String jsonData = "";
+        List<String> sales = new ArrayList<>();
         try{
             String query = "SELECT * FROM Sale";
 
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery(query);
-
             while (resultSet.next()){
                 this.saleDataFormat = new SaleDataFormat(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));
-                jsonData += this.objectMapper.writeValueAsString(saleDataFormat);
+                String jsonData = this.objectMapper.writeValueAsString(saleDataFormat);
+                sales.add(jsonData);
             }
         }catch (SQLException | JsonProcessingException e){
             e.printStackTrace();
             System.out.println("Error while sending to the client");
-        }finally {
+        }
+        finally {
             outputStream = socket.getOutputStream();
             this.objectOutputStream = new CustomizedObjectOutputStream(this.outputStream);
-            objectOutputStream.writeObject(jsonData);
+            objectOutputStream.writeObject(sales);
         }
     }
 }

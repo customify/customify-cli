@@ -172,10 +172,7 @@ public class BusinessService {
 
                 //send
                 objectOutput.writeObject(json);
-
             }
-
-
         }
         catch (Exception e){
             String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 200 +"\" }";
