@@ -8,6 +8,7 @@
  * */
 
 package com.customify.server.services;
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,6 +27,8 @@ public class BusinessService {
     Socket socket;
     OutputStream output;
     ObjectOutputStream objectOutput;
+    String statusCode;
+    String json="";
 
     /**
      * Class Constructor
@@ -121,24 +124,32 @@ public class BusinessService {
      * Method for handling delete of business
      * */
     public void removeBusiness(String data) throws IOException{
+        List responseData = new ArrayList<String>();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
 
         Statement statement = Db.getStatement();
-
         try {
             int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
+            System.out.println(ret);
             if(ret==1){
-                String json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
-                objectOutput.writeObject(json);
+//                json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
+                this.statusCode= "200";
+                responseData.add("200");
             }
         }
         catch (SQLException e){
-            String json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
-            objectOutput.writeObject(json);
+            e.printStackTrace();
+            this.statusCode = "500";
+            responseData.add(statusCode);
         }
+        finally{
 
-        objectOutput.close();
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(responseData);
+            System.out.println(this.statusCode);
+        }
 
     }
 
@@ -148,12 +159,13 @@ public class BusinessService {
      * Method for handling request for fetching one business by its id
      * */
     public void getBusinessById(String data) throws IOException{
-        //setting the response status code
+        List responseData = new ArrayList<String>();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
 
         //formatting the response into a data format
         Statement statement = Db.getStatement();
+        json = "";
         try{
             ResultSet res = statement.executeQuery("select * from businesses where id="+jsonNode.get("businessId"));
             if(res.next()){
@@ -167,18 +179,26 @@ public class BusinessService {
                         res.getInt(7),
                         res.getDate(8).toString()
                 );
-                String json = objectMapper.writeValueAsString(bs);
+                this.json = objectMapper.writeValueAsString(bs);
+                responseData.add("200");
+                responseData.add(this.json);
 
-                //send
-                objectOutput.writeObject(json);
-
+            }else{
+                this.statusCode = "400";
+                responseData.add(statusCode);
             }
 
 
         }
         catch (Exception e){
-            String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 200 +"\" }";
-            objectOutput.writeObject(json);
+            this.statusCode = "500";
+            responseData.add(statusCode);
+        }
+        finally{
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(responseData);
+
         }
     }
 
@@ -189,13 +209,14 @@ public class BusinessService {
      * */
     public void getAll() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-
         //formatting the response into a data format
         Statement statement = Db.getStatement();
         String query = "Select * from businesses";
         List<String> alldata = new ArrayList<>();
-        try {
 
+        try {
+            this.statusCode = "200";
+            alldata.add(this.statusCode);
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
 
@@ -209,15 +230,19 @@ public class BusinessService {
                         res.getInt(7),
                         res.getDate(8).toString()
                 );
-                String json = objectMapper.writeValueAsString(bs);
+                this.json = objectMapper.writeValueAsString(bs);
                 alldata.add(json);
             }
-
-            //Sending the response to server after it has been formated
-            objectOutput.writeObject(alldata);
         }
         catch (Exception e){
-            e.printStackTrace();
+            this.statusCode = "500";
+            alldata.add(this.statusCode);
+        }
+        finally{
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(alldata);
+
         }
 
     }

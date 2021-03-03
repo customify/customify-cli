@@ -31,6 +31,7 @@ public class Home {
 
     public void view() throws Exception {
 
+
         int choice;
         Scanner scan = new Scanner(System.in);
 
@@ -43,6 +44,7 @@ public class Home {
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
         CouponMainView couponView = new CouponMainView(this.socket);
+
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------\n");

@@ -40,10 +40,6 @@ public class CustomerService {
         this.socket = clientSocket;
     }
 
-    public CustomerService(Socket clientSocket) {
-        this.socket = clientSocket;
-    }
-
     /**
      * @author SAMUEL DUSHIMIMANA
      * @role

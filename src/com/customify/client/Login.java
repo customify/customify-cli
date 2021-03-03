@@ -19,17 +19,17 @@ public class Login {
     public Login()  { }
     public Login(Socket socket) throws Exception{
         this.socket = socket;
-        UserSession userSession = new UserSession();
-        if(userSession.isLoggedIn())
-        {
-            String json = userSession.getUserJsonObject();
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(json);
-            route(jsonNode.get("appUser").asText());
-        }else{
-           openLogin=true;
-            this.view();
-        }
+//        UserSession userSession = new UserSession();
+//        if(userSession.isLoggedIn())
+//        {
+//            String json = userSession.getUserJsonObject();
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            JsonNode jsonNode = objectMapper.readTree(json);
+//            route(jsonNode.get("appUser").asText());
+//        }else{
+//           openLogin=true;
+//            this.view();
+//        }
 
     }
 
@@ -67,48 +67,48 @@ public class Login {
 
 //            Dashboards dashboard = new Dashboards();
 
-            String superAdminJsonObj =authService.authenticateAdmin();
-            String employeeJsonObj = authService.authenticateEmployee();
+//            String superAdminJsonObj =authService.authenticateAdmin();
+//            String employeeJsonObj = authService.authenticateEmployee();
 
-            if(superAdminJsonObj != null)
-            {
-                // SuperAdminDashboard dashboard = new SuperAdminDashboard(this.socket,superAdminJsonObj);
-            }else if(employeeJsonObj != null)
-            {
-                ObjectMapper objectMapper = new ObjectMapper();
-                JsonNode jsonNode = objectMapper.readTree(employeeJsonObj);
-                String title = jsonNode.get("title").asText();
-
-                // if(title.equals("ADMIN"))
-                // {
-                //  BusinessAdminDashboard dashboard = new BusinessAdminDashboard(this.socket,employeeJsonObj);
-                // }else{
-                //     EmployeeDashboard dashboard = new EmployeeDashboard(this.socket,employeeJsonObj);
-                // }
-            AuthService authService = new AuthService(this.socket, format);
-
-            if (authService.authenticate()) {
-              route(authService.getLoggedInUser());
-            } else {
-                System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
-            }
+//            if(superAdminJsonObj != null)
+//            {
+//                // SuperAdminDashboard dashboard = new SuperAdminDashboard(this.socket,superAdminJsonObj);
+//            }else if(employeeJsonObj != null)
+//            {
+//                ObjectMapper objectMapper = new ObjectMapper();
+//                JsonNode jsonNode = objectMapper.readTree(employeeJsonObj);
+//                String title = jsonNode.get("title").asText();
+//
+//                // if(title.equals("ADMIN"))
+//                // {
+//                //  BusinessAdminDashboard dashboard = new BusinessAdminDashboard(this.socket,employeeJsonObj);
+//                // }else{
+//                //     EmployeeDashboard dashboard = new EmployeeDashboard(this.socket,employeeJsonObj);
+//                // }
+//            AuthService authService = new AuthService(this.socket, format);
+//
+//            if (authService.authenticate()) {
+//              route(authService.getLoggedInUser());
+//            } else {
+//                System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
+//            }
         }while(openLogin);
     }
 
     public void route(String appUser) throws Exception{
-        switch (appUser) {
-            case "BUSINESS_ADMIN":
-                BusinessAdminDashboard bussDashboard = new BusinessAdminDashboard(this.socket);
-                break;
-            case "EMPLOYEE":
-                EmployeeDashboard empDashboard = new EmployeeDashboard(this.socket);
-                break;
-            case "SUPER_ADMIN":
-                SuperAdminDashboard admDashboard = new SuperAdminDashboard(this.socket);
-                break;
-            default:
-                System.out.println("\t\t\tINVALID CHOICE");
-        }
+//        switch (appUser) {
+//            case "BUSINESS_ADMIN":
+//                BusinessAdminDashboard bussDashboard = new BusinessAdminDashboard(this.socket);
+//                break;
+//            case "EMPLOYEE":
+//                EmployeeDashboard empDashboard = new EmployeeDashboard(this.socket);
+//                break;
+//            case "SUPER_ADMIN":
+//                SuperAdminDashboard admDashboard = new SuperAdminDashboard(this.socket);
+//                break;
+//            default:
+//                System.out.println("\t\t\tINVALID CHOICE");
+//        }
     }
 
 }

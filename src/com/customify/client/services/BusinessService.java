@@ -34,6 +34,7 @@ public class BusinessService {
     private InputStream input;
     private ObjectInputStream objectInput;
     private String json_data;
+    private List<String> response;
 
     public BusinessService() {
     }
@@ -123,15 +124,17 @@ public class BusinessService {
 
         //Casting the response data to list
         List<String> data = (List<String>) this.objectInput.readObject();
-        Iterator itr = data.iterator();
 
-        //display the businesses
-        System.out.println("------------------------------------------List of Businesses----------------------------------\n");
-        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-        System.out.println();
-        while (itr.hasNext()) {
-            JsonNode bs = objectMapper.readTree((String) itr.next());
-            System.out.format("%5d%20s%20s%20s%20s%20s\n", bs.get("id").asInt(), bs.get("name").asText(), bs.get("location").asText(), bs.get("address").asText(), bs.get("phone_number").asText(), bs.get("created_at").asText());
+        if(data.get(0)=="500") System.out.println("An error occurred");
+        else {
+            //display the businesses
+            System.out.println("------------------------------------------List of Businesses----------------------------------\n");
+            System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+            System.out.println();
+            for (int i = 1; i < data.size(); i++) {
+                JsonNode bs = objectMapper.readTree(data.get(i));
+                System.out.format("%5d%20s%20s%20s%20s%20s\n", bs.get("id").asInt(), bs.get("name").asText(), bs.get("location").asText(), bs.get("address").asText(), bs.get("phone_number").asText(), bs.get("created_at").asText());
+            }
         }
     }
 
@@ -157,7 +160,7 @@ public class BusinessService {
         if (serverSend.send()) {
             handleResponse("delete_business");
         } else {
-            System.out.println("An error occured");
+            System.out.println("An error occurred");
         }
     }
 
@@ -170,31 +173,42 @@ public class BusinessService {
         try {
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
-            this.json_data = (String) this.objectInput.readObject();
             ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(json_data);
+
             switch (func_name) {
                 case "getall":
                     this.handleGetResponse();
                     break;
                 case "getbyid":
-                    //Display the business
-                    System.out.println("-------------------Business " + jsonNode.get("id") + "------------------\n");
-                    System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-                    System.out.println();
-                    System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
+                    response = (List<String>) this.objectInput.readObject();
+                    if(response.get(0) =="500") System.out.println(response.get(1));
+                    else if(response.get(0)=="400") System.out.println(response.get(1));
+                    else{
+                        JsonNode node = objectMapper.readTree(response.get(1));
+                        //Display the business
+                        System.out.println("-------------------Business " + node.get("id").asInt() + "------------------\n");
+                        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+                        System.out.println();
+                        System.out.format("%5d%20s%20s%20s%20s%20s\n", node.get("id").asInt(), node.get("name").asText(), node.get("location").asText(), node.get("address").asText(), node.get("phone_number").asText(), node.get("created_at").asText());
+
+                    }
                     break;
                 case "create":
+                    this.json_data = (String) this.objectInput.readObject();
+                    JsonNode jsonNode = objectMapper.readTree(json_data);
                     if (jsonNode.get("status").asInt() == 201) System.out.println("Successfully created a Business");
                     else System.out.println("An error occurred when creating your business with status code of 500");
                     break;
                 case "update":
+                    this.json_data = (String) this.objectInput.readObject();
+                    jsonNode = objectMapper.readTree(json_data);
                     if (jsonNode.get("status").asInt() == 200) System.out.println("Successfully updated a Business");
                     else System.out.println("An error occurred when creating your business with status code of 500");
                     break;
                 case "delete_business":
-                    if (jsonNode.get("statusCode").asInt() == 200)
-                        System.out.println("-------------------Business deleted------------------ ");
+                    //Casting the response data to list
+                    response = (List<String>) this.objectInput.readObject();
+                    if (response.get(0) == "200")System.out.println("-------------------Business deleted------------------ ");
                     else System.out.println("An error occurred");
                     break;
                 default:

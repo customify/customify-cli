@@ -54,13 +54,13 @@ public class CustomerFeedbackService {
     // delete the feedback from the database
 
     // get the response from the server confirming the flow of data
-    public void handleFeedbackResponse() throws IOException, ClassNotFoundException {
-        InputStream inputStream = this.socket.getInputStream();
-        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-        List<Response> response = (List<Response>) objectInputStream.readObject();
-
-        if (response.get(0).getStatusCode() == 201) {
-            System.out.println("All done. The feedback has been sent.");
-        }
-    }
+//    public void handleFeedbackResponse() throws IOException, ClassNotFoundException {
+//        InputStream inputStream = this.socket.getInputStream();
+//        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+//        List<Response> response = (List<Response>) objectInputStream.readObject();
+//
+//        if (response.get(0).getStatusCode() == 201) {
+//            System.out.println("All done. The feedback has been sent.");
+//        }
+//    }
 }
