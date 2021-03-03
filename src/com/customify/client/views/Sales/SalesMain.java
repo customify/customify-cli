@@ -7,6 +7,8 @@ package com.customify.client.views.Sales;
 * */
 
 import com.customify.client.Keys;
+import com.customify.client.data_format.Sale.NewSale;
+import com.customify.client.data_format.Sale.SaleDataFormat;
 import com.customify.client.services.SalesService;
 
 import java.io.IOException;
@@ -41,7 +43,7 @@ public class SalesMain {
                 System.out.println("| 00. Back                                          |");
                 System.out.println("|---------------------------------------------------|");
 
-                System.out.println("Enter your choice here -> ");
+                System.out.println("Enter your choice here: ");
                 int choice = scanner.nextInt();
 
                 switch (choice){
@@ -83,15 +85,38 @@ public class SalesMain {
 
         Scanner scanner = new Scanner(System.in);
         String productId;
+        String customerId;
+        String productID;
+        String emp_id = null;
+        float pricePerEach;
+        float quantity = 1;
+        float amount;
+
+
+        SalesService salesService = new SalesService(this.socket);
 
         System.out.println("|---------------------------------------------------|");
         System.out.println("|              SALES MANAGEMENT                     |");
         System.out.println("|___________________________________________________|");
 
-        System.out.println("Enter Product id");
+        System.out.print("Enter Product id: ");
         productId = scanner.nextLine();
+        System.out.print("Enter customer id: ");
+        customerId = scanner.nextLine();
 
-        System.out.println("Product id "+productId);
+        System.out.print("Enter product id: ");
+        productID = scanner.nextLine();
+
+        System.out.print("Enter Price for each Product in numbers: ");
+        pricePerEach = scanner.nextFloat();
+
+        amount  = pricePerEach * quantity;
+
+
+        String amountString = amount + " RWF";
+
+        SaleDataFormat newSale = new SaleDataFormat(customerId,Float.toString(quantity),amountString,emp_id,productID);
+        salesService.create(newSale);
     }
 
     public void ViewAllSales() {

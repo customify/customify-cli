@@ -1,7 +1,9 @@
 package com.customify.client.services;
 
 import com.customify.client.SendToServer;
+import com.customify.client.data_format.Sale.SaleDataFormat;
 import com.customify.client.data_format.SalesFormat;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,7 +34,15 @@ public class SalesService {
         }
     }
 
-    public void create(SalesFormat salesFormat){}
+    public void create(SaleDataFormat saleDataFormat)  {
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonData = objectMapper.writeValueAsString(saleDataFormat);
+            System.out.println(jsonData);
+        }catch (JsonProcessingException jsonProcessingException){
+          jsonProcessingException.printStackTrace();
+        }
+    }
 
     private void handleAllSalesResponse() {
         try {
