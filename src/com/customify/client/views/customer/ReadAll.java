@@ -30,8 +30,9 @@ public class ReadAll {
     }
 
     public void view() throws IOException {
-        System.out.println("\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> ALL CUSTOMERS---------------------\n");
+        System.out.println("\n\t\t\t---------------------------HOME | CUSTOMER MANAGEMENT | ALL CUSTOMERS--------------------------------\n");
         System.out.println("\t\t\t-------------------------------------------------------------------------------------------------------");
+
         System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", "CODE","FIRST-NAME","LAST-NAME", "EMAIL" ));
         System.out.println("\t\t\t-------------------------------------------------------------------------------------------------------");
 

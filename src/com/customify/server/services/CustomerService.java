@@ -187,7 +187,7 @@ public class CustomerService {
         String received_code = jsonNode.get("customerCode").asText();
 
         Connection connection = Db.getConnection();
-        String query = "SELECT * FROM Customer WHERE code = " + received_code +" ";
+        String query = "SELECT * FROM Customer WHERE code = \"" + received_code +"\"";
         String firstName, lastName, email, code,customerId;
 
 
@@ -199,25 +199,21 @@ public class CustomerService {
 
 
             if (!rs.next()) {
-                System.out.println("NO CUSTOMER FOUND");
+
                 json = "{ \"status\" : \"404\"}";
                 responseData.add(json);
             } else {
-                while (rs.next()) {
-
-                    customerId = rs.getString("customer_id");
-                    firstName = rs.getString("first_name");
-                    lastName = rs.getString("last_name");
-                    email = rs.getString("email");
-                    code = rs.getString("code");
-                    GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200);
-                    json = objectMapper.writeValueAsString(format);
-                    responseData.add(json);
-                    System.out.println(json);
-                }
-
+                customerId = rs.getString("customer_id");
+                firstName = rs.getString("first_name");
+                lastName = rs.getString("last_name");
+                email = rs.getString("email");
+                code = rs.getString("code");
+                GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200);
+                json = objectMapper.writeValueAsString(format);
+                responseData.add(json);
             }
-            System.out.println(responseData.get(0));
+
+
 
         } catch (Exception ex) {
             System.out.println("DB-ERROR " + ex.getMessage());
@@ -244,8 +240,8 @@ public class CustomerService {
             ResultSet rs = st.executeQuery(query);
 
             if (!rs.next()) {
-                System.out.println("NO CUSTOMER REGISTERED");
-                json = "{ \"status\" : \"200\"}";
+                System.out.println("NO CUSTOMERS FOUND");
+                json = "{ \"status\" : \"404\"}";
                 responseData.add(json);
             } else {
                 while (rs.next()) {

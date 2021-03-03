@@ -39,14 +39,14 @@ public class CustomerMainView {
         if(loggedIn)
         {
             label:do {
-                System.out.println("------------------HOME >> CUSTOMER MANAGEMENT---------------------");
-                System.out.println("\n         00. Return Home");
-                System.out.println("         1. Add New Customer");
-                System.out.println("         2. Read All Customer");
-                System.out.println("         3. Search Customer");
-                System.out.println("         4. Update Customer");
-                System.out.println("         5. Disable Customer");
-                System.out.println("         6. Activate Customer");
+                System.out.println("\n\t\t\t---------------------------HOME | CUSTOMER MANAGEMENT -----------------------------------------------\n");
+                System.out.println("\t\t\t| 00. Return Home");
+                System.out.println("\t\t\t| 1. Add New Customer");
+                System.out.println("\t\t\t| 2. Read All Customer");
+                System.out.println("\t\t\t| 3. Search Customer");
+                System.out.println("\t\t\t| 4. Update Customer");
+                System.out.println("\t\t\t| 5. Disable Customer");
+                System.out.println("\t\t\t| 6. Activate Customer");
                 Scanner scan = new Scanner(System.in);
                 String choice = scan.nextLine();
 

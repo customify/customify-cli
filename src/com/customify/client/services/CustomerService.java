@@ -161,6 +161,13 @@ public class CustomerService {
                     System.out.println("\t\t\t\t---- INTERNAL SERVER ERROR -----");
                     return null;
                 }
+                else if(jsonNode.get("status").asInt() == 404){
+                    System.out.println("\n\t\t\t*******************************************************************************************************");
+                    System.out.println("                                                 NO CUSTOMERS FOUND                                            ");
+                    System.out.println("\t\t\t*******************************************************************************************************");
+                    return null;
+                }
+
 
             }catch(Exception e){
                 System.out.println("RESPONSE ERROR HERE"+e.getMessage());
@@ -182,9 +189,10 @@ public class CustomerService {
                 res = (List) objectInput.readObject();
                 JsonNode jsonNode = objectMapper.readTree(res.get(0));
 
-                if(jsonNode.get("status").asInt() == 500)
-                {
-                    System.out.println("\t\t\t\t---- INTERNAL SERVER ERROR -----");
+               if(jsonNode.get("status").asInt() == 404){
+                   System.out.println("\n\t\t\t*******************************************************************************************************");
+                   System.out.println("                                                  NO CUSTOMER FOUND                                            ");
+                   System.out.println("\t\t\t*******************************************************************************************************");
                     return null;
                 }
 

@@ -11,6 +11,7 @@ import com.customify.client.data_format.CreateCustomerFormat;
 import com.customify.client.data_format.GetCustomer;
 import com.customify.client.services.CustomerService;
 import com.customify.client.data_format.UpdateCustomerFormat;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,31 +35,34 @@ public class ReadOne {
         boolean customerView = true;
         Scanner scan = new Scanner(System.in);
         search:do{
-            System.out.println("\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> SEARCH-CUSTOMER---------------------");
-            System.out.println("\n       00. Return ");
-            System.out.println("        Enter  Customer Code:");
+            System.out.println("\n\t\t\t---------------------------HOME | CUSTOMER MANAGEMENT | SEARCH CUSTOMER--------------------------------\n");
+            System.out.println("\n\t\t\t| 00. Return ");
+            System.out.println("\n\t\t\tEnter  Customer Code:");
             String customer_code = scan.nextLine();
 
 
             if (customer_code.equals("00"))
                 break search;
-
-            System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", "CODE","FIRST-NAME","LAST-NAME", "EMAIL" ));
-            System.out.println("\t\t\t-------------------------------------------------------------------------------------------------------");
             GetCustomer format = new GetCustomer(Keys.GET_CUSTOMER, customer_code);
-
-
             CustomerService customerService = new CustomerService(this.socket);
             List<String> res = new ArrayList<>();
             res = customerService.get(format);
-            if (res != null)
+
+            if (res != null )
             {
-                System.out.println(res.get(0));
+                System.out.println("\n\t\t\t-------------------------------------------------------------------------------------------------------");
+                System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", "CODE","FIRST-NAME","LAST-NAME", "EMAIL" ));
+                System.out.println("\t\t\t-------------------------------------------------------------------------------------------------------");
                 for(int i = 0;i<res.size();i++)
                 {
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    JsonNode jsonNode = objectMapper.readTree(res.get(i));
-                    System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", jsonNode.get("code").asText(), jsonNode.get("firstName").asText(), jsonNode.get("lastName").asText(), jsonNode.get("email").asText()));
+
+                    try {
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        JsonNode jsonNode = objectMapper.readTree(res.get(i));
+                        System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", jsonNode.get("code").asText(), jsonNode.get("firstName").asText(), jsonNode.get("lastName").asText(), jsonNode.get("email").asText()));
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
 
 
                 }
