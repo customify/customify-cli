@@ -80,6 +80,8 @@ public class EmployeeDashboard {
 //                    loggedIn=false;
                     break;
                 case 5:
+                    break;
+                case 6:
                     if(userSession.unSet())
                         loggedIn=false;
 

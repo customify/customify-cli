@@ -159,7 +159,6 @@ public class BusinessService {
 
                 // send
                 objectOutput.writeObject(json);
-
             }
 
         } catch (Exception e) {

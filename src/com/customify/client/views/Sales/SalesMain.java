@@ -6,6 +6,10 @@ package com.customify.client.views.Sales;
 * On Feb 25/02/2021
 * */
 
+import com.customify.client.Keys;
+import com.customify.client.services.SalesService;
+
+import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -45,6 +49,7 @@ public class SalesMain {
                         this.SaleProductView();
                         break;
                     case 2:
+                        this.ViewAllSales();
                         break;
                     case 4:
                         break;
@@ -89,4 +94,19 @@ public class SalesMain {
         System.out.println("Product id "+productId);
     }
 
+    public void ViewAllSales() {
+
+        String json = "{ \"key\" : \""+ Keys.GET_ALL_SALES +"\" }";
+        SalesService salesService = new SalesService(this.socket);
+
+        System.out.println("|---------------------------------------------------|");
+        System.out.println("|              ALL SALES                            |");
+        System.out.println("|___________________________________________________|");
+
+        try{
+            salesService.getAllSales(json);
+        }catch (IOException ioException){
+            System.out.println("Error happened along the way");
+        }
+    }
 }
