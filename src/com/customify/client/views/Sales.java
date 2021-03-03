@@ -1,4 +1,4 @@
-package com.customify.client.views.Sales;
+package com.customify.client.views;
 
 
 /*
@@ -10,16 +10,20 @@ import com.customify.client.Keys;
 import com.customify.client.data_format.Sale.NewSale;
 import com.customify.client.data_format.Sale.SaleDataFormat;
 import com.customify.client.services.SalesService;
+import com.customify.client.utils.authorization.UserSession;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class SalesMain {
+public class Sales {
     private Socket socket;
     private boolean isLoggedIn = false;
 
-    public SalesMain(Socket socket, boolean isLoggedIn) {
+    public Sales(Socket socket, boolean isLoggedIn) throws JsonProcessingException {
        setLoggedIn(isLoggedIn);
        setSocket(socket);
 
@@ -27,7 +31,7 @@ public class SalesMain {
            this.main();
     }
 
-    public void main(){
+    public void main() throws JsonProcessingException {
 
         Scanner scanner = new Scanner(System.in);
         boolean showView = true;
@@ -81,42 +85,55 @@ public class SalesMain {
     }
 
 
-    public void SaleProductView(){
+    public void SaleProductView()  {
 
-        Scanner scanner = new Scanner(System.in);
-        String productId;
-        String customerId;
-        String productID;
-        String emp_id = null;
-        float pricePerEach;
-        float quantity = 1;
-        float amount;
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            Scanner scanner = new Scanner(System.in);
+            UserSession userSession = new UserSession();
+            JsonNode userJson = objectMapper.readTree(userSession.getUserJsonObject());
 
+            System.out.println("id: "+userJson.get("id").asText());
 
-        SalesService salesService = new SalesService(this.socket);
-
-        System.out.println("|---------------------------------------------------|");
-        System.out.println("|              SALES MANAGEMENT                     |");
-        System.out.println("|___________________________________________________|");
-
-        System.out.print("Enter Product id: ");
-        productId = scanner.nextLine();
-        System.out.print("Enter customer id: ");
-        customerId = scanner.nextLine();
-
-        System.out.print("Enter product id: ");
-        productID = scanner.nextLine();
-
-        System.out.print("Enter Price for each Product in numbers: ");
-        pricePerEach = scanner.nextFloat();
-
-        amount  = pricePerEach * quantity;
+            String productId;
+            String customerId;
+            String productID;
+            String emp_id = userJson.get("id").asText();
+            float pricePerEach;
+            float quantity = 1;
+            float amount;
 
 
-        String amountString = amount + " RWF";
+            SalesService salesService = new SalesService(this.socket);
 
-        SaleDataFormat newSale = new SaleDataFormat(customerId,Float.toString(quantity),amountString,emp_id,productID);
-        salesService.create(newSale);
+            System.out.println("|---------------------------------------------------|");
+            System.out.println("|              SALES MANAGEMENT                     |");
+            System.out.println("|___________________________________________________|");
+
+            System.out.print("Enter Product id: ");
+            productId = scanner.nextLine();
+            System.out.print("Enter customer id: ");
+            customerId = scanner.nextLine();
+
+            System.out.print("Enter product id: ");
+            productID = scanner.nextLine();
+
+            System.out.print("Enter Price for each Product in numbers: ");
+            pricePerEach = scanner.nextFloat();
+
+            System.out.print("Enter the quantity: ");
+            quantity = scanner.nextFloat();
+
+            amount  = pricePerEach * quantity;
+
+
+            String amountString = amount + " RWF";
+
+            SaleDataFormat newSale = new SaleDataFormat(customerId,Float.toString(quantity),amountString,emp_id,productID);
+            salesService.create(newSale);
+        }catch (JsonProcessingException e){
+            e.printStackTrace();
+        }
     }
 
     public void ViewAllSales() {

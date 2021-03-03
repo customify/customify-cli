@@ -61,7 +61,6 @@ public class Login {
             if (password.equals("00"))
                 break authorize;
 
-
             AuthenticationDataFormat format = new AuthenticationDataFormat(email, password);
             AuthService authService = new AuthService(this.socket, format);
 
