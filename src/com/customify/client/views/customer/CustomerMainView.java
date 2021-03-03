@@ -10,20 +10,19 @@ import java.util.Scanner;
 public class CustomerMainView {
 
     private Socket socket;
-    private boolean loggedIn =false;
+    private boolean loggedIn = false;
 
-    public CustomerMainView(){}
+    public CustomerMainView() {
+    }
 
-
-    public CustomerMainView(Socket socket,boolean loggedIn)throws Exception {
+    public CustomerMainView(Socket socket, boolean loggedIn) throws Exception {
         this.socket = socket;
         Login login;
         setLoggedIn(loggedIn);
-        if(this.loggedIn)
-            // this.view();
-            System.out.println("");
+        if (this.loggedIn)
+            this.view();
         else
-             login = new Login(socket);
+            login = new Login(socket);
     }
 
     public Socket getSocket() {
@@ -37,9 +36,8 @@ public class CustomerMainView {
     public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
 
-        if(loggedIn)
-        {
-            label:do {
+        if (loggedIn) {
+            label: do {
                 System.out.println("------------------HOME >> CUSTOMER MANAGEMENT---------------------");
                 System.out.println("\n         00. Return Home");
                 System.out.println("         1. Add New Customer");
@@ -53,7 +51,7 @@ public class CustomerMainView {
 
                 switch (choice) {
                     case "1":
-                        NewCustomerView customer =new NewCustomerView(this.socket);
+                        NewCustomerView customer = new NewCustomerView(this.socket);
                         customer.view();
                         break;
                     case "2":
@@ -61,11 +59,11 @@ public class CustomerMainView {
                     case "3":
                         break;
                     case "4":
-                        UpdateCustomerView updatecustomer =new UpdateCustomerView(this.socket);
+                        UpdateCustomerView updatecustomer = new UpdateCustomerView(this.socket);
                         updatecustomer.view();
                         break;
                     case "5":
-                        DisableCustomerView customerView1= new DisableCustomerView(this.socket);
+                        DisableCustomerView customerView1 = new DisableCustomerView(this.socket);
                         customerView1.view();
                         break;
                     case "6":
