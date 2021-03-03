@@ -35,7 +35,7 @@ public class CustomerReadFeedbacks {
      */
 
     public void GetFeedbacks() throws IOException, ClassNotFoundException {
-        String json = "{ \"key\" : \"" + Keys.GET_ALL_FEEDBACKS + "\" }";
+        String json = "{ \"key\" : \""+ Keys.GET_ALL_FEEDBACKS +"\" }";
         CustomerFeedbackService feedService = new CustomerFeedbackService(socket);
         feedService.getAllCustomerFeedbacks(json);
     }

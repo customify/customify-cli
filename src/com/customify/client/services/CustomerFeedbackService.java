@@ -43,16 +43,19 @@ public class CustomerFeedbackService {
             System.out.println("Failed to send the feedback data!! You need to check well");
         }
     }
+    // --------------------------------------------------------------------------------------------------------
 
     // the function for getting all customer feedbacks
     public void getAllCustomerFeedbacks(String json) throws IOException, ClassNotFoundException {
         SendToServer serverSend = new SendToServer(json, this.socket);
         if (serverSend.send()) {
-            this.getFeedbacks();
+            // this.getFeedbacks();
+            this.handleResponse("getAllFeedbacks");
         } else {
             System.out.println("Request failed...");
         }
     }
+    // --------------------------------------------------------------------------------------------------------
 
     public void getFeedbacks() throws IOException, ClassNotFoundException {
         this.input = this.socket.getInputStream();
@@ -62,13 +65,13 @@ public class CustomerFeedbackService {
         Iterator rs = data.iterator();
 
         System.out.println("\nAll customer Feedbacks\n");
-        System.out.format("%5s%5s%15s%50s%12s\n", "CustomerID", "BusinessId", "Title", "Description", "CreatedD");
+        System.out.format("%5s%5s%15s%20s%20s\n", "CustomerID", "BusinessId", "Title", "Description", "CreatedD");
         System.out.println();
         ;
         try {
             while (rs.hasNext()) {
                 JsonNode cf = objectMapper.readTree((String) rs.next());
-                System.out.format("%5d%5d%15s%50s%12s\n", cf.get("customerId").asInt(), cf.get("businessId").asInt(),
+                System.out.format("%5d%5d%15s%10s%12s\n", cf.get("customer_id").asInt(), cf.get("business_id").asInt(),
                         cf.get("title").asText(), cf.get("description").asText(), cf.get("created_date").asText());
             }
         } catch (Exception e) {
@@ -96,7 +99,7 @@ public class CustomerFeedbackService {
             this.json_data = (String) this.objectInput.readObject();
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(json_data);
-
+            System.out.println(jsonNode);
             switch (func_name) {
                 case "getAllFeedbacks":
                     this.getFeedbacks();
@@ -107,6 +110,8 @@ public class CustomerFeedbackService {
                     else
                         System.out.println("An error occurred");
                     break;
+                default:
+                    System.out.println("NO SUCH CHOICE PLEASE !!");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

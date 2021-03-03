@@ -94,14 +94,19 @@ public class CustomerFeedbackService {
                 String json = objectMapper.writeValueAsString(cf);
                 feedbacks.add(json);
             }
-            // objectOutput.writeObject(feedbacks);
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(feedbacks);
+            objectOutput.flush();
+            this.output.flush();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            outputStream = socket.getOutputStream();
-            this.objectOutputStream = new CustomizedObjectOutputStream(this.outputStream);
-            objectOutputStream.writeObject(feedbacks);
         }
+        // finally {
+        // outputStream = socket.getOutputStream();
+        // this.objectOutputStream = new
+        // CustomizedObjectOutputStream(this.outputStream);
+        // objectOutputStream.writeObject(feedbacks);
+        // }
     }
 
     /*

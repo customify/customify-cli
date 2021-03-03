@@ -22,8 +22,7 @@ public class CustomerFeedbackMainView {
 
     public void view() throws IOException, ClassNotFoundException {
         CustomerReadFeedbacks readFeedbacks = new CustomerReadFeedbacks(this.socket);
-        Scanner scan = new Scanner(System.in);
-        boolean loop = true;
+        Scanner scan = new Scanner(System.in);    
         int choice;
         System.out.println("------------------Customer feedback operations---------------------");
         System.out.println("\n         00. Get back home");
