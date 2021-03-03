@@ -8,7 +8,6 @@ package com.customify.client.views;
 
 import com.customify.client.Colors;
 import com.customify.client.Keys;
-import com.customify.client.data_format.Sale.NewSale;
 import com.customify.client.data_format.Sale.SaleDataFormat;
 import com.customify.client.services.SalesService;
 import com.customify.client.utils.authorization.UserSession;
@@ -54,7 +53,11 @@ public class Sales {
                     case 2:
                         this.ViewAllSales();
                         break;
+                    case 3:
+                        this.ViewAllSalesByCustomer();
+                        break;
                     case 4:
+                        this.ViewAllSalesReports();
                         break;
                     case 00:
                         showView = false;
@@ -145,8 +148,27 @@ public class Sales {
         }
     }
 
-    public void Header(){
+    public void ViewAllSalesByCustomer() {
 
+        String json = "{ \"key\" : \""+ Keys.GET_ALL_SALES +"\" }";
+        SalesService salesService = new SalesService(this.socket);
+
+        this.Header();
+
+        salesService.ViewAllSalesByCustomer(json);
+    }
+
+    public void ViewAllSalesReports() {
+
+        String json = "{ \"key\" : \""+ Keys.GET_ALL_SALES +"\" }";
+        SalesService salesService = new SalesService(this.socket);
+
+        this.Header();
+
+        salesService.salesReports(json);
+    }
+
+    public void Header(){
         System.out.println(Colors.ANSI_GREEN);
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCUSTOMIFY SALES MANAGEMENT");
         System.out.println(Colors.ANSI_RESET);
