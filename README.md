@@ -41,13 +41,24 @@ To access database in the shell run
 
 
 ```bash
-  mysql -h bsnlibok3ll8qs778xbx-mysql.services.clever-cloud.com -P 3306 -u uqq6c1ewt1hkbzwd -p bsnlibok3ll8qs778xbx
+mysql -h bfdc6au0tcay6gxeuohp-mysql.services.clever-cloud.com -P 3306 -u uqq6c1ewt1hkbzwd -p bfdc6au0tcay6gxeuohp
 ```
+
+
 
 The password is 
 ```bash
    jaW3mRUAAwzTAiOTVkZu
 ```
+
+Then Run
+
+```bash
+USE bfdc6au0tcay6gxeuohp;
+```
+
+
+You are already there!
 
 ### Authentication
 

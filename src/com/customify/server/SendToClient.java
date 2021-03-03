@@ -1,3 +1,4 @@
+
 package com.customify.server;
 
 import java.io.ObjectOutputStream;
@@ -41,5 +42,4 @@ public class SendToClient {
             System.out.println("MESSAGE => "+e.getMessage());
         }
     }
-
 }

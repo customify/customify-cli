@@ -31,4 +31,5 @@ public enum Keys {
     UPDATE_CUSTOMER,
     GET_ALL_COUPONS,
     POINTS_BY_CUSTOMER_EMAIL,
+    GET_ALL_SALES,
 }
