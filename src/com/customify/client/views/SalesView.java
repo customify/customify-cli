@@ -83,8 +83,8 @@ public class SalesView {
         System.out.println("List of all made sales.");
 
         SalesService salesService=new  SalesService(this.socket);
-        salesService.getAllSales();
-        this.SaleView();
+      //  salesService.getAllSales();
+      //  this.SaleView();
     }
     public void  DeleteSales() {
         Scanner reading = new Scanner(System.in);

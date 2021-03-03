@@ -6,6 +6,7 @@ import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
+import com.customify.server.services.SalesService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -50,6 +51,7 @@ public class RequestHandler {
         CouponService couponService = new CouponService(this.clientSocket);
         FeatureService featureService = new FeatureService(this.clientSocket);
         System.out.println("Handling routes "+this.key);
+        SalesService salesService = new SalesService(this.clientSocket);
 
         switch (this.key) {
             case CREATE_BUSINESS:
@@ -102,10 +104,11 @@ public class RequestHandler {
                 break;
             case GET_FEATURES:
                 featureService.getAllFeature();
+            case GET_ALL_SALES:
+                salesService.getAllSales();
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
     }
-
 }

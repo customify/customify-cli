@@ -25,6 +25,7 @@ public class AuthService {
     ObjectOutputStream objectOutput;
     private int statusCode;
     List responseData = new ArrayList<String>();
+
 private String json_data;
 
    public AuthService(Socket socket,String json_data) throws IOException, SQLException {
@@ -95,13 +96,16 @@ public void login() throws IOException, SQLException {
         responseData.add(json);
     }catch(Exception ex){
         System.out.println(ex);
+
        String json = "{ \"status\" : \"401\"}";
         responseData.add(json);
     }finally{
+
         this.output = socket.getOutputStream();
         this.objectOutput = new CustomizedObjectOutputStream(this.output);
         System.out.println("Response "+responseData.get(0));
         objectOutput.writeObject(this.responseData);
+
     }
-}
+  }
 }

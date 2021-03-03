@@ -3,35 +3,44 @@ package com.customify.client.data_format;
 import com.customify.client.Keys;
 
 public class SalesFormat {
-    private String customer_id;
-    private String product_id;
+    private String productID;
+    private String customerID;
+    private String amount;
     private String quantity;
-    private String totalPrice;
+    private String employeeID;
     private Keys key = Keys.ADD_SALE;
 
-    public SalesFormat(){}
-    public SalesFormat(String customer_id, String product_id, String quantity, String totalPrice) {
-        this.customer_id = customer_id;
-        this.product_id = product_id;
+
+    public SalesFormat(String productID, String customerID, String amount, String quantity, String employeeID) {
+        this.productID = productID;
+        this.customerID = customerID;
+        this.amount = amount;
         this.quantity = quantity;
-        this.totalPrice = totalPrice;
-
+        this.employeeID = employeeID;
     }
 
-    public String getCustomer_id() {
-        return customer_id;
+    public String getProductID() {
+        return productID;
     }
 
-    public void setCustomer_id(String customer_id) {
-        this.customer_id = customer_id;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 
-    public String getProduct_id() {
-        return product_id;
+    public String getCustomerID() {
+        return customerID;
     }
 
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getQuantity() {
@@ -42,11 +51,19 @@ public class SalesFormat {
         this.quantity = quantity;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public String getEmployeeID() {
+        return employeeID;
     }
 
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public Keys getKey() {
+        return key;
+    }
+
+    public void setKey(Keys key) {
+        this.key = key;
     }
 }

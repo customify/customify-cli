@@ -8,7 +8,6 @@
  * */
 
 package com.customify.server.services;
-
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -172,10 +171,7 @@ public class BusinessService {
 
                 //send
                 objectOutput.writeObject(json);
-
             }
-
-
         }
         catch (Exception e){
             String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 200 +"\" }";

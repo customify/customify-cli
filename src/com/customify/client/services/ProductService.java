@@ -14,6 +14,7 @@ import java.util.List;
 public class ProductService {
     private Socket socket;
     private String data;
+
     InputStream inputStream;
     ObjectInputStream objectInputStream;
 
