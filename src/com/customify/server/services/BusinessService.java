@@ -8,8 +8,10 @@
  * */
 
 package com.customify.server.services;
+
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
+import com.customify.server.CustomizedObjectOutputStream;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -127,11 +129,12 @@ public class BusinessService {
         try {
             int ret = statement.executeUpdate("delete from businesses where id=" + jsonNode.get("businessId").asInt());
             if (ret == 1) {
-                String json = "{\"message\" : \"" + "Successfully deleted" + "\", \"statusCode\" : \"" + 200 + "\" }";
-                objectOutput.writeObject(json);
+                json = "{\"message\" : \"" + "Successfully deleted" + "\", \"statusCode\" : \"" + 200 + "\" }";
             }
         } catch (SQLException e) {
-            String json = "{\"message\" : \"" + e.getMessage() + "\", \"statusCode\" : \"" + 400 + "\" }";
+            json = "{\"message\" : \"" + e.getMessage() + "\", \"statusCode\" : \"" + 400 + "\" }";
+        } finally {
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(json);
             objectOutput.flush();
             this.output.flush();
@@ -143,6 +146,7 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
+     * @param data The data from the client in the JSON Format
      * @role Method for handling request for fetching one business by its id
      */
     public void getBusinessById(String data) throws IOException {
@@ -152,20 +156,25 @@ public class BusinessService {
 
         // formatting the response into a data format
         Statement statement = Db.getStatement();
+        String json = "";
         try {
             ResultSet res = statement.executeQuery("select * from businesses where id=" + jsonNode.get("businessId"));
+            System.out.println(res.next());
             if (res.next()) {
                 BusinessRFormat bs = new BusinessRFormat(res.getInt(1), res.getString(2), res.getString(3),
                         res.getString(4), res.getString(5), res.getInt(6), res.getInt(7), res.getDate(8).toString());
-                String json = objectMapper.writeValueAsString(bs);
+                bs.statusCode = 200;
+                json = objectMapper.writeValueAsString(bs);
 
-                // send
-                objectOutput.writeObject(json);
             }
             System.out.println(json);
 
         } catch (Exception e) {
-            String json = "{ \"message\" : \"" + e.getMessage() + "\", \"statusCode\" : \"" + 200 + "\" }";
+            json = "{ \"message\" : \"" + e.getMessage() + "\", \"statusCode\" : \"" + 500 + "\" }";
+            System.out.println(json);
+        } finally {
+            System.out.println("Sending");
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(json);
             objectOutput.flush();
             this.output.flush();
@@ -194,8 +203,11 @@ public class BusinessService {
                 alldata.add(json);
             }
 
-            // Sending the response to server after it has been formated
+            // Sending the response to server after it has been formatted
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(alldata);
+            objectOutput.flush();
+            this.output.flush();
         } catch (Exception e) {
             e.printStackTrace();
         }

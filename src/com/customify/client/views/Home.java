@@ -52,12 +52,12 @@ public class Home {
         System.out.println("           2. LOGIN");
         System.out.println("           3. PRODUCT MANAGEMENT");
         System.out.println("           4. BUSINESS");
-        System.out.println("           5. GIVE FEEDBACK");
-        System.out.println("           10.OPERATE");
+        System.out.println("           5. GIVE FEEDBACK");        
         System.out.println("           6. PROVIDE FEEDBACK ");
         System.out.println("           7. POINTS");
         System.out.println("           8. CUSTOMER MANAGEMENT");
         System.out.println("           9. COUPONS");
+        System.out.println("           10.OPERATE");
         choice = scan.nextInt();
 
         switch (choice) {

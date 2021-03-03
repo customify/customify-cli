@@ -77,6 +77,16 @@ public class CustomerFeedbackService {
         // delete feedbacks
     }
 
+    // function to delete customer feedback
+    public void deleteCustomerFeedback(String json) throws IOException, ClassNotFoundException {
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+            handleResponse("deleteCustomerFeedback");
+        } else {
+            System.out.println("An error occured");
+        }
+    }
+
     // this is the function for providing appropriate response to the calling
     // function
     public void handleResponse(String func_name) throws ClassNotFoundException {
@@ -91,7 +101,11 @@ public class CustomerFeedbackService {
                 case "getAllFeedbacks":
                     this.getFeedbacks();
                     break;
-                case "deleteFeedbacks":
+                case "deleteCustomerFeedback":
+                    if (jsonNode.get("statusCode").asInt() == 200)
+                        System.out.println("feedback deleted.");
+                    else
+                        System.out.println("An error occurred");
                     break;
             }
         } catch (Exception e) {

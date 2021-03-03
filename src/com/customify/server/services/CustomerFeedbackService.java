@@ -11,6 +11,7 @@ import com.customify.server.Db.Db;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
+import com.customify.server.CustomizedObjectOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +30,8 @@ public class CustomerFeedbackService {
     Socket socket;
     OutputStream output;
     ObjectOutputStream objectOutput;
+    ObjectOutputStream objectOutputStream;
+    OutputStream outputStream;
 
     public CustomerFeedbackService(Socket socket) throws IOException {
         this.socket = socket;
@@ -91,9 +94,13 @@ public class CustomerFeedbackService {
                 String json = objectMapper.writeValueAsString(cf);
                 feedbacks.add(json);
             }
-            objectOutput.writeObject(feedbacks);
+            // objectOutput.writeObject(feedbacks);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            outputStream = socket.getOutputStream();
+            this.objectOutputStream = new CustomizedObjectOutputStream(this.outputStream);
+            objectOutputStream.writeObject(feedbacks);
         }
     }
 
