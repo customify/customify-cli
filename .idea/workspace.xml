@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53f93c6e-2c9e-4c33-99c7-fe4c6dc1fe55" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/Sale/SaleDataFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/Sales/SalesRead.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/sale/SaleDataFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/SalesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/dashboards/com/customify/client/dashboards/EmployeeDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/dashboards/com/customify/client/dashboards/EmployeeDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/SalesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/SalesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/Employee.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/Employee.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/SuperAdmin.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/SuperAdmin.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Business/BusinessReadView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Sales/SalesMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Sales/SalesMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/SalesView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/SalesView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/SalesModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/models/SalesModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
