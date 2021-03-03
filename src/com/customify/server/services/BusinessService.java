@@ -130,16 +130,10 @@ public class BusinessService {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         Statement statement = Db.getStatement();
-<<<<<<< HEAD
-=======
-        String json = "";
-
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
         try {
             int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
             System.out.println(ret);
             if(ret==1){
-<<<<<<< HEAD
 //                json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
                 this.statusCode= "200";
                 responseData.add("200");
@@ -149,19 +143,6 @@ public class BusinessService {
             e.printStackTrace();
             this.statusCode = "500";
             responseData.add(statusCode);
-=======
-                json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
-            }
-        }
-        catch (SQLException e){
-            json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
-        }
-        finally {
-            this.objectOutput = new CustomizedObjectOutputStream(this.output);
-            objectOutput.writeObject(json);
-            objectOutput.flush();
-            this.output.flush();
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
         }
         finally{
 
@@ -186,11 +167,7 @@ public class BusinessService {
 
         //formatting the response into a data format
         Statement statement = Db.getStatement();
-<<<<<<< HEAD
         json = "";
-=======
-        String json = "";
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
         try{
             ResultSet res = statement.executeQuery("select * from businesses where id="+jsonNode.get("businessId"));
             System.out.println(res.next());
@@ -205,14 +182,9 @@ public class BusinessService {
                         res.getInt(7),
                         res.getDate(8).toString()
                 );
-<<<<<<< HEAD
                 this.json = objectMapper.writeValueAsString(bs);
                 responseData.add("200");
                 responseData.add(this.json);
-=======
-                bs.statusCode=200;
-                json = objectMapper.writeValueAsString(bs);
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
 
             }else{
                 this.statusCode = "400";
@@ -223,7 +195,6 @@ public class BusinessService {
 
         }
         catch (Exception e){
-<<<<<<< HEAD
             this.statusCode = "500";
             responseData.add(statusCode);
         }
@@ -232,18 +203,6 @@ public class BusinessService {
             this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(responseData);
 
-=======
-            json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 500 +"\" }";
-            System.out.println(json);
-        }
-        finally {
-            System.out.println("Sending");
-            this.objectOutput = new CustomizedObjectOutputStream(this.output);
-            objectOutput.writeObject(json);
-            objectOutput.flush();
-            this.output.flush();
-            System.out.println(json);
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
         }
     }
 
@@ -278,15 +237,6 @@ public class BusinessService {
                 this.json = objectMapper.writeValueAsString(bs);
                 alldata.add(json);
             }
-<<<<<<< HEAD
-=======
-
-            //Sending the response to server after it has been formatted
-            this.objectOutput = new CustomizedObjectOutputStream(this.output);
-            objectOutput.writeObject(alldata);
-            objectOutput.flush();
-            this.output.flush();
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
         }
         catch (Exception e){
             this.statusCode = "500";

@@ -19,7 +19,6 @@ public class Login {
     public Login()  { }
     public Login(Socket socket) throws Exception{
         this.socket = socket;
-<<<<<<< HEAD
 //        UserSession userSession = new UserSession();
 //        if(userSession.isLoggedIn())
 //        {
@@ -31,19 +30,6 @@ public class Login {
 //           openLogin=true;
 //            this.view();
 //        }
-=======
-        UserSession userSession = new UserSession();
-        if(userSession.isLoggedIn())
-        {
-            String json = userSession.getUserJsonObject();
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(json);
-            route(jsonNode.get("appUser").asText());
-        }else{
-            openLogin=true;
-            this.view();
-        }
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
 
     }
 
@@ -81,7 +67,6 @@ public class Login {
 
 //            Dashboards dashboard = new Dashboards();
 
-<<<<<<< HEAD
 //            String superAdminJsonObj =authService.authenticateAdmin();
 //            String employeeJsonObj = authService.authenticateEmployee();
 
@@ -107,33 +92,6 @@ public class Login {
 //            } else {
 //                System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
 //            }
-=======
-            String superAdminJsonObj =authService.authenticateAdmin();
-            String employeeJsonObj = authService.authenticateEmployee();
-
-            if(superAdminJsonObj != null)
-            {
-                // SuperAdminDashboard dashboard = new SuperAdminDashboard(this.socket,superAdminJsonObj);
-            }else if(employeeJsonObj != null)
-            {
-                ObjectMapper objectMapper = new ObjectMapper();
-                JsonNode jsonNode = objectMapper.readTree(employeeJsonObj);
-                String title = jsonNode.get("title").asText();
-
-                // if(title.equals("ADMIN"))
-                // {
-                //  BusinessAdminDashboard dashboard = new BusinessAdminDashboard(this.socket,employeeJsonObj);
-                // }else{
-                //     EmployeeDashboard dashboard = new EmployeeDashboard(this.socket,employeeJsonObj);
-                // }
-            AuthService authService = new AuthService(this.socket, format);
-
-            if (authService.authenticate()) {
-                route(authService.getLoggedInUser());
-            } else {
-                System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
-            }
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
         }while(openLogin);
     }
 

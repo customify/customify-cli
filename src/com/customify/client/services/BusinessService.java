@@ -109,7 +109,6 @@ public class BusinessService {
         }
     }
 
-<<<<<<< HEAD
     /**
      * @author Kellia Umuhire
      * @role this function is for handling the response after fetching all the businesses from the server
@@ -136,9 +135,6 @@ public class BusinessService {
             }
         }
     }
-=======
-
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
 
     /**
      * @author Kellia Umuhire
@@ -204,18 +200,11 @@ public class BusinessService {
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
             ObjectMapper objectMapper = new ObjectMapper();
-<<<<<<< HEAD
-
-=======
-            JsonNode jsonNode = objectMapper.readTree(json_data);
-            System.out.println(jsonNode);
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
             switch (func_name) {
                 case "getall":
                     this.handleGetResponse();
                     break;
                 case "getbyid":
-<<<<<<< HEAD
                     response = (List<String>) this.objectInput.readObject();
                     if(response.get(0) =="500") System.out.println(response.get(1));
                     else if(response.get(0)=="400") System.out.println(response.get(1));
@@ -227,15 +216,6 @@ public class BusinessService {
                         System.out.println();
                         System.out.format("%5d%20s%20s%20s%20s%20s\n", node.get("id").asInt(), node.get("name").asText(), node.get("location").asText(), node.get("address").asText(), node.get("phone_number").asText(), node.get("created_at").asText());
 
-=======
-                    if(jsonNode.get("statusCode").asInt()==500) System.out.println("An error occured");
-                    else{
-                        //Display the business
-                        System.out.println("-------------------Business " + jsonNode.get("id") + "------------------\n");
-                        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-                        System.out.println();
-                        System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
->>>>>>> 93b917112a332e0d3e3067e117105d03439be102
                     }
                     break;
                 case "create":
