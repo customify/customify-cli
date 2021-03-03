@@ -2,7 +2,7 @@ package com.customify.client.dashboards;
 
 import com.customify.client.Colors;
 import com.customify.client.utils.authorization.UserSession;
-import com.customify.client.views.CouponingMain.CouponMainView;
+import com.customify.client.views.Coupon;
 import com.customify.client.views.Sales;
 import com.customify.client.views.customer.CustomerMainView;
 
@@ -76,7 +76,7 @@ public class EmployeeDashboard {
                     Sales sales = new Sales(this.socket,this.isLoggedIn());
                     break;
                 case 3:
-                    CouponMainView couponMainView = new CouponMainView(this.socket,this.isLoggedIn());
+                    Coupon coupon = new Coupon(this.socket,this.isLoggedIn());
                     break;
                 case 4:
 //                    loggedIn=false;

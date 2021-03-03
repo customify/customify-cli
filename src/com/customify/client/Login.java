@@ -84,7 +84,7 @@ public class Login {
                 SuperAdminDashboard admDashboard = new SuperAdminDashboard(this.socket);
                 break;
             default:
-                System.out.println("\t\t\tINVALID CHOICE");
+                System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
         }
     }
 
