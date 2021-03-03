@@ -1,5 +1,6 @@
 package com.customify.server.utils;
 
+import com.customify.server.services.billing.FeatureService;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
@@ -32,6 +33,7 @@ public class RequestHandler {
 
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         List<String> clientRequest = (List) objectInputStream.readObject();
+        System.out.println("MY request "+clientRequest.get(0));
         this.json_data = (String) clientRequest.get(0);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -46,7 +48,7 @@ public class RequestHandler {
         BusinessService businessService = new BusinessService(this.clientSocket);
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
-
+        FeatureService featureService = new FeatureService(this.clientSocket);
         System.out.println("Handling routes "+this.key);
 
         switch (this.key) {
@@ -97,6 +99,10 @@ public class RequestHandler {
                 break;
             case GET_ALL_COUPONS:
                 couponService.getAllCoupons(json_data);
+                break;
+            case GET_FEATURES:
+                featureService.getAllFeature();
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

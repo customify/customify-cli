@@ -29,5 +29,6 @@ public enum Keys {
     ADD_SALE,
     UPDATE_CUSTOMER,
     GET_ALL_COUPONS,
-    GET_ALL_SALES
+    GET_ALL_SALES,
+    GET_FEATURES
 }
