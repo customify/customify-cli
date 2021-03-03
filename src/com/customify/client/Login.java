@@ -27,7 +27,7 @@ public class Login {
             JsonNode jsonNode = objectMapper.readTree(json);
             route(jsonNode.get("appUser").asText());
         }else{
-           openLogin=true;
+            openLogin=true;
             this.view();
         }
 
@@ -88,7 +88,7 @@ public class Login {
             AuthService authService = new AuthService(this.socket, format);
 
             if (authService.authenticate()) {
-              route(authService.getLoggedInUser());
+                route(authService.getLoggedInUser());
             } else {
                 System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
             }

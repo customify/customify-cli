@@ -8,7 +8,6 @@
  * */
 
 package com.customify.server.services;
-
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -123,6 +122,7 @@ public class BusinessService {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         Statement statement = Db.getStatement();
+        String json = "";
 
         try {
             int ret = statement.executeUpdate("delete from businesses where id=" + jsonNode.get("businessId").asInt());
@@ -133,6 +133,8 @@ public class BusinessService {
         } catch (SQLException e) {
             String json = "{\"message\" : \"" + e.getMessage() + "\", \"statusCode\" : \"" + 400 + "\" }";
             objectOutput.writeObject(json);
+            objectOutput.flush();
+            this.output.flush();
         }
 
         objectOutput.close();
@@ -160,10 +162,14 @@ public class BusinessService {
                 // send
                 objectOutput.writeObject(json);
             }
+            System.out.println(json);
 
         } catch (Exception e) {
             String json = "{ \"message\" : \"" + e.getMessage() + "\", \"statusCode\" : \"" + 200 + "\" }";
             objectOutput.writeObject(json);
+            objectOutput.flush();
+            this.output.flush();
+            System.out.println(json);
         }
     }
 
