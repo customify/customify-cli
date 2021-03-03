@@ -76,7 +76,6 @@ public class Home {
             case 6:
                 feedbackView.view();
                 break;
-
             case 7:
 //                pointCountingView.view();
                 break;
@@ -89,6 +88,5 @@ public class Home {
             default:
                 System.out.println("Invalid choice");
         }
-
     }
 }

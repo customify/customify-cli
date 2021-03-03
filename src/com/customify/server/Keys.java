@@ -22,4 +22,5 @@ public enum Keys {
     RENABLE_CUSTOMER,
     GET_CUSTOMER,
 
+    GET_ALL_SALES
 }
