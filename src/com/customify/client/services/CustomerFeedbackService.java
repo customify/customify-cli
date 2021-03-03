@@ -65,14 +65,37 @@ public class CustomerFeedbackService {
         System.out.format("%5s%5s%15s%50s%12s\n", "CustomerID", "BusinessId", "Title", "Description", "CreatedD");
         System.out.println();
         ;
-        while (rs.hasNext()) {
-            JsonNode cf = objectMapper.readTree((String) rs.next());
-            System.out.format("%5d%5d%15s%50s%12s\n", cf.get("customerId").asInt(), cf.get("businessId").asInt(),
-                    cf.get("title").asText(), cf.get("description").asText(), cf.get("created_date").asText());
+        try {
+            while (rs.hasNext()) {
+                JsonNode cf = objectMapper.readTree((String) rs.next());
+                System.out.format("%5d%5d%15s%50s%12s\n", cf.get("customerId").asInt(), cf.get("businessId").asInt(),
+                        cf.get("title").asText(), cf.get("description").asText(), cf.get("created_date").asText());
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-
+        // delete feedbacks
     }
 
-    // delete feedbacks
+    // this is the function for providing appropriate response to the calling
+    // function
+    public void handleResponse(String func_name) throws ClassNotFoundException {
+        try {
+            this.input = this.socket.getInputStream();
+            this.objectInput = new ObjectInputStream(this.input);
+            this.json_data = (String) this.objectInput.readObject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json_data);
 
+            switch (func_name) {
+                case "getAllFeedbacks":
+                    this.getFeedbacks();
+                    break;
+                case "deleteFeedbacks":
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

@@ -10,13 +10,6 @@ package com.customify.server.services;
 import com.customify.server.Db.Db;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import jdk.jshell.spi.ExecutionControl.ExecutionControlException;
-
-// import com.mysql.cj.protocol.Resultset;
-// import com.mysql.cj.protocol.x.ResultMessageListener;
-// import com.mysql.cj.xdevapi.Statement;
-// import com.mysql.cj.protocol.Resultset;
 import com.customify.server.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -81,9 +74,11 @@ public class CustomerFeedbackService {
 
     }
 
+    /*
+     * The function for getting the customer feedback from the database
+     */
     public void getAllFeedbacks() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-
         Statement stmt = Db.getStatement();
         String query = "SELECT * FROM CustomerFeedbacks";
         List<String> feedbacks = new ArrayList<>();
@@ -92,12 +87,36 @@ public class CustomerFeedbackService {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 CustomerFeedbackDataFormat cf = new CustomerFeedbackDataFormat(rs.getInt(1), rs.getInt(2),
-                        rs.getString(3), rs.getString(4), rs.getDate(8).toString());
+                        rs.getString(3), rs.getString(4), rs.getDate(5).toString());
                 String json = objectMapper.writeValueAsString(cf);
                 feedbacks.add(json);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /*
+     * Here is the function for deleting the customer feedback from the database
+     */
+
+    public void deleteCustomerFeedback(String data) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+        Statement stmt = Db.getStatement();
+
+        try {
+            int deleteQuery = stmt.executeUpdate(
+                    "DELETE FROM CustomerFeedbacks WHERE customer_id = " + jsonNode.get("customerId").asInt());
+
+            if (deleteQuery == 1) {
+                String json = "{\"message\" : \"" + "Successfully deleted" + "\", \"statusCode\" : \"" + 200 + "\" }";
+                objectOutput.writeObject(json);
+            }
+        } catch (SQLException se) {
+            String json = "{\"message\" : \"" + se.getMessage() + "\", \"statusCode\" : \"" + 400 + "\" }";
+            objectOutput.writeObject(json);
+        }
+        objectOutput.close();
     }
 }

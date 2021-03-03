@@ -28,7 +28,7 @@ public class CustomerFeedbackMainView {
         System.out.println("------------------Customer feedback operations---------------------");
         System.out.println("\n         00. Get back home");
         System.out.println("         1. Get all feedbacks");
-        System.out.println("         2. Delete feedback By id");
+        System.out.println("         2. Delete  By id");
         choice = scan.nextInt();
 
         switch (choice) {

@@ -46,7 +46,7 @@ public class RequestHandler {
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
 
-        System.out.println("Handling routes "+this.key);
+        System.out.println("Handling routes " + this.key);
 
         switch (this.key) {
             case CREATE_BUSINESS:
@@ -57,13 +57,16 @@ public class RequestHandler {
                 break;
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
+                break;
             case CREATE_PRODUCT:
                 // productController.registerProduct();
                 break;
             case FEEDBACK:
                 feedback.Feedback(json_data);
-
                 break;
+//            case GET_ALL_FEEDBACKS:
+//                feedback.getAllFeedbacks();
+//                break;
             case GET_ALL_PRODUCTS:
                 // productController.getAllProducts();
                 break;
@@ -89,8 +92,8 @@ public class RequestHandler {
                 AuthService auth = new AuthService(this.clientSocket, this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-            //    customer = new CustomerService(this.clientSocket,this.json_data);
-            //    customer.disable();
+                // customer = new CustomerService(this.clientSocket,this.json_data);
+                // customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.coupingByProduct(json_data);

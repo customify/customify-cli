@@ -8,6 +8,7 @@
  * */
 
 package com.customify.server.services;
+
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,11 +30,11 @@ public class BusinessService {
 
     /**
      * Class Constructor
-   *
+     *
      * @author IRUMVA HABUMUGISHA Anselme
      * @param socket The Socket to use in our Sending and Receiving the request
-     * */
-    public BusinessService(Socket socket)throws IOException{
+     */
+    public BusinessService(Socket socket) throws IOException {
         this.socket = socket;
         this.output = socket.getOutputStream();
         this.objectOutput = new ObjectOutputStream(output);
@@ -42,10 +43,9 @@ public class BusinessService {
     /**
      * @author IRUMVA HABUMUGISHA Anselme
      * @param data The data from the clint in the JSON Format
-     * @role
-     * this function is to handle the backend registering into the database
-     * and sending back the response
-     * */
+     * @role this function is to handle the backend registering into the database
+     *       and sending back the response
+     */
     public void create(String data) throws SQLException, JsonProcessingException {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -63,16 +63,16 @@ public class BusinessService {
             statement.setInt(6, jsonNode.get("plan").asInt());
 
             // Let me try to execute the query and write the result ....
-            if(statement.execute()){
+            if (statement.execute()) {
                 objectOutput.writeObject("{\"status\": 500}");
                 objectOutput.close();
                 System.out.println("Your query not working .... ");
-            }else{
+            } else {
                 objectOutput.writeObject("{\"status\": 201}");
                 objectOutput.close();
                 System.out.println("Query Ok !!! ");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -80,10 +80,9 @@ public class BusinessService {
     /**
      * @author IRUMVA HABUMUGISHA Anselme
      * @param data The data from the clint in the JSON Format
-     * @role
-     * this function is to handle the backend editing of the business into the database
-     * and sending back the response
-     * */
+     * @role this function is to handle the backend editing of the business into the
+     *       database and sending back the response
+     */
     public void update(String data) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -101,40 +100,38 @@ public class BusinessService {
             statement.setInt(7, jsonNode.get("int").asInt());
 
             // Let me try to execute the query and write the result ....
-            if(statement.execute()){
+            if (statement.execute()) {
                 objectOutput.writeObject("{\"status\": 500}");
                 objectOutput.close();
                 System.out.println("Your query not working .... ");
-            }else{
+            } else {
                 objectOutput.writeObject("{\"status\": 200}");
                 objectOutput.close();
                 System.out.println("Query Ok !!! ");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     /**
      * @author Kellia Umuhire
-     * @role
-     * Method for handling delete of business
-     * */
-    public void removeBusiness(String data) throws IOException{
+     * @role Method for handling delete of business
+     */
+    public void removeBusiness(String data) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
 
         Statement statement = Db.getStatement();
 
         try {
-            int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
-            if(ret==1){
-                String json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
+            int ret = statement.executeUpdate("delete from businesses where id=" + jsonNode.get("businessId").asInt());
+            if (ret == 1) {
+                String json = "{\"message\" : \"" + "Successfully deleted" + "\", \"statusCode\" : \"" + 200 + "\" }";
                 objectOutput.writeObject(json);
             }
-        }
-        catch (SQLException e){
-            String json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
+        } catch (SQLException e) {
+            String json = "{\"message\" : \"" + e.getMessage() + "\", \"statusCode\" : \"" + 400 + "\" }";
             objectOutput.writeObject(json);
         }
 
@@ -144,79 +141,57 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
-     * @role
-     * Method for handling request for fetching one business by its id
-     * */
-    public void getBusinessById(String data) throws IOException{
-        //setting the response status code
+     * @role Method for handling request for fetching one business by its id
+     */
+    public void getBusinessById(String data) throws IOException {
+        // setting the response status code
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
 
-        //formatting the response into a data format
+        // formatting the response into a data format
         Statement statement = Db.getStatement();
-        try{
-            ResultSet res = statement.executeQuery("select * from businesses where id="+jsonNode.get("businessId"));
-            if(res.next()){
-                BusinessRFormat bs = new BusinessRFormat(
-                        res.getInt(1),
-                        res.getString(2),
-                        res.getString(3),
-                        res.getString(4),
-                        res.getString(5),
-                        res.getInt(6),
-                        res.getInt(7),
-                        res.getDate(8).toString()
-                );
+        try {
+            ResultSet res = statement.executeQuery("select * from businesses where id=" + jsonNode.get("businessId"));
+            if (res.next()) {
+                BusinessRFormat bs = new BusinessRFormat(res.getInt(1), res.getString(2), res.getString(3),
+                        res.getString(4), res.getString(5), res.getInt(6), res.getInt(7), res.getDate(8).toString());
                 String json = objectMapper.writeValueAsString(bs);
 
-                //send
+                // send
                 objectOutput.writeObject(json);
 
             }
 
-
-        }
-        catch (Exception e){
-            String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 200 +"\" }";
+        } catch (Exception e) {
+            String json = "{ \"message\" : \"" + e.getMessage() + "\", \"statusCode\" : \"" + 200 + "\" }";
             objectOutput.writeObject(json);
         }
     }
 
     /**
      * @author Kellia Umuhire
-     * @role
-     * Method for fetching all businesses registered
-     * */
+     * @role Method for fetching all businesses registered
+     */
     public void getAll() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        //formatting the response into a data format
+        // formatting the response into a data format
         Statement statement = Db.getStatement();
         String query = "Select * from businesses";
         List<String> alldata = new ArrayList<>();
         try {
 
             ResultSet res = statement.executeQuery(query);
-            while(res.next()){
-
-                BusinessRFormat bs = new BusinessRFormat(
-                        res.getInt(1),
-                        res.getString(2),
-                        res.getString(3),
-                        res.getString(4),
-                        res.getString(5),
-                        res.getInt(6),
-                        res.getInt(7),
-                        res.getDate(8).toString()
-                );
+            while (res.next()) {
+                BusinessRFormat bs = new BusinessRFormat(res.getInt(1), res.getString(2), res.getString(3),
+                        res.getString(4), res.getString(5), res.getInt(6), res.getInt(7), res.getDate(8).toString());
                 String json = objectMapper.writeValueAsString(bs);
                 alldata.add(json);
             }
 
-            //Sending the response to server after it has been formated
+            // Sending the response to server after it has been formated
             objectOutput.writeObject(alldata);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

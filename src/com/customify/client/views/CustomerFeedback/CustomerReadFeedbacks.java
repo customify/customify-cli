@@ -3,18 +3,14 @@ package com.customify.client.views.CustomerFeedback;
 /*
    *@author: NSENGIYUMVA GERSHOM
 */
-import com.customify.client.SendToServer;
 import com.customify.client.services.CustomerFeedbackService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.customify.client.Keys;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Scanner;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.Iterator;
-import java.util.List;
 
 public class CustomerReadFeedbacks {
     private Socket socket;
@@ -26,18 +22,36 @@ public class CustomerReadFeedbacks {
         this.socket = socket;
     }
 
-    public Socket getSocket(){
-        return socket;        
+    public Socket getSocket() {
+        return socket;
     }
 
-    public void setSocket(){
-        
+    public void setSocket() {
+
     }
+
+    /*
+     * Here is the function to get all the recorded feedbacks
+     */
 
     public void GetFeedbacks() throws IOException, ClassNotFoundException {
         String json = "{ \"key\" : \"" + Keys.GET_ALL_FEEDBACKS + "\" }";
         CustomerFeedbackService feedService = new CustomerFeedbackService(socket);
         feedService.getAllCustomerFeedbacks(json);
     }
-}
+    // -------------------------------------------------------------------------------
 
+    /*
+     * The function for deleting certain customer feedback
+     */
+    public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter customer id: \t");
+        int customerId = scan.nextInt();
+        String json = "{ \"customerId\" : \"" + customerId + "\", \"key\" : \"" + Keys.REMOVE_FEEDBACK + "\" }";
+        CustomerFeedbackService cFeedbackService = new CustomerFeedbackService(socket);
+        // cFeedbackService.deleteCustomerFeedback(json);
+        // scan.close();
+        // -------------------------------------------------------------------------------u
+    }
+}
