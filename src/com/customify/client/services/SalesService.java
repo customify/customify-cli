@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,17 +46,17 @@ public class SalesService {
 
             Iterator itr = res.iterator();
 
-            String leftAlignFormat = "| %-10s | %-10s | %-10s | %-10s | %-10s | %-10s %n";
+            String leftAlignFormat = "| %-10s | %-10s | %-10s | %-11s | %-11s | %-10s |%n";
 
             System.out.println("\n");
-            System.out.format("+------------+------------+------------+-------------+-------------+-------------+%n");
-            System.out.format("| SaleId     | customerID |  quantity  | totalPrice  | employeeID  | productID   |%n");
-            System.out.format("+------------+------------+------------+-------------+-------------+-------------+%n");
+            System.out.format("+------------+------------+------------+-------------+-------------+------------+%n");
+            System.out.format("| SaleId     | customerID |  quantity  |totalPrice   | employeeID  | productID  |%n");
+            System.out.format("+------------+------------+------------+-------------+-------------+------------+%n");
             while (itr.hasNext()) {
                 JsonNode jsonNode = objectMapper.readTree((String) itr.next());
-                System.out.format(leftAlignFormat,jsonNode.get("saleId"),jsonNode.get("customerID"),jsonNode.get("quantity"),jsonNode.get("totalPrice"),jsonNode.get("employeeID"),jsonNode.get("productID"));
+                System.out.format(leftAlignFormat,jsonNode.get("saleId"),jsonNode.get("customerID").textValue(),jsonNode.get("quantity").textValue(),jsonNode.get("totalPrice").textValue(),jsonNode.get("employeeID").textValue(),jsonNode.get("productID").textValue());
             }
-            System.out.format("+------------+------------+------------+-------------+-------------+-------------+%n");
+            System.out.format("+------------+------------+------------+-------------+-------------+------------+%n");
             System.out.println("\n");
         } catch (IOException | ClassNotFoundException ioException) {
             ioException.printStackTrace();
