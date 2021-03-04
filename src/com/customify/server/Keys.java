@@ -21,7 +21,6 @@ public enum Keys {
     GET_ALL_SALES,
     ADD_SALE,
     RENABLE_CUSTOMER,
-    GET_ALL_SALES,
     CREATE_PRODUCT,
     FEEDBACK,
     GET_ALL_PRODUCTS ,
