@@ -46,7 +46,8 @@ public class ReEnableCustomer {
             CustomerService deactivateService = new CustomerService(this.socket);
             deactivateService.reEnableCard(code);
         }
-        else{
+        else if(option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")){
+            System.out.println(Colors.ANSI_CYAN + "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t            QUITED!!!" + Colors.ANSI_RESET);
             return;
         }
     }
