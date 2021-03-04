@@ -1,28 +1,33 @@
 package com.customify.client.views.CustomerFeedback;
 
 /*
- *@author: NSENGIYUMVA GERSHOM
- */
-
+   *@author: NSENGIYUMVA GERSHOM
+*/
 import com.customify.client.services.CustomerFeedbackService;
 import com.customify.client.Keys;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Scanner;
+import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.*;
 
 public class CustomerReadFeedbacks {
     private Socket socket;
+    private InputStream input;
+    private ObjectInputStream objectInput;
+    private String json_data;
 
-    public CustomerReadFeedbacks(Socket socket){
+    public CustomerReadFeedbacks(Socket socket) {
         this.socket = socket;
     }
-    public Socket getSocket()
-    {
+
+    public Socket getSocket() {
         return socket;
     }
-    public void setSocket(Socket socket){
-        this.socket = socket;
+
+    public void setSocket() {
+
     }
 
     /*
@@ -39,14 +44,14 @@ public class CustomerReadFeedbacks {
     /*
      * The function for deleting certain customer feedback
      */
-//    public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
-//        Scanner scan = new Scanner(System.in);
-//        System.out.print("Enter customer id: \t");
-//        int customerId = scan.nextInt();
-//        String json = "{ \"customerId\" : \"" + customerId + "\", \"key\" : \"" + Keys.REMOVE_FEEDBACK + "\" }";
-//        CustomerFeedbackService cFeedbackService = new CustomerFeedbackService(socket);
-//        // cFeedbackService.deleteCustomerFeedback(json);
-//        // scan.close();
-//        // -------------------------------------------------------------------------------u
-//    }
+    public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter customer id: \t");
+        int customerId = scan.nextInt();
+        String json = "{ \"customerId\" : \"" + customerId + "\", \"key\" : \"" + Keys.REMOVE_FEEDBACK + "\" }";
+        CustomerFeedbackService cFeedbackService = new CustomerFeedbackService(socket);
+        // cFeedbackService.deleteCustomerFeedback(json);
+        // scan.close();
+        // -------------------------------------------------------------------------------u
+    }
 }

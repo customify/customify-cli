@@ -14,12 +14,9 @@ package com.customify.client.services;
 
 import com.customify.client.Colors;
 import com.customify.client.SendToServer;
-//import com.customify.shared.requests_data_formats.BusinessFormats.BusinessFormat;
-import com.customify.client.data_format.business.GetBusinessFormat;
 import com.customify.client.data_format.business.BusinessFormat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -86,6 +83,7 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
+     * @param json Object key to send to the server
      * @role this function is for getting all business
      */
     public void getBusinesses(String json) throws IOException, ClassNotFoundException {
@@ -94,6 +92,36 @@ public class BusinessService {
             this.handleGetResponse();
         } else {
             System.out.println("Request failed...");
+        }
+    }
+
+
+
+    /**
+     * @author Kellia Umuhire
+     * @param json Object holding businessId and key to send to the server
+     * @role method for getting one business by its id
+     */
+    public void getById(String json) throws IOException, ClassNotFoundException {
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+            handleResponse("getbyid");
+        } else {
+            System.out.println("Request failed...");
+        }
+    }
+
+    /**
+     * @author Kellia Umuhire
+     * @param json Object holding businessId and key to send to the server
+     * @role Method for sending a delete request to the server
+     */
+    public void deleteBusiness(String json) throws IOException, ClassNotFoundException {
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+            handleResponse("delete_business");
+        } else {
+            System.out.println("An error occured");
         }
     }
 
@@ -123,53 +151,32 @@ public class BusinessService {
     }
 
     /**
-     * @author Kellia Umuhire
-     * @role method for getting one business by its id
-     */
-    public void getById(String json) throws IOException, ClassNotFoundException {
-        SendToServer serverSend = new SendToServer(json, this.socket);
-        if (serverSend.send()) {
-            handleResponse("getbyid");
-        } else {
-            System.out.println("Request failed...");
-        }
-    }
-
-    /**
-     * @author Kellia Umuhire
-     * @role Method for sending a delete request to the server
-     */
-    public void deleteBusiness(String json) throws IOException, ClassNotFoundException {
-        SendToServer serverSend = new SendToServer(json, this.socket);
-        if (serverSend.send()) {
-            handleResponse("delete_business");
-        } else {
-            System.out.println("An error occured");
-        }
-    }
-
-
-    /**
      * @author Kellia Umuhire, IRUMVA HABUMUGISHA Anselme
+     * @param func_name the name of the function to pass the response to
      * @role General method for handling response from the server
      */
     public void handleResponse(String func_name) throws ClassNotFoundException {
+        System.out.println("Received");
         try {
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
             this.json_data = (String) this.objectInput.readObject();
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(json_data);
+            System.out.println(jsonNode);
             switch (func_name) {
                 case "getall":
                     this.handleGetResponse();
                     break;
                 case "getbyid":
-                    //Display the business
-                    System.out.println("-------------------Business " + jsonNode.get("id") + "------------------\n");
-                    System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-                    System.out.println();
-                    System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
+                    if(jsonNode.get("statusCode").asInt()==500) System.out.println("An error occured");
+                    else{
+                        //Display the business
+                        System.out.println("-------------------Business " + jsonNode.get("id") + "------------------\n");
+                        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+                        System.out.println();
+                        System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
+                    }
                     break;
                 case "create":
                     if (jsonNode.get("status").asInt() == 201) {

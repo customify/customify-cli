@@ -1,4 +1,5 @@
 package com.customify.server.data_format.CustomerFeedback;
+
 /**
  * @author: NSENGIYUMVA Gershom
  * 
@@ -7,20 +8,21 @@ package com.customify.server.data_format.CustomerFeedback;
  * Setting and getting feedback data to be formatted
  * 
  * done 7 Feb 2021
- * */ 
+ * */
 import java.io.Serializable;
 
-public class CustomerFeedbackDataFormat implements Serializable{    
+public class CustomerFeedbackDataFormat implements Serializable {
     private int customer_id, business_id;
-    private String title, description;
+    private String title, description, creation_date;
 
-    public CustomerFeedbackDataFormat(int customer_id, int business_id, String title, String description) {        
+    public CustomerFeedbackDataFormat(int customer_id, int business_id, String title, String description,
+            String creation_date) {
         this.customer_id = customer_id;
         this.business_id = business_id;
         this.title = title;
         this.description = description;
+        this.creation_date = creation_date;
     }
-
 
     // define the getters and setters
     public int getCustomerId() {
@@ -54,4 +56,13 @@ public class CustomerFeedbackDataFormat implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getCreationDate() {
+        return creation_date;
+    }
+
+    public void setCreationDate(String creation_date) {
+        this.creation_date = creation_date;
+    }
+
 }
