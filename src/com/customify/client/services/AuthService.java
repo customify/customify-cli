@@ -72,6 +72,8 @@ public class AuthService {
         return isAuthenticated();
     }
 
+
+
     public void handleLoginResponse() throws IOException, ClassNotFoundException {
 
         try {

@@ -24,4 +24,6 @@ public enum Keys {
     FEEDBACK,
     GET_ALL_PRODUCTS ,
     DELETE_PRODUCT,
+    GET_ALL_CUSTOMERS,
+    GET_CUSTOMER,
 }

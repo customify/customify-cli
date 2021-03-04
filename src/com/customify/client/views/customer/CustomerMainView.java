@@ -58,8 +58,12 @@ public class CustomerMainView {
                         customer.view();
                         break;
                     case "2":
+                        ReadAll customers = new ReadAll(this.socket);
+                        customers.view();
                         break;
                     case "3":
+                        ReadOne readOne = new ReadOne(this.socket);
+                        readOne.view();
                         break;
                     case "4":
                         UpdateCustomerView updatecustomer =new UpdateCustomerView(this.socket);

@@ -6,9 +6,7 @@ import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.customer.CreateCustomerFormat;
-
-//import com.customify.shared.Response;
-//import com.customify.shared.requests_data_formats.ProductFormat;
+import com.customify.server.response_data_format.customer.GetAll;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +17,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CustomerService {
@@ -27,6 +26,8 @@ public class CustomerService {
     Socket socket;
     OutputStream output;
      String json_data;
+
+
     private int statusCode;
 
     public CustomerService(Socket socket, String json_data) throws IOException, SQLException {
@@ -36,8 +37,8 @@ public class CustomerService {
 
     }
 
-    public CustomerService(Socket clientSocket) {
-        this.socket = clientSocket;
+    public CustomerService(Socket socket) {
+        this.socket = socket;
     }
 
 
@@ -178,9 +179,94 @@ public class CustomerService {
             objectOutput.writeObject(this.responseData);
         }
     }
-    public void readOne() throws SQLException{}
-    public void readAll() throws SQLException{}
+    public void readOne() throws SQLException, IOException {
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(this.json_data);
+        String received_code = jsonNode.get("customerCode").asText();
+
+        Connection connection = Db.getConnection();
+        String query = "SELECT * FROM Customer WHERE code = \"" + received_code +"\"";
+        String firstName, lastName, email, code,customerId;
+
+
+        String json = "";
+
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+
+            if (!rs.next()) {
+
+                json = "{ \"status\" : \"404\"}";
+                responseData.add(json);
+            } else {
+                customerId = rs.getString("customer_id");
+                firstName = rs.getString("first_name");
+                lastName = rs.getString("last_name");
+                email = rs.getString("email");
+                code = rs.getString("code");
+                GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200);
+                json = objectMapper.writeValueAsString(format);
+                responseData.add(json);
+            }
+
+
+
+        } catch (Exception ex) {
+            System.out.println("DB-ERROR " + ex.getMessage());
+            json = "{ \"status\" : \"500\"}";
+            responseData.add(json);
+        } finally {
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(this.responseData);
+        }
+
+    }
+    public void readAll() throws SQLException, IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Connection connection = Db.getConnection();
+        String query = "SELECT * FROM Customer";
+        String firstName, lastName, email, code,customerId;
+
+
+        String json = "";
+
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if (!rs.next()) {
+                System.out.println("NO CUSTOMERS FOUND");
+                json = "{ \"status\" : \"404\"}";
+                responseData.add(json);
+            } else {
+                while (rs.next()) {
+                    customerId = rs.getString("customer_id");
+                    firstName = rs.getString("first_name");
+                    lastName = rs.getString("last_name");
+                    email = rs.getString("email");
+                    code = rs.getString("code");
+                    GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200);
+                    json = objectMapper.writeValueAsString(format);
+                    responseData.add(json);
+                }
+
+            }
+        } catch (Exception ex) {
+            System.out.println("DB-ERROR " + ex.getMessage());
+            json = "{ \"status\" : \"500\"}";
+            responseData.add(json);
+        } finally {
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+
+
+            objectOutput.writeObject(this.responseData);
+        }
+    }
     /**
      * @author Murenzi Confiance Tracy
      * @role
@@ -221,4 +307,5 @@ public class CustomerService {
         }
 
     }
+
 }
