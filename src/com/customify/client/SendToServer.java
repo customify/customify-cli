@@ -40,9 +40,7 @@ public class SendToServer {
             dataToSend.add(this.json);
 
             this.output = this.socket.getOutputStream();
-//            System.out.println(output.available());
             this.objectOutput = new ObjectOutputStream(this.output);
-//            System.out.println(this.output.available);
             this.objectOutput.writeObject(dataToSend);
 
         } catch (Exception e) {
