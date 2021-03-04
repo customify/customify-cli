@@ -73,7 +73,7 @@ public class SalesService {
             System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+------------+------------+------------+-------------+-------------+------------+%n");
             while (itr.hasNext()) {
                 JsonNode jsonNode = objectMapper.readTree((String) itr.next());
-                System.out.format(leftAlignFormat,jsonNode.get("saleId"),jsonNode.get("customerID").textValue(),jsonNode.get("quantity").textValue(),jsonNode.get("totalPrice").textValue(),jsonNode.get("employeeID").textValue(),jsonNode.get("productID").textValue());
+                System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t"+leftAlignFormat,jsonNode.get("saleId"),jsonNode.get("customerID").textValue(),jsonNode.get("quantity").textValue(),jsonNode.get("totalPrice").textValue(),jsonNode.get("employeeID").textValue(),jsonNode.get("productID").textValue());
             }
             System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+------------+------------+------------+-------------+-------------+------------+%n");
             System.out.println("\n");
