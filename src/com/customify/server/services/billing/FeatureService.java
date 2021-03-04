@@ -45,7 +45,7 @@ ObjectMapper objectMapper = new ObjectMapper();
 JsonNode jsonNode = objectMapper.readTree(data);
 
     Connection connection = Db.getConnection();
-    String sqlQuery = "INSERT INTO BillingFeatures  VALUES(?,?)";
+    String sqlQuery = "INSERT INTO Features  VALUES(?,?)";
     PreparedStatement statement = connection.prepareStatement(sqlQuery);
     statement.setString(1,jsonNode.get("featureName").asText());
     statement.setString(2,jsonNode.get("featureDescription").asText());
@@ -158,7 +158,7 @@ public  void deleteFeature(String data)throws  IOException {
 
         //formatting the response into a data format
         Statement statement = Db.getStatement();
-        String query = "Select * from businesses";
+        String query = "Select * from Features";
         List<FeatureFormat> data = new ArrayList<>();
         try {
             ResultSet res = statement.executeQuery(query);
