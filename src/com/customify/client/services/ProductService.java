@@ -180,7 +180,7 @@ public class ProductService {
             InputStream input = this.socket.getInputStream();
             ObjectInputStream objectInput = new ObjectInputStream(input);
 
-            List<String> response = (List) objectInputStream.readObject();
+            List<String> response = (List) objectInput.readObject();
             String json_response = response.get(0);
 
             ObjectMapper objectMapper = new ObjectMapper();

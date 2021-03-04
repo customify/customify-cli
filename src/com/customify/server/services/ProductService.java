@@ -123,7 +123,7 @@ public class ProductService {
                 productFormat.setRegistered_by(rs.getInt("registered_by"));
                 productFormat.setCreatedAt(rs.getString("created_at"));
             }
-
+            productFormat.setStatus(200);
             System.out.println("Name: "+productFormat.getName());
 
             responseData.clear();
