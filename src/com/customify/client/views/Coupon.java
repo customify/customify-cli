@@ -4,7 +4,6 @@
 package com.customify.client.views;
 
 import com.customify.client.Colors;
-import com.customify.client.data_format.CheckCoupon;
 import com.customify.client.data_format.CouponFormat;
 import com.customify.client.data_format.RedeemCoupon;
 import com.customify.client.services.CouponService;
@@ -38,8 +37,7 @@ public class Coupon {
             this.Header();
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1.  create a coupon");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2.  Redeem a coupon");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3.  Check a coupon");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4.  Get available coupons");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3.  Get available coupons");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t00. Back\n");
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-00>"+Colors.ANSI_RESET+": ");
 
@@ -53,9 +51,6 @@ public class Coupon {
                     this.redeemCoupon();
                     break;
                 case 3:
-                    this.checkCoupon();
-                    break;
-                case 4:
                     this.getAllCoupons();
                     break;
                 case 00:
@@ -98,21 +93,22 @@ public class Coupon {
         this.init();
     }
     public void redeemCoupon() throws Exception {
-        Scanner scanner = new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         RedeemCoupon redeemCoupon = new RedeemCoupon();
 
 
         this.Header();
         this.Title("Redeem coupon");
 
-        //System.out.println("Enter a coupon code");
-        //redeemCoupon.setCoupon_code(scanner.nextLine());
 
-        //CouponService couponService = new CouponService(this.socket);
-        //couponService.reedemCoupon(redeemCoupon);
+        System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter coupon code: ");
+        redeemCoupon.setCoupon_code(reader.nextLine());
 
-        this.notYetImplemented();
+        System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter customerID: ");
+        redeemCoupon.setCustomerID(reader.nextLine());
 
+        CouponService couponService = new CouponService(this.socket);
+        couponService.redeemCoupon(redeemCoupon);
         this.init();
     }
     public void getAllCoupons() throws Exception {
@@ -120,24 +116,8 @@ public class Coupon {
         this.Header();
 
         this.Title("Coupon list");
-
-       // CouponService couponService = new CouponService(this.socket);
-       // couponService.getCoupons();
-        // TODO: implement getting all coupons
-        this.notYetImplemented();
-    }
-    public void checkCoupon() throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        CheckCoupon checkCoupon = new CheckCoupon();
-
-        this.Header();
-
-        this.Title("Check Coupon");
-
-       // System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter a coupon code: ");
-        //checkCoupon.setCouponCode(scanner.nextLine());
-        // TODO: implement checking coupons
-        this.notYetImplemented();
+      CouponService couponService = new CouponService(this.socket);
+      couponService.getCoupons();
     }
 
     public boolean isLoggedIn() {

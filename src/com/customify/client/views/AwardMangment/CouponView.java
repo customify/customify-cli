@@ -96,7 +96,7 @@ public class CouponView {
         redeemCoupon.setCoupon_code(scanner.nextLine());
 
         CouponService couponService = new CouponService(this.socket);
-        couponService.reedemCoupon(redeemCoupon);
+        couponService.redeemCoupon(redeemCoupon);
 
          this.init();
     }

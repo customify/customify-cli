@@ -107,20 +107,21 @@ public class RequestHandler {
                customer.disable();
                 break;
             case CREATE_COUPON:
-//                couponService.coupingByProduct(json_data);
+                couponService.createCoupon(json_data);
+                break;
+            case REDEEMING_COUPON:
+                couponService.redeemCoupon(json_data);
                 break;
             case GET_ALL_COUPONS:
-//                couponService.getAllCoupons(json_data);
+              couponService.getAllCoupons(json_data);
                 break;
             case GET_ALL_CUSTOMERS:
               customer  = new CustomerService(this.clientSocket,this.json_data);
               customer.readAll();
-
                 break;
             case GET_CUSTOMER:
                 customer  = new CustomerService(this.clientSocket,this.json_data);
                 customer.readOne();
-
                 break;
             case RENABLE_CUSTOMER:
                 customer.renableCard(json_data);
