@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4f082859-419d-42e4-a1e2-47bf42746195" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/dashboards/com/customify/client/dashboards/BusinessAdminDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/dashboards/BusinessAdminDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/BusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/CustomerFeedbackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/CustomerFeedbackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/BusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +25,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../u-testing/customify" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.customify.client.Main" />
       <module name="Custemp" />
@@ -73,8 +63,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>

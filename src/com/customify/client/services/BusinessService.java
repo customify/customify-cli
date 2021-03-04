@@ -165,31 +165,6 @@ public class BusinessService {
     }
 
     /**
-     * @author Kellia Umuhire
-     * @role this function is for handling the response after fetching all the businesses from the server
-     * and displaying the response
-     */
-    public void handleGetResponse() throws IOException, ClassNotFoundException {
-        //Get response
-        this.input = this.socket.getInputStream();
-        this.objectInput = new ObjectInputStream(this.input);
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        //Casting the response data to list
-        List<String> data = (List<String>) this.objectInput.readObject();
-        Iterator itr = data.iterator();
-
-        //display the businesses
-        System.out.println("------------------------------------------List of Businesses----------------------------------\n");
-        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-        System.out.println();
-        while (itr.hasNext()) {
-            JsonNode bs = objectMapper.readTree((String) itr.next());
-            System.out.format("%5d%20s%20s%20s%20s%20s\n", bs.get("id").asInt(), bs.get("name").asText(), bs.get("location").asText(), bs.get("address").asText(), bs.get("phone_number").asText(), bs.get("created_at").asText());
-        }
-    }
-
-    /**
      * @author Kellia Umuhire, IRUMVA HABUMUGISHA Anselme
      * @param func_name the name of the function to pass the response to
      * @role General method for handling response from the server
@@ -202,7 +177,6 @@ public class BusinessService {
             ObjectMapper objectMapper = new ObjectMapper();
             switch (func_name) {
                 case "getall":
-                    this.handleGetResponse();
                     break;
                 case "getbyid":
                     response = (List<String>) this.objectInput.readObject();
