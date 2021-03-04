@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class SalesService {
+
     private final Socket socket;
 
     public SalesService(Socket socket) {
@@ -87,6 +88,7 @@ public class SalesService {
             ioException.printStackTrace();
         }
     }
+
    private void handleCreateSale()  {
         try{
             InputStream inputStream = this.socket.getInputStream();
@@ -103,4 +105,5 @@ public class SalesService {
         }
 
    }
+
 }

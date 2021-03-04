@@ -86,9 +86,7 @@ public class Sales {
         isLoggedIn = loggedIn;
     }
 
-
     public void SaleProductView()  {
-
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             Scanner scanner = new Scanner(System.in);
