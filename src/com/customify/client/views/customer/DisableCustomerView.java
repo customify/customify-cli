@@ -27,7 +27,6 @@ public class DisableCustomerView {
      * */
     public void view() throws IOException, ClassNotFoundException{
         Scanner scan = new Scanner(System.in);
-        boolean customerView = true;
         String code;
         String option;
 
@@ -41,12 +40,15 @@ public class DisableCustomerView {
             option = scan.nextLine();
 
             if(option.equalsIgnoreCase("y") || option.equalsIgnoreCase("yes")){
-//                DisableCustomerFormat format = new DisableCustomerFormat(code ,1);
                 String json = "{ \"code\" : \""+code+"\", \"key\" : \""+Keys.DISABLE_CUSTOMER+"\" }";
                 CustomerService service = new CustomerService(this.socket);
                 service.disable(json);
             }
-            return;
+            else if(option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")){
+                System.out.println(Colors.ANSI_CYAN + "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t            QUITED!!!" + Colors.ANSI_RESET);
+                return;
+            }
         }while(true);
     }
 }
+
