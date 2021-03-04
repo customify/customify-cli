@@ -26,12 +26,11 @@ public class ReEnableCustomer {
     }
 
     public ReEnableCustomer(Socket socket){this.socket=socket;}
-    Scanner scan = new Scanner(Sy
-            stem.in);
+    Scanner scan = new Scanner(System.in);
     String code;
     String option;
 
-    public void init() throws IOException{
+    public void init() throws IOException, ClassNotFoundException {
         System.out.println("\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> RE-ENABLE CUSTOMER---------------------");
         System.out.println("         Enter  Customer's code:");
         code = scan.nextLine();

@@ -53,8 +53,8 @@ public class CustomerService {
             String json_response = response.get(0);
             System.out.println("HERE'S THE RESPONSE FROM THE SERVER => " + json_response);
 
-        }catch(Exception e) {
-            System.out.println("RESPONSE ERROR =>"+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("RESPONSE ERROR =>" + e.getMessage());
         }
     }
 
@@ -122,7 +122,7 @@ public class CustomerService {
 
             SendToServer serverSend = new SendToServer(json, this.socket);
             if (serverSend.send()) {
-                InputStream input =this.socket.getInputStream();
+                InputStream input = this.socket.getInputStream();
                 ObjectInputStream objectInput = new ObjectInputStream(input);
                 List<String> res = (List) objectInput.readObject();
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -130,17 +130,17 @@ public class CustomerService {
 
                 if (jsonNode.get("status").asInt() == 200) {
                     System.out.println("\n\n\t\tCard was di-activated successfully\n");
-                }else if(jsonNode.get("status").asInt() == 401)
-                {
+                } else if (jsonNode.get("status").asInt() == 401) {
                     System.out.println("\n\n\t\tSORRY NOT SUCCESSFULLY DISABLED\n");
-                }else{
+                } else {
                     System.out.println("\t\t\tTRY AGAIN SYSTEM ERROR OCCURRED");
                 }
             }
 
-        }catch(Exception e){
-            System.out.println( "Exception Caught ");
-    }
+        } catch (Exception e) {
+            System.out.println("Exception Caught ");
+        }
+        return;
     }
 
     /**
@@ -148,18 +148,38 @@ public class CustomerService {
      * @role this function is to handle response on the successfully activated customer
      */
 
-    public void reEnableCard(String code) throws IOException{
-            DeActivateCustomer format = new DeActivateCustomer(code);
-            ObjectMapper objectMapper = new ObjectMapper();
-            String request = objectMapper.writeValueAsString(format);
-            SendToServer sendToServer = new SendToServer(request,socket);
+    public void reEnableCard(String code) throws IOException, ClassNotFoundException {
+        DeActivateCustomer format = new DeActivateCustomer(code);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String request = objectMapper.writeValueAsString(format);
+        SendToServer sendToServer = new SendToServer(request, socket);
 
-            if (sendToServer.send()){
-                System.out.println("\t\tCard was activated successfully\n");
+        if (sendToServer.send()) {
+//                System.out.println("\t\tCard was activated successfully\n");
+            InputStream input = this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
+            List<String> res = (List<String>) objectInput.readObject();
+
+            String responseData = res.get(0);
+//            System.out.println("Response: " + responseData);
+            JsonNode jsonNode = new ObjectMapper().readTree(responseData);
+
+            if (jsonNode.get("status").asInt() == 200) {
+                System.out.println("Successfully activated");
+            } else if (jsonNode.get("status").asInt() == 400) {
+                System.out.println("The customer doesn't exist");
+            } else if (jsonNode.get("status").asInt() == 500) {
+                System.out.println("System error occurred");
+            } else {
+                System.out.println("Unknown error");
             }
         }
+    }
 
-    public void getAll(){}
-    public void get(){}
+    public void getAll() {
+    }
+
+    public void get() {
+    }
 
 }

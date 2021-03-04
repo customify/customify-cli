@@ -44,9 +44,7 @@ public class DisableCustomerView {
                 CustomerService service = new CustomerService(this.socket);
                 service.disable(json);
             }
-            else{
-                return;
-            }
+            return;
         }while(true);
     }
 }
