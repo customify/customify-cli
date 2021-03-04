@@ -22,8 +22,7 @@ public class ProductView {
         Scanner reader = new Scanner(System.in);
         int choice;
 
-        System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_CYAN + "HOME >> PRODUCT MANAGEMENT\n");
-        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_RESET+ "------------------------------------------------------\n\n");
+        System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_CYAN + "HOME >> PRODUCT MANAGEMENT"+ Colors.ANSI_RESET+"\n");
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t1.register product");
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t2.get all products");
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t3.get product by id");
@@ -60,25 +59,25 @@ public class ProductView {
         Scanner scanner = new Scanner(System.in);
         ProductFormat newProduct = new ProductFormat();
 
-        System.out.println("Enter product name:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product name: ");
         newProduct.setName(scanner.nextLine());
 
-        System.out.println("Enter business id:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter business id: ");
         newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
 
-        System.out.println("Enter product price:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product price: ");
         newProduct.setPrice(Float.parseFloat(scanner.nextLine()));
 
-        System.out.println("Enter quantity you have:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter quantity you have: ");
         newProduct.setQuantity(Integer.parseInt(scanner.nextLine()));
 
-        System.out.println("Enter product description:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product description: ");
         newProduct.setDescription(scanner.nextLine());
 
-        System.out.println("Enter points to bind with:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter points to bind with: ");
         newProduct.setBondedPoints(Double.parseDouble(scanner.nextLine()));
 
-        System.out.println("Who is registering this product?");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tWho is registering this product: ");
         newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
 
         newProduct.setCreatedAt(LocalDate.now().toString());
@@ -179,12 +178,9 @@ public class ProductView {
     public void deleteProduct() throws Exception{
         Scanner scanner = new Scanner(System.in);
         ProductFormat oldProduct = new ProductFormat();
-        //set key for deleting a product to send to the server
         oldProduct.setKey(Keys.DELETE_PRODUCT);
-        System.out.println("Enter product Code:");
-        //set key for one product code deletion
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product Code: ");
         oldProduct.setProductCode(Long.parseLong(scanner.nextLine()));
         ProductService productService = new ProductService(this.socket);
         productService.deleteProduct(oldProduct);}
-
 }

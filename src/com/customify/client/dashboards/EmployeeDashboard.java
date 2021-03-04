@@ -68,7 +68,7 @@ public class EmployeeDashboard {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. My Profile");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. Profile Settings");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t7. Logout\n");
-            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-6>"+Colors.ANSI_RESET+": ");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-7>"+Colors.ANSI_RESET+": ");
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
