@@ -84,20 +84,6 @@ public class BusinessService {
     }
 
     /**
-     * @author IRUMVA HABUMUGISHA Anselme
-     * @role this function is to handle response on the successfully creation of the business
-     */
-    public void handleCreateBusinessResponse() throws IOException, ClassNotFoundException {
-        // here I am going to get the data from the server
-        this.input = this.socket.getInputStream();
-        this.objectInput = new ObjectInputStream(this.input);
-        String json_data = (String) this.objectInput.readObject();
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(json_data);
-        System.out.println("jjjjjj");
-    }
-
-    /**
      * @author Kellia Umuhire
      * @role this function is for getting all business
      */
