@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4f082859-419d-42e4-a1e2-47bf42746195" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/dashboards/BusinessAdminDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/dashboards/BusinessAdminDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/dashboards/EmployeeDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/dashboards/EmployeeDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/Employee.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/Employee.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
