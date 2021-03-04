@@ -10,6 +10,7 @@
 
 package com.customify.client.views.Business;
 
+import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.services.BusinessService;
 import com.customify.client.data_format.business.BusinessFormat;
@@ -37,7 +38,10 @@ public class BusinessRegisterView {
         String name, location, address, phone_number;
         int representative_id, plan_id;
 
+        System.out.println(Colors.ANSI_YELLOW);
         System.out.println("\n\n\n\n You are going to register the business ");
+        System.out.println(Colors.ANSI_RESET);
+
         System.out.print("Enter the Business name           :  ");
         name = scan.nextLine();
 
