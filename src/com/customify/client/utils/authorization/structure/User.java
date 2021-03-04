@@ -15,6 +15,16 @@ public class User {
         this.appUser = appUser;
     }
 
+    public String getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(String appUser) {
+        this.appUser = appUser;
+    }
+
+    private String appUser;
+
     public String getSessionStart() {
         return sessionStart;
     }

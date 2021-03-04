@@ -1,13 +1,6 @@
 package com.customify.server;
 
 public enum Keys {
-    LOGIN,
-    REGISTER,
-    FEEDBACK,
-    GET_USERS,
-    CREATE_PRODUCT,
-    GET_ALL_PRODUCTS,
-    DELETE_PRODUCT,
     GET_PRODUCT_BY_ID,
     UPDATE_PRODUCT,
     CREATE_BUSINESS,
@@ -25,5 +18,17 @@ public enum Keys {
     DISABLE_CUSTOMER,
     POINTS_BY_CUSTOMER_EMAIL,
     GET_ALL_COUPONS,
+<<<<<<< HEAD
     UPDATE_CUSTOMER
+=======
+    GET_ALL_SALES,
+    ADD_SALE,
+    RENABLE_CUSTOMER,
+    CREATE_PRODUCT,
+    FEEDBACK,
+    GET_ALL_PRODUCTS ,
+    DELETE_PRODUCT,
+    GET_ALL_CUSTOMERS,
+    GET_CUSTOMER,
+>>>>>>> 3e8bda51a8d88fc9cf47e1dcce21baa102b70b2a
 }

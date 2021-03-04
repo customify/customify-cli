@@ -3,7 +3,7 @@
 
 package com.customify.server.services;
 
-import com.customify.client.data_format.CouponFormat;
+
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,23 +27,24 @@ public class CouponService {
   public void coupingByProduct(String couponFormat){
     System.out.println("Couponing the product"+couponFormat);
   }
-  public void coupingByCustomer(){}
+  public void coupingByCustomer(){
+
+  }
   public void redeemCoupon(){}
   public void checkIfCouponIsValid(){}
 
 
-  public void getAllCoupons(String jsonData){
+  public void getAllCoupons(String jsonData) throws SQLException {
+    System.out.println("Get all coupons "+jsonData);
     try{
       Statement  statement = Db.getStatement();
       ResultSet rs = statement.executeQuery("select * from Coupon");
-      ObjectMapper objectMapper = new ObjectMapper();
-      String jsonCoupons =  objectMapper.writeValueAsString(rs);
-      SendToClient sendToClient = new SendToClient(this.socket, Collections.singletonList(jsonCoupons));
-
       while (rs.next()){
-        System.out.println(rs.getInt(0)+" "+rs.getInt(1)+" "+rs.getString(2)+" "+rs.getDate(3)+" "+rs.getDate(4)+" "+rs.getString(5)+" "+rs.getString(6));
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonCoupons =  objectMapper.writeValueAsString(rs);
+        SendToClient sendToClient = new SendToClient(this.socket, Collections.singletonList(jsonCoupons));
+       // System.out.println(rs.getInt(1)+" "+rs.getInt(2)+" "+rs.getString(3)+" "+rs.getDate(4)+" "+rs.getDate(5)+" "+rs.getString(6)+" "+rs.getString(7));
       }
-
     }catch (SQLException | JsonProcessingException e){
       System.out.println("Sql error: "+e.getMessage());
     }

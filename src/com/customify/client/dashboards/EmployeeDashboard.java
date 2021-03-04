@@ -1,8 +1,11 @@
 package com.customify.client.dashboards;
 
+import com.customify.client.Colors;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.customer.CustomerMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.customify.client.views.Coupon;
+import com.customify.client.views.Sales;
 
 import java.net.Socket;
 import java.util.Scanner;
@@ -53,36 +56,42 @@ public class EmployeeDashboard {
 
     public void view() throws Exception {
         Scanner scan = new Scanner(System.in);
-        if(isLoggedIn()) {
-            do {
-                System.out.println("---------------------------------------------");
-                System.out.println("--------------CUSTOMIFY HOME-----------------\n");
-                System.out.println("           1. CUSTOMER MANAGEMENT");
-                System.out.println("           2. TRANSACTION MANAGEMENT");
-                System.out.println("           3. MY PROFILE");
-                System.out.println("           4. PROFILE SETTINGS");
-                System.out.println("           5. LOGOUT !!!");
-                int choice = scan.nextInt();
-                switch (choice) {
-                    case 1:
-                        CustomerMainView customer = new CustomerMainView(this.socket, this.isLoggedIn());
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
+        if(isLoggedIn()){
+        do {
+            System.out.println(Colors.ANSI_CYAN);
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCUSTOMIFY HOME");
+            System.out.println(Colors.ANSI_RESET);
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. Customer Management");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. Sales Management");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. Coupon Management");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. My Profile");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. Profile Settings");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. Logout\n");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-6>"+Colors.ANSI_RESET+": ");
+            int choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    CustomerMainView customer = new CustomerMainView(this.socket,this.isLoggedIn());
+                    break;
+                case 2:
+                    Sales sales = new Sales(this.socket,this.isLoggedIn());
+                    break;
+                case 3:
+                    Coupon coupon = new Coupon(this.socket,this.isLoggedIn());
+                    break;
+                case 4:
 //                    loggedIn=false;
-                        break;
-                    case 5:
-                        if (userSession.unSet())
-                            loggedIn = false;
-
-                        break;
-                    default:
-                        System.out.println("INVALID CHOICE");
-                }
-            } while (false);
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    if(userSession.unSet())
+                        loggedIn=false;
+                    break;
+                default:
+                    System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
+            }
+        }while(loggedIn);
         }
     }
 }

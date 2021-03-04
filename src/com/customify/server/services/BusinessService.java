@@ -8,7 +8,6 @@
  * */
 
 package com.customify.server.services;
-
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -66,12 +65,8 @@ public class BusinessService {
             // Let me try to execute the query and write the result ....
             if(statement.execute()){
                 objectOutput.writeObject("{\"status\": 500}");
-                objectOutput.close();
-                System.out.println("Your query not working .... ");
             }else{
                 objectOutput.writeObject("{\"status\": 201}");
-                objectOutput.close();
-                System.out.println("Query Ok !!! ");
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -79,11 +74,12 @@ public class BusinessService {
     }
 
     /**
-     * @author IRUMVA HABUMUGISHA Anselme
-     * @param data The data from the clint in the JSON Format
      * @role
      * this function is to handle the backend editing of the business into the database
      * and sending back the response
+     *
+     * @author IRUMVA HABUMUGISHA Anselme
+     * @param data The data from the clint in the JSON Format
      * */
     public void update(String data) {
         try {
@@ -99,17 +95,13 @@ public class BusinessService {
             statement.setString(4, jsonNode.get("name").asText());
             statement.setInt(5, jsonNode.get("representative").asInt());
             statement.setInt(6, jsonNode.get("plan").asInt());
-            statement.setInt(7, jsonNode.get("int").asInt());
+            statement.setInt(7, jsonNode.get("id").asInt());
 
             // Let me try to execute the query and write the result ....
             if(statement.execute()){
                 objectOutput.writeObject("{\"status\": 500}");
-                objectOutput.close();
-                System.out.println("Your query not working .... ");
             }else{
                 objectOutput.writeObject("{\"status\": 200}");
-                objectOutput.close();
-                System.out.println("Query Ok !!! ");
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -172,10 +164,7 @@ public class BusinessService {
 
                 //send
                 objectOutput.writeObject(json);
-
             }
-
-
         }
         catch (Exception e){
             String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 200 +"\" }";

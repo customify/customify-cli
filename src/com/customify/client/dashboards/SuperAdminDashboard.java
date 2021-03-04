@@ -1,5 +1,6 @@
 package com.customify.client.dashboards;
 
+import com.customify.client.Colors;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.Business.BusinessView;
 
@@ -42,12 +43,19 @@ public class SuperAdminDashboard {
 
         if(isLoggedIn()){
             do {
+                System.out.flush();
+
+                System.out.println(Colors.ANSI_PURPLE);
                 System.out.println("---------------------------------------------");
-                System.out.println("--------------CUSTOMIFY HOME-----------------\n");
+                System.out.println("--------------CUSTOMIFY HOME-----------------\n\n");
+                System.out.println(Colors.ANSI_RESET);
+
                 System.out.println("           1. BUSINESS MANAGEMENT");
                 System.out.println("           2. MY PROFILE");
                 System.out.println("           3. PROFILE SETTINGS");
                 System.out.println("           4. LOGOUT !!!");
+
+                System.out.print("\n Chose between [ 1 -  4 ] ");
                 int choice = scan.nextInt();
                 switch (choice) {
                     case 1:
@@ -60,7 +68,8 @@ public class SuperAdminDashboard {
                         break;
                     case 4:
                         if (userSession.unSet())
-                            loggedIn = false;                        break;
+                            loggedIn = false;
+                        break;
                     default:
                         System.out.println("INVALID CHOICE");
                 }

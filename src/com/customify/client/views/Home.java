@@ -3,13 +3,13 @@
 */
 package com.customify.client.views;
 
+import com.customify.client.Colors;
 import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.Business.BusinessView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
 import com.customify.client.views.customer.CustomerMainView;
 
-import java.io.IOException;
 import java.net.Socket;
 import java.util.*;
 
@@ -44,8 +44,7 @@ Home {
         BusinessView businessView = new BusinessView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
-//        PointCountingView pointCountingView = new PointCountingView((this.socket));
-        CouponView couponView = new CouponView(this.socket);
+        Coupon couponView = new Coupon(this.socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------\n");
@@ -79,7 +78,6 @@ Home {
             case 6:
                 feedbackView.view();
                 break;
-
             case 7:
 //                pointCountingView.view();
                 break;
@@ -90,8 +88,7 @@ Home {
                 couponView.init();
                 break;
             default:
-                System.out.println("Invalid choice");
+                System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
         }
-
     }
 }

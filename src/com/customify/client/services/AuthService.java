@@ -17,8 +17,8 @@ public class AuthService {
 
     private Socket socket;
     private AuthenticationDataFormat data;
-   private  boolean authenticated = false;
-     private String loggedInUser = null;
+    private  boolean authenticated = false;
+    private String loggedInUser = null;
 
     public String getLoggedInUser() {
         return loggedInUser;
@@ -67,18 +67,17 @@ public class AuthService {
 
         SendToServer serverSend = new SendToServer(json, this.socket);
         if (serverSend.send()) {
-          this.handleLoginResponse();
+            this.handleLoginResponse();
         }
-     return isAuthenticated();
+        return isAuthenticated();
     }
-
-
 
 
 
     public void handleLoginResponse() throws IOException, ClassNotFoundException {
 
         try {
+
             InputStream input =this.socket.getInputStream();
             ObjectInputStream objectInput = new ObjectInputStream(input);
             List<String> res = (List) objectInput.readObject();
@@ -107,9 +106,15 @@ public class AuthService {
             }
         }catch(Exception e){
             System.out.println( "Exception Caught "+e.getMessage());
-        }
-
 
     }
-
 }
+
+    public String authenticateAdmin(){
+        return  "";
+    }
+
+    public String authenticateEmployee() {
+        return  "";
+    }
+    }

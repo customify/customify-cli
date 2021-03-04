@@ -46,7 +46,8 @@ public class UserSession {
         String firName = jsonNode.get("firName").asText();
         String lasName = jsonNode.get("lasName").asText();
         String id = jsonNode.get("id").asText();
-        String createdAt =  jsonNode.get("createdAt").asText();
+
+
         EmployeeUser user = new EmployeeUser();
 
         user.setEmail(email);
