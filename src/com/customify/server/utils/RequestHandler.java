@@ -113,7 +113,7 @@ public class RequestHandler {
                 couponService.redeemCoupon(json_data);
                 break;
             case GET_ALL_COUPONS:
-//                couponService.getAllCoupons(json_data);
+              couponService.getAllCoupons(json_data);
                 break;
             case GET_ALL_CUSTOMERS:
               customer  = new CustomerService(this.clientSocket,this.json_data);

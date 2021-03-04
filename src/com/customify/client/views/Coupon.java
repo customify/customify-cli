@@ -4,7 +4,6 @@
 package com.customify.client.views;
 
 import com.customify.client.Colors;
-import com.customify.client.data_format.CheckCoupon;
 import com.customify.client.data_format.CouponFormat;
 import com.customify.client.data_format.RedeemCoupon;
 import com.customify.client.services.CouponService;
@@ -117,24 +116,8 @@ public class Coupon {
         this.Header();
 
         this.Title("Coupon list");
-
-       // CouponService couponService = new CouponService(this.socket);
-       // couponService.getCoupons();
-        // TODO: implement getting all coupons
-        this.notYetImplemented();
-    }
-    public void checkCoupon() throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        CheckCoupon checkCoupon = new CheckCoupon();
-
-        this.Header();
-
-        this.Title("Check Coupon");
-
-       // System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter a coupon code: ");
-        //checkCoupon.setCouponCode(scanner.nextLine());
-        // TODO: implement checking coupons
-        this.notYetImplemented();
+      CouponService couponService = new CouponService(this.socket);
+      couponService.getCoupons();
     }
 
     public boolean isLoggedIn() {

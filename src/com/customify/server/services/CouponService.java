@@ -17,7 +17,9 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class CouponService {
@@ -104,19 +106,22 @@ public class CouponService {
      }
   }
 
-  public void checkIfCouponIsValid(){}
 
 
   public void getAllCoupons(String jsonData) throws SQLException {
     try{
-      Statement  statement = Db.getStatement();
-      ResultSet rs = statement.executeQuery("SELECT * FROM Coupon");
-      while (rs.next()){
+      String query = "SELECT * FROM Coupon";
+
+      Statement statement = connection.createStatement();
+
+      ResultSet resultSet = statement.executeQuery(query);
+      List<String> coupons = new ArrayList();
+      while (resultSet.next()){
         ObjectMapper objectMapper = new ObjectMapper();
-        String jsonCoupons =  objectMapper.writeValueAsString(rs);
-        SendToClient sendToClient = new SendToClient(this.socket, Collections.singletonList(jsonCoupons));
-       // System.out.println(rs.getInt(1)+" "+rs.getInt(2)+" "+rs.getString(3)+" "+rs.getDate(4)+" "+rs.getDate(5)+" "+rs.getString(6)+" "+rs.getString(7));
+        String jsonCoupons =  objectMapper.writeValueAsString(resultSet);
+        coupons.add(jsonCoupons);
       }
+      System.out.println("data: "+coupons);
     }catch (SQLException | JsonProcessingException e){
       System.out.println("Sql error: "+e.getMessage());
     }

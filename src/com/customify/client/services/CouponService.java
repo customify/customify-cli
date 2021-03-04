@@ -104,9 +104,10 @@ public class CouponService {
 
         //Casting the response data to list
         List<String> data = (List<String>) this.objectInput.readObject();
-        Iterator itr = data.iterator();
+        System.out.println("data: "+data);
+       Iterator itr = data.iterator();
 
-        //display the businesses
+        /*display the businesses
         System.out.println("------------------------------------------List of Businesses----------------------------------\n");
         System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
         System.out.println();
@@ -114,5 +115,7 @@ public class CouponService {
             JsonNode bs = objectMapper.readTree((String) itr.next());
             System.out.format("%5d%20s%20s%20s%20s%20s\n", bs.get("id").asInt(), bs.get("name").asText(), bs.get("location").asText(), bs.get("address").asText(), bs.get("phone_number").asText(), bs.get("created_at").asText());
         }
+
+       */
     }
 }
