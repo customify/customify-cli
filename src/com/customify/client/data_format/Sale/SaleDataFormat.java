@@ -1,30 +1,30 @@
-package com.customify.client.data_format;
+package com.customify.client.data_format.Sale;
 
 import com.customify.client.Keys;
 
-public class SalesFormat {
-    private String productID;
+public class SaleDataFormat {
     private String customerID;
-    private String amount;
     private String quantity;
+    private String totalPrice;
     private String employeeID;
+    private String productID;
     private Keys key = Keys.ADD_SALE;
 
 
-    public SalesFormat(String productID, String customerID, String amount, String quantity, String employeeID) {
-        this.productID = productID;
+    public SaleDataFormat(String customerID, String quantity, String totalPrice, String employeeID, String productID) {
         this.customerID = customerID;
-        this.amount = amount;
         this.quantity = quantity;
+        this.totalPrice = totalPrice;
         this.employeeID = employeeID;
-    }
-
-    public String getProductID() {
-        return productID;
-    }
-
-    public void setProductID(String productID) {
         this.productID = productID;
+    }
+
+    public Keys getKey() {
+        return key;
+    }
+
+    public void setKey(Keys key) {
+        this.key = key;
     }
 
     public String getCustomerID() {
@@ -35,20 +35,20 @@ public class SalesFormat {
         this.customerID = customerID;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     public String getQuantity() {
         return quantity;
     }
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getEmployeeID() {
@@ -59,11 +59,11 @@ public class SalesFormat {
         this.employeeID = employeeID;
     }
 
-    public Keys getKey() {
-        return key;
+    public String getProductID() {
+        return productID;
     }
 
-    public void setKey(Keys key) {
-        this.key = key;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 }
