@@ -36,6 +36,9 @@ public class Db {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+
+
+
         try{
             connection = DriverManager.getConnection(prop.getProperty("dbUrl"),prop.getProperty("user"),prop.getProperty("password"));
             statement = connection.createStatement();
@@ -43,6 +46,7 @@ public class Db {
         }catch (SQLException e){
             System.out.println("Db error: "+e.getMessage());
         }
+
     }
     /*
      * Getting connection
