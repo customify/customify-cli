@@ -8,6 +8,7 @@ import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -60,7 +61,48 @@ public class CouponService {
     }
   }
 
-  public void redeemCoupon(){}
+  public void redeemCoupon(String jsonData) throws IOException {
+    try{
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode jsonNode = objectMapper.readTree(jsonData);
+
+      String query = "SELECT * FROM Coupon WHERE customer_id=? AND coupon_code=? AND coupon_status = 'NOT_USED'";
+
+      PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+      preparedStatement.setString(1,jsonNode.get("customerID").asText());
+
+      preparedStatement.setString(2,jsonNode.get("coupon_code").asText());
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      int id = 0;
+      String couponValue = null;
+
+      while (resultSet.next()){
+        id = resultSet.getInt(1);
+        couponValue =  resultSet.getString(7);
+      }
+
+      if(id == 0 || couponValue == null){
+        this.sendToClient("Invalid Coupon");
+        return;
+      }
+
+
+     PreparedStatement updateStatement = connection.prepareStatement("UPDATE  Coupon SET coupon_status = 'USED' WHERE coupon_id = ?");
+
+      updateStatement.setInt(1,id);
+
+      updateStatement.execute();
+
+     this.sendToClient("Coupon "+jsonNode.get("coupon_code").asText()+" with value "+couponValue+" has been redeemed");
+
+    } catch (SQLException | IOException e) {
+      System.out.println(e.getMessage());
+      this.sendToClient("Invalid Coupon");
+     }
+  }
 
   public void checkIfCouponIsValid(){}
 

@@ -63,14 +63,27 @@ public class CouponService {
         }
     }
 
-    public void reedemCoupon(RedeemCoupon redeemCoupon){
+    public void redeemCoupon(RedeemCoupon redeemCoupon){
         ObjectMapper objectMapper = new ObjectMapper();
         try{
             String json = objectMapper.writeValueAsString(redeemCoupon);
-            SendToServer sendToServer = new SendToServer(json,this.socket);
+            SendToServer sendToServer = new SendToServer(json, this.socket);
+          if(sendToServer.send()){
+              this.input = this.socket.getInputStream();
+              this.objectInput = new ObjectInputStream(this.input);
+
+              String data = (String) this.objectInput.readObject();
+              System.out.println("\n");
+              System.out.println(Colors.ANSI_BLUE);
+              System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+data);
+              System.out.println(Colors.ANSI_RESET);
+              System.out.println("\n");
+          }
         }catch (JsonProcessingException e){
-            System.out.println("Parsing reedem coupon "+e.getMessage());
-        } catch (IOException e) {
+            System.out.println("Parsing redeem coupon "+e.getMessage());
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

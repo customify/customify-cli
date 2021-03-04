@@ -109,6 +109,9 @@ public class RequestHandler {
             case CREATE_COUPON:
                 couponService.createCoupon(json_data);
                 break;
+            case REDEEMING_COUPON:
+                couponService.redeemCoupon(json_data);
+                break;
             case GET_ALL_COUPONS:
 //                couponService.getAllCoupons(json_data);
                 break;
