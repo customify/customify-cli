@@ -1,7 +1,9 @@
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.SendToServer;
-import com.customify.client.data_format.SalesFormat;
+import com.customify.client.data_format.Sale.SaleDataFormat;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -9,22 +11,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class SalesService {
-    private Socket socket;
-    private InputStream inputStream;
-    private ObjectInputStream objectInputStream;
+    private final Socket socket;
 
     public SalesService(Socket socket) {
         this.socket = socket;
     }
 
-    public void getSaleById(String saleId){}
+    public void ViewAllSalesByCustomer(String saleId){
+        System.out.println(Colors.ANSI_RED);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNOTHING HERE YET");
+        System.out.println(Colors.ANSI_RESET);
+    }
 
-    public void deleteSale(String salesId){}
+    public void salesReports(String salesId){
+        System.out.println(Colors.ANSI_RED);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNOTHING HERE YET");
+        System.out.println(Colors.ANSI_RESET);
+    }
 
     public void getAllSales(String json) throws IOException {
         SendToServer sendToServer = new SendToServer(json,this.socket);
@@ -33,31 +40,42 @@ public class SalesService {
         }
     }
 
-    public void create(SalesFormat salesFormat){}
+    public void create(SaleDataFormat saleDataFormat)  {
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonData = objectMapper.writeValueAsString(saleDataFormat);
+            System.out.println(jsonData);
+        }catch (JsonProcessingException jsonProcessingException){
+          jsonProcessingException.printStackTrace();
+        }
+    }
 
     private void handleAllSalesResponse() {
         try {
-             this.inputStream = this.socket.getInputStream();
-             this.objectInputStream = new ObjectInputStream(this.inputStream);
+            InputStream inputStream = this.socket.getInputStream();
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
              ObjectMapper objectMapper = new ObjectMapper();
 
-            List<String> res =(List) this.objectInputStream.readObject();
+            List res =(List) objectInputStream.readObject();
 
 
             Iterator itr = res.iterator();
 
-            String leftAlignFormat = "| %-10s | %-10s | %-10s | %-10s | %-10s | %-10s %n";
+            String leftAlignFormat = "| %-10s | %-10s | %-10s | %-11s | %-11s | %-10s |%n";
 
-            System.out.println("\n");
-            System.out.format("+------------+------------+------------+-------------+-------------+-------------+%n");
-            System.out.format("| SaleId     | customerID |  quantity  | totalPrice  | employeeID  | productID   |%n");
-            System.out.format("+------------+------------+------------+-------------+-------------+-------------+%n");
+
+            System.out.println(Colors.ANSI_CYAN);
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tALL SALES");
+            System.out.println(Colors.ANSI_RESET);
+            System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+------------+------------+------------+-------------+-------------+------------+%n");
+            System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t| SaleId     | customerID |  quantity  |totalPrice   | employeeID  | productID  |%n");
+            System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+------------+------------+------------+-------------+-------------+------------+%n");
             while (itr.hasNext()) {
                 JsonNode jsonNode = objectMapper.readTree((String) itr.next());
-                System.out.format(leftAlignFormat,jsonNode.get("saleId"),jsonNode.get("customerID"),jsonNode.get("quantity"),jsonNode.get("totalPrice"),jsonNode.get("employeeID"),jsonNode.get("productID"));
+                System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t"+leftAlignFormat,jsonNode.get("saleId"),jsonNode.get("customerID").textValue(),jsonNode.get("quantity").textValue(),jsonNode.get("totalPrice").textValue(),jsonNode.get("employeeID").textValue(),jsonNode.get("productID").textValue());
             }
-            System.out.format("+------------+------------+------------+-------------+-------------+-------------+%n");
+            System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+------------+------------+------------+-------------+-------------+------------+%n");
             System.out.println("\n");
         } catch (IOException | ClassNotFoundException ioException) {
             ioException.printStackTrace();
