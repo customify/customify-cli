@@ -9,7 +9,6 @@ import com.customify.client.utils.authorization.UserSession;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 

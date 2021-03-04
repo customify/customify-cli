@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class PointsService {
     private Socket socket;
 //    private Request request;
     DataOutputStream output;
+    ObjectOutputStream objectOutputStream;
+    OutputStream outputStream;
 
     public PointsService(Socket socket) {
         this.socket = socket;
@@ -44,12 +47,12 @@ public class PointsService {
         String sql = "SELECT Points_winning.customer_id,no_points,Points_winning.created_at,first_name,last_name,email,code FROM Points_winning INNER JOIN Customer ON Points_winning.customer_id = Customer.customer_id AND no_points >= 15";
 
 //        Response response;
+        List<String> winners = new ArrayList();
 
         try {
             Statement statement = Db.getStatement();
             ResultSet records = statement.executeQuery(sql);
 
-            List<String> winners = new ArrayList();
             CustomizedObjectOutputStream outputStream = new CustomizedObjectOutputStream(new ObjectOutputStream(socket.getOutputStream()));
 
             while (records.next()) {
@@ -67,13 +70,16 @@ public class PointsService {
                         )
                 );
             }
-            outputStream.writeObject(winners);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
 //            response = new Response(500,new Object());
+        }finally{
+            outputStream = socket.getOutputStream();
+            this.objectOutputStream = new CustomizedObjectOutputStream(this.outputStream);
+            objectOutputStream.writeObject(winners);
         }
 
-//        OutputStream output = this.socket.getOutputStream();
+//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 //        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 //
 //        List responseData = new ArrayList<>();

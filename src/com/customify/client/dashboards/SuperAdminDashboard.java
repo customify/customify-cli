@@ -60,7 +60,8 @@ public class SuperAdminDashboard {
                         break;
                     case 4:
                         if (userSession.unSet())
-                            loggedIn = false;                        break;
+                            loggedIn = false;
+                        break;
                     default:
                         System.out.println("INVALID CHOICE");
                 }

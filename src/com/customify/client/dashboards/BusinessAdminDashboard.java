@@ -1,7 +1,6 @@
 package com.customify.client.dashboards;
 
 import com.customify.client.Login;
-import com.customify.client.services.PointsService;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.PointCountingView;
 import com.customify.client.views.customer.CustomerMainView;
@@ -61,9 +60,9 @@ public class BusinessAdminDashboard {
 
 
         do {
-            System.out.println("---------------------------------------------");
-            System.out.println("--------------CUSTOMIFY HOME-----------------\n");
-            System.out.println("--------------BUSINESS ADMIN DASHBOARD-----------------\n");
+            System.out.println("|---------------------------------------------|");
+            System.out.println("|              CUSTOMIFY HOME                 |\n");
+            System.out.println("|--------------BUSINESS ADMIN DASHBOARD-------|\n");
             System.out.println("           1. EMPLOYEE MANAGEMENT");
             System.out.println("           2. CUSTOMER MANAGEMENT");
             System.out.println("           3. TODAY'S REPORT");
@@ -89,12 +88,8 @@ public class BusinessAdminDashboard {
 //                    loggedIn=false;
                     break;
                 case 6:
-//                  loggedIn=false;
-                    break;
-                case 7:
-                    if(userSession.unSet()) {
-                        loggedIn = false;
-                    }
+                        if(userSession.unSet())
+                            loggedIn=false;
                     break;
                 default:
                     System.out.println("INVALID CHOICE");

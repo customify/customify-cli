@@ -7,6 +7,7 @@ public class User {
     private String sessionStart;
    private String appUser;
 
+
     public String getAppUser() {
         return appUser;
     }
@@ -14,6 +15,10 @@ public class User {
     public void setAppUser(String appUser) {
         this.appUser = appUser;
     }
+
+
+
+
 
     public String getSessionStart() {
         return sessionStart;

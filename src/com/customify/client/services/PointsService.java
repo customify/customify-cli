@@ -74,7 +74,7 @@ public class PointsService {
 
         try {
             List<String> response = (List<String>) objectInputStream.readObject();
-
+            System.out.println(response);
 //            List<Response> response = (List<Response>) objectInputStream.readObject();
 
 //            if(response.get(0).getStatusCode() == 200){
