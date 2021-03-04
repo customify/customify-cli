@@ -1,14 +1,15 @@
-package com.customify.server.models.submodels;
+package com.customify.server.models.billing;
 //Created by Moss
+//Whole document wrote by Moss
 
-public class Plan <I,T,D>{
+public class PlanModel<I,T,D>{
     //    S represents data type for title, description
     //    I represents data type for Id
     private I planId;
     private T planTitle;
     private D planDescription;
-
-    public Plan(I planId, T planTitle, D planDescription){
+    public PlanModel(){ }
+    public PlanModel(I planId, T planTitle, D planDescription){
         this.planId = planId;
         this.planTitle = planTitle;
         this.planDescription = planDescription;
