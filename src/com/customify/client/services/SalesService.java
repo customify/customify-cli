@@ -3,7 +3,6 @@ package com.customify.client.services;
 import com.customify.client.Colors;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.Sale.SaleDataFormat;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -44,9 +43,16 @@ public class SalesService {
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonData = objectMapper.writeValueAsString(saleDataFormat);
+            SendToServer sendToServer = new SendToServer(jsonData,this.socket);
+
             System.out.println(jsonData);
-        }catch (JsonProcessingException jsonProcessingException){
-          jsonProcessingException.printStackTrace();
+
+            if(sendToServer.send()){
+                this.handleCreateSale();
+            }
+
+        }catch (IOException e){
+          e.printStackTrace();
         }
     }
 
@@ -81,4 +87,9 @@ public class SalesService {
             ioException.printStackTrace();
         }
     }
+   private void handleCreateSale(){
+       System.out.println(Colors.ANSI_BLUE);
+       System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\tProduct sold!");
+       System.out.println(Colors.ANSI_RESET);
+   }
 }

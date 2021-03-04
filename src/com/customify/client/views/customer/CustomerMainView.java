@@ -22,8 +22,8 @@ public class CustomerMainView {
         setLoggedIn(loggedIn);
         if(this.loggedIn)
             this.view();
-        else
-             login = new Login(socket);
+         else
+            login = new Login(socket);
     }
 
     public Socket getSocket() {
@@ -46,6 +46,7 @@ public class CustomerMainView {
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. Search Customer");
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. Update Customer");
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. Disable Customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. Re-enable Customer");
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t00. Back");
                 System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-00>"+Colors.ANSI_RESET+": ");
                 Scanner scan = new Scanner(System.in);
@@ -97,7 +98,7 @@ public class CustomerMainView {
 
     public void Header(){
         System.out.println(Colors.ANSI_GREEN);
-        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCUSTOMIFY CUSTOMER MANAGEMENT");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\tCUSTOMIFY CUSTOMER MANAGEMENT");
         System.out.println(Colors.ANSI_RESET);
     }
 }

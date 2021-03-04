@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-import com.customify.server.services.NotificationService;
+
 public class Db {
     private static  Connection connection = null;
     private static Statement statement = null;

@@ -40,7 +40,7 @@ public class BusinessAdminDashboard {
             this.view();
         else{
             System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST\n\n");
-            Login login =new Login(this.socket);
+          Login login =new Login(this.socket);
         }
 
     }
@@ -57,7 +57,6 @@ public class BusinessAdminDashboard {
 
     public void view()throws Exception{
         Scanner scan = new Scanner(System.in);
-
 
         do {
 
@@ -97,11 +96,9 @@ public class BusinessAdminDashboard {
             }
         }while(loggedIn);
     }
-
     public void Header(){
         System.out.println(Colors.ANSI_CYAN);
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBUSINESS ADMIN DASHBOARD");
         System.out.println(Colors.ANSI_RESET);
     }
-
 }
