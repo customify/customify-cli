@@ -41,6 +41,7 @@ public class PointCountingView {
             System.out.println("\n\t\t00. Return Home");
             System.out.println("\t\t1. Winners");
             System.out.println("\t\t2. Points by customer");
+            System.out.println("\t\t3. Back");
 
             System.out.print("\n\n\t\tEnter your choice: ");
             choice=scan.nextLine();

@@ -5,14 +5,7 @@ import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
 import com.customify.server.services.SalesService;
-import com.customify.server.controllers.AuthController;
-import com.customify.server.services.PointsController;
 import com.customify.server.services.BusinessService;
-import com.customify.server.controllers.FeedbackController;
-import com.customify.server.services.CustomerService;
-import com.customify.server.services.BusinessService;
-import com.customify.server.services.ProductService;
-import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,7 +19,6 @@ public class RequestHandler {
 
     private final Socket clientSocket;
     private Keys key;
-    private PointsController pointsController;
     private String json_data;
 
     public RequestHandler(Socket socket) {
@@ -68,11 +60,11 @@ public class RequestHandler {
 //                productController.registerProduct();
 
             case GET_WINNERS:
-                pointsController.getWinners();
+                pointsService.getWinners();
                 break;
-            case POINTS_BY_CUSTOMER_EMAIL:
-                pointsController.getPointsByCustomerEmail(json_data);
-                break;
+//            case POINTS_BY_CUSTOMER_EMAIL:
+//                pointsController.getPointsByCustomerEmail(json_data);
+//                break;
 
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
@@ -98,9 +90,6 @@ public class RequestHandler {
                 break;
             case GET_BUSINESS:
                 businessService.getBusinessById(json_data);
-                break;
-            case GET_WINNERS:
-                pointsService.getWinners();
                 break;
             case AUTHENTICATION:
                 AuthService auth = new AuthService(this.clientSocket,this.json_data);
