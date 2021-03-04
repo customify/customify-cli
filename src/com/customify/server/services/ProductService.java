@@ -190,12 +190,13 @@ public class ProductService {
 
             stmt.executeUpdate(sql);
 
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(200,product);
-//            responseData.add(response);
+            ProductFormat productFormat = new ProductFormat();
+            productFormat.setStatus(200);
+            System.out.println("Name: "+productFormat.getName());
 
-            //Sending the response to client
-//            objectOutput.writeObject(responseData);
+            responseData.clear();
+            responseData.add(new ObjectMapper().writeValueAsString(productFormat));
+            objectOutput.writeObject(responseData);
 
             stmt.close();
             conn.close();

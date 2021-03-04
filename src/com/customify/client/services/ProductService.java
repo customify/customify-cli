@@ -60,7 +60,6 @@ public class ProductService {
 
         //if the sending is successful call a method to handle response from server
         if (sendToServer.send()) {
-            System.out.println("Reached here 1");
             this.handleGetProductByIdSuccess();
         }
         else{
@@ -248,30 +247,35 @@ public class ProductService {
      * */
 
     public void handleUpdateProductSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-//        try {
-//            List<Response> response = (List<Response>) objectInputStream.readObject();
-//            System.out.println("Status: "- response.get(0).getStatusCode());
-//            if(response.get(0).getStatusCode() == 200){
-//                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
-//
-//                System.out.println("-------------------------------------------");
-//                System.out.println("\t\t product Updated successfully");
-//                System.out.println("-------------------------------------------");
-//            }
-//            else if(response.get(0).getStatusCode() == 400){
-//                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-//            }
-//            else{
-//                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-//            }
+        try {
+            InputStream input = this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
 
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
-//        }
+            List<String> response = (List) objectInput.readObject();
+            String json_response = response.get(0);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json_response);
+
+            if(jsonNode.get("status").asInt() == 200){
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("|                                         |");
+                System.out.println("|       Product Updated Successfully      |");
+                System.out.println("|                                         |");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+            }
+            else if(jsonNode.get("status").asInt() == 400){
+                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
+            }
+            else{
+                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
+            }
+
+        } catch (IOException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        } catch (ClassNotFoundException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        }
 
         return;
     }

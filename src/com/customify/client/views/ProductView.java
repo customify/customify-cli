@@ -151,7 +151,7 @@ public class ProductView {
         newProduct.setCreatedAt(LocalDate.now().toString());
 
         ProductService productService = new ProductService(this.socket);
-       //productService.updateProduct(newProduct);
+        productService.updateProduct(newProduct);
 
     }
 

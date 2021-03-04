@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f082859-419d-42e4-a1e2-47bf42746195" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +43,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.11" />
@@ -100,7 +108,7 @@
       <workItem from="1614657328085" duration="10154000" />
       <workItem from="1614708729915" duration="3293000" />
       <workItem from="1614744609835" duration="8219000" />
-      <workItem from="1614882129732" duration="1446000" />
+      <workItem from="1614882129732" duration="2208000" />
     </task>
     <task id="LOCAL-00002" summary="Conflict resolved">
       <created>1614147865077</created>
@@ -186,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614883374778</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="getProductByID working successfully">
+      <created>1614883731279</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1614883731279</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,6 +233,7 @@
     <MESSAGE value="update our branch with main" />
     <MESSAGE value="get response is now working!" />
     <MESSAGE value="client's ProductService getProductById's format ready to get Response from Server." />
-    <option name="LAST_COMMIT_MESSAGE" value="client's ProductService getProductById's format ready to get Response from Server." />
+    <MESSAGE value="getProductByID working successfully" />
+    <option name="LAST_COMMIT_MESSAGE" value="getProductByID working successfully" />
   </component>
 </project>
