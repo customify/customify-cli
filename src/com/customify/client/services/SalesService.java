@@ -45,8 +45,6 @@ public class SalesService {
             String jsonData = objectMapper.writeValueAsString(saleDataFormat);
             SendToServer sendToServer = new SendToServer(jsonData,this.socket);
 
-            System.out.println(jsonData);
-
             if(sendToServer.send()){
                 this.handleCreateSale();
             }
@@ -87,9 +85,21 @@ public class SalesService {
             ioException.printStackTrace();
         }
     }
-   private void handleCreateSale(){
-       System.out.println(Colors.ANSI_BLUE);
-       System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\tProduct sold!");
-       System.out.println(Colors.ANSI_RESET);
+   private void handleCreateSale()  {
+        try{
+            InputStream inputStream = this.socket.getInputStream();
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
+            String res =(String) objectInputStream.readObject();
+
+            System.out.println("handling sale");
+
+          //  System.out.println(Colors.ANSI_BLUE);
+           // System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t from the server"+res);
+           // System.out.println(Colors.ANSI_RESET);
+        }catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+
    }
 }
