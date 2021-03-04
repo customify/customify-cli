@@ -33,5 +33,4 @@ public enum Keys {
     GET_ALL_COUPONS,
     GET_CUSTOMER,
     GET_ALL_SALES
-
 }
