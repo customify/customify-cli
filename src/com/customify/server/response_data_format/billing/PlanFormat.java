@@ -1,6 +1,9 @@
 package com.customify.server.response_data_format.billing;
 
-// Created BY Moss Aimelyse whole document
+/**
+ * @author Mfuranziza Sekata Aimelyse Moss
+ * Created and Wrote Whole Document By Moss
+ * */
 
 import com.customify.server.models.billing.PlanModel;
 
