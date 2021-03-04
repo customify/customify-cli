@@ -136,15 +136,15 @@ public class ProductService {
 
             final JsonNode products = response.get("products");
             if (products.isArray()) {
-                System.out.println("\n\t\t\t|----------------------------------------------------------------------------------------------------------------------------");
-                System.out.println("\t\t\t|\t\t\t\t\t\t\tHere is a list of products registered so far");
-                System.out.println("\t\t\t|----------------------------------------------------------------------------------------------------------------------------\n");
-                System.out.println(String.format("\t\t\t|\t%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
-                System.out.println("\t\t\t|----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println("\n\t\t\t----------------------------------------------------------------------------------------------------------------------------");
+                System.out.println("\t\t\t\t\t\t\t\t\t\tHere is a list of products registered so far");
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println(String.format("\t\t\t\t%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
                 for (final JsonNode product : products) {
-                    System.out.println(String.format("\t\t\t|\t%-15s %-30s %-10s %10s %20s %20s", product.get("productCode").asText(), product.get("name").asText(), product.get("quantity").asText(), product.get("price").asText(), product.get("bondedPoints").asText(), product.get("createdAt").asText()));
+                    System.out.println(String.format("\t\t\t\t%-15s %-30s %-10s %10s %20s %20s", product.get("productCode").asText(), product.get("name").asText(), product.get("quantity").asText(), product.get("price").asText(), product.get("bondedPoints").asText(), product.get("createdAt").asText()));
                 }
-                System.out.println("\t\t\t|----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
             }
         }catch(Exception e){
             System.out.println("RESPONSE ERROR" + e.getMessage());
