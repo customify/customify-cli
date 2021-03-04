@@ -31,7 +31,7 @@ public class ProductView {
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t5.Delete product");
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t00.back");
 
-        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_GREEN +"Enter option:\t");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_GREEN +"Enter option:\t"+Colors.ANSI_RESET);
         choice = Integer.parseInt(reader.nextLine());
 
         switch (choice) {

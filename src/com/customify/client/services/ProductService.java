@@ -131,15 +131,15 @@ public class ProductService {
 
             final JsonNode products = response.get("products");
             if (products.isArray()) {
-                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------");
-                System.out.println("\t\t\t\t\t\t\t\t\t\tHere is a list of products registered so far");
-                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
-                System.out.println(String.format("\t\t\t%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
-                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println("\n\t\t\t|----------------------------------------------------------------------------------------------------------------------------");
+                System.out.println("\t\t\t|\t\t\t\t\t\t\tHere is a list of products registered so far");
+                System.out.println("\t\t\t|----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println(String.format("\t\t\t|\t%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
+                System.out.println("\t\t\t|----------------------------------------------------------------------------------------------------------------------------\n");
                 for (final JsonNode product : products) {
-                    System.out.println(String.format("\t\t\t%-15s %-30s %-10s %10s %20s %20s", product.get("productCode").asText(), product.get("name").asText(), product.get("quantity").asText(), product.get("price").asText(), product.get("bondedPoints").asText(), product.get("createdAt").asText()));
+                    System.out.println(String.format("\t\t\t|\t%-15s %-30s %-10s %10s %20s %20s", product.get("productCode").asText(), product.get("name").asText(), product.get("quantity").asText(), product.get("price").asText(), product.get("bondedPoints").asText(), product.get("createdAt").asText()));
                 }
-                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println("\t\t\t|----------------------------------------------------------------------------------------------------------------------------\n");
             }
         }catch(Exception e){
             System.out.println("RESPONSE ERROR" + e.getMessage());
@@ -158,12 +158,12 @@ public class ProductService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode response = objectMapper.readTree(res.get(0));
 
-            if (response.get("status").asInt() == 201) System.out.println("\n\n\t\tPRODUCT CREATED SUCCESSFULLY\n\n");
-            else if(response.get("status").asInt() == 400) System.out.println("\n\n\t\tBAD FORMAT WAS SUPPLIED TO SOME FIELDS\n\n");
-            else if(response.get("status").asInt() == 500) System.out.println("\n\n\t\tBACKEND INTERNAL SERVER ERROR.\n\n");
-            else System.out.println("\n\n\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
+            if (response.get("status").asInt() == 201) System.out.println("\n\n\t\t\t\tPRODUCT CREATED SUCCESSFULLY\n\n");
+            else if(response.get("status").asInt() == 400) System.out.println("\n\n\t\t\t\tBAD FORMAT WAS SUPPLIED TO SOME FIELDS\n\n");
+            else if(response.get("status").asInt() == 500) System.out.println("\n\n\t\t\t\tBACKEND INTERNAL SERVER ERROR.\n\n");
+            else System.out.println("\n\n\t\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
         }catch(Exception e){
-            System.out.println("\n\n\t\tERROR OCCURRED.TRY AGAIN\n\n");
+            System.out.println("\n\n\t\t\t\t\t\t\tERROR OCCURRED.TRY AGAIN\n\n");
         }
         return;
     }
