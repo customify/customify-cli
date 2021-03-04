@@ -28,13 +28,13 @@ public class DeleteCustomerFeedbacks {
         this.socket = socket;
     }
 
-    public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Enter customer id: \t");
-        int customerId = scan.nextInt();
-        String json = "{ \"custmerId\" : \"" + customerId + "\", \"key\" : \"" + Keys.REMOVE_FEEDBACK + "\" }";
-        CustomerFeedbackService cFeedbackService = new CustomerFeedbackService(socket);
-        cFeedbackService.getAllCustomerFeedbacks(json);
-        // scan.close();
-    }
+//    public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
+//        Scanner scan = new Scanner(System.in);
+//        System.out.print("Enter customer id: \t");
+//        int customerId = scan.nextInt();
+//        String json = "{ \"custmerId\" : \"" + customerId + "\", \"key\" : \"" + Keys.REMOVE_FEEDBACK + "\" }";
+//        CustomerFeedbackService cFeedbackService = new CustomerFeedbackService(socket);
+//        cFeedbackService.getAllCustomerFeedbacks(json);
+//        // scan.close();
+//    }
 }

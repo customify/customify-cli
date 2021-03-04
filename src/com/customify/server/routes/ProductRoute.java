@@ -11,7 +11,7 @@
  */
 package com.customify.server.routes;
 
-import com.customify.server.controllers.ProductController;
+//import com.customify.server.controllers.ProductController;
 import com.customify.server.services.ProductService;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ import java.sql.SQLException;
 public class ProductRoute {
 
     Socket socket;
-    ProductController productController;
+//    ProductController productController;
 
     public ProductRoute(Socket socket) {
         this.socket = socket;
@@ -29,13 +29,13 @@ public class ProductRoute {
 
 
     public void  registerProduct() throws IOException, SQLException {
-        productController.registerProduct();
+//        productController.registerProduct();
     }
     public void  getProductById() throws IOException, SQLException {
-        productController.getProductById();
+//        productController.getProductById();
     }
     public void  updateProduct() throws IOException, SQLException {
-        productController.updateProduct();
+//        productController.updateProduct();
     }
 
     /*

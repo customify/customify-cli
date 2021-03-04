@@ -7,6 +7,7 @@
  */
 package com.customify.server.services;
 
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.data_format_CustomerFeedback.CustomerFeedbackDataFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,8 +29,6 @@ public class CustomerFeedbackService {
 
     public CustomerFeedbackService(Socket socket)throws IOException{
         this.socket = socket;
-        this.output = socket.getOutputStream();
-        this.objectOutput = new ObjectOutputStream(output);
     }
 
     // function to send data to the database
@@ -98,6 +97,8 @@ public class CustomerFeedbackService {
                 String json = objectMapper.writeValueAsString(cf);
                 feedbacks.add(json);
             }
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(feedbacks);
         } catch (Exception e){
             e.printStackTrace();

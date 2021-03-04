@@ -65,13 +65,14 @@ public class CustomerFeedbackService {
         Iterator rs = data.iterator();
 
         System.out.println("\nAll customer Feedbacks\n");
-        System.out.format("%5s%5s%15%20s%20s\n", "CustomerID", "BusinessId", "Title", "Description", "CreatedD");
+        System.out.format("%5s%35s%35s%35s%35s\n", "CustomerID", "BusinessId", "Title", "Description", "CreatedD");
         System.out.println();
         ;
             while (rs.hasNext()) {
                 JsonNode cf = objectMapper.readTree((String) rs.next());
-                System.out.format("%5d%5d%15s%10s%12s\n", cf.get("customer_id").asInt(), cf.get("business_id").asInt(),
-                        cf.get("title").asText(), cf.get("description").asText(), cf.get("created_date").asText());
+//                System.out.println(cf);
+                System.out.format("%5d%35d%35s%35s%35s\n", cf.get("customerId").asInt(), cf.get("businessId").asInt(),
+                        cf.get("title").asText(), cf.get("description").asText(), cf.get("creationDate").asText());
             }
     }
 
