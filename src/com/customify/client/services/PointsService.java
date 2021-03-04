@@ -18,7 +18,6 @@ import java.util.List;
 public class PointsService {
     private Socket socket;
 //    private Common common;
-
     InputStream inputStream;
     ObjectInputStream objectInputStream;
 
@@ -41,12 +40,15 @@ public class PointsService {
             if (sendToServer.send()) {
                 System.out.println("\n\t\tRequest Sent successfully\n");
                 this.getAllWinnersSuccess();
-            } else {
+            }
+            else{
                 System.out.println("\nError occurred when sending request to server\n");
             }
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+//        System.out.println("finished sending");
     }
 
 //    public void getPointsByCustomerEmail(PointsByCustomerEmailFormat format) {
@@ -99,6 +101,7 @@ public class PointsService {
             } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println("Sending........");
     }
 
     public Socket getSocket() {

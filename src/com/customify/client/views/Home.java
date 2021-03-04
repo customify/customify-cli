@@ -44,17 +44,21 @@ public class Home {
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
         CouponMainView couponView = new CouponMainView(this.socket);
 
-        System.out.println("---------------------------------------------");
-        System.out.println("--------------CUSTOMIFY HOME-----------------\n");
-        System.out.println("           1. SIGN UP");
-        System.out.println("           2. LOGIN");
-        System.out.println("           3. PRODUCT MANAGEMENT");
-        System.out.println("           4. BUSINESS");
-        System.out.println("           5. GIVE FEEDBACK");
-        System.out.println("           6. PROVIDE FEEDBACK ");
-        System.out.println("           7. POINTS");
-        System.out.println("           8. CUSTOMER MANAGEMENT");
-        System.out.println("           9. COUPONS");
+        System.out.println("\t\t---------------------------------------------");
+        System.out.println("\t\t--------------CUSTOMIFY HOME-----------------");
+        System.out.println("\t\t---------------------------------------------");
+        System.out.println("\t           1. SIGN UP");
+        System.out.println("\t           2. LOGIN");
+        System.out.println("\t           3. PRODUCT MANAGEMENT");
+        System.out.println("\t           4. REGISTER BUSINESS");
+        System.out.println("\t           5. GIVE FEEDBACK");
+        System.out.println("\t           6. PROVIDE FEEDBACK ");
+        System.out.println("\t           7. POINTS");
+        System.out.println("\t           8. CUSTOMER MANAGEMENT");
+        System.out.println("\t           9. COUPONS");
+        System.out.println("\t\t---------------------------------------------");
+
+        System.out.print("\n\n\t\tEnter your choice: ");
         choice = scan.nextInt();
 
         switch (choice) {

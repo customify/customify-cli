@@ -5,6 +5,14 @@ import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
 import com.customify.server.services.SalesService;
+import com.customify.server.controllers.AuthController;
+import com.customify.server.services.PointsController;
+import com.customify.server.services.BusinessService;
+import com.customify.server.controllers.FeedbackController;
+import com.customify.server.services.CustomerService;
+import com.customify.server.services.BusinessService;
+import com.customify.server.services.ProductService;
+import com.customify.shared.Request;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,6 +26,7 @@ public class RequestHandler {
 
     private final Socket clientSocket;
     private Keys key;
+    private PointsController pointsController;
     private String json_data;
 
     public RequestHandler(Socket socket) {
@@ -57,7 +66,14 @@ public class RequestHandler {
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
 //                productController.registerProduct();
+
+            case GET_WINNERS:
+                pointsController.getWinners();
                 break;
+            case POINTS_BY_CUSTOMER_EMAIL:
+                pointsController.getPointsByCustomerEmail(json_data);
+                break;
+
             case FEEDBACK:
 //                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
 //                fController.sendDataInDb();

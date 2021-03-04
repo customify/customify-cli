@@ -1,5 +1,6 @@
 package com.customify.client.views;
 
+//import com.customify.client.services.AuthService;
 import com.customify.client.services.PointsService;
 import java.io.IOException;
 import java.net.Socket;
@@ -11,6 +12,9 @@ import java.util.Scanner;
 public class PointCountingView {
     private Socket socket;
 
+    public PointCountingView() {
+
+    }
     public PointCountingView(Socket socket) {
         this.socket = socket;
     }
