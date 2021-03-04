@@ -8,6 +8,7 @@ import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.Business.BusinessView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackMainView;
 import com.customify.client.views.customer.CustomerMainView;
 
 import java.net.Socket;
@@ -34,7 +35,6 @@ public class Home {
         int choice;
         Scanner scan = new Scanner(System.in);
 
-        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
         CustomerMainView customer = new CustomerMainView(this.socket,true);
 
         ProductView productView = new ProductView(this.socket);
@@ -43,6 +43,8 @@ public class Home {
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
         Coupon couponView = new Coupon(this.socket);
+//        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
+        CustomerFeedbackMainView cfMainView =  new CustomerFeedbackMainView(socket);
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------\n");
@@ -55,6 +57,7 @@ public class Home {
         System.out.println("           7. POINTS");
         System.out.println("           8. CUSTOMER MANAGEMENT");
         System.out.println("           9. COUPONS");
+        System.out.println("           10.OPERATE");
         choice = scan.nextInt();
 
         switch (choice) {
@@ -74,8 +77,8 @@ public class Home {
                 System.out.println("Not Yet Done");
                 break;
             case 6:
-                feedbackView.view();
-                break;
+//                feedbackView.view();
+//                break;
             case 7:
 //                pointCountingView.view();
                 break;
@@ -84,6 +87,9 @@ public class Home {
                 break;
             case 9:
                 couponView.init();
+                break;
+            case 10:
+                cfMainView.view();
                 break;
             default:
                 System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);

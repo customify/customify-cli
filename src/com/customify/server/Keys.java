@@ -4,6 +4,8 @@ public enum Keys {
     LOGIN,
     REGISTER,
     FEEDBACK,
+    GET_ALL_FEEDBACKS,
+//    REMOVE_FEEDBACK,
     GET_USERS,
     CREATE_PRODUCT,
     GET_ALL_PRODUCTS,

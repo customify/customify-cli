@@ -2,6 +2,7 @@ package com.customify.server.utils;
 
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
+import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
@@ -48,6 +49,7 @@ public class RequestHandler {
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
         SalesService salesService = new SalesService(this.clientSocket);
+//        CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
 
         switch (this.key) {
             case CREATE_BUSINESS:
@@ -62,8 +64,12 @@ public class RequestHandler {
 //                productController.registerProduct();
                 break;
             case FEEDBACK:
-//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
-//                fController.sendDataInDb();
+                CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
+                feedback.Feedback(json_data);
+                break;
+            case GET_ALL_FEEDBACKS:
+                CustomerFeedbackService feedback1 = new CustomerFeedbackService(this.clientSocket);
+                feedback1.getAllFeedbacks();
                 break;
             case GET_ALL_PRODUCTS:
 //                productController.getAllProducts();
