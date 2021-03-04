@@ -1,6 +1,7 @@
 package com.customify.client.views;
 
 //import com.customify.client.services.AuthService;
+import com.customify.client.Colors;
 import com.customify.client.services.PointsService;
 import java.io.IOException;
 import java.net.Socket;
@@ -37,13 +38,12 @@ public class PointCountingView {
         String customerEmail = null;
 
         pointsLoop:do{
-            System.out.println("------------------POINTS---------------------");
-            System.out.println("\n\t\t00. Return Home");
-            System.out.println("\t\t1. Winners");
-            System.out.println("\t\t2. Points by customer");
-            System.out.println("\t\t3. Back");
+            this.Header();
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. WINNERS");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. POINTS BY EMAIL");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. BACK");
 
-            System.out.print("\n\n\t\tEnter your choice: ");
+            System.out.print("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice: ");
             choice=scan.nextLine();
 
             switch (choice){
@@ -52,7 +52,7 @@ public class PointCountingView {
                     pointsService.getWinners();
                     break;
                 case "2":
-                    System.out.print("\n\t\tEnter Customer Email: ");
+                    System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter Customer Email: ");
 //                    customerEmail = scan.nextLine();
 //                    PointsByCustomerEmailFormat format = new PointsByCustomerEmailFormat(customerEmail);
 //                    PointsService pointsService = new PointsService(socket);
@@ -61,10 +61,15 @@ public class PointCountingView {
                 case "3":
                     break pointsLoop;
                 default:
-                    System.out.println("INVALID CHOICE");
+                    System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
 
             }
             points = false;
         }while(points);
+    }
+    public void Header(){
+        System.out.println(Colors.ANSI_CYAN);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tWINNERS");
+        System.out.println(Colors.ANSI_RESET);
     }
 }

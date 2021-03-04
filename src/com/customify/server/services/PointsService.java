@@ -29,6 +29,8 @@ public class PointsService {
     DataOutputStream output;
     ObjectOutputStream objectOutputStream;
     OutputStream outputStream;
+    private ObjectMapper objectMapper = new ObjectMapper();
+
 
     public PointsService(Socket socket) {
         this.socket = socket;
@@ -43,7 +45,7 @@ public class PointsService {
 //    }
 
     public void getWinners() throws SQLException, IOException {
-//        System.out.println("Request to get winners received at server");
+        System.out.println("Request to get winners received at server");
         String sql = "SELECT Points_winning.customer_id,no_points,Points_winning.created_at,first_name,last_name,email,code FROM Points_winning INNER JOIN Customer ON Points_winning.customer_id = Customer.customer_id AND no_points >= 15";
 
 //        Response response;
@@ -53,23 +55,22 @@ public class PointsService {
             Statement statement = Db.getStatement();
             ResultSet records = statement.executeQuery(sql);
 
-            CustomizedObjectOutputStream outputStream = new CustomizedObjectOutputStream(new ObjectOutputStream(socket.getOutputStream()));
+//            CustomizedObjectOutputStream outputStream = new CustomizedObjectOutputStream(new ObjectOutputStream(socket.getOutputStream()));
 
             while (records.next()) {
-                winners.add(
-                        new ObjectMapper().writeValueAsString(
-                                new WinnersDataFormat(
-                                        records.getString("customer_id"),
-                                        records.getString("first_name"),
-                                        records.getString("last_name"),
-                                        records.getString("email"),
-                                        records.getFloat("no_points"),
-                                        records.getString("created_at"),
-                                        records.getString("code")
-                                )
-                        )
+                WinnersDataFormat winnersDataFormat = new WinnersDataFormat(
+                        records.getString("customer_id"),
+                        records.getString("first_name"),
+                        records.getString("last_name"),
+                        records.getString("email"),
+                        records.getInt("no_points"),
+                        records.getString("created_at"),
+                        records.getString("code")
                 );
+                String jsonData = this.objectMapper.writeValueAsString(winnersDataFormat);
+                winners.add(jsonData);
             }
+//            System.out.println(winners);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
 //            response = new Response(500,new Object());

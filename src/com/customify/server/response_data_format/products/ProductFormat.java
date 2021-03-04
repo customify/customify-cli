@@ -1,17 +1,15 @@
 /**
  * @description
- * Class to provide the Product's json format structure to be sent as Requests
+ * Class to provide the format of Responses sent to client regarding Products.
  * @author SAUVE Jean-Luc
  * @version 1
  * */
 
-package com.customify.client.data_format.products;
+package com.customify.server.response_data_format.products;
 
-import com.customify.client.Keys;
 
-public class ProductFormat  {
-
-    private Keys key;
+public class ProductFormat{
+    private int status;
     private int id;
     private long productCode;
     private int business_id;
@@ -43,7 +41,6 @@ public class ProductFormat  {
 
         return (long) (Math.random() * (max - min + 1) + min);
     }
-
     //Getters and Setters
     public long getProductCode() {
         return productCode;
@@ -99,16 +96,20 @@ public class ProductFormat  {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
-    public Keys getKey() {
-        return key;
+
+    public int getStatus() {
+        return status;
     }
-    public void setKey(Keys key) {
-        this.key = key;
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

@@ -4,6 +4,7 @@
 
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.GetWinnersDataFormat;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PointsService {
@@ -38,7 +40,7 @@ public class PointsService {
 
             SendToServer sendToServer = new SendToServer(request,socket);
             if (sendToServer.send()) {
-                System.out.println("\n\t\tRequest Sent successfully\n");
+//                System.out.println("\n\t\tRequest Sent successfully\n");
                 this.getAllWinnersSuccess();
             }
             else{
@@ -71,12 +73,12 @@ public class PointsService {
         inputStream = this.getSocket().getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
         ObjectMapper objectMapper = new ObjectMapper();
-        
-        
+
+
 
         try {
-            List<String> response = (List<String>) objectInputStream.readObject();
-            System.out.println(response);
+            List<String> response = (ArrayList<String>) objectInputStream.readObject();
+//            System.out.println(response);
 //            List<Response> response = (List<Response>) objectInputStream.readObject();
 
 //            if(response.get(0).getStatusCode() == 200){
@@ -91,17 +93,20 @@ public class PointsService {
                 System.out.println("\n\n\t\t\tNo winner to show\n\n");
                 return;
             }
-
-            System.out.println(String.format("%-10s %-20s %-20s %-24s %10s %-10s %10s", "Customer Id", "First name", "Last name", "Email", "Points", "Winning date", "Customer code"));
-
+            System.out.println("\n\n");
+            this.Header();
+            System.out.println(Colors.ANSI_GREEN);
+            System.out.format("\t%5s%15s%15s%20s%20s%20s%20s", "Customer Id", "First name", "Last name", "Email", "Points", "Winning date", "Customer code");
+            System.out.println(Colors.ANSI_RESET);
             for (int i = 0; i < response.size(); i++) {
                 JsonNode node = objectMapper.readTree(response.get(i));
-                System.out.println(String.format("%-10s %-20s %-20s %-24s %10s %-10s %10s", node.get("customerId").asInt(),node.get("firstName").asText(), node.get("lastName").asText(), node.get("email").asText(), node.get("noPoints").asDouble(), node.get("winingDate").asText(), node.get("code").asText()));
+
+                System.out.format("\t%5s%15s%15s%15s%20s%20s%20s", node.get("customerId").asInt(),node.get("firstName").asText(), node.get("lastName").asText(), node.get("email").asText(), node.get("noPoints").asDouble(), node.get("winingDate").asText(), node.get("code").asText());
             }
-            } catch (ClassNotFoundException e) {
+            System.out.println("\n\n");
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("Sending........");
     }
 
     public Socket getSocket() {
@@ -110,5 +115,10 @@ public class PointsService {
 
     public void setSocket(Socket socket) {
         this.socket = socket;
+    }
+    public void Header(){
+        System.out.println(Colors.ANSI_CYAN);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tWINNERS");
+        System.out.println(Colors.ANSI_RESET);
     }
 }

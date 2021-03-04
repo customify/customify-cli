@@ -1,9 +1,11 @@
 package com.customify.client.views.customer;
 
+import com.customify.client.Colors;
 import com.customify.client.Login;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class CustomerMainView {
@@ -20,8 +22,8 @@ public class CustomerMainView {
         setLoggedIn(loggedIn);
         if(this.loggedIn)
             this.view();
-        else
-             login = new Login(socket);
+         else
+            login = new Login(socket);
     }
 
     public Socket getSocket() {
@@ -35,16 +37,18 @@ public class CustomerMainView {
     public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
 
-        if(!loggedIn)
+        if(loggedIn)
         {
             label:do {
-                System.out.println("------------------HOME >> CUSTOMER MANAGEMENT---------------------");
-                System.out.println("\n         00. Return Home");
-                System.out.println("         1. Add New Customer");
-                System.out.println("         2. Read All Customer");
-                System.out.println("         3. Search Customer");
-                System.out.println("         4. Update Customer");
-                System.out.println("         5. Disable Customer");
+                this.Header();
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. Add New Customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. Read All Customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. Search Customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. Update Customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. Disable Customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. Re-enable Customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t00. Back");
+                System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-00>"+Colors.ANSI_RESET+": ");
                 Scanner scan = new Scanner(System.in);
                 String choice = scan.nextLine();
 
@@ -54,8 +58,12 @@ public class CustomerMainView {
                         customer.view();
                         break;
                     case "2":
+                        ReadAll customers = new ReadAll(this.socket);
+                        customers.view();
                         break;
                     case "3":
+                        ReadOne readOne = new ReadOne(this.socket);
+                        readOne.view();
                         break;
                     case "4":
                         UpdateCustomerView updatecustomer =new UpdateCustomerView(this.socket);
@@ -65,12 +73,15 @@ public class CustomerMainView {
                         DisableCustomerView customerView1= new DisableCustomerView(this.socket);
                         customerView1.view();
                         break;
+                    case "6":
+                        ReEnableCustomer activateCustomer = new ReEnableCustomer(this.socket);
+                        activateCustomer.init();
+                        break;
                     case "00":
                         customerView = false;
                         break;
                     default:
-                        System.out.println("INVALID CHOICE");
-
+                        System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
                 }
             } while (customerView);
         }
@@ -83,5 +94,11 @@ public class CustomerMainView {
 
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
+    }
+
+    public void Header(){
+        System.out.println(Colors.ANSI_GREEN);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\tCUSTOMIFY CUSTOMER MANAGEMENT");
+        System.out.println(Colors.ANSI_RESET);
     }
 }
