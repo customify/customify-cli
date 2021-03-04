@@ -94,7 +94,9 @@ public class SalesService {
 
             String res =(String) objectInputStream.readObject();
 
+            System.out.println("\n");
             System.out.println(Colors.ANSI_BLUE+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+res+Colors.ANSI_RESET);
+            System.out.println("\n");
 
         }catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();

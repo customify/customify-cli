@@ -47,11 +47,11 @@ public class SalesService {
             statement.execute();
             this.sendToClient("Product sold!");
         }catch (JsonProcessingException e){
-            this.sendToClient(e.getMessage());
+            this.sendToClient("Failed to parse request");
         } catch (IOException ioException) {
-            this.sendToClient(ioException.getMessage());
+            this.sendToClient("Failed to send response");
         }catch (SQLException e){
-            this.sendToClient(e.getMessage());
+            this.sendToClient("Invalid CustomerID");
         }
     }
 
