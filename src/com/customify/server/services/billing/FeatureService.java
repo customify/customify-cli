@@ -7,6 +7,7 @@
  * */
 package com.customify.server.services.billing;
 
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.data_format.billing.FeatureFormat;
@@ -25,14 +26,11 @@ import java.util.List;
 public class FeatureService {
     Socket socket;
     OutputStream output;
-    ObjectOutputStream objectoutput;
+    ObjectOutputStream objectOutput;
     private  int statusCode;
 
     public FeatureService(Socket socket) throws IOException {
-
         this.socket =socket;
-        this.output = socket.getOutputStream();
-        this.objectoutput = new ObjectOutputStream(output);
     }
     /**
      * @author fiston nshimiyandinze
@@ -40,23 +38,23 @@ public class FeatureService {
      * this function is to handle the backend registering into the database
      * and sending back the response
      * */
-    public void registerFeature(String data) throws SQLException, JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(data);
-
-        Connection connection = Db.getConnection();
-        String sqlQuery = "INSERT INTO BillingFeatures  VALUES(?,?)";
-        PreparedStatement statement = connection.prepareStatement(sqlQuery);
-        statement.setString(1,jsonNode.get("featureName").asText());
-        statement.setString(2,jsonNode.get("featureDescription").asText());
-
-        if(statement.execute()){
-            System.out.println("Your query not working .... ");
-        }else{
-            System.out.println("Query Ok !!! ");
-        }
-
-    }
+//    public void registerFeature(String data) throws SQLException, JsonProcessingException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        JsonNode jsonNode = objectMapper.readTree(data);
+//
+//        Connection connection = Db.getConnection();
+//        String sqlQuery = "INSERT INTO BillingFeatures  VALUES(?,?)";
+//        PreparedStatement statement = connection.prepareStatement(sqlQuery);
+//        statement.setString(1,jsonNode.get("featureName").asText());
+//        statement.setString(2,jsonNode.get("featureDescription").asText());
+//
+//        if(statement.execute()){
+//            System.out.println("Your query not working .... ");
+//        }else{
+//            System.out.println("Query Ok !!! ");
+//        }
+//
+//    }
 
     /**
      * @author fiston nshimiyandinze
@@ -64,23 +62,23 @@ public class FeatureService {
      * this function is to handle the backend updating into the database
      * and sending back the response
      * */
-    public void  update(String data) throws SQLException, JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(data);
-
-        Connection connection = Db.getConnection();
-        String sqlQuery = "UPDATE  BillingFeatures SET featureName=?,featureDescription =? WHERE featureId=?";
-
-        PreparedStatement statement = connection.prepareStatement(sqlQuery);
-        statement.setString(1,jsonNode.get("featureName").asText());
-        statement.setString(2,jsonNode.get("featureDescription").asText());
-        statement.setInt(3,jsonNode.get("featureCode").asInt());
-        if(statement.execute()){
-            System.out.println("Your query not working .... ");
-        }else{
-            System.out.println("Query Ok !!! ");
-        }
-    }
+//    public void  update(String data) throws SQLException, JsonProcessingException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        JsonNode jsonNode = objectMapper.readTree(data);
+//
+//        Connection connection = Db.getConnection();
+//        String sqlQuery = "UPDATE  BillingFeatures SET featureName=?,featureDescription =? WHERE featureId=?";
+//
+//        PreparedStatement statement = connection.prepareStatement(sqlQuery);
+//        statement.setString(1,jsonNode.get("featureName").asText());
+//        statement.setString(2,jsonNode.get("featureDescription").asText());
+//        statement.setInt(3,jsonNode.get("featureCode").asInt());
+//        if(statement.execute()){
+//            System.out.println("Your query not working .... ");
+//        }else{
+//            System.out.println("Query Ok !!! ");
+//        }
+//    }
 
     /**
      * @author fiston nshimiyandinze
@@ -89,24 +87,24 @@ public class FeatureService {
      * and sending back the response
      * */
 
-    public  void deleteFeature(String data)throws  IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(data);
-
-        Statement statement = Db.getStatement();
-        this.statusCode = 200;
-        try {
-            int exec = statement.executeUpdate("delete from BillingFeatures where featureId="+jsonNode.get("featureCode"));
-            if(exec==1){
-                System.out.println("Successfully deleted");
-            }
-        }
-        catch (SQLException e){
-            this.statusCode= 400;
-            System.out.println("Error occured: "+e.getMessage());
-        }
-
-    }
+//    public  void deleteFeature(String data)throws  IOException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        JsonNode jsonNode = objectMapper.readTree(data);
+//
+//        Statement statement = Db.getStatement();
+//        this.statusCode = 200;
+//        try {
+//            int exec = statement.executeUpdate("delete from BillingFeatures where featureId="+jsonNode.get("featureCode"));
+//            if(exec==1){
+//                System.out.println("Successfully deleted");
+//            }
+//        }
+//        catch (SQLException e){
+//            this.statusCode= 400;
+//            System.out.println("Error occured: "+e.getMessage());
+//        }
+//
+//    }
 
     /**
      * @author fiston nshimiyandinze
@@ -114,35 +112,35 @@ public class FeatureService {
      * this function is to handle the backend get all features from the database
      * and sending back the response
      * */
-    public void getFeatureByCode(String data) throws IOException{
-        //setting the response status code
-        this.statusCode = 200;
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(data);
-
-        //formatting the response into a dataformat
-        Statement statement = Db.getStatement();
-        try{
-            ResultSet res = statement.executeQuery("select * from BillingFeatures  where featureId="+jsonNode.get("featureCode"));
-            if(res.next()){
-                FeatureFormat bs = new FeatureFormat(
-                        res.getInt(1),
-                        res.getString(2),
-                        res.getString(3)
-                );
-                String json = objectMapper.writeValueAsString(bs);
-
-                //send
-                this.objectoutput.writeObject(json);
-                this.objectoutput.close();
-            }
-
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+//    public void getFeatureByCode(String data) throws IOException{
+//        //setting the response status code
+//        this.statusCode = 200;
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        JsonNode jsonNode = objectMapper.readTree(data);
+//
+//        //formatting the response into a dataformat
+//        Statement statement = Db.getStatement();
+//        try{
+//            ResultSet res = statement.executeQuery("select * from BillingFeatures  where featureId="+jsonNode.get("featureCode"));
+//            if(res.next()){
+//                FeatureFormat bs = new FeatureFormat(
+//                        res.getInt(1),
+//                        res.getString(2),
+//                        res.getString(3)
+//                );
+//                String json = objectMapper.writeValueAsString(bs);
+//
+//                //send
+//                this.objectOutput.writeObject(json);
+//                this.objectOutput.close();
+//            }
+//
+//
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * @author fiston nshimiyandinze
@@ -179,7 +177,10 @@ public class FeatureService {
             //Sending the response to server after it has been formated
             System.out.println("Sending response ......"+data);
 //            this.objectoutput.writeObject(data);
-            SendToClient serverResponse =new  SendToClient(this.socket,data);
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            System.out.println("Response "+data.get(0));
+            objectOutput.writeObject(data);
         }
         catch (Exception e){
             e.printStackTrace();

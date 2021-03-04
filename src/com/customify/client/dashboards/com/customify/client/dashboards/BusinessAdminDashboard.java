@@ -67,7 +67,8 @@ public class BusinessAdminDashboard {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. TODAY'S REPORT");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. MY PROFILE");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. PROFILE SETTINGS");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. LOGOUT !!!");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. FEATURES");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t7. LOGOUT !!!");
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-6>"+Colors.ANSI_RESET+": ");
             int choice = scan.nextInt();
             switch (choice) {
@@ -86,6 +87,8 @@ public class BusinessAdminDashboard {
 //                    loggedIn=false;
                     break;
                 case 6:
+
+                case 7:
                         if(userSession.unSet())
                             loggedIn=false;
                     break;

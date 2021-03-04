@@ -83,7 +83,7 @@ public class RequestHandler {
 //                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-                // customer.create();
+                 customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -107,8 +107,7 @@ public class RequestHandler {
             case GET_ALL_CUSTOMERS:
               customer  = new CustomerService(this.clientSocket,this.json_data);
               customer.readAll();
-
-                break;
+              break;
             case GET_CUSTOMER:
                 customer  = new CustomerService(this.clientSocket,this.json_data);
                 customer.readOne();
@@ -120,6 +119,7 @@ public class RequestHandler {
                 break;
             case GET_FEATURES:
                 featureService.getAllFeature();
+                break;
             case GET_ALL_SALES:
                 salesService.getAllSales();
                 break;
