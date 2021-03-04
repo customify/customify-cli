@@ -24,10 +24,6 @@ public class Main {
         try{
             Socket socket = new Socket(serverIp, portNumber);
             while(isConnectionOn){
-<<<<<<< HEAD
-//                new Home(socket).view();
-=======
->>>>>>> 8777199416ac05ee8308503c63369c90a4435190
                 Login log = new Login(socket);
                 log.view();
             }

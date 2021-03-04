@@ -8,6 +8,7 @@
 package com.customify.client.views.billing;
 
 import com.customify.client.services.BillingService;
+import com.customify.client.services.FeatureService;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -16,9 +17,12 @@ import java.util.Scanner;
 public class FeaturesView {
     private Socket socket;
     private BillingService billingService;
+    private FeatureService featureService;
     public FeaturesView(Socket socket){
         this.socket = socket;
         this.billingService = new BillingService(socket);
+        this.featureService = new FeatureService(socket);
+
     }
     public Socket getSocket()
     {
@@ -43,7 +47,7 @@ public class FeaturesView {
 
         switch (choice){
             case 1:
-                billingService.getFeatures();
+                featureService.getFeatures();
                 break;
             case 2:
 

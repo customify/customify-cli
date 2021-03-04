@@ -32,11 +32,7 @@ public enum Keys {
     GET_ALL_CUSTOMERS,
     GET_ALL_COUPONS,
     GET_CUSTOMER,
-<<<<<<< HEAD
     GET_ALL_SALES,
     GET_FEATURES
 
-=======
-    GET_ALL_SALES
->>>>>>> 8777199416ac05ee8308503c63369c90a4435190
 }

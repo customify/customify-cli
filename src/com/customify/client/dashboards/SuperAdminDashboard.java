@@ -2,6 +2,7 @@ package com.customify.client.dashboards;
 
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.Business.BusinessView;
+import com.customify.client.views.billing.BillingView;
 
 import java.net.Socket;
 import java.util.Scanner;
@@ -47,7 +48,8 @@ public class SuperAdminDashboard {
                 System.out.println("           1. BUSINESS MANAGEMENT");
                 System.out.println("           2. MY PROFILE");
                 System.out.println("           3. PROFILE SETTINGS");
-                System.out.println("           4. LOGOUT !!!");
+                System.out.println("           4. BILLING");
+                System.out.println("           5. LOGOUT !!!");
                 int choice = scan.nextInt();
                 switch (choice) {
                     case 1:
@@ -59,6 +61,10 @@ public class SuperAdminDashboard {
                     case 3:
                         break;
                     case 4:
+                        BillingView billingView = new BillingView(this.socket);
+                        billingView.view();
+                        break;
+                    case 5:
                         if (userSession.unSet())
                             loggedIn = false;
                         break;

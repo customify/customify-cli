@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="943cc82c-314a-4e3e-9b20-25ea88fb8d81" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/dashboards/com/customify/client/dashboards/BusinessAdminDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/dashboards/com/customify/client/dashboards/BusinessAdminDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/SendToClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/SendToClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/billing/FeatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/billing/FeatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/billing/PlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/billing/PlanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/dashboards/SuperAdminDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/dashboards/SuperAdminDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/FeatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/FeatureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/Employee.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/Employee.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/SuperAdmin.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/SuperAdmin.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/billing/FeaturesView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/billing/FeaturesView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Keys.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +41,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../customify" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql-connector-java-8.0.19.jar" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,6 +63,17 @@
     <configuration name="Server" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.customify.server.Main" />
       <module name="customify" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -88,7 +100,8 @@
       <workItem from="1614708950924" duration="868000" />
       <workItem from="1614741333808" duration="5688000" />
       <workItem from="1614862261916" duration="1079000" />
-      <workItem from="1614873843422" duration="2113000" />
+      <workItem from="1614873843422" duration="2425000" />
+      <workItem from="1614876305303" duration="3369000" />
     </task>
     <servers />
   </component>

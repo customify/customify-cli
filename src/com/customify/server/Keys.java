@@ -27,9 +27,5 @@ public enum Keys {
     DELETE_PRODUCT,
     GET_ALL_CUSTOMERS,
     GET_CUSTOMER,
-<<<<<<< HEAD
-    GET_ALL_SALES,
-    GET_FEATURES,
-=======
->>>>>>> 8777199416ac05ee8308503c63369c90a4435190
+    GET_FEATURES
 }
