@@ -2,12 +2,15 @@ package com.customify.client.views.customer;
 
 /**
  * @author Nshimiye Emmy
- * @role
- * this is the class to implement the update customer view to show interface of update customer
- * */
+ * @role this is the class to implement the update customer view to show interface of update customer
+ */
 
+import com.customify.client.Keys;
+import com.customify.client.SendToServer;
+import com.customify.client.data_format.DisableCustomerFormat;
 import com.customify.client.services.CustomerService;
 import com.customify.client.data_format.UpdateCustomerFormat;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import java.io.IOException;
@@ -17,7 +20,8 @@ import java.util.Scanner;
 public class UpdateCustomerView {
     private Socket socket;
 
-    public UpdateCustomerView(){ }
+    public UpdateCustomerView() {
+    }
 
     public UpdateCustomerView(Socket socket) {
         this.socket = socket;
@@ -26,19 +30,41 @@ public class UpdateCustomerView {
     public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
         Scanner scan = new Scanner(System.in);
-        update:do{
+        update:
+        do {
             System.out.println("\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> UPDATE-CUSTOMER---------------------");
             System.out.println("\n       00. Return ");
             System.out.println("        Enter  Customer Code:");
             String customer_code = scan.nextLine();
+
+            /*
+             * Here we will first check if user with that code is available in DB
+             * */
+
+
             String firstname = "";
             String lastname = "";
             String email = "";
 
+            /*
+            If user is available, the the following lines will be executed
+            *
+            */
+
+            System.out.println("Enter your first name");
+            String name = scan.nextLine();
+            UpdateCustomerFormat format = new UpdateCustomerFormat(Keys.UPDATE_CUSTOMER, customer_code, email, firstname, lastname);
+            ObjectMapper objectMapper = new ObjectMapper();
+            SendToServer sendToServer = new SendToServer(objectMapper.writeValueAsString(format), this.socket);
+
+            if (sendToServer.send()) {
+                System.out.println("request was sent ");
+            }
+
             if (customer_code.equals("00"))
                 break update;
-            if(customer_code.equals("1234")){
-                System.out.println("........Customer " +  customer_code+ " Details......");
+            if (customer_code.equals("1234")) {
+                System.out.println("........Customer " + customer_code + " Details......");
                 System.out.println("1.First name is: Nshimiye");
                 System.out.println("2.Last name is: Emmy");
                 System.out.println("3.Email is: nshimiyee311@gmail.com \n");
@@ -52,12 +78,12 @@ public class UpdateCustomerView {
                         case "1":
                             System.out.println("Enter your first name");
                             firstname = scan.nextLine();
-                            System.out.println("You have successfully Updated your first name to: " + firstname  );
+                            System.out.println("You have successfully Updated your first name to: " + firstname);
                             break;
                         case "2":
                             System.out.println("Enter your last name");
                             lastname = scan.nextLine();
-                            System.out.println("You have successfully Updated your last name to: " + lastname  );
+                            System.out.println("You have successfully Updated your last name to: " + lastname);
                             break;
                         case "3":
                             System.out.println("Enter your email address");
@@ -75,11 +101,10 @@ public class UpdateCustomerView {
                 }
 
             }
-
-            UpdateCustomerFormat format = new UpdateCustomerFormat(customer_code,email,lastname,firstname);
-            CustomerService customerService = new CustomerService(this.socket);
-            customerService.update(format);
-        }while(true);
+//            UpdateCustomerFormat format = new UpdateCustomerFormat(customer_code,email,lastname,firstname);
+//            CustomerService customerService = new CustomerService(this.socket);
+//            customerService.update(format);
+        } while (true);
     }
 
 

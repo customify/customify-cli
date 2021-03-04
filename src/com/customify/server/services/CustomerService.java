@@ -1,5 +1,6 @@
 package com.customify.server.services;
 
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.customer.CreateCustomerFormat;
@@ -26,10 +27,15 @@ public class CustomerService {
     ObjectOutputStream objectOutput;
     Socket socket;
      String json_data;
+    OutputStream output;
 
     public CustomerService(Socket socket, String json_data){
         this.json_data = json_data;
         this.socket = socket;
+    }
+
+    public CustomerService(Socket clientSocket) {
+        this.socket = clientSocket;
     }
 
     /**
@@ -93,7 +99,7 @@ public class CustomerService {
      * @role
      * this service method is to update the customer in the database that means the server side
      * */
-    public void update() throws SQLException, IOException {
+    public void update(String json_data) throws SQLException, IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(json_data);
@@ -101,31 +107,37 @@ public class CustomerService {
         OutputStream output = this.socket.getOutputStream();
         ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 
-        Statement stmt = null;
-        Connection conn = null;
+        String response="";
 
         try {
-            conn = Db.getConnection();
+            Connection connection = Db.getConnection();
+            String sql = "UPDATE customers SET email =?,firstName=?,lastName=?, WHERE customer_code =?";
 
-           // System.out.println("Creating statement...");
-            stmt = conn.createStatement();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,jsonNode.get("email").asText());
+            preparedStatement.setString(2,jsonNode.get("firstName").asText());
+            preparedStatement.setString(3,jsonNode.get("lastName").asText());
+            preparedStatement.setString(4,jsonNode.get("code").asText());
 
-            String sql = "UPDATE customers SET customer_code = "+jsonNode.get("customer_code").asText()+",email = "+jsonNode.get("email").asText()+
-                    ",firstName="+jsonNode.get("firstName").asText()+",lastName="+jsonNode.get("lastName").asText()+", WHERE customer_code = "+jsonNode.get("customer_code").asText();
-
-            stmt.executeUpdate(sql);
-
-//            List responseData = new ArrayList<>();
-//            Response response = new Response(200,customers);
-//            responseData.add(response);
-
-            //Sending the response to client
-//            objectOutput.writeObject(responseData);
-
-            stmt.close();
-            conn.close();
+            if(preparedStatement.executeUpdate() > 0){
+                System.out.println("Customer updated successfully");
+                response = "{ \"status\" : \"201\"}";
+            }
+            else {
+                System.out.println("Something went wrong and customer was not updated");
+                response = "{ \"status\" : \"400\"}";;
+            }
+            connection.close()                           ;
         }
         catch (Exception e){
+            response = "{ \"status\" : \"500\"}";;
+        }
+        finally {
+            responseData.add(response);
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            System.out.println("Response "+responseData.get(0));
+            objectOutput.writeObject(this.responseData);
 
         }
     }
@@ -154,8 +166,7 @@ public class CustomerService {
             // executeUpdate to execute our sql update statement and returns number of rows affected
             int updateCount = statement.executeUpdate();
             statement.close();
-        }
-        catch (Exception e)
+        }catch (Exception e)
         {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());

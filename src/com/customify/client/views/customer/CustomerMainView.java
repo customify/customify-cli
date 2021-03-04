@@ -18,7 +18,7 @@ public class CustomerMainView {
         this.socket = socket;
         Login login;
         setLoggedIn(loggedIn);
-        if(this.loggedIn)
+        if(loggedIn)
             this.view();
         else
              login = new Login(socket);
@@ -35,7 +35,7 @@ public class CustomerMainView {
     public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
 
-        if(!loggedIn)
+        if(loggedIn)
         {
             label:do {
                 System.out.println("------------------HOME >> CUSTOMER MANAGEMENT---------------------");

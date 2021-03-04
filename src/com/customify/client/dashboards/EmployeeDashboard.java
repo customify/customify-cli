@@ -82,7 +82,7 @@ public class EmployeeDashboard {
                     default:
                         System.out.println("INVALID CHOICE");
                 }
-            } while (loggedIn);
+            } while (false);
         }
     }
 }

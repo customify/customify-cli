@@ -5,6 +5,7 @@ import com.customify.server.services.BusinessService;
 import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
+import com.customify.server.services.CustomerService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -42,7 +43,7 @@ public class RequestHandler {
 
 
     public void handleRequest() throws IOException, SQLException {
-//        CustomerService  customer = new CustomerService(this.clientSocket);
+        CustomerService  customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
@@ -100,6 +101,10 @@ public class RequestHandler {
                 break;
             case GET_ALL_COUPONS:
                 couponService.getAllCoupons(json_data);
+                break;
+            case UPDATE_CUSTOMER:
+                customer.update(json_data);
+
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
