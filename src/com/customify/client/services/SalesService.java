@@ -45,6 +45,7 @@ public class SalesService {
             String jsonData = objectMapper.writeValueAsString(saleDataFormat);
             SendToServer sendToServer = new SendToServer(jsonData,this.socket);
 
+
             if(sendToServer.send()){
                 this.handleCreateSale();
             }
@@ -62,6 +63,7 @@ public class SalesService {
              ObjectMapper objectMapper = new ObjectMapper();
 
             List res =(List) objectInputStream.readObject();
+
 
 
             Iterator itr = res.iterator();
@@ -92,11 +94,8 @@ public class SalesService {
 
             String res =(String) objectInputStream.readObject();
 
-            System.out.println("handling sale");
+            System.out.println(Colors.ANSI_BLUE+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+res+Colors.ANSI_RESET);
 
-          //  System.out.println(Colors.ANSI_BLUE);
-           // System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t from the server"+res);
-           // System.out.println(Colors.ANSI_RESET);
         }catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
