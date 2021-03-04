@@ -1,11 +1,4 @@
 package com.customify.client;
-<<<<<<< HEAD
-
-// import com.customify.client.dashboards.BusinessAdminDashboard;
-// import com.customify.client.dashboards.EmployeeDashboard;
-// import com.customify.client.dashboards.SuperAdminDashboard;
-=======
->>>>>>> 8777199416ac05ee8308503c63369c90a4435190
 import com.customify.client.dashboards.BusinessAdminDashboard;
 import com.customify.client.dashboards.EmployeeDashboard;
 import com.customify.client.dashboards.SuperAdminDashboard;
@@ -39,16 +32,11 @@ public class Login {
     private boolean openLogin = false;
     public void view() throws Exception{
 
-<<<<<<< HEAD
-        authorize:do {
-            System.out.println("\n\n\n\t\t\t\t\tWELCOME ON  CUSTOMIFY  SYSTEM\n\n");
-=======
         authorize:do{
 
             System.out.println(Colors.ANSI_PURPLE);
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tWELCOME ON  CUSTOMIFY  SYSTEM");
             System.out.println(Colors.ANSI_RESET);
->>>>>>> 8777199416ac05ee8308503c63369c90a4435190
 
             Scanner scan = new Scanner(System.in);
             String email, password;
@@ -67,37 +55,6 @@ public class Login {
 
             AuthenticationDataFormat format = new AuthenticationDataFormat(email, password);
             AuthService authService = new AuthService(this.socket, format);
-<<<<<<< HEAD
-
-//            Dashboards dashboard = new Dashboards();
-
-            String superAdminJsonObj = authService.authenticateAdmin();
-            String employeeJsonObj = authService.authenticateEmployee();
-
-            if (superAdminJsonObj != null) {
-                // SuperAdminDashboard dashboard = new SuperAdminDashboard(this.socket,superAdminJsonObj);
-            } else if (employeeJsonObj != null) {
-                ObjectMapper objectMapper = new ObjectMapper();
-                JsonNode jsonNode = objectMapper.readTree(employeeJsonObj);
-                String title = jsonNode.get("title").asText();
-
-                // if(title.equals("ADMIN"))
-                // {
-                //  BusinessAdminDashboard dashboard = new BusinessAdminDashboard(this.socket,employeeJsonObj);
-                // }else{
-                //     EmployeeDashboard dashboard = new EmployeeDashboard(this.socket,employeeJsonObj);
-                // }
-//                AuthService authService = new AuthService(this.socket, format);
-
-                if (authService.authenticate()) {
-                    route(authService.getLoggedInUser());
-                } else {
-                    System.out.println("\t\t\t\t\t SORRY CHECK YOUR PASSWORD OR EMAIL");
-                }
-            }
-        }
-            while(openLogin);
-=======
 
             if (authService.authenticate()) {
                 route(authService.getLoggedInUser());
@@ -106,7 +63,6 @@ public class Login {
             }
         }
         while(openLogin);
->>>>>>> 8777199416ac05ee8308503c63369c90a4435190
     }
     public void route(String appUser) throws Exception{
         switch (appUser) {
