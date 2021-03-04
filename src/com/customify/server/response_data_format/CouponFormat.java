@@ -9,7 +9,13 @@ public class CouponFormat {
     private String coupon_status;
     private String coupon_value;
 
-    public CouponFormat(String coupon_id, String customer_id, String coupon_code, String created_at, String expire_date, String coupon_status, String coupon_value) {
+    public CouponFormat(String coupon_id,
+                        String customer_id,
+                        String coupon_code,
+                        String created_at,
+                        String expire_date,
+                        String coupon_status,
+                        String coupon_value) {
         this.coupon_id = coupon_id;
         this.customer_id = customer_id;
         this.coupon_code = coupon_code;

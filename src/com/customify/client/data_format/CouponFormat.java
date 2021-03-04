@@ -22,6 +22,9 @@ public class CouponFormat {
         this.expiry = expiry;
     }
 
+    public CouponFormat(String string, String string1, String string2, String string3, String string4, String string5, String string6) {
+    }
+
     public String getCustomer_id() {
         return customer_id;
     }

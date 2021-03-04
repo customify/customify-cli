@@ -4,11 +4,10 @@
 package com.customify.server.services;
 
 
+import com.customify.server.response_data_format.CouponFormat;
 import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
-import com.customify.server.SendToClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -28,6 +27,7 @@ public class CouponService {
   ObjectMapper objectMapper = new ObjectMapper();
   ObjectOutputStream objectOutputStream;
   OutputStream outputStream;
+  private CouponFormat couponFormat;
 
   public CouponService(Socket socket){
       this.socket = socket;
@@ -116,14 +116,18 @@ public class CouponService {
 
       ResultSet resultSet = statement.executeQuery(query);
       List<String> coupons = new ArrayList();
+      ObjectMapper objectMapper = new ObjectMapper();
+
       while (resultSet.next()){
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonCoupons =  objectMapper.writeValueAsString(resultSet);
+        this.couponFormat = new CouponFormat(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));
+        String jsonCoupons =  objectMapper.writeValueAsString(this.couponFormat);
         coupons.add(jsonCoupons);
       }
-      System.out.println("data: "+coupons);
+      this.sendToClient(coupons);
     }catch (SQLException | JsonProcessingException e){
       System.out.println("Sql error: "+e.getMessage());
+    } catch (IOException ioException) {
+      ioException.printStackTrace();
     }
   }
 
