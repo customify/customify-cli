@@ -37,12 +37,9 @@ public class CustomerService {
 
     }
 
-<<<<<<< HEAD
-=======
     public CustomerService(Socket socket) {
         this.socket = socket;
     }
->>>>>>> 281b09713be9b603f3875586d05f5db6d47a276a
 
 
     /**

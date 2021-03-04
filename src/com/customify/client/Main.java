@@ -1,10 +1,5 @@
 package com.customify.client;
 
-<<<<<<< HEAD
-import com.customify.client.views.Home;
-
-=======
->>>>>>> 281b09713be9b603f3875586d05f5db6d47a276a
 import java.io.*;
 import java.net.*;
 

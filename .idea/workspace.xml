@@ -1,34 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4f082859-419d-42e4-a1e2-47bf42746195" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/customify.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/activation.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/data_format/GetCustomer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/ReadAll.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/ReadOne.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/customer/GetAll.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customify.iml" beforeDir="false" afterPath="$PROJECT_DIR$/customify.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/dashboards/com/customify/client/dashboards/BusinessAdminDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/dashboards/com/customify/client/dashboards/BusinessAdminDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/CustomerFeedbackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/CustomerFeedbackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/Admin.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/utils/authorization/files/Admin.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Db/Db.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/CouponService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/CouponService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/utils/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +34,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -93,8 +71,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

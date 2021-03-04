@@ -83,8 +83,4 @@ public class Login {
                 System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
         }
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 281b09713be9b603f3875586d05f5db6d47a276a
 }

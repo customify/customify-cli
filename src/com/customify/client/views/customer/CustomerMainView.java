@@ -20,17 +20,10 @@ public class CustomerMainView {
         this.socket = socket;
         Login login;
         setLoggedIn(loggedIn);
-<<<<<<< HEAD
-//        if(this.loggedIn)
-//            this.view();
-//        else
-//             login = new Login(socket);
-=======
         if(this.loggedIn)
             this.view();
          else
             login = new Login(socket);
->>>>>>> 281b09713be9b603f3875586d05f5db6d47a276a
     }
 
     public Socket getSocket() {
