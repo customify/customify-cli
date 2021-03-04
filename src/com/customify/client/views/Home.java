@@ -32,6 +32,7 @@ public class Home {
 
     public void view() throws Exception {
 
+
         int choice;
         Scanner scan = new Scanner(System.in);
 
@@ -45,6 +46,7 @@ public class Home {
         Coupon couponView = new Coupon(this.socket);
 //        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
         CustomerFeedbackMainView cfMainView =  new CustomerFeedbackMainView(socket);
+
 
         System.out.println("---------------------------------------------");
         System.out.println("--------------CUSTOMIFY HOME-----------------\n");

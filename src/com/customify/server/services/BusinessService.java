@@ -26,6 +26,7 @@ public class BusinessService {
     Socket socket;
     OutputStream output;
     ObjectOutputStream objectOutput;
+    String statusCode;
 
     /**
      * Class Constructor
@@ -118,6 +119,7 @@ public class BusinessService {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         Statement statement = Db.getStatement();
+        String json="";
 
         try {
             int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
@@ -127,11 +129,14 @@ public class BusinessService {
             }
         }
         catch (SQLException e){
-            String json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
+            json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
+        }
+        finally{
+
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(json);
         }
-
-        objectOutput.close();
 
     }
 
@@ -147,6 +152,7 @@ public class BusinessService {
 
         //formatting the response into a data format
         Statement statement = Db.getStatement();
+        String json="";
         try{
             ResultSet res = statement.executeQuery("select * from businesses where id="+jsonNode.get("businessId"));
             if(res.next()){
@@ -160,17 +166,23 @@ public class BusinessService {
                         res.getInt(7),
                         res.getDate(8).toString()
                 );
-                String json = objectMapper.writeValueAsString(bs);
+                json = objectMapper.writeValueAsString(bs);
 
-                //send
-                objectOutput.writeObject(json);
+            }else{
+                json = "{ \"message\" : \""+"Not found"+"\", \"statusCode\" : \""+ 500 +"\" }";
             }
         }
         catch (Exception e){
-            String json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 200 +"\" }";
+            json = "{ \"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 500 +"\" }";
+        }
+        finally{
+
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(json);
         }
     }
+
 
     /**
      * @author Kellia Umuhire
@@ -179,14 +191,16 @@ public class BusinessService {
      * */
     public void getAll() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-
         //formatting the response into a data format
         Statement statement = Db.getStatement();
         String query = "Select * from businesses";
         List<String> alldata = new ArrayList<>();
-        try {
 
+        try {
+            this.statusCode = "200";
+            alldata.add(this.statusCode);
             ResultSet res = statement.executeQuery(query);
+            String data;
             while(res.next()){
 
                 BusinessRFormat bs = new BusinessRFormat(
@@ -199,15 +213,19 @@ public class BusinessService {
                         res.getInt(7),
                         res.getDate(8).toString()
                 );
-                String json = objectMapper.writeValueAsString(bs);
-                alldata.add(json);
+                data = objectMapper.writeValueAsString(bs);
+                alldata.add(data);
             }
-
-            //Sending the response to server after it has been formated
-            objectOutput.writeObject(alldata);
         }
         catch (Exception e){
-            e.printStackTrace();
+            this.statusCode = "500";
+            alldata.add(this.statusCode);
+        }
+        finally{
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(alldata);
+
         }
 
     }
