@@ -118,6 +118,9 @@ public class RequestHandler {
             case GET_ALL_SALES:
                 salesService.getAllSales();
                 break;
+            case ADD_SALE:
+                salesService.buyAProduct(json_data);
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
