@@ -37,6 +37,12 @@ public class CustomerService {
 
     }
 
+<<<<<<< HEAD
+=======
+    public CustomerService(Socket socket) {
+        this.socket = socket;
+    }
+>>>>>>> 281b09713be9b603f3875586d05f5db6d47a276a
 
 
     /**
@@ -57,7 +63,7 @@ public class CustomerService {
 
         Connection connection = Db.getConnection();
 
-        String query = "INSERT INTO customers (customer_id,first_name,last_name,email,code) VALUES(?,?, ?, ?, ?)";
+        String query = "INSERT INTO Customer (customer_id,first_name,last_name,email,code) VALUES(?,?, ?, ?, ?)";
         CreateCustomerFormat format;
 
         try {
@@ -143,7 +149,7 @@ public class CustomerService {
         try
         {
             Connection connection = Db.getConnection();
-            PreparedStatement statement = connection.prepareStatement("UPDATE customers SET disabled = 1 WHERE code = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE Customer SET disable = 1 WHERE code = ?");
             // the prepared statement parameters
             statement.setString(1,code);
             // executeUpdate to execute our sql update statement and returns number of rows affected
@@ -270,19 +276,37 @@ public class CustomerService {
      * this function is to handle the backend deactivate the customer from the database
      * and sending back the response TO THE CLIENT SIDE
      * */
-    public void renableCard(String request) throws JsonProcessingException, SQLException {
+    public void renableCard(String request) throws IOException, SQLException {
         System.out.println("Request to re-enable card was received at server");
+        String response = "";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(request);
-        String code = jsonNode.get("code").asText();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(request);
+            String code = jsonNode.get("code").asText();
 
-        String query = "UPDATE customers SET disabled = 0 WHERE code = ?";
-        PreparedStatement preparedStatement = Db.getConnection().prepareStatement(query);
-        preparedStatement.setString(1,code);
+            String query = "UPDATE Customer SET disable = 0 WHERE code = ?";
+            PreparedStatement preparedStatement = Db.getConnection().prepareStatement(query);
+            preparedStatement.setString(1,code);
 
-        if(preparedStatement.executeUpdate() > 0){
-            System.out.println("Card was re-enabled");
+            if(preparedStatement.executeUpdate() > 0){
+                System.out.println("Card was re-enabled");
+                response = "{ \"status\" : \"200\"}";
+            }
+            else{
+                response = "{ \"status\" : \"400\"}";
+            }
+        } catch (JsonProcessingException e) {
+            response = "{ \"status\" : \"500\"}";
+        } catch (SQLException e) {
+            response = "{ \"status\" : \"500\"}";
+        } finally {
+            responseData.clear();
+            responseData.add(response);
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            System.out.println("Response "+responseData.get(0));
+            objectOutput.writeObject(this.responseData);
         }
 
     }

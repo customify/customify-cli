@@ -9,6 +9,7 @@ import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
+import com.customify.server.services.CustomerService;
 import com.customify.server.services.SalesService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -116,6 +117,9 @@ public class RequestHandler {
                 break;
             case GET_ALL_SALES:
                 salesService.getAllSales();
+                break;
+            case ADD_SALE:
+                salesService.buyAProduct(json_data);
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");

@@ -1,7 +1,10 @@
 package com.customify.client;
 
+<<<<<<< HEAD
 import com.customify.client.views.Home;
 
+=======
+>>>>>>> 281b09713be9b603f3875586d05f5db6d47a276a
 import java.io.*;
 import java.net.*;
 
@@ -16,7 +19,6 @@ public class Main {
         }
     }
     public static void main(String[] args){
-        //System.out.println("Customify  is booting..........");
         new Main("localhost");
         System.out.println("Shutting down................");
     }
@@ -24,9 +26,6 @@ public class Main {
         int portNumber = 3000;
         try{
             Socket socket = new Socket(serverIp, portNumber);
-         //   System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
-         //   System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
-
             while(isConnectionOn){
                 new Home(socket).view();
 //                Login log = new Login(socket);
