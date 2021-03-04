@@ -28,17 +28,21 @@ public class BusinessView {
     }
 
     public void view() throws IOException, ClassNotFoundException {
+
+        System.out.flush();
+
         Scanner scan = new Scanner(System.in);
         BusinessReadView businessReadView = new BusinessReadView(this.socket);
         boolean loop = true;
         int choice;
         System.out.println("------------------BUSINESS---------------------");
-        System.out.println("\n         00. Return Home");
-        System.out.println("         1. Register business");
-        System.out.println("         2. View business by id");
-        System.out.println("         3. View businesses");
-        System.out.println("         4. Delete business");
-        System.out.println("         5. Edit a business");
+
+        System.out.println("         1.  Register business");
+        System.out.println("         2.  View business by id");
+        System.out.println("         3.  View businesses");
+        System.out.println("         4.  Delete business");
+        System.out.println("         5.  Edit a business");
+        System.out.println("\n       00. Return Home");
         choice = scan.nextInt();
 
         switch (choice){

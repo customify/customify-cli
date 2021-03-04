@@ -10,6 +10,7 @@
 
 package com.customify.client.views.Business;
 
+import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.services.BusinessService;
 import com.customify.client.data_format.business.BusinessFormat;
@@ -35,7 +36,10 @@ public class BusinessEditView {
         String name, location, address, phone_number;
         int id, representative_id, plan_id;
 
+        System.out.println(Colors.ANSI_YELLOW);
         System.out.println("\n\n\n You are going to edit the business :\n\n\n");
+        System.out.println(Colors.ANSI_RESET);
+
         System.out.print("Enter the new location             : ");
         location = scan.nextLine();
         System.out.print("Enter the new name                 : ");
