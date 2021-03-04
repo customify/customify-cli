@@ -1,5 +1,6 @@
 package com.customify.client.views.customer;
 
+import com.customify.client.Colors;
 import com.customify.client.data_format.DeActivateCustomer;
 import com.customify.client.services.CustomerService;
 
@@ -31,10 +32,12 @@ public class ReEnableCustomer {
     String option;
 
     public void init() throws IOException, ClassNotFoundException {
-        System.out.println("\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> RE-ENABLE CUSTOMER---------------------");
-        System.out.println("         Enter  Customer's code:");
+        System.out.println(Colors.ANSI_BLUE);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> RE-ENABLE CUSTOMER---------------------");
+        System.out.println(Colors.ANSI_RESET);
+        System.out.print("\t\t\t\t\t\t                            Enter  Customer's code:");
         code = scan.nextLine();
-        System.out.println("         Are you sure you want to activate this card? (y/N): \t");
+        System.out.print("\t\t\t\t\t\t                            Are you sure you want to activate this card?" + Colors.ANSI_RED +" (y/N): \t" + Colors.ANSI_RESET);
         option = scan.nextLine();
         CustomerService service = new CustomerService(socket);
 

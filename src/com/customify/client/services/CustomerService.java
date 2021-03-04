@@ -1,5 +1,6 @@
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CreateCustomerFormat;
@@ -129,11 +130,21 @@ public class CustomerService {
                 JsonNode jsonNode = objectMapper.readTree(res.get(0));
 
                 if (jsonNode.get("status").asInt() == 200) {
-                    System.out.println("\n\n\t\tCard was di-activated successfully\n");
-                } else if (jsonNode.get("status").asInt() == 401) {
-                    System.out.println("\n\n\t\tSORRY NOT SUCCESSFULLY DISABLED\n");
+                    System.out.println(Colors.ANSI_PURPLE);
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t          CARD WAS SUCCESSFULLY DE-ACTIVATED!!!!");
+                    System.out.println(Colors.ANSI_RESET);
+                } else if (jsonNode.get("status").asInt() == 400) {
+                    System.out.println(Colors.ANSI_PURPLE);
+                    System.out.println("\t\t\t\t\t\t\t\t\t THE CUSTOMER DOESN'T EXIST");
+                    System.out.println(Colors.ANSI_RESET);
+                } else if (jsonNode.get("status").asInt() == 500) {
+                    System.out.println(Colors.ANSI_PURPLE);
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t  SYSTEM ERROR OCCURRED");
+                    System.out.println(Colors.ANSI_RESET);
                 } else {
-                    System.out.println("\t\t\tTRY AGAIN SYSTEM ERROR OCCURRED");
+                    System.out.println(Colors.ANSI_PURPLE);
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t   UNKNOWN ERROR");
+                    System.out.println(Colors.ANSI_RESET);
                 }
             }
 
@@ -165,13 +176,21 @@ public class CustomerService {
             JsonNode jsonNode = new ObjectMapper().readTree(responseData);
 
             if (jsonNode.get("status").asInt() == 200) {
-                System.out.println("Successfully activated");
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t          CARD WAS SUCCESSFULLY ACTIVATED!!!!");
+                System.out.println(Colors.ANSI_RESET);
             } else if (jsonNode.get("status").asInt() == 400) {
-                System.out.println("The customer doesn't exist");
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t THE CUSTOMER DOESN'T EXIST");
+                System.out.println(Colors.ANSI_RESET);
             } else if (jsonNode.get("status").asInt() == 500) {
-                System.out.println("System error occurred");
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t  SYSTEM ERROR OCCURRED");
+                System.out.println(Colors.ANSI_RESET);
             } else {
-                System.out.println("Unknown error");
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t   UNKNOWN ERROR");
+                System.out.println(Colors.ANSI_RESET);
             }
         }
     }
