@@ -29,3 +29,5 @@ output/
 #editor config files
 .vscode
 /.idea/
+
+src/com/customify/client/utils/authorization/files/*

@@ -12,24 +12,23 @@ public class Main {
     private boolean isConnectionOn = true;
 
     public Main(String serverIP){
-        System.out.println(serverIP);
         if(!connectTOServer(serverIP)){
             System.out.println("Failed to connect to the server to: "+serverIP);
         }
     }
 
     public static void main(String[] args){
-        System.out.println("Customify  is starting..........");
+        //System.out.println("Customify  is booting..........");
         new Main("localhost");
-        System.out.println("Ending................");
+        System.out.println("Shutting down................");
     }
 
     private boolean connectTOServer(String serverIp){
         int portNumber = 3000;
         try{
             Socket socket = new Socket(serverIp, portNumber);
-            System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
-            System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
+         //   System.out.println("Connected to the server "+ socket.getInetAddress() + " on port "+ socket.getPort());
+         //   System.out.println("from local Address: "+ socket.getLocalAddress()+" and port "+ socket.getLocalPort());
 
             while(isConnectionOn){
                 Login log = new Login(socket);
