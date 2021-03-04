@@ -90,7 +90,7 @@ public class BusinessAdminDashboard {
                             loggedIn=false;
                     break;
                 default:
-                    System.out.println("INVALID CHOICE");
+                    System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
             }
         }while(loggedIn);
     }
