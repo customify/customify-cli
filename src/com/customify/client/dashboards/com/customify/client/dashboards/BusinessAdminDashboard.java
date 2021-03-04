@@ -40,7 +40,7 @@ public class BusinessAdminDashboard {
             this.view();
         else{
             System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST\n\n");
-            Login login =new Login(this.socket);
+          Login login =new Login(this.socket);
         }
 
     }
@@ -74,7 +74,7 @@ public class BusinessAdminDashboard {
                 case 1:
                     break;
                 case 2:
-                    CustomerMainView customer = new CustomerMainView();
+                    CustomerMainView customer = new CustomerMainView(this.getSocket(),true);
                     customer.view();
                     break;
                 case 3:
