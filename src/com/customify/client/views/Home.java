@@ -31,6 +31,7 @@ public class Home {
 
     public void view() throws Exception {
 
+
         int choice;
         Scanner scan = new Scanner(System.in);
 
