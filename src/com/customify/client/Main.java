@@ -33,10 +33,10 @@ public class Main {
 
             while (isConnectionOn) {
                 // new Home(socket).view();
-                Home home = new Home(socket);
-                home.view();
-                // Login log = new Login(socket);
-                // log.view();
+                // Home home = new Home(socket);
+                // home.view();
+                Login log = new Login(socket);
+                log.view();
             }
         } catch (Exception e) {
             this.isConnectionOn = false;
