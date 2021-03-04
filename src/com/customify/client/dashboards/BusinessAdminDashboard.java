@@ -4,7 +4,6 @@ import com.customify.client.Colors;
 import com.customify.client.Login;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.customer.CustomerMainView;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.net.Socket;
 import java.util.Scanner;
