@@ -108,10 +108,6 @@ public class CouponService {
 
         String leftAlignFormat = "| %-13s | %-12s | %-12s | %-21s | %-21s | %-21s | %-13s |%n";
 
-
-        System.out.println(Colors.ANSI_CYAN);
-        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tALL COUPONS");
-        System.out.println(Colors.ANSI_RESET);
         System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+---------------+--------------+--------------+-----------------------+-----------------------+-----------------------+---------------+%n");
         System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t| CouponID      | customerID   |  CouponCode  | Expire Date           |  created at           | coupon Status         | Coupon value  |%n");
         System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+---------------+--------------+--------------+-----------------------+-----------------------+-----------------------+---------------+%n");
