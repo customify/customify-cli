@@ -95,8 +95,6 @@ public class Sales {
             UserSession userSession = new UserSession();
             JsonNode userJson = objectMapper.readTree(userSession.getUserJsonObject());
 
-            System.out.println("id: "+userJson.get("id").asText());
-
             String productId;
             String customerId;
             String productID;
@@ -110,8 +108,6 @@ public class Sales {
 
             this.Header();
 
-            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter Product id: ");
-            productId = scanner.nextLine();
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter customer id: ");
             customerId = scanner.nextLine();
 
