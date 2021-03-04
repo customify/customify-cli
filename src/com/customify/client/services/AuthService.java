@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AuthService {
@@ -62,20 +61,17 @@ public class AuthService {
 
     public boolean authenticate() throws IOException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
-
         String json = objectMapper.writeValueAsString(this.data);
-
         SendToServer serverSend = new SendToServer(json, this.socket);
+
         if (serverSend.send()) {
           this.handleLoginResponse();
         }
+
      return isAuthenticated();
     }
 
-
-
     public void handleLoginResponse() throws IOException, ClassNotFoundException {
-
         try {
 
             InputStream input =this.socket.getInputStream();
@@ -107,8 +103,6 @@ public class AuthService {
         }catch(Exception e){
             System.out.println( "Exception Caught "+e.getMessage());
         }
-
-
     }
 
 }

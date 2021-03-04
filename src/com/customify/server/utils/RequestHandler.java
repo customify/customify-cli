@@ -7,6 +7,7 @@ import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
 import com.customify.server.services.CustomerService;
+import com.customify.server.services.SalesService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -45,8 +46,7 @@ public class RequestHandler {
         BusinessService businessService = new BusinessService(this.clientSocket);
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
-
-        System.out.println("Handling routes "+this.key);
+        SalesService salesService = new SalesService(this.clientSocket);
 
         switch (this.key) {
             case CREATE_BUSINESS:
@@ -100,9 +100,11 @@ public class RequestHandler {
                 break;
             case RENABLE_CUSTOMER:
                 customer.renableCard(json_data);
+            case GET_ALL_SALES:
+                salesService.getAllSales();
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }
     }
-
 }

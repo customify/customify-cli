@@ -26,7 +26,8 @@ public class ReEnableCustomer {
     }
 
     public ReEnableCustomer(Socket socket){this.socket=socket;}
-    Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(Sy
+            stem.in);
     String code;
     String option;
 
