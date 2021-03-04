@@ -1,7 +1,6 @@
 package com.customify.server.utils;
 
 import com.customify.server.services.*;
-import com.customify.server.services.*;
 import com.customify.server.*;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
@@ -13,7 +12,6 @@ import com.customify.server.services.CustomerService;
 import com.customify.server.services.SalesService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.customify.server.services.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +30,7 @@ public class RequestHandler {
         this.clientSocket = socket;
     }
 
-    public void init(InputStream inputStream) throws IOException, ClassNotFoundException, SQLException {
+    public void init(InputStream inputStream) throws Exception {
 
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         List<String> clientRequest = (List) objectInputStream.readObject();
@@ -43,10 +41,10 @@ public class RequestHandler {
         this.handleRequest();
     }
 
-    public void handleRequest() throws IOException, SQLException {
+    public void handleRequest() throws Exception {
         CustomerService customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
-//        ProductService productService = new ProductService(this.clientSocket);
+        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
         SalesService salesService = new SalesService(this.clientSocket);
 
@@ -59,6 +57,19 @@ public class RequestHandler {
                 break;
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
+                break;
+            case CREATE_PRODUCT:
+                 productService.registerProduct(json_data);
+                break;
+            case FEEDBACK:
+//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+//                fController.sendDataInDb();
+                break;
+            case GET_ALL_PRODUCTS:
+                 productService.getAllProducts();
+                break;
+            case DELETE_PRODUCT:
+                productService.deleteProduct(json_data);
                 break;
 //            case CREATE_PRODUCT:
 //                // productController.registerProduct();
@@ -74,10 +85,10 @@ public class RequestHandler {
 //                productService.deleteProduct(json_data);
 //                break;
             case GET_PRODUCT_BY_ID:
-//                productService.getProductById(json_data);
+                productService.getProductById(json_data);
                 break;
             case UPDATE_PRODUCT:
-//                productService.updateProduct(json_data);
+                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
                 // customer.create();

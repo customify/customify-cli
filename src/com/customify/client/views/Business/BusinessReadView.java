@@ -9,6 +9,7 @@
 
 package com.customify.client.views.Business;
 
+import com.customify.client.Colors;
 import com.customify.client.services.BusinessService;
 import com.customify.client.Keys;
 
@@ -52,7 +53,9 @@ public class BusinessReadView {
 
     public void viewById()throws IOException, ClassNotFoundException{
         Scanner scan=new Scanner(System.in);
+        System.out.print(Colors.ANSI_GREEN);
         System.out.print("Enter businessId: \t");
+        System.out.print(Colors.ANSI_RESET);
         int businessId = scan.nextInt();
         String json = "{ \"businessId\" : \""+businessId+"\", \"key\" : \""+ Keys.GET_BUSINESS +"\" }";
         BusinessService businessService = new BusinessService(socket);
@@ -69,7 +72,9 @@ public class BusinessReadView {
 
     public void deleteBusiness()throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
+        System.out.print(Colors.ANSI_GREEN);
         System.out.print("Enter businessId: \t");
+        System.out.print(Colors.ANSI_RESET);
         int businessId = scan.nextInt();
         String json = "{ \"businessId\" : \""+businessId+"\", \"key\" : \""+ Keys.REMOVE_BUSINESS +"\" }";
         BusinessService businessService = new BusinessService(socket);
