@@ -126,6 +126,10 @@ public class ProductService {
 
             System.out.println("Name: "+productFormat.getName());
 
+            responseData.clear();
+            responseData.add(new ObjectMapper().writeValueAsString(productFormat));
+            objectOutput.writeObject(responseData);
+
             rs.close();
             stmt.close();
             conn.close();
