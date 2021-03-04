@@ -29,6 +29,9 @@ public enum Keys {
     DELETE_PLAN,
     ADD_SALE,
     UPDATE_CUSTOMER,
+    GET_ALL_CUSTOMERS,
     GET_ALL_COUPONS,
-    GET_ALL_SALES,
+    GET_CUSTOMER,
+    GET_ALL_SALES
+
 }
