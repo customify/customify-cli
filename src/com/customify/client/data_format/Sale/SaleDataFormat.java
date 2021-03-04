@@ -1,11 +1,15 @@
 package com.customify.client.data_format.Sale;
 
+import com.customify.client.Keys;
+
 public class SaleDataFormat {
     private String customerID;
     private String quantity;
     private String totalPrice;
     private String employeeID;
     private String productID;
+    private Keys key = Keys.ADD_SALE;
+
 
     public SaleDataFormat(String customerID, String quantity, String totalPrice, String employeeID, String productID) {
         this.customerID = customerID;
@@ -15,6 +19,13 @@ public class SaleDataFormat {
         this.productID = productID;
     }
 
+    public Keys getKey() {
+        return key;
+    }
+
+    public void setKey(Keys key) {
+        this.key = key;
+    }
 
     public String getCustomerID() {
         return customerID;
