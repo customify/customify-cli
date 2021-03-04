@@ -1,5 +1,6 @@
 package com.customify.client.views.customer;
 
+import com.customify.client.Keys;
 import com.customify.client.data_format.DisableCustomerFormat;
 import com.customify.client.services.CustomerService;
 
@@ -38,9 +39,10 @@ public class DisableCustomerView {
             option = scan.nextLine();
 
             if(option.equalsIgnoreCase("y") || option.equalsIgnoreCase("yes")){
-                DisableCustomerFormat format = new DisableCustomerFormat(code ,1);
+//                DisableCustomerFormat format = new DisableCustomerFormat(code ,1);
+                String json = "{ \"code\" : \""+code+"\", \"key\" : \""+Keys.DISABLE_CUSTOMER+"\" }";
                 CustomerService service = new CustomerService(this.socket);
-                service.disable(format);
+                service.disable(json);
             }
             else{
                 return;

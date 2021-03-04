@@ -9,6 +9,7 @@ import com.customify.client.utils.authorization.UserSession;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ public class Login {
     public Login()  { }
     public Login(Socket socket) throws Exception{
         this.socket = socket;
+
         UserSession userSession = new UserSession();
         if(userSession.isLoggedIn())
         {
@@ -27,7 +29,7 @@ public class Login {
             JsonNode jsonNode = objectMapper.readTree(json);
             route(jsonNode.get("appUser").asText());
         }else{
-           openLogin=true;
+            openLogin=true;
             this.view();
         }
 
@@ -65,7 +67,7 @@ public class Login {
             AuthService authService = new AuthService(this.socket, format);
 
             if (authService.authenticate()) {
-              route(authService.getLoggedInUser());
+                route(authService.getLoggedInUser());
             } else {
                 System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tSORRY CHECK YOUR PASSWORD OR EMAIL"+Colors.ANSI_RESET);
             }
@@ -75,10 +77,14 @@ public class Login {
     public void route(String appUser) throws Exception{
         switch (appUser) {
             case "BUSINESS_ADMIN":
+
+
                 BusinessAdminDashboard bussDashboard = new BusinessAdminDashboard(this.socket);
+
                 break;
             case "EMPLOYEE":
                 EmployeeDashboard empDashboard = new EmployeeDashboard(this.socket);
+
                 break;
             case "SUPER_ADMIN":
                 SuperAdminDashboard admDashboard = new SuperAdminDashboard(this.socket);

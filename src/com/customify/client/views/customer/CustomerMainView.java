@@ -5,6 +5,7 @@ import com.customify.client.Login;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class CustomerMainView {
@@ -36,7 +37,7 @@ public class CustomerMainView {
     public void view() throws IOException, ClassNotFoundException {
         boolean customerView = true;
 
-        if(!loggedIn)
+        if(loggedIn)
         {
             label:do {
                 this.Header();
@@ -56,8 +57,12 @@ public class CustomerMainView {
                         customer.view();
                         break;
                     case "2":
+                        ReadAll customers = new ReadAll(this.socket);
+                        customers.view();
                         break;
                     case "3":
+                        ReadOne readOne = new ReadOne(this.socket);
+                        readOne.view();
                         break;
                     case "4":
                         UpdateCustomerView updatecustomer =new UpdateCustomerView(this.socket);
@@ -66,6 +71,10 @@ public class CustomerMainView {
                     case "5":
                         DisableCustomerView customerView1= new DisableCustomerView(this.socket);
                         customerView1.view();
+                        break;
+                    case "6":
+                        ReEnableCustomer activateCustomer = new ReEnableCustomer(this.socket);
+                        activateCustomer.init();
                         break;
                     case "00":
                         customerView = false;
