@@ -5,6 +5,7 @@
 
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CouponFormat;
 import com.customify.client.data_format.RedeemCoupon;
@@ -42,14 +43,23 @@ public class CouponService {
         try {
             String json = objectMapper.writeValueAsString(couponFormat);
             SendToServer sendToServer = new SendToServer(json,this.socket);
-            System.out.println("Json to send "+json);
             if (sendToServer.send()){
-                System.out.println("Data sent");
+                this.input = this.socket.getInputStream();
+                this.objectInput = new ObjectInputStream(this.input);
+
+                String data = (String) this.objectInput.readObject();
+                System.out.println("\n");
+                System.out.println(Colors.ANSI_BLUE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+data);
+                System.out.println(Colors.ANSI_RESET);
+                System.out.println("\n");
             }
         } catch (JsonProcessingException e) {
             System.out.println("Parsing create coupon "+e.getMessage());
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
