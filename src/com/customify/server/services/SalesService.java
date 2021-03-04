@@ -32,7 +32,6 @@ public class SalesService {
     public void buyAProduct(String jsonData) throws IOException {
 
         try{
-            System.out.println(jsonData);
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonData);
 
