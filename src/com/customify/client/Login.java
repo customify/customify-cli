@@ -40,7 +40,6 @@ public class Login {
 
             Scanner scan = new Scanner(System.in);
             String email, password;
-         //   System.out.println("\t\t\t00.Exit");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\tLOGIN\n");
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEmail: ");
             email = scan.nextLine();
