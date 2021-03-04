@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.customify.server.routes;
 
 import java.io.IOException;

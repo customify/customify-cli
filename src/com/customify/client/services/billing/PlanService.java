@@ -66,7 +66,7 @@ public class PlanService {
             List<PlanFormat> response = (List<PlanFormat>) objectInputStream.readObject();
             System.out.println("Available Plans");
             for(;;){
-                System.out.println("PlanId:\t"+response.);
+                System.out.println("PlanId:\t");
             }
 
         }

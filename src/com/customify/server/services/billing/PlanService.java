@@ -9,11 +9,7 @@ package com.customify.server.services.billing;
 import com.customify.client.Keys;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
-<<<<<<< HEAD:src/com/customify/server/services/billing/PlanService.java
 import com.customify.server.response_data_format.billing.PlanFormat;
-import com.customify.shared.Keys;
-=======
->>>>>>> origin/main:src/com/customify/server/services/PlanService.java
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 import java.net.Socket;
@@ -33,7 +29,7 @@ public class PlanService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(inputs);
 
-        String query = "INSERT INTO plans VALUES (NULL,?,?,NOW())";
+        String query = "INSERT INTO Plans VALUES (NULL,?,?,NOW())";
 
         PreparedStatement statement = this.connection.prepareStatement(query);
         statement.setString(1,jsonNode.get("planTitle").asText());
@@ -57,7 +53,7 @@ public class PlanService {
     }
     public String read(Keys key){
         try{
-            String query = "SELECT * from plans";
+            String query = "SELECT * from Plans";
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery(query);
             List<PlanFormat> response = new ArrayList<>();
@@ -86,7 +82,7 @@ public class PlanService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(inputs);
         try{
-            String query = "SELECT * from plans where planId=";
+            String query = "SELECT * from Plans where planId=";
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery(query+jsonNode.get("planId"));
             List<PlanFormat> response = new ArrayList<>();
@@ -115,7 +111,7 @@ public class PlanService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(inputs);
 
-        String query = "UPDATE plans SET planTitle=? , planDescription=?";
+        String query = "UPDATE Plans SET planTitle=? , planDescription=?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, jsonNode.get("planTitle").asText());
         statement.setString(2, jsonNode.get("planDescription").asText());
@@ -140,7 +136,7 @@ public class PlanService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(inputs);
 
-        String query = "DELETE FROM plans where planId = ?";
+        String query = "DELETE FROM Plans where planId = ?";
         PreparedStatement statement = connection.prepareStatement(query);
 
         statement.setInt(1,jsonNode.get("planId").asInt());
