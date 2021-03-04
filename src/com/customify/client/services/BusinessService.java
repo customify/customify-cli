@@ -12,6 +12,7 @@
 
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.SendToServer;
 //import com.customify.shared.requests_data_formats.BusinessFormats.BusinessFormat;
 import com.customify.client.data_format.business.GetBusinessFormat;
@@ -171,12 +172,26 @@ public class BusinessService {
                     System.out.format("%5d%20s%20s%20s%20s%20s\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
                     break;
                 case "create":
-                    if (jsonNode.get("status").asInt() == 201) System.out.println("Successfully created a Business");
-                    else System.out.println("An error occurred when creating your business with status code of 500");
+                    if (jsonNode.get("status").asInt() == 201) {
+                        System.out.println(Colors.ANSI_GREEN);
+                        System.out.println("Successfully created a Business");
+                        System.out.println(Colors.ANSI_RESET);
+                    } else {
+                        System.out.println(Colors.ANSI_GREEN);
+                        System.out.println("An error occurred when creating your business with status code of 500");
+                        System.out.println(Colors.ANSI_RESET);
+                    }
                     break;
                 case "update":
-                    if (jsonNode.get("status").asInt() == 200) System.out.println("Successfully updated a Business");
-                    else System.out.println("An error occurred when creating your business with status code of 500");
+                    if (jsonNode.get("status").asInt() == 200) {
+                        System.out.println(Colors.ANSI_GREEN);
+                        System.out.println("Successfully updated a Business");
+                        System.out.println(Colors.ANSI_RESET);
+                    } else {
+                        System.out.println(Colors.ANSI_RED);
+                        System.out.println("An error occurred when creating your business with status code of 500");
+                        System.out.println(Colors.ANSI_RESET);
+                    }
                     break;
                 case "delete_business":
                     if (jsonNode.get("statusCode").asInt() == 200)
