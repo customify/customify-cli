@@ -104,18 +104,23 @@ public class CouponService {
 
         //Casting the response data to list
         List<String> data = (List<String>) this.objectInput.readObject();
-        System.out.println("data: "+data);
        Iterator itr = data.iterator();
 
-        /*display the businesses
-        System.out.println("------------------------------------------List of Businesses----------------------------------\n");
-        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-        System.out.println();
-        while (itr.hasNext()) {
-            JsonNode bs = objectMapper.readTree((String) itr.next());
-            System.out.format("%5d%20s%20s%20s%20s%20s\n", bs.get("id").asInt(), bs.get("name").asText(), bs.get("location").asText(), bs.get("address").asText(), bs.get("phone_number").asText(), bs.get("created_at").asText());
-        }
+        String leftAlignFormat = "| %-13s | %-12s | %-12s | %-21s | %-21s | %-21s | %-13s |%n";
 
-       */
+
+        System.out.println(Colors.ANSI_CYAN);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tALL COUPONS");
+        System.out.println(Colors.ANSI_RESET);
+        System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+---------------+--------------+--------------+-----------------------+-----------------------+-----------------------+---------------+%n");
+        System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t| CouponID      | customerID   |  CouponCode  | Expire Date           |  created at           | coupon Status         | Coupon value  |%n");
+        System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+---------------+--------------+--------------+-----------------------+-----------------------+-----------------------+---------------+%n");
+        while (itr.hasNext()) {
+            JsonNode jsonNode = objectMapper.readTree((String) itr.next());
+            System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t"+leftAlignFormat,jsonNode.get("coupon_id").textValue(),jsonNode.get("customer_id").textValue(),jsonNode.get("coupon_code").textValue(),jsonNode.get("created_at").textValue(),jsonNode.get("expire_date").textValue(),jsonNode.get("coupon_status").textValue(),jsonNode.get("coupon_value").textValue());
+        }
+        System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+---------------+--------------+--------------+-----------------------+-----------------------+-----------------------+---------------+%n");
+        System.out.println("\n");
+
     }
 }
