@@ -12,6 +12,7 @@
 
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.business.BusinessFormat;
 
@@ -19,10 +20,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -126,9 +129,12 @@ public class BusinessService {
         if(data.get(0)=="500") System.out.println("An error occurred");
         else {
             //display the businesses
+            System.out.println(Colors.ANSI_GREEN);
             System.out.println("------------------------------------------List of Businesses----------------------------------\n");
+            System.out.println(Colors.ANSI_RESET);
+            System.out.println(Colors.ANSI_YELLOW);
             System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-            System.out.println();
+            System.out.println(Colors.ANSI_RESET);
             for (int i = 1; i < data.size(); i++) {
                 JsonNode bs = objectMapper.readTree(data.get(i));
                 System.out.format("%5d%20s%20s%20s%20s%20s\n", bs.get("id").asInt(), bs.get("name").asText(), bs.get("location").asText(), bs.get("address").asText(), bs.get("phone_number").asText(), bs.get("created_at").asText());
@@ -146,7 +152,9 @@ public class BusinessService {
         if (serverSend.send()) {
             handleResponse("getbyid");
         } else {
+            System.out.println(Colors.ANSI_CYAN);
             System.out.println("Request failed...");
+            System.out.println(Colors.ANSI_RESET);
         }
     }
 
@@ -170,44 +178,43 @@ public class BusinessService {
      * @role General method for handling response from the server
      */
     public void handleResponse(String func_name) throws ClassNotFoundException {
-        System.out.println("Received");
         try {
             this.input = this.socket.getInputStream();
             this.objectInput = new ObjectInputStream(this.input);
+            this.json_data = (String) this.objectInput.readObject();
             ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json_data);
             switch (func_name) {
                 case "getall":
+                    this.handleGetResponse();
                     break;
                 case "getbyid":
-                    response = (List<String>) this.objectInput.readObject();
-                    if(response.get(0) =="500") System.out.println(response.get(1));
-                    else if(response.get(0)=="400") System.out.println(response.get(1));
-                    else{
-                        JsonNode node = objectMapper.readTree(response.get(1));
+                    if(jsonNode.get("statusCode").asInt()==500){
+                        System.out.println("An error occurred");
+                    }else {
                         //Display the business
-                        System.out.println("-------------------Business " + node.get("id").asInt() + "------------------\n");
-                        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+                        System.out.println(Colors.ANSI_GREEN);
+                        System.out.println("Business " + jsonNode.get("id") + " information");
+                        System.out.println("--------------------------------------------------");
+                        System.out.println(Colors.ANSI_RESET);
+                        System.out.println(Colors.ANSI_YELLOW);
+                        System.out.format("%5s%20s%20s%20s%20s%20s", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
+                        System.out.println(Colors.ANSI_RESET);
                         System.out.println();
-                        System.out.format("%5d%20s%20s%20s%20s%20s\n", node.get("id").asInt(), node.get("name").asText(), node.get("location").asText(), node.get("address").asText(), node.get("phone_number").asText(), node.get("created_at").asText());
-
+                        System.out.format("%5d%20s%20s%20s%20s%20s\n\n", jsonNode.get("id").asInt(), jsonNode.get("name").asText(), jsonNode.get("location").asText(), jsonNode.get("address").asText(), jsonNode.get("phone_number").asText(), jsonNode.get("created_at").asText());
                     }
                     break;
                 case "create":
-                    this.json_data = (String) this.objectInput.readObject();
-                    JsonNode jsonNode = objectMapper.readTree(json_data);
                     if (jsonNode.get("status").asInt() == 201) System.out.println("Successfully created a Business");
                     else System.out.println("An error occurred when creating your business with status code of 500");
                     break;
                 case "update":
-                    this.json_data = (String) this.objectInput.readObject();
-                    jsonNode = objectMapper.readTree(json_data);
                     if (jsonNode.get("status").asInt() == 200) System.out.println("Successfully updated a Business");
                     else System.out.println("An error occurred when creating your business with status code of 500");
                     break;
                 case "delete_business":
-                    //Casting the response data to list
-                    response = (List<String>) this.objectInput.readObject();
-                    if (response.get(0) == "200")System.out.println("-------------------Business deleted------------------ ");
+                    if (jsonNode.get("statusCode").asInt() == 200)
+                        System.out.println("-------------------Business deleted------------------ ");
                     else System.out.println("An error occurred");
                     break;
                 default:
@@ -215,7 +222,7 @@ public class BusinessService {
                     break;
             }
         } catch (IOException e) {
-                System.out.println("Error in reading Object " + e.getMessage());
+            System.out.println("Error in reading Object " + e.getMessage());
         }
     }
 }
