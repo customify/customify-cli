@@ -31,5 +31,8 @@ public enum Keys {
     REDEEMING_COUPON,
     ADD_SALE,
     UPDATE_CUSTOMER,
+    GET_ALL_SALES,
+    GET_ALL_CUSTOMERS,
+    GET_CUSTOMER,
 }
 

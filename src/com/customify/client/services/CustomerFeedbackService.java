@@ -16,6 +16,7 @@ import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFor
 
 // import com.customify.shared.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.mail.iap.Response;
 
 // import com.customify.shared.Keys;
 // import com.customify.shared.Request;
@@ -57,8 +58,8 @@ public class CustomerFeedbackService {
     public void handleFeedbackResponse() throws IOException, ClassNotFoundException {
         InputStream inputStream = this.socket.getInputStream();
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-//        List<Response> response = (List<Response>) objectInputStream.readObject();
-//
+        List<Response> response = (List<Response>) objectInputStream.readObject();
+
 //        if (response.get(0).getStatusCode() == 201) {
 //            System.out.println("All done. The feedback has been sent.");
 //        }

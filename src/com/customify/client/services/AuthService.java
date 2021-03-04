@@ -17,8 +17,8 @@ public class AuthService {
 
     private Socket socket;
     private AuthenticationDataFormat data;
-   private  boolean authenticated = false;
-     private String loggedInUser = null;
+    private  boolean authenticated = false;
+    private String loggedInUser = null;
 
     public String getLoggedInUser() {
         return loggedInUser;
@@ -67,9 +67,9 @@ public class AuthService {
 
         SendToServer serverSend = new SendToServer(json, this.socket);
         if (serverSend.send()) {
-          this.handleLoginResponse();
+            this.handleLoginResponse();
         }
-     return isAuthenticated();
+        return isAuthenticated();
     }
 
 
@@ -83,7 +83,6 @@ public class AuthService {
             List<String> res = (List) objectInput.readObject();
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(res.get(0));
-
 
             if(jsonNode.get("status").asInt() == 201)
             {
@@ -106,16 +105,15 @@ public class AuthService {
             }
         }catch(Exception e){
             System.out.println( "Exception Caught "+e.getMessage());
-        }
-
 
     }
+}
 
-    public String authenticateAdmin() {
+    public String authenticateAdmin(){
         return  "";
     }
 
     public String authenticateEmployee() {
         return  "";
     }
-}
+    }

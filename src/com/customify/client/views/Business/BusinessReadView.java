@@ -49,6 +49,7 @@ public class BusinessReadView {
      * This method is for getting One business by id
      * It calls the business service
      * */
+
     public void viewById()throws IOException, ClassNotFoundException{
         Scanner scan=new Scanner(System.in);
         System.out.print("Enter businessId: \t");
@@ -58,12 +59,14 @@ public class BusinessReadView {
         businessService.getById(json);
     }
 
+
     /**
      * @author Kellia Umuhire
      * @role
      * This method is for removing business
      * It calls the business service
      * */
+
     public void deleteBusiness()throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter businessId: \t");
@@ -72,5 +75,4 @@ public class BusinessReadView {
         BusinessService businessService = new BusinessService(socket);
         businessService.deleteBusiness(json);
     }
-
 }
