@@ -3,7 +3,7 @@
 */
 package com.customify.client.views;
 
-import com.customify.client.views.CouponingMain.CouponMainView;
+import com.customify.client.Colors;
 import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.Business.BusinessView;
@@ -42,19 +42,23 @@ public class Home {
         BusinessView businessView = new BusinessView(this.socket);
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
-        CouponMainView couponView = new CouponMainView(this.socket);
+        Coupon couponView = new Coupon(this.socket);
 
-        System.out.println("---------------------------------------------");
-        System.out.println("--------------CUSTOMIFY HOME-----------------\n");
-        System.out.println("           1. SIGN UP");
-        System.out.println("           2. LOGIN");
-        System.out.println("           3. PRODUCT MANAGEMENT");
-        System.out.println("           4. BUSINESS");
-        System.out.println("           5. GIVE FEEDBACK");
-        System.out.println("           6. PROVIDE FEEDBACK ");
-        System.out.println("           7. POINTS");
-        System.out.println("           8. CUSTOMER MANAGEMENT");
-        System.out.println("           9. COUPONS");
+        System.out.println("\t\t---------------------------------------------");
+        System.out.println("\t\t--------------CUSTOMIFY HOME-----------------");
+        System.out.println("\t\t---------------------------------------------");
+        System.out.println("\t           1. SIGN UP");
+        System.out.println("\t           2. LOGIN");
+        System.out.println("\t           3. PRODUCT MANAGEMENT");
+        System.out.println("\t           4. REGISTER BUSINESS");
+        System.out.println("\t           5. GIVE FEEDBACK");
+        System.out.println("\t           6. PROVIDE FEEDBACK ");
+        System.out.println("\t           7. POINTS");
+        System.out.println("\t           8. CUSTOMER MANAGEMENT");
+        System.out.println("\t           9. COUPONS");
+        System.out.println("\t\t---------------------------------------------");
+
+        System.out.print("\n\n\t\tEnter your choice: ");
         choice = scan.nextInt();
 
         switch (choice) {
@@ -76,7 +80,6 @@ public class Home {
             case 6:
                 feedbackView.view();
                 break;
-
             case 7:
 //                pointCountingView.view();
                 break;
@@ -87,8 +90,7 @@ public class Home {
                 couponView.init();
                 break;
             default:
-                System.out.println("Invalid choice");
+                System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
         }
-
     }
 }

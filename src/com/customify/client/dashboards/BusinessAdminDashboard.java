@@ -1,7 +1,9 @@
 package com.customify.client.dashboards;
 
+import com.customify.client.Colors;
 import com.customify.client.Login;
 import com.customify.client.utils.authorization.UserSession;
+import com.customify.client.views.PointCountingView;
 import com.customify.client.views.customer.CustomerMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -39,7 +41,7 @@ public class BusinessAdminDashboard {
             this.view();
         else{
             System.out.println("\t\t\tSORRY YOU CAN'T ACCESS THIS ROUTE _ LOG IN FIRST\n\n");
-            Login login =new Login(this.socket);
+          Login login =new Login(this.socket);
         }
 
     }
@@ -57,31 +59,31 @@ public class BusinessAdminDashboard {
     public void view()throws Exception{
         Scanner scan = new Scanner(System.in);
 
-
         do {
-            System.out.println("|---------------------------------------------|");
-            System.out.println("|              CUSTOMIFY HOME                 |\n");
-            System.out.println("|--------------BUSINESS ADMIN DASHBOARD-------|\n");
-            System.out.println("           1. EMPLOYEE MANAGEMENT");
-            System.out.println("           2. CUSTOMER MANAGEMENT");
-            System.out.println("           3. TODAY'S REPORT");
-            System.out.println("           4. MY PROFILE");
-            System.out.println("           5. PROFILE SETTINGS");
-            System.out.println("           6. LOGOUT !!!");
+
+            this.Header();
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. EMPLOYEE MANAGEMENT");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. CUSTOMER MANAGEMENT");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. WINNERS");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. TODAY'S REPORT");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. PROFILE SETTINGS");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. LOGOUT !!!");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-6>"+Colors.ANSI_RESET+": ");
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
                     break;
                 case 2:
-                    CustomerMainView customer = new CustomerMainView();
+                    CustomerMainView customer = new CustomerMainView(this.getSocket(),true);
                     customer.view();
                     break;
                 case 3:
+                    PointCountingView pointCountingView = new PointCountingView(this.socket);
+                    pointCountingView.view();
                     break;
                 case 4:
-//                    loggedIn=false;
                     break;
-                    case 5:
+                case 5:
 //                    loggedIn=false;
                     break;
                 case 6:
@@ -89,9 +91,13 @@ public class BusinessAdminDashboard {
                             loggedIn=false;
                     break;
                 default:
-                    System.out.println("INVALID CHOICE");
+                    System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
             }
         }while(loggedIn);
     }
-
+    public void Header(){
+        System.out.println(Colors.ANSI_CYAN);
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBUSINESS ADMIN DASHBOARD");
+        System.out.println(Colors.ANSI_RESET);
+    }
 }

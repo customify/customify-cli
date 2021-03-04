@@ -1,12 +1,10 @@
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.SendToServer;
-import com.customify.client.data_format.CreateCustomerFormat;
+import com.customify.client.data_format.*;
 //import com.customify.client.data_format.customer.CreateCustomerFormat;
-import com.customify.client.data_format.DeActivateCustomer;
-import com.customify.client.data_format.DisableCustomerFormat;
-import com.customify.client.data_format.UpdateCustomerFormat;
 import com.customify.client.data_format.products.ProductFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -16,10 +14,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerService {
     private Socket socket;
+    private ObjectMapper objectMapper;
 
     public CustomerService() {
     }
@@ -30,7 +31,6 @@ public class CustomerService {
 
 
     public void create(CreateCustomerFormat format) throws IOException, ClassNotFoundException {
-
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(format);
         SendToServer serverSend = new SendToServer(json, this.socket);
@@ -53,8 +53,8 @@ public class CustomerService {
             String json_response = response.get(0);
             System.out.println("HERE'S THE RESPONSE FROM THE SERVER => " + json_response);
 
-        }catch(Exception e) {
-            System.out.println("RESPONSE ERROR =>"+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("RESPONSE ERROR =>" + e.getMessage());
         }
     }
 
@@ -122,50 +122,136 @@ public class CustomerService {
 
             SendToServer serverSend = new SendToServer(json, this.socket);
             if (serverSend.send()) {
-                InputStream input =this.socket.getInputStream();
+                InputStream input = this.socket.getInputStream();
                 ObjectInputStream objectInput = new ObjectInputStream(input);
                 List<String> res = (List) objectInput.readObject();
                 ObjectMapper objectMapper = new ObjectMapper();
                 JsonNode jsonNode = objectMapper.readTree(res.get(0));
 
                 if (jsonNode.get("status").asInt() == 200) {
-                    System.out.println("\n\n\t\tCard was di-activated successfully\n");
-                }else if(jsonNode.get("status").asInt() == 401)
-                {
-                    System.out.println("\n\n\t\tSORRY NOT SUCCESSFULLY DISABLED\n");
-                }else{
-                    System.out.println("\t\t\tTRY AGAIN SYSTEM ERROR OCCURRED");
+                    System.out.println(Colors.ANSI_PURPLE);
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t          CARD WAS SUCCESSFULLY DE-ACTIVATED!!!!");
+                    System.out.println(Colors.ANSI_RESET);
+                } else if (jsonNode.get("status").asInt() == 400) {
+                    System.out.println(Colors.ANSI_PURPLE);
+                    System.out.println("\t\t\t\t\t\t\t\t\t THE CUSTOMER DOESN'T EXIST");
+                    System.out.println(Colors.ANSI_RESET);
+                } else if (jsonNode.get("status").asInt() == 500) {
+                    System.out.println(Colors.ANSI_PURPLE);
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t  SYSTEM ERROR OCCURRED");
+                    System.out.println(Colors.ANSI_RESET);
+                } else {
+                    System.out.println(Colors.ANSI_PURPLE);
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t   UNKNOWN ERROR");
+                    System.out.println(Colors.ANSI_RESET);
                 }
             }
 
-        }catch(Exception e){
-            System.out.println( "Exception Caught ");
-    }
-    }
-
-    public void reEnableCard(String code) throws IOException{
-            DeActivateCustomer format = new DeActivateCustomer(code);
-            ObjectMapper objectMapper = new ObjectMapper();
-            String request = objectMapper.writeValueAsString(format);
-            SendToServer sendToServer = new SendToServer(request,socket);
-
-            if (sendToServer.send()){
-                System.out.println("\t\tCard was activated successfully\n");
-            }
+        } catch (Exception e) {
+            System.out.println("Exception Caught ");
         }
+        return;
     }
 
-    public void getAll(){}
-    public void get(){}
+    /**
+     * @author Murenzi Confiance Tracy
+     * @role this function is to handle response on the successfully activated customer
+     */
 
-    public void reEnableCard(String code) throws IOException {
-        DeActivateCustomerFormat format = new DeActivateCustomerFormat(code);
+    public Object reEnableCard(String code) throws IOException, ClassNotFoundException {
+        DeActivateCustomer format = new DeActivateCustomer(code);
         ObjectMapper objectMapper = new ObjectMapper();
         String request = objectMapper.writeValueAsString(format);
-        SendToServer sendToServer = new SendToServer(request,socket);
+        SendToServer sendToServer = new SendToServer(request, socket);
 
-        if (sendToServer.send()){
-            System.out.println("\t\tCard was activated successfully\n");
+        if (sendToServer.send()) {
+//                System.out.println("\t\tCard was activated successfully\n");
+            InputStream input = this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
+            List<String> res = (List<String>) objectInput.readObject();
+
+            String responseData = res.get(0);
+//            System.out.println("Response: " + responseData);
+            JsonNode jsonNode = new ObjectMapper().readTree(responseData);
+
+            if (jsonNode.get("status").asInt() == 200) {
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t          CARD WAS SUCCESSFULLY ACTIVATED!!!!");
+                System.out.println(Colors.ANSI_RESET);
+            } else if (jsonNode.get("status").asInt() == 400) {
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t THE CUSTOMER DOESN'T EXIST");
+                System.out.println(Colors.ANSI_RESET);
+            } else if (jsonNode.get("status").asInt() == 500) {
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t  SYSTEM ERROR OCCURRED");
+                System.out.println(Colors.ANSI_RESET);
+            } else {
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t   UNKNOWN ERROR");
+                System.out.println(Colors.ANSI_RESET);
+            }
         }
+        return null;
+    }
+
+    public List getAll() throws IOException {
+        String json = "{ \"key\" : \"" + Keys.GET_ALL_CUSTOMERS + "\"}";
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        List<String> res = new ArrayList<>();
+        if (serverSend.send()) {
+
+            try {
+                InputStream input = this.socket.getInputStream();
+                ObjectInputStream objectInput = new ObjectInputStream(input);
+                res = (List) objectInput.readObject();
+
+                objectMapper = new ObjectMapper();
+                JsonNode jsonNode = objectMapper.readTree(res.get(0));
+
+                if (jsonNode.get("status").asInt() == 500) {
+                    System.out.println("\t\t\t\t---- INTERNAL SERVER ERROR -----");
+                    return null;
+                } else if (jsonNode.get("status").asInt() == 404) {
+                    System.out.println("\n\t\t\t*******************************************************************************************************");
+                    System.out.println("                                                 NO CUSTOMERS FOUND                                            ");
+                    System.out.println("\t\t\t*******************************************************************************************************");
+                    return null;
+                }
+
+
+            } catch (Exception e) {
+                System.out.println("RESPONSE ERROR HERE" + e.getMessage());
+            }
+        }
+        return res;
+
+    }
+
+    public List get(GetCustomer format) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(format);
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        List<String> res = new ArrayList<>();
+        if (serverSend.send()) {
+            try {
+                InputStream input = this.socket.getInputStream();
+                ObjectInputStream objectInput = new ObjectInputStream(input);
+                res = (List) objectInput.readObject();
+                JsonNode jsonNode = objectMapper.readTree(res.get(0));
+
+                if (jsonNode.get("status").asInt() == 404) {
+                    System.out.println("\n\t\t\t*******************************************************************************************************");
+                    System.out.println("                                                  NO CUSTOMER FOUND                                            ");
+                    System.out.println("\t\t\t*******************************************************************************************************");
+                    return null;
+                }
+
+            } catch (Exception e) {
+                System.out.println("RESPONSE ERROR HERE" + e.getMessage());
+            }
+        }
+        return res;
     }
 }
+
