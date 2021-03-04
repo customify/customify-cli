@@ -58,23 +58,23 @@ public class RequestHandler {
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
-                // productController.registerProduct();
+                 productController.registerProduct();
                 break;
             case FEEDBACK:
-//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
-//                fController.sendDataInDb();
+                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+                fController.sendDataInDb();
                 break;
             case GET_ALL_PRODUCTS:
-                // productController.getAllProducts();
+                 productController.getAllProducts();
                 break;
             case DELETE_PRODUCT:
                 productService.deleteProduct(json_data);
                 break;
             case GET_PRODUCT_BY_ID:
-//                productService.getProductById(json_data);
+                productService.getProductById(json_data);
                 break;
             case UPDATE_PRODUCT:
-//                productService.updateProduct(json_data);
+                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
                 // customer.create();

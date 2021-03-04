@@ -21,8 +21,8 @@ public class CustomerMainView {
         setLoggedIn(loggedIn);
         if(this.loggedIn)
             this.view();
-        else
-             login = new Login(socket);
+         else
+            login = new Login(socket);
     }
 
     public Socket getSocket() {

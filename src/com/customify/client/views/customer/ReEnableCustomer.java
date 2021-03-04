@@ -37,7 +37,6 @@ public class ReEnableCustomer {
         System.out.println("         Are you sure you want to activate this card? (y/N): \t");
         option = scan.nextLine();
         CustomerService service = new CustomerService(socket);
-        service.reEnableCard(code);
 
         if(option.equalsIgnoreCase("y") || option.equalsIgnoreCase("yes")){
             DeActivateCustomer reEnabled= new DeActivateCustomer(code);

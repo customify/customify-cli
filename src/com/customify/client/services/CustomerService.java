@@ -143,6 +143,11 @@ public class CustomerService {
     }
     }
 
+    /**
+     * @author Murenzi Confiance Tracy
+     * @role this function is to handle response on the successfully activated customer
+     */
+
     public void reEnableCard(String code) throws IOException{
             DeActivateCustomer format = new DeActivateCustomer(code);
             ObjectMapper objectMapper = new ObjectMapper();
@@ -153,19 +158,8 @@ public class CustomerService {
                 System.out.println("\t\tCard was activated successfully\n");
             }
         }
-    }
 
     public void getAll(){}
     public void get(){}
 
-    public void reEnableCard(String code) throws IOException {
-        DeActivateCustomerFormat format = new DeActivateCustomerFormat(code);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String request = objectMapper.writeValueAsString(format);
-        SendToServer sendToServer = new SendToServer(request,socket);
-
-        if (sendToServer.send()){
-            System.out.println("\t\tCard was activated successfully\n");
-        }
-    }
 }
