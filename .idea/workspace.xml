@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="53f93c6e-2c9e-4c33-99c7-fe4c6dc1fe55" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/CustomerMainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/ReadAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/ReadAll.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/customer/ReadOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/customer/ReadOne.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/CustomerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
