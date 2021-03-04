@@ -1,6 +1,9 @@
 package com.customify.server.models.billing;
 
-//Initializing Model by Moss
+/**
+ * @author Mfuranziza Sekata Aimelyse Moss
+ * Created and Wrote Whole Document By Moss
+ * */
 
 
 public class BillingModel<I,P,F>{
