@@ -76,7 +76,7 @@ public void  update(String data) throws SQLException, JsonProcessingException {
     statement.setString(2,jsonNode.get("featureDescription").asText());
     statement.setInt(3,jsonNode.get("featureCode").asInt());
     if(statement.execute()){
-        System.out.println("Your query not working .... ");
+        System.out.println("Failed to execute .... ");
     }else{
         System.out.println("Query Ok !!! ");
     }
