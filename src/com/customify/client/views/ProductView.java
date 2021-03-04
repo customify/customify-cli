@@ -1,5 +1,6 @@
 package com.customify.client.views;
 
+import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.services.ProductService;
 import com.customify.client.data_format.products.*;
@@ -21,17 +22,16 @@ public class ProductView {
         Scanner reader = new Scanner(System.in);
         int choice;
 
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("\t\tPRODUCT MANAGEMENT");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("\t\t1.register product");
-        System.out.println("\t\t2.get all products");
-        System.out.println("\t\t3.get product by id");
-        System.out.println("\t\t4.update product");
-        System.out.println("\t\t5.Delete product");
-        System.out.println("\t\t00.back");
+        System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_CYAN + "HOME >> PRODUCT MANAGEMENT\n");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_RESET+ "------------------------------------------------------\n\n");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t1.register product");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t2.get all products");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t3.get product by id");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t4.update product");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t5.Delete product");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t00.back");
 
-        System.out.print("\nEnter option:\t");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_GREEN +"Enter option:\t");
         choice = Integer.parseInt(reader.nextLine());
 
         switch (choice) {
