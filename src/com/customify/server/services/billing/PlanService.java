@@ -22,6 +22,7 @@ public class PlanService {
     Socket socket;
     private final Connection connection = Db.getConnection();
     private String response;
+    public PlanService(){}
     public PlanService(Socket socket){
         this.socket = socket;
     }

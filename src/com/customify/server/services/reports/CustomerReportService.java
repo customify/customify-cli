@@ -39,7 +39,7 @@ public class CustomerReportService {
 
         //formatting the response into a data format
         Statement statement = Db.getStatement();
-        String query = "select count(customer_id) as Total_Users, date(created_at) from Customer group by date(created_at)";
+        String query = "select count(customer_id) as totalCustomers, date(created_at) from Customer group by date(created_at)";
         try {
 
             ResultSet res = statement.executeQuery(query);
