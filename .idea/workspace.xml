@@ -19,14 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="943cc82c-314a-4e3e-9b20-25ea88fb8d81" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/models/BillingModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/response_data_format/billing/BillingFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/billing/BillingFormat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/billing/BillingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/billing/BillingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/billing/PlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/billing/PlanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/reports/CustomerReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/reports/CustomerReportService.java" afterDir="false" />
-    </list>
+    <list default="true" id="943cc82c-314a-4e3e-9b20-25ea88fb8d81" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
