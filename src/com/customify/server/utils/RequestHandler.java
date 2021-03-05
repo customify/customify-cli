@@ -10,13 +10,12 @@ import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
 import com.customify.server.services.SalesService;
+import com.customify.server.services.BusinessService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;
@@ -49,6 +48,8 @@ public class RequestHandler {
         CustomerService customer = new CustomerService(this.clientSocket,json_data);
         EmployeeService employee = new EmployeeService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
+//        ProductService productService = new ProductService(this.clientSocket);
+        PointsService pointsService = new PointsService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
         FeatureService featureService = new FeatureService(this.clientSocket);
@@ -85,6 +86,14 @@ public class RequestHandler {
             case DELETE_PRODUCT:
                 productService.deleteProduct(json_data);
                 break;
+
+            case GET_WINNERS:
+                pointsService.getWinners();
+                break;
+//            case POINTS_BY_CUSTOMER_EMAIL:
+//                pointsController.getPointsByCustomerEmail(json_data);
+//                break;
+
 //            case CREATE_PRODUCT:
 //                 productService.registerProduct(json_data);
 //                break;

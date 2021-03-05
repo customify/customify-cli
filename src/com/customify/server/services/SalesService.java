@@ -52,7 +52,7 @@ public class SalesService {
 
             SaleDataFormat saleDataFormat = new SaleDataFormat(jsonNode.get("customerID").asText(),jsonNode.get("quantity").asText(),jsonNode.get("totalPrice").asText(),jsonNode.get("employeeID").asText(),jsonNode.get("productID").asText());
 
-            PointsService.recordPointsAfterSale(saleDataFormat);
+//            PointsService.recordPointsAfterSale(saleDataFormat);
 
             this.sendToClient("Product sold!");
 
