@@ -197,7 +197,6 @@ public class FeatureService {
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
             List<String> response = (List<String>) objectInputStream.readObject();
 
-            String json_response = response.get(0);
             System.out.println(Colors.ANSI_CYAN);
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tALL FEATURES");
             System.out.println(Colors.ANSI_RESET);

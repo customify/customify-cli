@@ -1,10 +1,12 @@
+/*
+ * By Makuza Mugabo Verite
+ * On Feb 25/02/2021
+ * */
+
+
 package com.customify.client.views;
 
 
-/*
-* By Makuza Mugabo Verite
-* On Feb 25/02/2021
-* */
 
 import com.customify.client.Colors;
 import com.customify.client.Keys;
@@ -84,16 +86,12 @@ public class Sales {
         isLoggedIn = loggedIn;
     }
 
-
     public void SaleProductView()  {
-
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             Scanner scanner = new Scanner(System.in);
             UserSession userSession = new UserSession();
             JsonNode userJson = objectMapper.readTree(userSession.getUserJsonObject());
-
-            System.out.println("id: "+userJson.get("id").asText());
 
             String productId;
             String customerId;
@@ -106,10 +104,8 @@ public class Sales {
 
             SalesService salesService = new SalesService(this.socket);
 
- this.Header();
+            this.Header();
 
-            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter Product id: ");
-            productId = scanner.nextLine();
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter customer id: ");
             customerId = scanner.nextLine();
 

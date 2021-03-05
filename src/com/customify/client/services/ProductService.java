@@ -1,14 +1,19 @@
 package com.customify.client.services;
 
+import com.customify.client.Colors;
+import com.customify.client.Keys;
 import com.customify.client.SendToServer;
 
 import com.customify.client.data_format.products.ProductFormat;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
@@ -31,17 +36,17 @@ public class ProductService {
 
     }
 
-    public void addNewProduct(ProductFormat productModel) throws Exception {
-//        Request request = new Request(Keys.CREATE_PRODUCT, productModel);
-//        Common common = new Common(request, this.socket);
-//
-//        //if the sending is successful call a method to handle response from server
-//        if (common.sendToServer()) {
-//            this.handleRegisterProductSuccess();
-//        } else {
-//            System.out.println("\n\nError occurred when trying to send request to server\n");
-//        }
+    public void addNewProduct(ProductFormat product) throws Exception {
+        product.setKey(Keys.CREATE_PRODUCT);
+        String request = new ObjectMapper().writeValueAsString(product);
+
+        SendToServer sendToServer = new SendToServer(request,this.socket);
+        if (sendToServer.send()){
+            this.handleRegisterProductSuccess();
+        }
+        else System.out.println("\n\n\t\tSENDING REQUEST TO SERVER FAILED\n");
     }
+
 
     /**
      * @description
@@ -64,30 +69,33 @@ public class ProductService {
         }
 
     }
-    //Method Created By Merlyne Iradukunda
-    // Due date: 6/2/2020
-    public void deleteProduct(Long productCode) throws  Exception{
-//        Request request = new Request(Keys.DELETE_PRODUCT, productCode);
-//        Common common = new Common(request, this.socket);
-//
-//        //if the sending is successful call a method to handle response from server
-//        if (common.sendToServer()) {
-//            this.handleDeleteProductSuccess();
-//        } else {
-//            System.out.println("\n\nError occurred when trying to send request to server\n");
-//        }
+    /**
+     * @description
+     * Function to Delete a Product
+     * @author Merlyne Iradukunda
+     * Due date: 6/2/2020
+     * @version 1
+     * */
+    public void deleteProduct(ProductFormat product) throws  Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonProductFormat = mapper.writeValueAsString(product);
+        SendToServer serverSend = new SendToServer(jsonProductFormat, this.socket);
+        if (serverSend.send()) {
+            this.handleDeleteProductSuccess();
+        } else {
+            System.out.println(Colors.ANSI_RED+"FAILED TO SEND DATA TO SERVER "+Colors.ANSI_RED);
+        }
     }
 
     public void getAllProducts() throws Exception {
-//        Request request = new Request(Keys.GET_ALL_PRODUCTS, new ProductFormat());
-//        Common common = new Common(request, this.socket);
-//
-//        //if the sending is successful call a method to handle response from server
-//        if (common.sendToServer()) {
-//            this.handleGetProductListSuccess();
-//        } else {
-//            System.out.println("\n\nError occurred when trying to send request to server\n");
-//        }
+        ProductFormat format = new ProductFormat();
+        format.setKey(Keys.GET_ALL_PRODUCTS);
+
+        SendToServer sendToServer = new SendToServer(new ObjectMapper().writeValueAsString(format),this.socket);
+        if (sendToServer.send()) {
+            this.handleGetProductListSuccess();
+        }
+        else System.out.println("\n\n\t\t\tERROR OCCURRED WHEN SENDING REQUEST TO SERVER\n");
     }
 
     /**
@@ -111,70 +119,56 @@ public class ProductService {
         }
     }
     public void handleGetProductListSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-//
-//        try {
-////            List<Response> response = (List<Response>) objectInputStream.readObject();
-////            if (response.get(0).getStatusCode() == 200) {
-////                List<ProductFormat> products = (List<ProductFormat>) response.get(0).getData();
-////
-////                if (products.size() == 0) {
-////                    System.out.println("\n\nNo products registered so far.\n");
-////                    return;
-////                }
-////
-////                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-////                System.out.println("\t\t\t\t\t\t\tHere is a list of products registered so far");
-////                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-////
-////                System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
-////
-////                for (int i = 0; i < products.size(); i++) {
-////                    ProductFormat product = products.get(i);
-////
-////                    System.out.println(String.format("%-15s %-30s %-10s %10s %20s %20s", product.getProductCode(), product.getName(), product.getQuantity(), product.getPrice(), product.getBondedPoints(), product.getCreatedAt()));
-////                }
-////                System.out.println("\n");
-////            } else if (response.get(0).getStatusCode() == 400) {
-////                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-////            } else {
-////                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-////            }
-//
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        }
+        try {
+            InputStream input =this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
+
+            List<String> res = (List) objectInput.readObject();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode response = objectMapper.readTree(res.get(0));
+
+            if(response.get("status").asInt() == 500){
+                System.out.println("\n\n\t\t\t---- INTERNAL SERVER ERROR -----\n");
+                return;
+            }
+
+            final JsonNode products = response.get("products");
+            if (products.isArray()) {
+                System.out.println("\n\t\t\t----------------------------------------------------------------------------------------------------------------------------");
+                System.out.println("\t\t\t\t\t\t\t\t\t\tHere is a list of products registered so far");
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println(String.format("\t\t\t\t%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
+                for (final JsonNode product : products) {
+                    System.out.println(String.format("\t\t\t\t%-15s %-30s %-10s %10s %20s %20s", product.get("productCode").asText(), product.get("name").asText(), product.get("quantity").asText(), product.get("price").asText(), product.get("bondedPoints").asText(), product.get("createdAt").asText()));
+                }
+                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
+            }
+        }catch(Exception e){
+            System.out.println("RESPONSE ERROR" + e.getMessage());
+        }
 
         return;
     }
 
     public void handleRegisterProductSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
+        try {
+            InputStream input =this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
 
-//        try {
-//            List<Response> response = (List<Response>) objectInputStream.readObject();
-//            ;
-//            if (response.get(0).getStatusCode() == 200) {
-//                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
-//
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//                System.out.println("\t\t product registered successfully");
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//            } else if (response.get(0).getStatusCode() == 400) {
-//                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-//            } else {
-//                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-//            }
-//
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        } catch (ClassNotFoundException e) {
-//        }//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
+            List<String> res = (List) objectInput.readObject();
 
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode response = objectMapper.readTree(res.get(0));
+
+            if (response.get("status").asInt() == 201) System.out.println(Colors.ANSI_GREEN+"\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tPRODUCT CREATED SUCCESSFULLY\n\n"+Colors.ANSI_RESET);
+            else if(response.get("status").asInt() == 400) System.out.println(Colors.ANSI_RED+"\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBAD FORMAT WAS SUPPLIED TO SOME FIELDS\n\n"+Colors.ANSI_RESET);
+            else if(response.get("status").asInt() == 500) System.out.println(Colors.ANSI_RED+"\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBACKEND INTERNAL SERVER ERROR.\n\n"+Colors.ANSI_RESET);
+            else System.out.println("\n\n\t\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
+        }catch(Exception e){
+            System.out.println(Colors.ANSI_RED+"\n\n\t\t\t\t\t\t\tERROR OCCURRED.TRY AGAIN\n\n"+Colors.ANSI_RESET);
+        }
         return;
     }
 
@@ -196,17 +190,17 @@ public class ProductService {
 //            if(response.get(0).getStatusCode() == 200){
 //                ProductFormat retrievedProduct = (ProductFormat) response.get(0).getData();
 //
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//                System.out.println("Product Code: " + retrievedProduct.getProductCode());
-//                System.out.println("Business Id: "+ retrievedProduct.getBusiness_id());
-//                System.out.println("Name: " + retrievedProduct.getName());
-//                System.out.println("Price: " + retrievedProduct.getPrice() );
-//                System.out.println("Quantity: " + retrievedProduct.getQuantity());
-//                System.out.println("Description: " + retrievedProduct.getDescription());
-//                System.out.println("Bonded Points: " + retrievedProduct.getBondedPoints());
-//                System.out.println("Registered By: " + retrievedProduct.getRegistered_by());
-//                System.out.println("Created At: " + retrievedProduct.getCreatedAt());
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("-------------------------------------------");
+//                System.out.println("Product Code: " - retrievedProduct.getProductCode());
+//                System.out.println("Business Id: "- retrievedProduct.getBusiness_id());
+//                System.out.println("Name: " - retrievedProduct.getName());
+//                System.out.println("Price: " - retrievedProduct.getPrice() );
+//                System.out.println("Quantity: " - retrievedProduct.getQuantity());
+//                System.out.println("Description: " - retrievedProduct.getDescription());
+//                System.out.println("Bonded Points: " - retrievedProduct.getBondedPoints());
+//                System.out.println("Registered By: " - retrievedProduct.getRegistered_by());
+//                System.out.println("Created At: " - retrievedProduct.getCreatedAt());
+//                System.out.println("-------------------------------------------");
 //            }
 //            else if(response.get(0).getStatusCode() == 400){
 //                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
@@ -216,37 +210,32 @@ public class ProductService {
 //            }
 
 //        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
 //        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
 //        }
 
         return;
     }
     public void handleDeleteProductSuccess() throws  Exception, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-//        try {
-//            List<Response> response = (List<Response>) objectInputStream.readObject();
-//
-//            if (response.get(0).getStatusCode() == 200) {
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//                System.out.println("\t\t product deleted successfully");
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-//            } else if (response.get(0).getStatusCode() == 400) {
-//                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-//            } else if(response.get(0).getStatusCode() == 500){
-//                System.out.println("Internal server error!!");
-//            }else{
-//                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-//            }
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" + e.getMessage() + "\n\n");
-//        }
+        try {
+            inputStream = this.socket.getInputStream();
+            objectInputStream = new ObjectInputStream(inputStream);
+            ObjectMapper objectMapper=new ObjectMapper();
 
-        return;
+            String data = (String) objectInputStream.readObject();
+            JsonNode jsonFormat = objectMapper.readTree(data);
+            int statusCode = jsonFormat.get("StatusCode").asInt();
+
+            if (statusCode == 200) {
+                System.out.println(Colors.ANSI_GREEN+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t PRODUCT DELETED SUCCESSFULLY "+Colors.ANSI_GREEN);
+            }
+            else{
+                System.out.println(Colors.ANSI_RED+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t INVALID PRODUCT CODE \n"+Colors.ANSI_RED);
+            }
+        } catch (Exception e) {
+            System.out.println(Colors.ANSI_RED+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t ERROR OCCURED :" + e.getMessage() + "\n\n"+Colors.ANSI_RED);
+        }
     }
 
     /**
@@ -261,13 +250,13 @@ public class ProductService {
         objectInputStream = new ObjectInputStream(inputStream);
 //        try {
 //            List<Response> response = (List<Response>) objectInputStream.readObject();
-//            System.out.println("Status: "+ response.get(0).getStatusCode());
+//            System.out.println("Status: "- response.get(0).getStatusCode());
 //            if(response.get(0).getStatusCode() == 200){
 //                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
 //
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("-------------------------------------------");
 //                System.out.println("\t\t product Updated successfully");
-//                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("-------------------------------------------");
 //            }
 //            else if(response.get(0).getStatusCode() == 400){
 //                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
@@ -277,9 +266,9 @@ public class ProductService {
 //            }
 
 //        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
 //        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
 //        }
 
         return;

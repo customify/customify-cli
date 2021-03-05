@@ -32,11 +32,10 @@ public class SalesService {
     public void buyAProduct(String jsonData) throws IOException {
 
         try{
-            System.out.println(jsonData);
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonData);
 
-            String query = "INSERT INTO `Sale`(`customerID`, `quantity`, `totalPrice`, `employeeID`, `productID`) VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO Sale(customerID, quantity, totalPrice, employeeID, productID) VALUES (?,?,?,?,?)";
 
             PreparedStatement statement = connection.prepareStatement(query);
 
@@ -45,18 +44,14 @@ public class SalesService {
             statement.setString(3,jsonNode.get("totalPrice").asText());
             statement.setString(4,jsonNode.get("employeeID").asText());
             statement.setString(5,jsonNode.get("productID").asText());
-
-            if(statement.execute()){
-                this.sendToClient("Product sold!");
-            }else {
-               this.sendToClient("Failed to sell Product!");
-            }
+            statement.execute();
+            this.sendToClient("Product sold!");
         }catch (JsonProcessingException e){
-            System.out.println("Server failed to parse Request!");
+            this.sendToClient("Failed to parse request");
         } catch (IOException ioException) {
-            System.out.println("Failed to send!");
+            this.sendToClient("Failed to send response");
         }catch (SQLException e){
-            this.sendToClient("Customer ID is invalid");
+            this.sendToClient("Invalid CustomerID");
         }
     }
 

@@ -75,25 +75,20 @@ public class FeaturesView {
         }
     }
 
-    public void getFeatures() throws IOException {
-        billingService.getFeatures();
-    }
-
-
 
     public void createNewFeatureView() throws IOException {
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
-        String featureName, featureDesc;
+        String featureName="", featureDesc="";
         System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > FEATURES > CREATE FEATURE ---------------------");
         System.out.println("\n\t\t\t\t\t         00. Return Home");
         System.out.println("\t\t\t\t\t         Enter feature name: ");
-        featureName =  scan.next();
+        featureName +=  scan.nextLine();
         if(featureName.equals("00")){
             loop = false;
         }
         System.out.println("\t\t\t\t\t         Enter feature description: ");
-        featureDesc =  scan.next();
+        featureDesc +=  scan.nextLine();
         if(featureDesc.equals("00")){
             loop = false;
         }
@@ -131,13 +126,12 @@ public class FeaturesView {
     public void updateFeature() throws IOException {
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
-        String updatedDeatureName, updatedFeatureDesc;
+        String updatedDeatureName="", updatedFeatureDesc="";
         int featureId;
         System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > FEATURES > UPDATE FEATURE ---------------------");
         System.out.println("\n\t\t\t\t\t         00. Return Home");
 
         System.out.println("\t\t\t\t\t         Enter feature Id : ");
-
         featureId =  scan.nextInt();
         if(featureId == 0){
             loop = false;
@@ -149,7 +143,8 @@ public class FeaturesView {
             loop = false;
         }
         System.out.println("\t\t\t\t\t         Enter feature description: ");
-        updatedFeatureDesc =  scan.next();
+        updatedFeatureDesc +=  scan.next();
+
         if(updatedFeatureDesc.equals("00")){
             loop = false;
         }

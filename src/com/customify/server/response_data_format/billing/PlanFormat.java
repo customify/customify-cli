@@ -1,11 +1,14 @@
 package com.customify.server.response_data_format.billing;
 
-import com.customify.server.models.submodels.Plan;
+/**
+ * @author Mfuranziza Sekata Aimelyse Moss
+ * Created and Wrote Whole Document By Moss
+ * */
 
-// Created BY Moss Aimelyse whole document
+import com.customify.server.models.billing.PlanModel;
 
-public class PlanFormat extends Plan<Integer, String, String>{
-//    public PlanFormat(){}
+public class PlanFormat extends PlanModel<Integer, String, String> {
+    public PlanFormat(){}
     public PlanFormat(Integer planId, String planTitle, String planDescription) {
         super(planId, planTitle, planDescription);
     }

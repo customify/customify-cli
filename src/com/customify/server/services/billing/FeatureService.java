@@ -181,7 +181,6 @@ public class FeatureService {
             System.out.println("Sending response ......"+data);
             this.output = socket.getOutputStream();
             this.objectOutput = new CustomizedObjectOutputStream(this.output);
-            System.out.println("Response "+data.get(0));
             objectOutput.writeObject(data);
         }
         catch (Exception e){
