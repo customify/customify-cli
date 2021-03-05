@@ -111,6 +111,9 @@ public class RequestHandler {
 //            case DELETE_PRODUCT:
 //                productService.deleteProduct(json_data);
 //                break;
+            case DELETE_PRODUCT:
+                productService.deleteProduct(json_data);
+                break;
             case GET_PRODUCT_BY_ID:
                 productService.getProductById(json_data);
                 break;
