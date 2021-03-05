@@ -1,10 +1,8 @@
-package com.customify.server.models.billing;
+package com.customify.server.models;
 
-/**
- * @author Mfuranziza Sekata Aimelyse Moss
- * Created and Wrote Whole Document By Moss
- * */
+//Initializing Model by Moss
 
+import com.customify.server.models.submodels.*;
 
 public class BillingModel<I,P,F>{
     private I billingId;

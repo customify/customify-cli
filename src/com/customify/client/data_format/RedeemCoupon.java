@@ -7,9 +7,18 @@ import com.customify.client.Keys;
 
 public class RedeemCoupon {
     private String coupon_code;
+    private String customerID;
     private Keys key = Keys.REDEEMING_COUPON;
 
     public RedeemCoupon() { }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
 
     public String getCoupon_code() {
         return coupon_code;

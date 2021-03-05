@@ -1,5 +1,8 @@
 package com.customify.server.utils;
 
+import com.customify.server.services.billing.FeatureService;
+import com.customify.server.services.*;
+import com.customify.server.*;
 import com.customify.server.services.AuthService;
 import com.customify.server.services.BusinessService;
 import com.customify.server.services.CustomerFeedbackService;
@@ -29,11 +32,11 @@ public class RequestHandler {
         this.clientSocket = socket;
     }
 
-
-    public void init(InputStream inputStream) throws IOException, ClassNotFoundException, SQLException {
+    public void init(InputStream inputStream) throws Exception {
 
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         List<String> clientRequest = (List) objectInputStream.readObject();
+        System.out.println("MY request "+clientRequest.get(0));
         this.json_data = (String) clientRequest.get(0);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -42,12 +45,13 @@ public class RequestHandler {
         this.handleRequest();
     }
 
-
-    public void handleRequest() throws IOException, SQLException {
-//        CustomerService  customer = new CustomerService(this.clientSocket);
+    public void handleRequest() throws Exception {
+        CustomerService customer = new CustomerService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
-//        ProductService productService = new ProductService(this.clientSocket);
+        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
+        FeatureService featureService = new FeatureService(this.clientSocket);
+        System.out.println("Handling routes "+this.key);
         SalesService salesService = new SalesService(this.clientSocket);
 //        CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
 
@@ -80,14 +84,40 @@ public class RequestHandler {
             case DELETE_PRODUCT:
 //                productController.deleteProduct();
                 break;
+            case CREATE_PRODUCT:
+                 productService.registerProduct(json_data);
+                break;
+            case FEEDBACK:
+//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+//                fController.sendDataInDb();
+                break;
+            case GET_ALL_PRODUCTS:
+                 productService.getAllProducts();
+                break;
+            case DELETE_PRODUCT:
+                productService.deleteProduct(json_data);
+                break;
+//            case CREATE_PRODUCT:
+//                // productController.registerProduct();
+//                break;
+//            case FEEDBACK:
+////                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+////                fController.sendDataInDb();
+//                break;
+//            case GET_ALL_PRODUCTS:
+//                // productController.getAllProducts();
+//                break;
+//            case DELETE_PRODUCT:
+//                productService.deleteProduct(json_data);
+//                break;
             case GET_PRODUCT_BY_ID:
-//                productService.getProductById(json_data);
+                productService.getProductById(json_data);
                 break;
             case UPDATE_PRODUCT:
-//                productService.updateProduct(json_data);
+                productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-//                customer.create();
+                 customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -102,13 +132,46 @@ public class RequestHandler {
 //                customer.disable();
                 break;
             case CREATE_COUPON:
-                couponService.coupingByProduct(json_data);
+                couponService.createCoupon(json_data);
+                break;
+            case REDEEMING_COUPON:
+                couponService.redeemCoupon(json_data);
                 break;
             case GET_ALL_COUPONS:
+              couponService.getAllCoupons(json_data);
+                break;
+            case GET_ALL_CUSTOMERS:
+              customer  = new CustomerService(this.clientSocket,this.json_data);
+              customer.readAll();
+                break;
+            case GET_CUSTOMER:
+                customer  = new CustomerService(this.clientSocket,this.json_data);
+                customer.readOne();
+                break;
+            case RENABLE_CUSTOMER:
+                customer.renableCard(json_data);
                 couponService.getAllCoupons(json_data);
+                break;
+            case GET_FEATURES:
+                featureService.getAllFeature();
                 break;
             case GET_ALL_SALES:
                 salesService.getAllSales();
+                break;
+            case ADD_SALE:
+                salesService.buyAProduct(json_data);
+                break;
+            case REGISTER_FEATURE:
+                featureService.registerFeature(json_data);
+                break;
+            case DELETE_FEATURE:
+                featureService.deleteFeature(json_data);
+                break;
+            case UPDATE_FEATURE:
+                featureService.update(json_data);
+                break;
+            case  GET_FEATURE_BY_ID:
+                featureService.getFeatureByCode(json_data);
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
