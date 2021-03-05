@@ -40,7 +40,7 @@ public class NotificationService {
             ResultSet records = stId.executeQuery(result);
             while (records.next()){
                 id = records.getString("customer_id");
-                System.out.println("ID: "+id);
+//                System.out.println("ID: "+id);
             }
             
             stId.setString(1, id);
