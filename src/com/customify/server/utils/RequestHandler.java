@@ -9,10 +9,10 @@ import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
-import com.customify.server.services.CustomerService;
 import com.customify.server.services.SalesService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.customify.server.services.CouponService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +20,7 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;
+
 
 public class RequestHandler {
 
@@ -37,6 +38,7 @@ public class RequestHandler {
         List<String> clientRequest = (List) objectInputStream.readObject();
         System.out.println("MY request "+clientRequest.get(0));
         this.json_data = (String) clientRequest.get(0);
+
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(json_data);
         this.key = Keys.valueOf(jsonNode.get("key").asText());
@@ -51,6 +53,7 @@ public class RequestHandler {
         FeatureService featureService = new FeatureService(this.clientSocket);
         System.out.println("Handling routes "+this.key);
         SalesService salesService = new SalesService(this.clientSocket);
+//        CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
 
         switch (this.key) {
             case CREATE_BUSINESS:
@@ -61,20 +64,39 @@ public class RequestHandler {
                 break;
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
-                break;
             case CREATE_PRODUCT:
-                 productService.registerProduct(json_data);
+//                productController.registerProduct();
                 break;
             case FEEDBACK:
-//                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
-//                fController.sendDataInDb();
+                CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
+                feedback.Feedback(json_data);
                 break;
+            case GET_ALL_FEEDBACKS:
+                CustomerFeedbackService feedback1 = new CustomerFeedbackService(this.clientSocket);
+                feedback1.getAllFeedbacks();
+                break;
+            case REMOVE_FEEDBACK:
+                CustomerFeedbackService feedback2 = new CustomerFeedbackService(this.clientSocket);
+                feedback2.deleteCustomerFeedback(json_data);
             case GET_ALL_PRODUCTS:
-                 productService.getAllProducts();
+//                productController.getAllProducts();
                 break;
-            case DELETE_PRODUCT:
-                productService.deleteProduct(json_data);
-                break;
+//            case DELETE_PRODUCT:
+////                productController.deleteProduct();
+//                break;
+//            case CREATE_PRODUCT:
+//                 productService.registerProduct(json_data);
+//                break;
+//            case FEEDBACK:
+////                FeedbackController fController = new FeedbackController(this.clientSocket, this.request);
+////                fController.sendDataInDb();
+//                break;
+//            case GET_ALL_PRODUCTS:
+//                 productService.getAllProducts();
+//                break;
+//            case DELETE_PRODUCT:
+//                productService.deleteProduct(json_data);
+//                break;
 //            case CREATE_PRODUCT:
 //                // productController.registerProduct();
 //                break;
@@ -104,11 +126,10 @@ public class RequestHandler {
                 businessService.getBusinessById(json_data);
                 break;
             case AUTHENTICATION:
-                AuthService auth = new AuthService(this.clientSocket, this.json_data);
+                AuthService auth = new AuthService(this.clientSocket,this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-               customer = new CustomerService(this.clientSocket,this.json_data);
-               customer.disable();
+//                customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.createCoupon(json_data);
