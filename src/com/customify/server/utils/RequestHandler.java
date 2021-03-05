@@ -46,7 +46,7 @@ public class RequestHandler {
     }
 
     public void handleRequest() throws Exception {
-        CustomerService customer = new CustomerService(this.clientSocket);
+        CustomerService customer = new CustomerService(this.clientSocket,json_data);
         BusinessService businessService = new BusinessService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
@@ -129,7 +129,7 @@ public class RequestHandler {
                 AuthService auth = new AuthService(this.clientSocket,this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-//                customer.disable();
+                customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.createCoupon(json_data);
