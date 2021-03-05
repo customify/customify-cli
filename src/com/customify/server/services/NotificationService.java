@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -27,17 +28,26 @@ public class NotificationService {
      * this is send method receives parameters of mail from, mail to, subject of email and descriprion of message to customer
      * who won an award.
      **/
-    public static void send(String mailFrom, String password, String mailTo, String subject, String msg) {
+    public void send(String mailFrom, String password, String mailTo, String subject, String msg) {
 
         try{
+            String id = null;
             String query = "INSERT INTO Awards_Notifications(customer_id,title,description,created_at) VALUES(?,?,?,NOW())";
+            String result = "SELECT Customer.customer_id FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15";
             Connection connection = Db.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1,1);
+            PreparedStatement stId = connection.prepareStatement(result);
+            ResultSet records = stId.executeQuery(result);
+            while (records.next()){
+                id = records.getString("customer_id");
+//                System.out.println("ID: "+id);
+            }
+
+            stId.setString(1, id);
             statement.setString(2,subject);
             statement.setString(3,msg);
 
-            if(statement.execute()){
+            if(statement.execute() && stId.execute()){
                 System.out.println("Insertion done");
             }
 
@@ -80,24 +90,24 @@ public class NotificationService {
     }
 
 
-    public  void sendEmail(){
-
-        Properties prop = new Properties();
-        String fileName = "config.properties";
-        InputStream is = null;
-
-        try {
-            is = new FileInputStream(fileName);
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-        try {
-            prop.load(is);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
-                prop.getProperty("msg"));
-    }
+//    public  void sendEmail(){
+//
+//        Properties prop = new Properties();
+//        String fileName = "config.properties";
+//        InputStream is = null;
+//
+//        try {
+//            is = new FileInputStream(fileName);
+//        } catch (FileNotFoundException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        try {
+//            prop.load(is);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//
+////        send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
+////                prop.getProperty("msg"));
+//    }
 }

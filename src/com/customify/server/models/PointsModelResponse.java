@@ -1,25 +1,19 @@
-/**
- * @author GISA KAZE Fredson
- */
+package com.customify.server.models;
 
-
-package com.customify.server.response_data_format;
-
-import java.io.Serializable;
-
-public class WinnersDataFormat implements Serializable {
-    private String customerId;
+public class PointsModelResponse {
+    private int customerId;
     private String firstName;
     private String lastName;
     private String email;
-    private float noPoints;
+    private double noPoints;
     private String winingDate;
-    private String code;
+    private int code;
 
-    public WinnersDataFormat() {
+    public PointsModelResponse() {
     }
 
-    public WinnersDataFormat(String customerId, String firstName, String lastName, String email, float noPoints, String winingDate, String code) {
+    public PointsModelResponse(int customerId, String firstName, String lastName, String email, double noPoints, String winingDate, int code) {
+
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,11 +23,11 @@ public class WinnersDataFormat implements Serializable {
         this.code = code;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -61,7 +55,7 @@ public class WinnersDataFormat implements Serializable {
         this.email = email;
     }
 
-    public float getNoPoints() {
+    public double getNoPoints() {
         return noPoints;
     }
 
@@ -77,11 +71,11 @@ public class WinnersDataFormat implements Serializable {
         this.winingDate = winingDate;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 }
