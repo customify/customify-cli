@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5db74fb2-1b28-4b0a-8fcf-0ab0a1bf074d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/customify/client/services/reports/BusinessReportService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/report/BusinessReportFormat.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/customify/server/response_data_format/report/ProductReportFormat.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/customify/server/services/reports/BusinessReportService.java" afterDir="false" />
@@ -33,6 +34,9 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1pBb3KuphLXKPL9dTaSK0sDZchk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -124,5 +128,19 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/com/customify/server/Main.java</url>
+          <line>24</line>
+          <properties class="com.customify.server.Main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

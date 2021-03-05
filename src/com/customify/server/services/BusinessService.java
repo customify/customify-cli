@@ -112,7 +112,6 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
-     * @param data The data from the client in the JSON Format
      * @role
      * Method for handling delete of business
      * */
@@ -127,6 +126,7 @@ public class BusinessService {
             int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
             if(ret==1){
                 json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
+                objectOutput.writeObject(json);
             }
         }
         catch (SQLException e){
@@ -143,7 +143,6 @@ public class BusinessService {
 
     /**
      * @author Kellia Umuhire
-     * @param data The data from the client in the JSON Format
      * @role
      * Method for handling request for fetching one business by its id
      * */
