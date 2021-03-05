@@ -27,7 +27,7 @@ public class NotificationService {
      * this is send method receives parameters of mail from, mail to, subject of email and descriprion of message to customer
      * who won an award.
      **/
-    public static void send(String mailFrom, String password, String mailTo, String subject, String msg) {
+    public void send(String mailFrom, String password, String mailTo, String subject, String msg) {
 
         try{
             String query = "INSERT INTO Awards_Notifications(customer_id,title,description,created_at) VALUES(?,?,?,NOW())";
@@ -97,7 +97,7 @@ public class NotificationService {
             System.out.println(ex.getMessage());
         }
 
-        send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
-                prop.getProperty("msg"));
+//        send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
+//                prop.getProperty("msg"));
     }
 }
