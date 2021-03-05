@@ -30,11 +30,11 @@ public class ReadAll {
     }
 
     public void view() throws IOException {
-        System.out.println("\n\t\t\t---------------------------HOME | CUSTOMER MANAGEMENT | ALL CUSTOMERS--------------------------------\n");
-        System.out.println("\t\t\t-------------------------------------------------------------------------------------------------------");
+        System.out.println("\n\t\t\t---------------------------HOME | CUSTOMER MANAGEMENT | ALL CUSTOMERS-------------------------------------------------\n");
+        System.out.println("\t\t\t------------------------------------------------------------------------------------------------------------------------");
 
-        System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", "CODE","FIRST-NAME","LAST-NAME", "EMAIL" ));
-        System.out.println("\t\t\t-------------------------------------------------------------------------------------------------------");
+        System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s %-25s", "CODE","FIRST-NAME","LAST-NAME", "EMAIL","STATUS" ));
+        System.out.println("\t\t\t------------------------------------------------------------------------------------------------------------------------");
 
 
         CustomerService customerService = new CustomerService(this.socket);
@@ -46,7 +46,7 @@ public class ReadAll {
             {
                 ObjectMapper objectMapper = new ObjectMapper();
                 JsonNode jsonNode = objectMapper.readTree(res.get(i));
-                System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s", jsonNode.get("code").asText(), jsonNode.get("firstName").asText(), jsonNode.get("lastName").asText(), jsonNode.get("email").asText()));
+                System.out.println(String.format("\t\t\t%-25s %-25s %-25s %-25s %-25s", jsonNode.get("code").asText(), jsonNode.get("firstName").asText(), jsonNode.get("lastName").asText(), jsonNode.get("email").asText(),jsonNode.get("stateDesc").asText()));
 
 
             }

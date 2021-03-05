@@ -8,6 +8,7 @@ import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.sales.SaleDataFormat;
 import com.customify.server.response_data_format.WinnersDataFormat;
+import com.customify.server.response_data_format.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.NotificationService;
 //import com.customify.server.data_format.*;
@@ -81,7 +82,7 @@ public class PointsService {
 
 
             mailWinner();
-//            resetWinners();
+            resetWinners();
         }
 
 //        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);

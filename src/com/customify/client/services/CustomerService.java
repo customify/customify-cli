@@ -222,7 +222,7 @@ public class CustomerService {
 
 
             } catch (Exception e) {
-                System.out.println("RESPONSE ERROR HERE" + e.getMessage());
+                System.out.println("RESPONSE ERROR" + e.getMessage());
             }
         }
         return res;
@@ -255,4 +255,3 @@ public class CustomerService {
         return res;
     }
 }
-
