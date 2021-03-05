@@ -82,9 +82,6 @@ public class RequestHandler {
             case GET_ALL_PRODUCTS:
                 productService.getAllProducts();
                 break;
-            case DELETE_PRODUCT:
-                productService.deleteProduct(json_data);
-                break;
 //            case CREATE_PRODUCT:
 //                 productService.registerProduct(json_data);
 //                break;

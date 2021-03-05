@@ -4,6 +4,10 @@ import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.services.ProductService;
 import com.customify.client.data_format.products.*;
+import com.customify.client.utils.authorization.UserSession;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.Date;
@@ -56,14 +60,17 @@ public class ProductView {
     }
 
     public void createProduct() throws Exception {
+        JsonNode session = new ObjectMapper().readTree(new UserSession().getUserJsonObject());
+
         Scanner scanner = new Scanner(System.in);
         ProductFormat newProduct = new ProductFormat();
 
         System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product name: ");
         newProduct.setName(scanner.nextLine());
 
-        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter business id: ");
-        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+//        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter business id: ");
+//        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+        newProduct.setBusiness_id(session.get("business_id").asInt());
 
         System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product price: ");
         newProduct.setPrice(Float.parseFloat(scanner.nextLine()));
@@ -77,8 +84,9 @@ public class ProductView {
         System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter points to bind with: ");
         newProduct.setBondedPoints(Double.parseDouble(scanner.nextLine()));
 
-        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tWho is registering this product: ");
-        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+//        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tWho is registering this product: ");
+//        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+        newProduct.setRegistered_by(session.get("id").asInt());
 
         newProduct.setCreatedAt(LocalDate.now().toString());
 
