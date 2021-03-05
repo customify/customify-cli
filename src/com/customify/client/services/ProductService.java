@@ -61,7 +61,6 @@ public class ProductService {
 
         //if the sending is successful call a method to handle response from server
         if (sendToServer.send()) {
-            System.out.println("Reached here 1");
             this.handleGetProductByIdSuccess();
         }
         else{
@@ -107,6 +106,7 @@ public class ProductService {
 
     public void updateProduct(ProductFormat productFormat) throws  Exception{
 
+        productFormat.setKey(Keys.UPDATE_PRODUCT);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(productFormat);
         SendToServer serverSend = new SendToServer(json, this.socket);
@@ -180,40 +180,41 @@ public class ProductService {
      * */
 
     public void handleGetProductByIdSuccess() throws IOException, ClassNotFoundException{
-        System.out.println("Reached here 2");
-        inputStream = this.getSocket().getInputStream();
-        System.out.println("Reached here 3");
-        objectInputStream = new ObjectInputStream(inputStream);
-        System.out.println("Reached here 4");
-//        try {
-//            List<Response> response = (List<Response>) objectInputStream.readObject();
-//            if(response.get(0).getStatusCode() == 200){
-//                ProductFormat retrievedProduct = (ProductFormat) response.get(0).getData();
-//
-//                System.out.println("-------------------------------------------");
-//                System.out.println("Product Code: " - retrievedProduct.getProductCode());
-//                System.out.println("Business Id: "- retrievedProduct.getBusiness_id());
-//                System.out.println("Name: " - retrievedProduct.getName());
-//                System.out.println("Price: " - retrievedProduct.getPrice() );
-//                System.out.println("Quantity: " - retrievedProduct.getQuantity());
-//                System.out.println("Description: " - retrievedProduct.getDescription());
-//                System.out.println("Bonded Points: " - retrievedProduct.getBondedPoints());
-//                System.out.println("Registered By: " - retrievedProduct.getRegistered_by());
-//                System.out.println("Created At: " - retrievedProduct.getCreatedAt());
-//                System.out.println("-------------------------------------------");
-//            }
-//            else if(response.get(0).getStatusCode() == 400){
-//                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-//            }
-//            else{
-//                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-//            }
+        try {
+            InputStream input = this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
 
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
-//        }
+            List<String> response = (List) objectInput.readObject();
+            String json_response = response.get(0);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json_response);
+
+            if(jsonNode.get("status").asInt() == 200){
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("Product Code: " + jsonNode.get("productCode").asText());
+                System.out.println("Business Id: "+ jsonNode.get("business_id").asText());
+                System.out.println("Name: " + jsonNode.get("name").asText());
+                System.out.println("Price: " + jsonNode.get("price").asText() );
+                System.out.println("Quantity: " + jsonNode.get("quantity").asText());
+                System.out.println("Description: " + jsonNode.get("description").asText());
+                System.out.println("Bonded Points: " + jsonNode.get("bondedPoints").asText());
+                System.out.println("Registered By: " + jsonNode.get("registered_by").asText());
+                System.out.println("Created At: " + jsonNode.get("createdAt").asText());
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+            }
+            else if(jsonNode.get("status").asInt() == 400){
+                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
+            }
+            else{
+                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
+            }
+
+        } catch (IOException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        } catch (ClassNotFoundException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        }
 
         return;
     }
@@ -246,30 +247,35 @@ public class ProductService {
      * */
 
     public void handleUpdateProductSuccess() throws IOException, ClassNotFoundException {
-        inputStream = this.getSocket().getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-//        try {
-//            List<Response> response = (List<Response>) objectInputStream.readObject();
-//            System.out.println("Status: "- response.get(0).getStatusCode());
-//            if(response.get(0).getStatusCode() == 200){
-//                ProductFormat registeredProduct = (ProductFormat) response.get(0).getData();
-//
-//                System.out.println("-------------------------------------------");
-//                System.out.println("\t\t product Updated successfully");
-//                System.out.println("-------------------------------------------");
-//            }
-//            else if(response.get(0).getStatusCode() == 400){
-//                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
-//            }
-//            else{
-//                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
-//            }
+        try {
+            InputStream input = this.socket.getInputStream();
+            ObjectInputStream objectInput = new ObjectInputStream(input);
+//            String json_response = (String) objectInput.readObject();
+            List<String> response = (List) objectInput.readObject();
+            String json_response = response.get(0);
 
-//        } catch (IOException e) {
-//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("\n\nError occurred:" -e.getMessage()- "\n\n");
-//        }
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json_response);
+
+            if(jsonNode.get("status").asInt() == 200){
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("|                                         |");
+                System.out.println("|       Product Updated Successfully      |");
+                System.out.println("|                                         |");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+            }
+            else if(jsonNode.get("status").asInt() == 400){
+                System.out.println("\n\nInvalid product format.Please enter product details as required\n\n");
+            }
+            else{
+                System.out.println("\n\nUnknown error occurred.Check your internet connection\n");
+            }
+
+        } catch (IOException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        } catch (ClassNotFoundException e) {
+            System.out.println("\n\nError occurred:" +e.getMessage()+ "\n\n");
+        }
 
         return;
     }
