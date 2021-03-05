@@ -29,7 +29,7 @@ public class Main {
             Db.init();
             while(true){
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("New Client is connected on the Server");
+                System.out.println("New Client is connected on the Servers");
                 Thread client = new Server(clientSocket);
                 client.start();
             }
