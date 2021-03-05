@@ -73,6 +73,7 @@ public class EmployeeDashboard {
             switch (choice) {
                 case 1:
                     CustomerMainView customer = new CustomerMainView(this.socket,this.isLoggedIn());
+                    customer.view();
                     break;
                 case 2:
                     ProductView productView = new ProductView(this.getSocket());
