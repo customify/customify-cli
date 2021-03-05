@@ -46,7 +46,8 @@ public class RequestHandler {
     }
 
     public void handleRequest() throws Exception {
-        CustomerService customer = new CustomerService(this.clientSocket);
+        CustomerService customer = new CustomerService(this.clientSocket,json_data);
+        EmployeeService employee = new EmployeeService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
@@ -65,7 +66,7 @@ public class RequestHandler {
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
-//                productController.registerProduct();
+                productService.registerProduct(json_data);
                 break;
             case FEEDBACK:
                 CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
@@ -79,11 +80,11 @@ public class RequestHandler {
                 CustomerFeedbackService feedback2 = new CustomerFeedbackService(this.clientSocket);
                 feedback2.deleteCustomerFeedback(json_data);
             case GET_ALL_PRODUCTS:
-//                productController.getAllProducts();
+                productService.getAllProducts();
                 break;
-//            case DELETE_PRODUCT:
-////                productController.deleteProduct();
-//                break;
+            case DELETE_PRODUCT:
+                productService.deleteProduct(json_data);
+                break;
 //            case CREATE_PRODUCT:
 //                 productService.registerProduct(json_data);
 //                break;
@@ -129,7 +130,7 @@ public class RequestHandler {
                 AuthService auth = new AuthService(this.clientSocket,this.json_data);
                 break;
             case DISABLE_CUSTOMER:
-//                customer.disable();
+                customer.disable();
                 break;
             case CREATE_COUPON:
                 couponService.createCoupon(json_data);
@@ -161,6 +162,13 @@ public class RequestHandler {
             case ADD_SALE:
                 salesService.buyAProduct(json_data);
                 break;
+            case GET_ALL_EMPLOYEES:
+                employee = new EmployeeService(this.clientSocket,this.json_data);
+                employee.readAll();
+                break;
+            case GET_EMPLOYEE:
+                employee = new EmployeeService(this.clientSocket,this.json_data);
+                employee.readOne();
             case REGISTER_FEATURE:
                 featureService.registerFeature(json_data);
                 break;
@@ -175,6 +183,7 @@ public class RequestHandler {
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
+
         }
     }
 }

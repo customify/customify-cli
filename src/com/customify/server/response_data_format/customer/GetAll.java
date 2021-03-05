@@ -6,19 +6,28 @@ public class GetAll {
     String email;
     String code;
     String customerId;
+    String stateDesc;
     int status;
 
 
-    public GetAll(String firstName, String lastName, String email, String code, String customerId,int status) {
+
+    public GetAll(String firstName, String lastName, String email, String code, String customerId, int status, String stateDesc) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.code = code;
         this.customerId = customerId;
         this.status = status;
+        this.stateDesc = stateDesc;
     }
     public GetAll(){}
+    public String getStateDesc() {
+        return stateDesc;
+    }
 
+    public void setStateDesc(String stateDesc) {
+        this.stateDesc = stateDesc;
+    }
     public int getStatus() {
         return status;
     }
