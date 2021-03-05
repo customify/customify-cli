@@ -28,15 +28,26 @@ public class ReadOne {
             System.out.println("\n\t\t\t---------------------------HOME | EMPLOYEE MANAGEMENT | SEARCH EMPLOYEE------------------------------------------------------------------------------------\n");
             System.out.println("\n\t\t\t| 0. Return ");
             System.out.println("\n\t\t\tEnter  Employee ID :");
-            int employeeId = scan.nextInt();
-
-
+            int employeeId = 0;
+            try {
+                employeeId = scan.nextInt();
+            } catch (Exception e) {
+                System.out.println("\n\t\t\t*******************************************************************************************************");
+                System.out.println("                                             NO EMPLOYEE FOUND (INVALID ID)                                    ");
+                System.out.println("\t\t\t*******************************************************************************************************");
+            }
             if (employeeId == 0)
                 break search;
-            GetEmployee format = new GetEmployee(Keys.GET_EMPLOYEE, employeeId);
-            EmployeeService employeeService = new EmployeeService(this.socket);
-            List<String> res = new ArrayList<>();
-            res = employeeService.get(format);
+
+            List<String> res = null;
+            try {
+                GetEmployee format = new GetEmployee(Keys.GET_EMPLOYEE, employeeId);
+                EmployeeService employeeService = new EmployeeService(this.socket);
+                res = new ArrayList<>();
+                res = employeeService.get(format);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             if (res != null )
             {
                 System.out.println("\n\t\t\t------------------------------------------------------------------------------------------------------------------------------------------------------------");
