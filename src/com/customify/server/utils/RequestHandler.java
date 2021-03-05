@@ -65,7 +65,7 @@ public class RequestHandler {
             case REMOVE_BUSINESS:
                 businessService.removeBusiness(json_data);
             case CREATE_PRODUCT:
-//                productController.registerProduct();
+                productService.registerProduct(json_data);
                 break;
             case FEEDBACK:
                 CustomerFeedbackService feedback = new CustomerFeedbackService(this.clientSocket);
@@ -79,11 +79,11 @@ public class RequestHandler {
                 CustomerFeedbackService feedback2 = new CustomerFeedbackService(this.clientSocket);
                 feedback2.deleteCustomerFeedback(json_data);
             case GET_ALL_PRODUCTS:
-//                productController.getAllProducts();
+                productService.getAllProducts();
                 break;
-//            case DELETE_PRODUCT:
-////                productController.deleteProduct();
-//                break;
+            case DELETE_PRODUCT:
+                productService.deleteProduct(json_data);
+                break;
 //            case CREATE_PRODUCT:
 //                 productService.registerProduct(json_data);
 //                break;

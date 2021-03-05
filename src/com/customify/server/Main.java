@@ -14,6 +14,8 @@ import com.customify.server.utils.*;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Main {
@@ -29,9 +31,11 @@ public class Main {
             Db.init();
             while(true){
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("New Client is connected on the Server");
+                System.out.println("New Client is connected on the Servers");
                 Thread client = new Server(clientSocket);
-                client.start();
+                ExecutorService Pool = Executors.newFixedThreadPool(2);
+                Pool.execute(client);
+                //client.start();
             }
         } catch (Exception e) {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
