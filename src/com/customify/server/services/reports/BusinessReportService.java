@@ -1,3 +1,8 @@
+/**
+ * @author Fiston Nshimiyandinze
+ * @role
+ * For handling reports concerned with business
+ * */
 package com.customify.server.services.reports;
 
 import com.customify.server.Db.Db;
