@@ -8,11 +8,20 @@ import java.io.Serializable;
 
 public class PlanFormatClient extends PlanModel<Integer, String, String> {
     private Keys key;
+    private String planTitle;
+    private String planDescription;
 
     public PlanFormatClient(Keys key, Integer planId, String planTitle, String planDescription) {
         super(planId, planTitle, planDescription);
         this.key =key;
     }
+
+    public PlanFormatClient(Keys key, String planTitle, String planDesc) {
+        this.key = key;
+        this.planTitle = planTitle;
+        this.planDescription = planDesc;
+    }
+
     public void setKey(Keys key) {
         this.key = key;
     }

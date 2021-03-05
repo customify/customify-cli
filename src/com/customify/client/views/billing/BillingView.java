@@ -1,9 +1,9 @@
 /**
  * @description
- *Main view for operating on businesses
+ *Main view for operating on billing
  *
- * @author Kellia Umuhire, Anselme Habumugisha
- * @since Wednesday, 3 February 2021
+ * @author Patrick Niyogitare
+ * 
  * */
 
 
@@ -27,7 +27,7 @@ public class BillingView {
         this.socket = socket;
     }
 
-    public void view() throws IOException, ClassNotFoundException {
+    public void view() throws Exception {
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         int choice;

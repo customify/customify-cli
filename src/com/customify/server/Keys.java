@@ -38,6 +38,7 @@ public enum Keys {
     REGISTER_FEATURE,
     DELETE_FEATURE,
     UPDATE_FEATURE,
-    GET_FEATURE_BY_ID
+    GET_FEATURE_BY_ID,
+    GET_PLANS
 }
 
