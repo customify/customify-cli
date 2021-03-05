@@ -162,7 +162,6 @@ public class RequestHandler {
             case ADD_SALE:
                 salesService.buyAProduct(json_data);
                 break;
-<<<<<<< HEAD
             case GET_ALL_EMPLOYEES:
                 employee = new EmployeeService(this.clientSocket,this.json_data);
                 employee.readAll();
@@ -170,7 +169,6 @@ public class RequestHandler {
             case GET_EMPLOYEE:
                 employee = new EmployeeService(this.clientSocket,this.json_data);
                 employee.readOne();
-=======
             case REGISTER_FEATURE:
                 featureService.registerFeature(json_data);
                 break;
@@ -182,7 +180,6 @@ public class RequestHandler {
                 break;
             case  GET_FEATURE_BY_ID:
                 featureService.getFeatureByCode(json_data);
->>>>>>> 882097f6b4b6d839cc305a2f548bdc64af5cbf50
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");

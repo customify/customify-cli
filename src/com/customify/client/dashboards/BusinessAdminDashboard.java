@@ -75,12 +75,12 @@ public class BusinessAdminDashboard {
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
-                    EmployeeMainView employee = new EmployeeMainView(this.getSocket(),true);
-                    employee.view();
                     ProductView productView = new ProductView(this.getSocket());
                     productView.init();
                     break;
                 case 2:
+                    EmployeeMainView employee = new EmployeeMainView(this.getSocket(),true);
+                    employee.view();
                     break;
                 case 3:
                     CustomerMainView customer = new CustomerMainView(this.getSocket(), true);
