@@ -80,24 +80,24 @@ public class NotificationService {
     }
 
 
-    public  void sendEmail(){
-
-        Properties prop = new Properties();
-        String fileName = "config.properties";
-        InputStream is = null;
-
-        try {
-            is = new FileInputStream(fileName);
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-        try {
-            prop.load(is);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-//        send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
-//                prop.getProperty("msg"));
-    }
+//    public  void sendEmail(){
+//
+//        Properties prop = new Properties();
+//        String fileName = "config.properties";
+//        InputStream is = null;
+//
+//        try {
+//            is = new FileInputStream(fileName);
+//        } catch (FileNotFoundException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        try {
+//            prop.load(is);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//
+////        send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
+////                prop.getProperty("msg"));
+//    }
 }
