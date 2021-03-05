@@ -116,11 +116,14 @@ public class ProductView {
 //        System.out.println("You are going to update the above product");
 
         ProductFormat newProduct = new ProductFormat();
+        ProductService productService = new ProductService(this.socket);
 
         newProduct.setKey(UPDATE_PRODUCT);
 
         System.out.println("Enter Product Id: ");
         newProduct.setId(Integer.parseInt(scanner.nextLine()));
+
+//        productService.getProductById(newProduct.getId());
 
         System.out.println("Enter NEW product code");
         newProduct.setProductCode(Long.parseLong(scanner.nextLine()));
@@ -150,7 +153,7 @@ public class ProductView {
 
         newProduct.setCreatedAt(LocalDate.now().toString());
 
-        ProductService productService = new ProductService(this.socket);
+
         productService.updateProduct(newProduct);
 
     }

@@ -102,6 +102,7 @@ public class ProductService {
 
     public void updateProduct(ProductFormat productFormat) throws  Exception{
 
+        productFormat.setKey(Keys.UPDATE_PRODUCT);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(productFormat);
         SendToServer serverSend = new SendToServer(json, this.socket);
@@ -250,7 +251,7 @@ public class ProductService {
         try {
             InputStream input = this.socket.getInputStream();
             ObjectInputStream objectInput = new ObjectInputStream(input);
-
+//            String json_response = (String) objectInput.readObject();
             List<String> response = (List) objectInput.readObject();
             String json_response = response.get(0);
 

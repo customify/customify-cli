@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/services/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/client/views/ProductView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/customify/server/services/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +86,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
@@ -108,7 +120,8 @@
       <workItem from="1614657328085" duration="10154000" />
       <workItem from="1614708729915" duration="3293000" />
       <workItem from="1614744609835" duration="8219000" />
-      <workItem from="1614882129732" duration="2208000" />
+      <workItem from="1614882129732" duration="4636000" />
+      <workItem from="1614916559667" duration="6199000" />
     </task>
     <task id="LOCAL-00002" summary="Conflict resolved">
       <created>1614147865077</created>
@@ -201,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614883731279</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="updateProductById ready to receive response from server">
+      <created>1614884616994</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1614884616994</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,6 +254,7 @@
     <MESSAGE value="get response is now working!" />
     <MESSAGE value="client's ProductService getProductById's format ready to get Response from Server." />
     <MESSAGE value="getProductByID working successfully" />
-    <option name="LAST_COMMIT_MESSAGE" value="getProductByID working successfully" />
+    <MESSAGE value="updateProductById ready to receive response from server" />
+    <option name="LAST_COMMIT_MESSAGE" value="updateProductById ready to receive response from server" />
   </component>
 </project>
