@@ -32,6 +32,7 @@ public class BusinessView {
         System.out.flush();
 
         Scanner scan = new Scanner(System.in);
+        BusinessReadView businessReadView = new BusinessReadView(this.socket);
         boolean loop = true;
         int choice;
         System.out.println("------------------BUSINESS---------------------");
@@ -50,16 +51,16 @@ public class BusinessView {
                 businessRegisterView.view();
                 break;
             case 2:
-                BusinessReadView businessReadView = new BusinessReadView(this.socket);
+//                BusinessReadView businessReadView = new BusinessReadView(this.socket);
                 businessReadView.viewById();
                 break;
             case 3:
-                BusinessReadView businessReadView0 = new BusinessReadView(this.socket);
-                businessReadView0.viewAll();
+//                BusinessReadView businessReadView0 = new BusinessReadView(this.socket);
+                businessReadView.viewAll();
                 break;
             case 4:
-                BusinessReadView businessReadView1 = new BusinessReadView(this.socket);
-                businessReadView1.deleteBusiness();
+//                BusinessReadView businessReadView1 = new BusinessReadView(this.socket);
+                businessReadView.deleteBusiness();
                 break;
             case 5:
                 BusinessEditView businessEditView = new BusinessEditView(this.socket);

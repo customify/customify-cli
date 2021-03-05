@@ -1,6 +1,8 @@
 package com.customify.server.models.billing;
-//Created by Moss
-//Whole document wrote by Moss
+/**
+ * @author Mfuranziza Sekata Aimelyse Moss
+ * Created and Wrote Whole Document By Moss
+ * */
 
 public class PlanModel<I,T,D>{
     //    S represents data type for title, description
