@@ -215,7 +215,7 @@ public class ProductService {
             jsonSendStatusCode= "{ \"StatusCode\" : \""+statusCode+"\"}";
             // System.out.println("Status code [Server side]:"+jsonSendStatusCode);
             objectOutput.writeObject(jsonSendStatusCode);
-            objectOutput.close();
+
         }catch (Exception e){
             System.out.println("Exception Message ==> "+e.getMessage());
         }
