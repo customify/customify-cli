@@ -21,10 +21,8 @@ public class Main {
     private static final int portNumber = 3000;
 
 
-
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket;
-
         try {
             serverSocket = new ServerSocket(portNumber);
             System.out.println("New server has been listening on port: " + portNumber);
@@ -32,15 +30,12 @@ public class Main {
             while(true){
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("New Client is connected on the Server");
-                RequestHandler con = new RequestHandler(clientSocket);
-                while(true) {
-                    con.init(clientSocket.getInputStream());
-                }
+                Thread client = new Server(clientSocket);
+                client.start();
             }
         } catch (Exception e) {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
+
         }
     }
-
-
 }
