@@ -109,7 +109,7 @@ public class CustomerFeedbackService {
                     System.out.println("NO SUCH CHOICE PLEASE !!");
             }
         } catch (Exception e) {
-            System.out.println("Error in reading Object " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }
