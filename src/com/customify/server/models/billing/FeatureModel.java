@@ -1,6 +1,8 @@
 package com.customify.server.models.billing;
-// Create By Moss
-//Whole Document Wrote by Moss
+/**
+ * @author Mfuranziza Sekata Aimelyse Moss
+ * Created and Wrote Whole Document By Moss
+ * */
 
 public class FeatureModel<I,N,D>{
     //    S represents data type for name, description

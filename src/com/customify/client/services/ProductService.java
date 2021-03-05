@@ -1,5 +1,6 @@
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.SendToServer;
 
@@ -67,18 +68,21 @@ public class ProductService {
         }
 
     }
-    //Method Created By Merlyne Iradukunda
-    // Due date: 6/2/2020
+    /**
+     * @description
+     * Function to Delete a Product
+     * @author Merlyne Iradukunda
+     * Due date: 6/2/2020
+     * @version 1
+     * */
     public void deleteProduct(ProductFormat product) throws  Exception{
-        // ObjectMapper provides functionality for reading and writing in JSON
         ObjectMapper mapper = new ObjectMapper();
         String jsonProductFormat = mapper.writeValueAsString(product);
         SendToServer serverSend = new SendToServer(jsonProductFormat, this.socket);
         if (serverSend.send()) {
-            // System.out.println("Send Products to the server successfully! ");
             this.handleDeleteProductSuccess();
         } else {
-            System.out.println("Error occured when deleting products ");
+            System.out.println(Colors.ANSI_RED+"FAILED TO SEND DATA TO SERVER "+Colors.ANSI_RED);
         }
     }
 
@@ -131,13 +135,13 @@ public class ProductService {
 
             final JsonNode products = response.get("products");
             if (products.isArray()) {
-                System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------");
+                System.out.println("\n\t\t\t----------------------------------------------------------------------------------------------------------------------------");
                 System.out.println("\t\t\t\t\t\t\t\t\t\tHere is a list of products registered so far");
                 System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
-                System.out.println(String.format("\t\t\t%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
+                System.out.println(String.format("\t\t\t\t%-15s %-30s %-10s %10s %20s %20s", "Code", "name", "quantity", "price", "bounded points", "Created at") + "\n");
                 System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
                 for (final JsonNode product : products) {
-                    System.out.println(String.format("\t\t\t%-15s %-30s %-10s %10s %20s %20s", product.get("productCode").asText(), product.get("name").asText(), product.get("quantity").asText(), product.get("price").asText(), product.get("bondedPoints").asText(), product.get("createdAt").asText()));
+                    System.out.println(String.format("\t\t\t\t%-15s %-30s %-10s %10s %20s %20s", product.get("productCode").asText(), product.get("name").asText(), product.get("quantity").asText(), product.get("price").asText(), product.get("bondedPoints").asText(), product.get("createdAt").asText()));
                 }
                 System.out.println("\t\t\t----------------------------------------------------------------------------------------------------------------------------\n");
             }
@@ -158,12 +162,12 @@ public class ProductService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode response = objectMapper.readTree(res.get(0));
 
-            if (response.get("status").asInt() == 201) System.out.println("\n\n\t\tPRODUCT CREATED SUCCESSFULLY\n\n");
-            else if(response.get("status").asInt() == 400) System.out.println("\n\n\t\tBAD FORMAT WAS SUPPLIED TO SOME FIELDS\n\n");
-            else if(response.get("status").asInt() == 500) System.out.println("\n\n\t\tBACKEND INTERNAL SERVER ERROR.\n\n");
-            else System.out.println("\n\n\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
+            if (response.get("status").asInt() == 201) System.out.println(Colors.ANSI_GREEN+"\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tPRODUCT CREATED SUCCESSFULLY\n\n"+Colors.ANSI_RESET);
+            else if(response.get("status").asInt() == 400) System.out.println(Colors.ANSI_RED+"\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBAD FORMAT WAS SUPPLIED TO SOME FIELDS\n\n"+Colors.ANSI_RESET);
+            else if(response.get("status").asInt() == 500) System.out.println(Colors.ANSI_RED+"\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBACKEND INTERNAL SERVER ERROR.\n\n"+Colors.ANSI_RESET);
+            else System.out.println("\n\n\t\t\tUNKNOWN ERROR OCCURRED WHEN SENDING AND RECEIVING RESPONSE\n\n");
         }catch(Exception e){
-            System.out.println("\n\n\t\tERROR OCCURRED.TRY AGAIN\n\n");
+            System.out.println(Colors.ANSI_RED+"\n\n\t\t\t\t\t\t\tERROR OCCURRED.TRY AGAIN\n\n"+Colors.ANSI_RESET);
         }
         return;
     }
@@ -221,22 +225,17 @@ public class ProductService {
             ObjectMapper objectMapper=new ObjectMapper();
 
             String data = (String) objectInputStream.readObject();
-            //System.out.println("-------------\n" -" data got from the server  is\n" -"=>"-data-"-----\n");
             JsonNode jsonFormat = objectMapper.readTree(data);
             int statusCode = jsonFormat.get("StatusCode").asInt();
-            // System.out.println(statusCode);
 
             if (statusCode == 200) {
-                System.out.println("-------------------------------------------");
-                System.out.println("\t\t product deleted successfully");
-                System.out.println("-------------------------------------------\n\n");
+                System.out.println(Colors.ANSI_GREEN+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t PRODUCT DELETED SUCCESSFULLY "+Colors.ANSI_GREEN);
             }
-            // product test code 6503709,47462944,57191349,80316413
             else{
-                System.out.println("\nInvalid product Code!\n");
+                System.out.println(Colors.ANSI_RED+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t INVALID PRODUCT CODE \n"+Colors.ANSI_RED);
             }
         } catch (Exception e) {
-            System.out.println("\n\nError occurred :" + e.getMessage() + "\n\n");
+            System.out.println(Colors.ANSI_RED+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t ERROR OCCURED :" + e.getMessage() + "\n\n"+Colors.ANSI_RED);
         }
     }
 
