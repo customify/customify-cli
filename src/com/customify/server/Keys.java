@@ -27,4 +27,6 @@ public enum Keys {
     DELETE_PRODUCT,
     GET_ALL_CUSTOMERS,
     GET_CUSTOMER,
+    GET_ALL_EMPLOYEES,
+    GET_EMPLOYEE,
 }

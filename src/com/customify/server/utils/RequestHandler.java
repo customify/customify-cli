@@ -45,6 +45,7 @@ public class RequestHandler {
 
     public void handleRequest() throws IOException, SQLException {
         CustomerService customer = new CustomerService(this.clientSocket);
+        EmployeeService employee = new EmployeeService(this.clientSocket);
         BusinessService businessService = new BusinessService(this.clientSocket);
 //        ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
@@ -121,8 +122,17 @@ public class RequestHandler {
             case ADD_SALE:
                 salesService.buyAProduct(json_data);
                 break;
+            case GET_ALL_EMPLOYEES:
+                employee = new EmployeeService(this.clientSocket,this.json_data);
+                employee.readAll();
+                break;
+            case GET_EMPLOYEE:
+                employee = new EmployeeService(this.clientSocket,this.json_data);
+                employee.readOne();
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
+
         }
     }
 }

@@ -4,6 +4,7 @@ import com.customify.client.Colors;
 import com.customify.client.Login;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.customer.CustomerMainView;
+import com.customify.client.views.employee.EmployeeMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.net.Socket;
@@ -71,6 +72,8 @@ public class BusinessAdminDashboard {
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
+                    EmployeeMainView employee = new EmployeeMainView(this.getSocket(),true);
+                    employee.view();
                     break;
                 case 2:
                     CustomerMainView customer = new CustomerMainView(this.getSocket(),true);
