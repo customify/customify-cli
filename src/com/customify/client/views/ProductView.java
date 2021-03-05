@@ -122,7 +122,7 @@ public class ProductView {
         System.out.println("Enter Product Id: ");
         newProduct.setId(Integer.parseInt(scanner.nextLine()));
 
-//        productService.getProductById(newProduct.getId());
+        productService.getProductById(newProduct.getId());
 
         System.out.println("Enter NEW product code");
         newProduct.setProductCode(Long.parseLong(scanner.nextLine()));

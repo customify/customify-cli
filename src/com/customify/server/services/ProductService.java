@@ -130,9 +130,9 @@ public class ProductService {
             responseData.add(new ObjectMapper().writeValueAsString(productFormat));
             objectOutput.writeObject(responseData);
 
-            rs.close();
-            stmt.close();
-            conn.close();
+//            rs.close();
+//            stmt.close();
+//            conn.close();
         }catch(SQLException se){
             //Handle errors for JDBC
             se.printStackTrace();
@@ -140,20 +140,7 @@ public class ProductService {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
-        finally{
-            //finally block used to close resources
-            try{
-                if(stmt!=null)
-                    conn.close();
-            }catch(SQLException se){
-            }// do nothing
-            try{
-                if(conn!=null)
-                    conn.close();
-            }catch(SQLException se){
-                se.printStackTrace();
-            }//end finally try
-        }//end try
+
 
     }
 
