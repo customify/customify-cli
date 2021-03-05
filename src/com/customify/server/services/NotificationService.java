@@ -42,7 +42,7 @@ public class NotificationService {
                 id = records.getString("customer_id");
 //                System.out.println("ID: "+id);
             }
-            
+
             stId.setString(1, id);
             statement.setString(2,subject);
             statement.setString(3,msg);
