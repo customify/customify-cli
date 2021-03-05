@@ -2,7 +2,6 @@ package com.customify.server.models;
 
 //Initializing Model by Moss
 
-
 public class BillingModel<I,P,F>{
     private I billingId;
     private P planId;

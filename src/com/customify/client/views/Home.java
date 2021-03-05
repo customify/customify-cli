@@ -8,6 +8,7 @@ import com.customify.client.views.Business.BusinessEditView;
 import com.customify.client.views.Business.BusinessRegisterView;
 import com.customify.client.views.Business.BusinessView;
 import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackMainView;
 import com.customify.client.views.customer.CustomerMainView;
 
 import java.net.Socket;
@@ -35,7 +36,6 @@ public class Home {
         int choice;
         Scanner scan = new Scanner(System.in);
 
-        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
         CustomerMainView customer = new CustomerMainView(this.socket,true);
 
         ProductView productView = new ProductView(this.socket);
@@ -44,6 +44,7 @@ public class Home {
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
         Coupon couponView = new Coupon(this.socket);
+        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
 
 
         System.out.println("---------------------------------------------");
@@ -57,6 +58,7 @@ public class Home {
         System.out.println("           7. POINTS");
         System.out.println("           8. CUSTOMER MANAGEMENT");
         System.out.println("           9. COUPONS");
+        System.out.println("           10.OPERATE");
         choice = scan.nextInt();
 
         switch (choice) {
