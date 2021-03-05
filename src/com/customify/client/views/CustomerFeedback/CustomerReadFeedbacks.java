@@ -3,6 +3,7 @@ package com.customify.client.views.CustomerFeedback;
 /*
    *@author: NSENGIYUMVA GERSHOM
 */
+import com.customify.client.Colors;
 import com.customify.client.services.CustomerFeedbackService;
 import com.customify.client.Keys;
 
@@ -44,14 +45,15 @@ public class CustomerReadFeedbacks {
     /*
      * The function for deleting certain customer feedback
      */
-//    public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
-//        Scanner scan = new Scanner(System.in);
-//        System.out.print("Enter customer id: \t");
-//        int customerId = scan.nextInt();
-//        String json = "{ \"customerId\" : \"" + customerId + "\", \"key\" : \"" + Keys.REMOVE_FEEDBACK + "\" }";
-//        CustomerFeedbackService cFeedbackService = new CustomerFeedbackService(socket);
-//        // cFeedbackService.deleteCustomerFeedback(json);
-        // scan.close();
+    public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
+        Scanner scan = new Scanner(System.in);
+        System.out.print(Colors.ANSI_GREEN);
+        System.out.print("Enter customer id: \t");
+        System.out.print(Colors.ANSI_RESET);
+        int customerId = scan.nextInt();
+        String json = "{ \"customerId\" : \""+customerId+"\", \"key\" : \""+ Keys.REMOVE_FEEDBACK +"\" }";
+        CustomerFeedbackService feedbackService = new CustomerFeedbackService(socket);
+        feedbackService.deleteCustomerFeedback(json);
         // -------------------------------------------------------------------------------u
     }
-//}
+}

@@ -8,6 +8,7 @@
  * */
 
 package com.customify.server.services;
+import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.data_format.business.BusinessRFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -124,7 +125,7 @@ public class BusinessService {
         try {
             int ret = statement.executeUpdate("delete from businesses where id="+jsonNode.get("businessId").asInt());
             if(ret==1){
-                String json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
+                json = "{\"message\" : \""+"Successfully deleted"+"\", \"statusCode\" : \""+ 200 +"\" }";
                 objectOutput.writeObject(json);
             }
         }

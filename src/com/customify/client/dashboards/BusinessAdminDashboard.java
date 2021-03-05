@@ -62,7 +62,7 @@ public class BusinessAdminDashboard {
 
             this.Header();
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. EMPLOYEE MANAGEMENT");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. CUSTOMER MANAGEMENT");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. CUSTOMER FEEDBACKS");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. TODAY'S REPORT");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. MY PROFILE");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. PROFILE SETTINGS");

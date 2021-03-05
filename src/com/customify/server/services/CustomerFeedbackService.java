@@ -110,23 +110,28 @@ public class CustomerFeedbackService {
      * Here is the function for deleting the customer feedback from the database
      */
 
-//    public void deleteCustomerFeedback(String data) throws IOException {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        JsonNode jsonNode = objectMapper.readTree(data);
-//        Statement stmt = Db.getStatement();
-//
-//        try {
-//            int deleteQuery = stmt.executeUpdate(
-//                    "DELETE FROM CustomerFeedbacks WHERE customer_id = " + jsonNode.get("customerId").asInt());
-//
-//            if (deleteQuery == 1) {
-//                String json = "{\"message\" : \"" + "Successfully deleted" + "\", \"statusCode\" : \"" + 200 + "\" }";
-//                objectOutput.writeObject(json);
-//            }
-//        } catch (SQLException se) {
-//            String json = "{\"message\" : \"" + se.getMessage() + "\", \"statusCode\" : \"" + 400 + "\" }";
-//            objectOutput.writeObject(json);
-//        }
-//        objectOutput.close();
-//    }
+    public void deleteCustomerFeedback(String data) throws IOException {
+     ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+        Statement stmt = Db.getStatement();
+        String json="";
+
+        try {
+            int deleteQuery = stmt.executeUpdate(
+                    "DELETE FROM CustomerFeedbacks WHERE customer_id = " + jsonNode.get("customerId").asInt());
+
+            if (deleteQuery == 1) {
+                 json = "{\"message\" : \"" + "Successfully deleted" + "\", \"statusCode\" : \"" + 200 + "\" }";
+                objectOutput.writeObject(json);
+            }
+        }catch (SQLException e){
+            json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
+        }
+        finally{
+
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(json);
+        }
+    }
 }

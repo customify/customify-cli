@@ -32,6 +32,7 @@ public class CustomerFeedbackService {
 
     /**
      * @author NIYONZIMA Stecie
+     * This is the function for sending customer feedbac data to the server.
      */
     public void Feedback(CustomerFeedbackDataFormat format) throws IOException, ClassNotFoundException {
         var mapper = new ObjectMapper();
@@ -43,9 +44,8 @@ public class CustomerFeedbackService {
             System.out.println("Failed to send the feedback data!! You need to check well");
         }
     }
-    // --------------------------------------------------------------------------------------------------------
 
-    // the function for getting all customer feedbacks
+    //the function for reading customers
     public void getAllCustomerFeedbacks(String json) throws IOException, ClassNotFoundException {
         SendToServer serverSend = new SendToServer(json, this.socket);
         if (serverSend.send()) {
@@ -56,7 +56,7 @@ public class CustomerFeedbackService {
         }
     }
     // --------------------------------------------------------------------------------------------------------
-
+   //for displaying the data from the server
     public void getFeedbacks() throws IOException, ClassNotFoundException {
         this.input = this.socket.getInputStream();
         this.objectInput = new ObjectInputStream(this.input);
@@ -76,15 +76,15 @@ public class CustomerFeedbackService {
             }
     }
 
-//    // function to delete customer feedback
-//    public void deleteCustomerFeedback(String json) throws IOException, ClassNotFoundException {
-//        SendToServer serverSend = new SendToServer(json, this.socket);
-//        if (serverSend.send()) {
-//            handleResponse("deleteCustomerFeedback");
-//        } else {
-//            System.out.println("An error occured");
-//        }
-//    }
+   // function to delete customer feedback
+    public void deleteCustomerFeedback(String json) throws IOException, ClassNotFoundException {
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+            handleResponse("deleteCustomerFeedback");
+        } else {
+            System.out.println("An error occured");
+        }
+    }
 
     // this is the function for providing appropriate response to the calling
     // function
@@ -100,17 +100,16 @@ public class CustomerFeedbackService {
                 case "getAllFeedbacks":
                     this.getFeedbacks();
                     break;
-//                case "deleteCustomerFeedback":
-//                    if (jsonNode.get("statusCode").asInt() == 200)
-//                        System.out.println("feedback deleted.");
-//                    else
-//                        System.out.println("An error occurred");
-//                    break;
+                case "deleteCustomerFeedback":
+                    if (jsonNode.get("statusCode").asInt() == 200)
+                        System.out.println("The feedback removed away. ");
+                    else System.out.println("An error occurred");
+                    break;
                 default:
                     System.out.println("NO SUCH CHOICE PLEASE !!");
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error in reading Object " + e.getMessage());
         }
     }
 }

@@ -47,10 +47,9 @@ public class SuperAdminDashboard {
                 System.out.println("--------------CUSTOMIFY HOME-----------------\n");
                 System.out.println("           1. BUSINESS MANAGEMENT");
                 System.out.println("           2. MY PROFILE");
-                System.out.println("           3. CUSTOMER FEEDBACK");
-                System.out.println("           4. PROFILE SETTINGS");
-                System.out.println("           5. FEEDBACKS");
-                System.out.println("           6. LOGOUT !!!");
+                System.out.println("           3. PROFILE SETTINGS");
+                System.out.println("           4. FEEDBACKS");
+                System.out.println("           5. LOGOUT !!!");
                 int choice = scan.nextInt();
                 switch (choice) {
                     case 1:
@@ -58,15 +57,12 @@ public class SuperAdminDashboard {
                         business.view();
                         break;
                     case 2:
-
                         break;
                     case 3:
-                        CustomerFeedbackMainView mainView = new CustomerFeedbackMainView(this.socket);
-                        mainView.view();
                         break;
                     case 4:
                         break;
-                    case 6:
+                    case 5:
                         if (userSession.unSet())
                             loggedIn = false;
                         break;

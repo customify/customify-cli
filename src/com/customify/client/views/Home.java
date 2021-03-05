@@ -44,8 +44,7 @@ public class Home {
         BusinessRegisterView businessRegisterView = new BusinessRegisterView(this.socket);
         BusinessEditView businessEditView = new BusinessEditView(this.socket);
         Coupon couponView = new Coupon(this.socket);
-//        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
-        CustomerFeedbackMainView cfMainView =  new CustomerFeedbackMainView(socket);
+        CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
 
 
         System.out.println("---------------------------------------------");
@@ -79,8 +78,8 @@ public class Home {
                 System.out.println("Not Yet Done");
                 break;
             case 6:
-//                feedbackView.view();
-//                break;
+                feedbackView.view();
+                break;
             case 7:
 //                pointCountingView.view();
                 break;
@@ -89,9 +88,6 @@ public class Home {
                 break;
             case 9:
                 couponView.init();
-                break;
-            case 10:
-                cfMainView.view();
                 break;
             default:
                 System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);

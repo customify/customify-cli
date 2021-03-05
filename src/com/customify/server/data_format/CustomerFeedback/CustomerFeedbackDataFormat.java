@@ -5,7 +5,7 @@ package com.customify.server.data_format.CustomerFeedback;
  * 
  * @Description
  * 
- * Setting and getting feedback data to be formatted
+ * this class is for formatting the data to displayed to the users
  * 
  * done 7 Feb 2021
  * */

@@ -25,17 +25,16 @@ public class CustomerFeedbackMainView {
         int choice;
         System.out.println("------------------Customer feedback operations---------------------");
         System.out.println("\n         00. Get back home");
-        System.out.println("         1. Provide feedback");
-        System.out.println("         2. Get all feedbacks");
+        System.out.println("         1. Get all feedbacks");
+        System.out.println("         2. Delete feedback");
         choice = scan.nextInt();
 
         switch (choice) {
             case 1:
-                CustomerFeedbackView cfeedback = new CustomerFeedbackView(this.socket);
-                cfeedback.view();
+                readFeedbacks.GetFeedbacks();
                 break;
             case 2:
-                readFeedbacks.GetFeedbacks();
+                readFeedbacks.deleteCustomerFeedback();
                 break;
             default:
                 System.out.println("No such option");
