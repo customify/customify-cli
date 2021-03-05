@@ -1,18 +1,19 @@
+/**
+ *  Author: Niyonzima Stecie
+ * done on: 4 Feb 2021
+ *
+ * This class file contains the view which allows the customer to provide his/her
+ * feedback about the services he got from the various business.
+ *
+ * The data that he/she will provide are the ones to be inserted into the database on the side
+ * of the business he/she has written to.
+ */
+
 package com.customify.client.views.CustomerFeedback;
 
 import com.customify.client.Keys;
 import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
-
-/**
- *  Author: Niyonzima Stecie
- * done on: 4 Feb 2021
- * 
- * This class file contains the view which allows the customer to provide his/her
- * feedback about the services he got from the various business.
- * 
- * The data that he/she will provide are the ones to be inserted into the database on the side
- * of the business he/she has written to.
- */
+import com.customify.client.services.CustomerFeedbackService;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -55,9 +56,10 @@ public class CustomerFeedbackView {
             business_id = scan.nextInt();
             feed = false;
 
-//            FeedbackFormat format = new FeedbackFormat(customer_id, business_id, title, description);
-//            FeedbackService feedservice = new FeedbackService(this.socket);
-//            feedservice.Comment(format);
+            CustomerFeedbackDataFormat format = new CustomerFeedbackDataFormat(Keys.FEEDBACK, customer_id, business_id,
+                    title, description);
+            CustomerFeedbackService feedservice = new CustomerFeedbackService(this.socket);
+            feedservice.Feedback(format);
         } while (feed);
     }
 }

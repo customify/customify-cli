@@ -1,12 +1,12 @@
-package com.customify.server.data_format.CustomerFeedback;
+package com.customify.server.data_format_CustomerFeedback;
 
 /**
  * @author: NSENGIYUMVA Gershom
- * 
+ *
  * @Description
- * 
- * this class is for formatting the data to displayed to the users
- * 
+ *
+ * Setting and getting feedback data to be formatted
+ *
  * done 7 Feb 2021
  * */
 import java.io.Serializable;
@@ -16,7 +16,8 @@ public class CustomerFeedbackDataFormat implements Serializable {
     private String title, description, creation_date;
 
     public CustomerFeedbackDataFormat(int customer_id, int business_id, String title, String description,
-            String creation_date) {
+                                      String creation_date) {
+
         this.customer_id = customer_id;
         this.business_id = business_id;
         this.title = title;

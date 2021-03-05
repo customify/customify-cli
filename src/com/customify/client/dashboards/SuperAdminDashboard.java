@@ -1,8 +1,9 @@
 package com.customify.client.dashboards;
 
-import com.customify.client.Colors;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.Business.BusinessView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackMainView;
+import com.customify.client.views.billing.BillingView;
 
 import java.net.Socket;
 import java.util.Scanner;
@@ -43,19 +44,16 @@ public class SuperAdminDashboard {
 
         if(isLoggedIn()){
             do {
-                System.out.flush();
-
-                System.out.println(Colors.ANSI_PURPLE);
                 System.out.println("---------------------------------------------");
-                System.out.println("--------------CUSTOMIFY HOME-----------------\n\n");
-                System.out.println(Colors.ANSI_RESET);
-
+                System.out.println("--------------CUSTOMIFY HOME-----------------\n");
                 System.out.println("           1. BUSINESS MANAGEMENT");
-                System.out.println("           2. MY PROFILE");
-                System.out.println("           3. PROFILE SETTINGS");
-                System.out.println("           4. LOGOUT !!!");
+                System.out.println("           2. CUSTOMER FEEDBACKS");
+                System.out.println("           3. MY PROFILE");
+                System.out.println("           4. PROFILE SETTINGS");
+                System.out.println("           5. BILLING");
+                System.out.println("           6. LOGOUT !!!");
 
-                System.out.print("\n Chose between [ 1 -  4 ] ");
+                System.out.print("\n Chose between [ 1 -  6 ] ");
                 int choice = scan.nextInt();
                 switch (choice) {
                     case 1:
@@ -63,10 +61,16 @@ public class SuperAdminDashboard {
                         business.view();
                         break;
                     case 2:
+                        CustomerFeedbackMainView mainView = new CustomerFeedbackMainView(this.socket);
+                        mainView.view();
                         break;
                     case 3:
                         break;
-                    case 4:
+                    case 5:
+                        BillingView billingView = new BillingView(this.socket);
+                        billingView.view();
+                        break;
+                    case 6:
                         if (userSession.unSet())
                             loggedIn = false;
                         break;
@@ -79,5 +83,4 @@ public class SuperAdminDashboard {
 
 
     }
-
 }
