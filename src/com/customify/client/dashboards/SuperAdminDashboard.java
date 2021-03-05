@@ -43,13 +43,13 @@ public class SuperAdminDashboard {
 
         if(isLoggedIn()){
             do {
-                System.out.println("---------------------------------------------");
-                System.out.println("--------------CUSTOMIFY HOME-----------------\n");
-                System.out.println("           1. BUSINESS MANAGEMENT");
-                System.out.println("           2. MY PROFILE");
-                System.out.println("           3. PROFILE SETTINGS");
-                System.out.println("           4. BILLING");
-                System.out.println("           5. LOGOUT !!!");
+                System.out.println("\n\n\n\t\t\t\t\t----------------------------------------------------------------");
+                System.out.println("\t\t\t\t\t--------------CUSTOMIFY > SUPER ADMIN DASHBOARD-----------------\n");
+                System.out.println("\t\t\t\t\t           1. BUSINESS MANAGEMENT");
+                System.out.println("\t\t\t\t\t           2. MY PROFILE");
+                System.out.println("\t\t\t\t\t           3. PROFILE SETTINGS");
+                System.out.println("\t\t\t\t\t           4. BILLING");
+                System.out.println("\t\t\t\t\t           5. LOGOUT !!!");
                 int choice = scan.nextInt();
                 switch (choice) {
                     case 1:

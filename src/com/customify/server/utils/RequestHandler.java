@@ -127,6 +127,18 @@ public class RequestHandler {
             case ADD_SALE:
                 salesService.buyAProduct(json_data);
                 break;
+            case REGISTER_FEATURE:
+                featureService.registerFeature(json_data);
+                break;
+            case DELETE_FEATURE:
+                featureService.deleteFeature(json_data);
+                break;
+            case UPDATE_FEATURE:
+                featureService.update(json_data);
+                break;
+            case  GET_FEATURE_BY_ID:
+                featureService.getFeatureByCode(json_data);
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

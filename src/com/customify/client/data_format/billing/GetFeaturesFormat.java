@@ -3,7 +3,7 @@ package com.customify.client.data_format.billing;
 import com.customify.client.Keys;
 
 public class GetFeaturesFormat {
-    Keys key;
+    private Keys key;
     public GetFeaturesFormat(){}
     public GetFeaturesFormat(Keys key){
         this.key = key;

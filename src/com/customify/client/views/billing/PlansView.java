@@ -29,12 +29,12 @@ public class PlansView {
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         int choice;
-        System.out.println("------------------ SUPER ADMIN > BILLING > PLANS ---------------------");
-        System.out.println("\n         00. Return Home");
-        System.out.println("         1. View plans");
-        System.out.println("         2. Add a plan");
-        System.out.println("         3. Update a plan");
-        System.out.println("         4. Delete a plan");
+        System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > PLANS ---------------------");
+        System.out.println("\n\t\t\t\t\t         00. Return Home");
+        System.out.println("\t\t\t\t\t         1. View plans");
+        System.out.println("\t\t\t\t\t         2. Add a plan");
+        System.out.println("\t\t\t\t\t         3. Update a plan");
+        System.out.println("\t\t\t\t\t         4. Delete a plan");
 
         choice = scan.nextInt();
 
@@ -55,7 +55,7 @@ public class PlansView {
 
                 loop = false;
             default:
-                System.out.println("Invalid choice");
+                System.out.println("\t\t\t\t\tInvalid choice");
                 loop = false;
         }
     }

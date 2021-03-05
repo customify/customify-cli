@@ -31,10 +31,10 @@ public class BillingView {
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         int choice;
-        System.out.println("------------------ SUPER ADMIN > BILLING ---------------------");
-        System.out.println("\n         00. Return Home");
-        System.out.println("         1. PLANS");
-        System.out.println("         2. FEATURES");
+        System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING ---------------------");
+        System.out.println("\n\t\t\t\t\t         00. Return Home");
+        System.out.println("\t\t\t\t\t         1. PLANS");
+        System.out.println("\t\t\t\t\t         2. FEATURES");
         choice = scan.nextInt();
 
         switch (choice){
