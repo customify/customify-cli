@@ -1,5 +1,6 @@
 package com.customify.server.utils;
 
+import com.customify.server.services.billing.FeatureService;
 import com.customify.server.services.*;
 import com.customify.server.*;
 import com.customify.server.services.AuthService;
@@ -34,6 +35,7 @@ public class RequestHandler {
 
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         List<String> clientRequest = (List) objectInputStream.readObject();
+        System.out.println("MY request "+clientRequest.get(0));
         this.json_data = (String) clientRequest.get(0);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(json_data);
@@ -46,6 +48,8 @@ public class RequestHandler {
         BusinessService businessService = new BusinessService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);
+        FeatureService featureService = new FeatureService(this.clientSocket);
+        System.out.println("Handling routes "+this.key);
         SalesService salesService = new SalesService(this.clientSocket);
 
         switch (this.key) {
@@ -91,7 +95,7 @@ public class RequestHandler {
                 productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-                // customer.create();
+                 customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -127,11 +131,26 @@ public class RequestHandler {
                 customer.renableCard(json_data);
                 couponService.getAllCoupons(json_data);
                 break;
+            case GET_FEATURES:
+                featureService.getAllFeature();
+                break;
             case GET_ALL_SALES:
                 salesService.getAllSales();
                 break;
             case ADD_SALE:
                 salesService.buyAProduct(json_data);
+                break;
+            case REGISTER_FEATURE:
+                featureService.registerFeature(json_data);
+                break;
+            case DELETE_FEATURE:
+                featureService.deleteFeature(json_data);
+                break;
+            case UPDATE_FEATURE:
+                featureService.update(json_data);
+                break;
+            case  GET_FEATURE_BY_ID:
+                featureService.getFeatureByCode(json_data);
                 break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
