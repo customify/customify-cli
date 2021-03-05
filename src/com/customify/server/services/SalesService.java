@@ -42,7 +42,6 @@ public class SalesService {
 
 
 
-
             statement.setString(1,jsonNode.get("customerID").asText());
             statement.setString(2,jsonNode.get("quantity").asText());
             statement.setString(3,jsonNode.get("totalPrice").asText());
