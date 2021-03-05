@@ -90,18 +90,19 @@ public class PointsService {
 //                }
 
             if(response.size() == 0 ) {
-                System.out.println("\n\n\t\t\tNo winner to show\n\n");
+                System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tNo winner to show\n\n");
                 return;
             }
             System.out.println("\n\n");
             this.Header();
             System.out.println(Colors.ANSI_GREEN);
-            System.out.format("\t%5s%15s%15s%20s%20s%20s%20s", "Customer Id", "First name", "Last name", "Email", "Points", "Winning date", "Customer code");
+            System.out.format("\t%-15s%-25s%-25s%-30s%-10s%-30s%-10s", "Customer Id", "First name", "Last name", "Email", "Points", "Winning date", "Customer code");
             System.out.println(Colors.ANSI_RESET);
             for (int i = 0; i < response.size(); i++) {
                 JsonNode node = objectMapper.readTree(response.get(i));
 
-                System.out.format("\t%5s%15s%15s%15s%20s%20s%20s", node.get("customerId").asInt(),node.get("firstName").asText(), node.get("lastName").asText(), node.get("email").asText(), node.get("noPoints").asDouble(), node.get("winingDate").asText(), node.get("code").asText());
+                System.out.format("\t%-15s%-25s%-25s%-30s%-10s%-30s%-10s\n", node.get("customerId").asText(),node.get("firstName").asText(), node.get("lastName").asText(), node.get("email").asText(), node.get("noPoints").asDouble(), node.get("winingDate").asText(), node.get("code").asText());
+//                System.out.println("\n");
             }
             System.out.println("\n\n");
         } catch (ClassNotFoundException e) {

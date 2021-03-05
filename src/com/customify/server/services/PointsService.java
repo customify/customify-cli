@@ -47,7 +47,6 @@ public class PointsService {
     public void getWinners() throws SQLException, IOException {
         System.out.println("Request to get winners received at server");
         String sql = "SELECT Points_winning.customer_id,no_points,Points_winning.created_at,first_name,last_name,email,code FROM Points_winning INNER JOIN Customer ON Points_winning.customer_id = Customer.customer_id AND no_points >= 15";
-
 //        Response response;
         List<String> winners = new ArrayList();
 
@@ -78,6 +77,7 @@ public class PointsService {
             outputStream = socket.getOutputStream();
             this.objectOutputStream = new CustomizedObjectOutputStream(this.outputStream);
             objectOutputStream.writeObject(winners);
+            resetWinners();
         }
 
 //        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
@@ -88,6 +88,13 @@ public class PointsService {
 
         //Sending the response to client
 //        objectOutput.writeObject(responseData);
+    }
+    
+    public void resetWinners() throws SQLException {
+        String clear = "Update Points_winning set no_points = no_points - 15 where no_points >= 15";
+        Connection connection = Db.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(clear);
+        preparedStatement.executeUpdate();
     }
 
 
