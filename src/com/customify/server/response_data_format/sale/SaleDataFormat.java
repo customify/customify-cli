@@ -17,6 +17,15 @@ public class SaleDataFormat {
         this.productID = productID;
     }
 
+
+    public SaleDataFormat(String customerID, String quantity, String totalPrice, String employeeID, String productID) {
+        this.customerID = customerID;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.employeeID = employeeID;
+        this.productID = productID;
+    }
+
     public int getSaleId() {
         return saleId;
     }
