@@ -1,5 +1,6 @@
 package com.customify.client.dashboards;
 
+import com.customify.client.Colors;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.Business.BusinessView;
 import com.customify.client.views.billing.BillingView;
@@ -43,13 +44,20 @@ public class SuperAdminDashboard {
 
         if(isLoggedIn()){
             do {
-                System.out.println("\n\n\n\t\t\t\t\t----------------------------------------------------------------");
-                System.out.println("\t\t\t\t\t--------------CUSTOMIFY > SUPER ADMIN DASHBOARD-----------------\n");
-                System.out.println("\t\t\t\t\t           1. BUSINESS MANAGEMENT");
-                System.out.println("\t\t\t\t\t           2. MY PROFILE");
-                System.out.println("\t\t\t\t\t           3. PROFILE SETTINGS");
-                System.out.println("\t\t\t\t\t           4. BILLING");
-                System.out.println("\t\t\t\t\t           5. LOGOUT !!!");
+                System.out.flush();
+
+                System.out.println(Colors.ANSI_PURPLE);
+                System.out.println("---------------------------------------------");
+                System.out.println("--------------CUSTOMIFY HOME-----------------\n\n");
+                System.out.println(Colors.ANSI_RESET);
+
+                System.out.println("           1. BUSINESS MANAGEMENT");
+                System.out.println("           2. MY PROFILE");
+                System.out.println("           3. PROFILE SETTINGS");
+                System.out.println("           4. BILLING");
+                System.out.println("           5. LOGOUT !!!");
+
+                System.out.print("\n Chose between [ 1 -  5 ] ");
                 int choice = scan.nextInt();
                 switch (choice) {
                     case 1:
