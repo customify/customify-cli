@@ -82,7 +82,7 @@ public class PointsService {
 
 
             mailWinner();
-            resetWinners();
+//            resetWinners();
         }
 
 //        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
@@ -118,7 +118,7 @@ public class PointsService {
 
         while(resultSet.next()){
             email = resultSet.getString("email");
-            System.out.println("Email "+ email);
+//            System.out.println("Email "+ email);
         }
         notificationService.send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), email, prop.getProperty("subject"), prop.getProperty("msg"));
 

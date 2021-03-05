@@ -31,19 +31,23 @@ public class NotificationService {
     public void send(String mailFrom, String password, String mailTo, String subject, String msg) {
 
         try{
-            String id;
+            String id = null;
             String query = "INSERT INTO Awards_Notifications(customer_id,title,description,created_at) VALUES(?,?,?,NOW())";
             String result = "SELECT Customer.customer_id FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15";
             Connection connection = Db.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
             PreparedStatement stId = connection.prepareStatement(result);
-            ResultSet records = statement.executeQuery(result);
-            id = records.getString("customer_id");
+            ResultSet records = stId.executeQuery(result);
+            while (records.next()){
+                id = records.getString("customer_id");
+//                System.out.println("ID: "+id);
+            }
+
             stId.setString(1, id);
             statement.setString(2,subject);
             statement.setString(3,msg);
 
-            if(statement.execute()){
+            if(statement.execute() && stId.execute()){
                 System.out.println("Insertion done");
             }
 
