@@ -1,9 +1,9 @@
 /**
  * @description
- *Main view for operating on businesses
+ *Main view for operating on billing
  *
- * @author Kellia Umuhire, Anselme Habumugisha
- * @since Wednesday, 3 February 2021
+ * @author Patrick Niyogitare
+ * 
  * */
 
 
