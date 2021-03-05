@@ -97,20 +97,22 @@ public class PointsService {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT bonded_points FROM products WHERE products.id =?");
             preparedStatement.setInt(1, Integer.parseInt(saleDataFormat.getProductID()));
 
+            System.out.println("Get product id "+Integer.parseInt(saleDataFormat.getProductID()));
+
             ResultSet resultSet = preparedStatement.executeQuery();
             float product_points = 0;
-            if (preparedStatement.executeUpdate() == 0) return false;
-
 
             while (resultSet.next()) {
-                product_points = Float.parseFloat(saleDataFormat.getQuantity() )* resultSet.getFloat("bonded_points");
+                System.out.println("bounded Points "+resultSet.getFloat("bonded_points"));
+                System.out.println("quantity "+saleDataFormat.getQuantity());
+                product_points = Float.parseFloat(saleDataFormat.getQuantity()) * resultSet.getFloat("bonded_points");
             }
 
-            preparedStatement = connection.prepareStatement("INSERT INTO Points(customer_id,number_of_points,`source`) VALUES (?,?,'product')");
+            preparedStatement = connection.prepareStatement("INSERT INTO Points(customer_id,number_of_points,source) VALUES (?,?,'product')");
             preparedStatement.setString(1, saleDataFormat.getCustomerID());
             preparedStatement.setFloat(2, product_points);
 
-            if (preparedStatement.executeUpdate() == 0) return false;
+            preparedStatement.execute();
 
             preparedStatement  = connection.prepareStatement("UPDATE Points_winning SET no_points = no_points+? WHERE customer_id = ?");
             preparedStatement.setFloat(1,product_points);
@@ -125,6 +127,7 @@ public class PointsService {
             return true;
         }
         catch (SQLException e){
+            e.printStackTrace();
             System.out.println(e.getMessage());
             return false;
         }
