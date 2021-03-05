@@ -81,7 +81,7 @@ public class PointsService {
 
 
             mailWinner();
-            resetWinners();
+//            resetWinners();
         }
 
 //        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
@@ -95,7 +95,7 @@ public class PointsService {
     }
 
     public void mailWinner() throws SQLException{
-        String email;
+        String email = null;
         String result = "SELECT Customer.email FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15 ";
         Connection connection = Db.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(result);
@@ -117,9 +117,9 @@ public class PointsService {
 
         while(resultSet.next()){
             email = resultSet.getString("email");
-//            System.out.println("Email "+ email);
-            notificationService.send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), email, prop.getProperty("subject"), prop.getProperty("msg"));
+            System.out.println("Email "+ email);
         }
+        notificationService.send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), email, prop.getProperty("subject"), prop.getProperty("msg"));
 
     }
     

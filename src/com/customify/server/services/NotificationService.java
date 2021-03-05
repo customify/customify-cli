@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -30,10 +31,15 @@ public class NotificationService {
     public void send(String mailFrom, String password, String mailTo, String subject, String msg) {
 
         try{
+            String id;
             String query = "INSERT INTO Awards_Notifications(customer_id,title,description,created_at) VALUES(?,?,?,NOW())";
+            String result = "SELECT Customer.customer_id FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15";
             Connection connection = Db.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1,1);
+            PreparedStatement stId = connection.prepareStatement(result);
+            ResultSet records = statement.executeQuery(result);
+            id = records.getString("customer_id");
+            stId.setString(1, id);
             statement.setString(2,subject);
             statement.setString(3,msg);
 
