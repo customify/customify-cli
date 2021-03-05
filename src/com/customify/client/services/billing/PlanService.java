@@ -2,9 +2,7 @@ package com.customify.client.services.billing;
 
 import com.customify.client.Colors;
 import com.customify.client.SendToServer;
-import com.customify.client.data_format.billing.CreatePlanFormat;
-import com.customify.client.data_format.billing.GetFeaturesFormat;
-import com.customify.client.data_format.billing.PlanFormatClient;
+import com.customify.client.data_format.billing.*;
 import com.customify.server.response_data_format.billing.PlanFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -68,6 +66,23 @@ public class PlanService {
         }
     }
 
+    /**
+     * @author Moss
+     * @role
+     * send request to the server for  deleting a plan
+     * */
+    public void deletePlan(DeletePlanFormat format) throws IOException, ClassNotFoundException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(format);
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if(serverSend.send()){
+            handleDeleteFeatureRes();
+        }
+        else {
+            System.out.println("\t\t\t\tRequest failed...");
+        }
+    }
+
     public void handleGetPlans(){
         /**
          * @author Patrick Niyogitare
@@ -116,6 +131,31 @@ public class PlanService {
                 System.out.println("\t\t\t\t An error occured Feature Not created, "+jsonNode.get("status"));
             }else{
                 System.out.println("\t\t\t\t Feature successfully created, "+jsonNode.get("status").asInt());
+                System.out.println("\n\n");
+            }
+        }catch(Exception e) {
+            System.out.println("RESPONSE ERROR =>"+e.getMessage());
+        }
+    }
+
+
+    public void handleDeleteFeatureRes(){
+        /**
+         * @author Patrick Niyogitare
+         * @role
+         * handling the delete plan response
+         * */
+        try{
+            InputStream inputStream = this.socket.getInputStream();
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+            List<String> response = (List<String>) objectInputStream.readObject();
+
+            String json_response = response.get(0);
+            JsonNode jsonNode = new ObjectMapper().readTree(json_response);
+            if(jsonNode.get("status").asInt() != 200){
+                System.out.println("\t\t\t\t An error occured Feature Not deleted, "+jsonNode.get("status"));
+            }else{
+                System.out.println("\t\t\t\t Feature successfully deleted, "+jsonNode.get("status").asInt());
                 System.out.println("\n\n");
             }
         }catch(Exception e) {

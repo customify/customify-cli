@@ -1,5 +1,8 @@
 package com.customify.server.data_format.billing;
-
+/**
+ * @author Patrick Niyogitare
+ * @role defined a model of a plan
+ * */
 public class PlanFormat {
     private int planId;
     private String planName;

@@ -9,6 +9,7 @@ package com.customify.client.views.billing;
 
 import com.customify.client.Keys;
 import com.customify.client.data_format.billing.CreatePlanFormat;
+import com.customify.client.data_format.billing.DeletePlanFormat;
 import com.customify.client.data_format.billing.FeatureFormat;
 import com.customify.client.data_format.billing.PlanFormatClient;
 import com.customify.client.services.billing.PlanService;
@@ -20,6 +21,7 @@ import java.util.Scanner;
 public class PlansView {
     private Socket socket;
     private PlanService planService;
+    private Scanner scan = new Scanner(System.in);
 
     public PlansView(Socket socket){
 
@@ -58,7 +60,7 @@ public class PlansView {
 
                 break;
             case 4:
-
+                deletePlan();
                 break;
             case 0:
 
@@ -70,7 +72,6 @@ public class PlansView {
     }
 
     public void createPlanView() throws Exception {
-        Scanner scan = new Scanner(System.in);
         boolean loop = true;
         String planTitle="", planDesc="";
         System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > FEATURES > CREATE PLAN ---------------------");
@@ -88,6 +89,15 @@ public class PlansView {
 
         CreatePlanFormat format = new CreatePlanFormat(Keys.CREATE_PLAN, planTitle, planDesc);
         planService.createPlan(format);
+    }
+
+    public void deletePlan() throws IOException, ClassNotFoundException {
+        int planId;
+        System.out.println("\n\t\t\t\t        Enter plan Id: ");
+        planId = scan.nextInt();
+
+        DeletePlanFormat deletePlanFormat = new DeletePlanFormat(Keys.DELETE_PLAN);
+        planService.deletePlan(deletePlanFormat);
     }
 
 }

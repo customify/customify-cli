@@ -1,5 +1,8 @@
 package com.customify.server.data_format.billing;
-
+/**
+ * @author Patrick Niyogitare
+ * @role defined a model of Feature
+ * */
 import java.io.Serializable;
 
 public class FeatureFormat implements Serializable {

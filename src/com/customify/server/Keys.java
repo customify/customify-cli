@@ -39,6 +39,6 @@ public enum Keys {
     DELETE_FEATURE,
     UPDATE_FEATURE,
     GET_FEATURE_BY_ID,
-    GET_PLANS
+    GET_PLANS,
 }
 

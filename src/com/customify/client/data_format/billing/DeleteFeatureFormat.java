@@ -1,5 +1,8 @@
 package com.customify.client.data_format.billing;
-
+/**
+ * @author Patrick Niyogitare
+ * @role Class model a request for deleting a feature
+ * */
 import com.customify.client.Keys;
 
 public class DeleteFeatureFormat {

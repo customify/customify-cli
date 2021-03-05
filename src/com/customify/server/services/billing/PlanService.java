@@ -39,7 +39,7 @@ public class PlanService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(inputs);
 
-        String query = "INSERT INTO Plans (planTitle, planDescription) VALUES  (?,?,NOW())";
+        String query = "INSERT INTO Plans (plantTitle, planDescription) VALUES  (?,?)";
 
         PreparedStatement statement = this.connection.prepareStatement(query);
         statement.setString(1,jsonNode.get("planTitle").asText());
@@ -47,41 +47,19 @@ public class PlanService {
 
         try{
             if(statement.execute()){
-                this.response = "Plan created successfully";
-                this.handleStatusResponses(201);
+//                this.response = "Plan created successfully";
+                this.handleStatusResponses(400);
+
             }else{
-                System.out.println("Ops failed to execute");
+//                System.out.println("Ops failed to execute");
+                this.handleStatusResponses(201);
+
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
     public void read(Keys key){
-//        try{
-//            String query = "SELECT * from Plans";
-//            Statement statement = connection.createStatement();
-//            ResultSet results = statement.executeQuery(query);
-//            List<PlanFormat> response = new ArrayList<>();
-//            while(results.next()){
-//                PlanFormat planFormat = new PlanFormat(
-//                        results.getInt(1),
-//                        results.getString(2),
-//                        results.getString(3)
-//                );
-//                response.add(planFormat);
-//            }
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            String json = objectMapper.writeValueAsString(response);
-//            SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(json));
-//            if(sendToClient.send()){
-//                System.out.println("Response sent!");
-//            }else{
-//                System.out.println("Response failed !");
-//            }
-//        }catch(SQLException | JsonProcessingException e){
-//            System.out.println(e.getMessage());
-//        }
-
         System.out.println("Fetching all features");
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -179,12 +157,7 @@ public class PlanService {
         try{
             if (statement.execute()){
                 this.response = "Plan Deleted Successfully ";
-                SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(response));
-                if(sendToClient.send()){
-                    System.out.println("Response sent!");
-                }else{
-                    System.out.println("Response failed !");
-                }
+                this.handleStatusResponses(200);
             }else{
                 System.out.println("Ops Failed to execute");
             }
@@ -195,6 +168,10 @@ public class PlanService {
 
 
     public void handleStatusResponses(int statusCode) throws IOException {
+        /**
+         * @author Patrick Niyogitare
+         * @role Handling responses with only status code
+         * */
         System.out.println("Sending create feature success response");
         ObjectMapper objectMapper = new ObjectMapper();
         //setting the response status code
@@ -205,7 +182,6 @@ public class PlanService {
         System.out.println("Sending response ......"+response);
         this.output = socket.getOutputStream();
         this.objectOutput = new CustomizedObjectOutputStream(this.output);
-        System.out.println("Response "+response.get(0));
         objectOutput.writeObject(response);
     }
 

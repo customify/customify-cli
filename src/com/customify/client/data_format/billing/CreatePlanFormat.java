@@ -1,5 +1,8 @@
 package com.customify.client.data_format.billing;
-
+/**
+ * @author Patrick Niyogitare
+ * @role modeling the requet for creating aplan
+ * */
 import com.customify.client.Keys;
 
 public class CreatePlanFormat {

@@ -159,6 +159,9 @@ public class RequestHandler {
             case CREATE_PLAN:
                 planService.create(json_data);
                 break;
+            case DELETE_PLAN:
+                planService.delete(json_data);
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

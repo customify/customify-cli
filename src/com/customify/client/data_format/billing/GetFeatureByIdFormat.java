@@ -1,5 +1,8 @@
 package com.customify.client.data_format.billing;
-
+/**
+ * @author Patrick Niyogitare
+ * @role A class models a request for get feature by id
+ * */
 import com.customify.client.Keys;
 
 public class GetFeatureByIdFormat {

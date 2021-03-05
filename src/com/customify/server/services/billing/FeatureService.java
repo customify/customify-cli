@@ -189,6 +189,10 @@ public class FeatureService {
     }
 
     public void handleStatusResponses(int statusCode) throws IOException {
+        /**
+         * @author Patrick Niyogitare
+         * @role Handling responses with only status code
+         * */
         System.out.println("Sending create feature success response");
         ObjectMapper objectMapper = new ObjectMapper();
         //setting the response status code
@@ -199,7 +203,6 @@ public class FeatureService {
         System.out.println("Sending response ......"+response);
         this.output = socket.getOutputStream();
         this.objectOutput = new CustomizedObjectOutputStream(this.output);
-        System.out.println("Response "+response.get(0));
         objectOutput.writeObject(response);
     }
 }
