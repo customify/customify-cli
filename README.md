@@ -102,4 +102,4 @@ Resources
 3. [See branches created for you](https://github.com/PatrickNiyogitare28/customify/branches)
 4. [Trello Khanban board](https://trello.com/b/CfQDY64n/customfy)
 
-Happy hacking!
+Happy coding!
