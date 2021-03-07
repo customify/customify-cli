@@ -1,3 +1,7 @@
+/**
+ * @author GISA KAZE Fredson
+ */
+
 package com.customify.server.response_data_format.sale;
 
 public class SaleDataFormat {

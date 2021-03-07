@@ -38,20 +38,22 @@ public class NotificationService {
             PreparedStatement statement = connection.prepareStatement(query);
             PreparedStatement stId = connection.prepareStatement(result);
             ResultSet records = stId.executeQuery(result);
-            while (records.next()){
+             stId.execute();
+            while (records.next()) {
                 id = records.getString("customer_id");
 //                System.out.println("ID: "+id);
+
             }
+                stId.setString(1, id);
+                statement.setString(2, subject);
+                statement.setString(3, msg);
 
-            stId.setString(1, id);
-            statement.setString(2,subject);
-            statement.setString(3,msg);
 
-            if(statement.execute() && stId.execute()){
+            if(statement.execute()){
                 System.out.println("Insertion done");
             }
 
-            Db.closeConnection();
+          Db.closeConnection();
 
         }catch (SQLException e){
             System.out.println(e.getMessage());

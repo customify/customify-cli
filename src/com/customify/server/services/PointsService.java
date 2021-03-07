@@ -38,9 +38,6 @@ public class PointsService {
         this.socket = socket;
     }
 
-    /**
-     * @author GISA KAZE Fredson
-     */
 //    public void getPointsByCustomerEmail() {
 //        PointsByCustomerEmailFormat data = (PointsByCustomerEmailFormat) request.getObject();
 //        System.out.println("Customer email: " + data.getEmail());
@@ -132,6 +129,8 @@ public class PointsService {
     }
 
 
+
+
     public static boolean recordPointsAfterSale(SaleDataFormat saleDataFormat) throws SQLException {
         try {
             Connection connection = Db.getConnection();
@@ -141,7 +140,7 @@ public class PointsService {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             float product_points = 0;
-            if (preparedStatement.executeUpdate() == 0) return false;
+//            if (preparedStatement.executeUpdate() == 0) return false;
 
 
             while (resultSet.next()) {
