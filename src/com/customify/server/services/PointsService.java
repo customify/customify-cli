@@ -6,12 +6,10 @@ package com.customify.server.services;
 
 import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
-import com.customify.server.data_format.sales.SaleDataFormat;
+import com.customify.server.response_data_format.sale.SaleDataFormat;
 import com.customify.server.response_data_format.WinnersDataFormat;
-import com.customify.server.response_data_format.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.NotificationService;
-//import com.customify.server.data_format.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -31,6 +29,7 @@ public class PointsService {
     OutputStream outputStream;
     private ObjectMapper objectMapper = new ObjectMapper();
     NotificationService notificationService = new NotificationService();
+//    SaleDataFormat saleDataFormat;
 
 
 
@@ -79,7 +78,7 @@ public class PointsService {
 
 
             mailWinner();
-            resetWinners();
+//            resetWinners();
         }
 
 //        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
@@ -136,7 +135,7 @@ public class PointsService {
             Connection connection = Db.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT bonded_points FROM products WHERE products.id =?");
-            preparedStatement.setInt(1, saleDataFormat.getProductId());
+            preparedStatement.setString(1, saleDataFormat.getProductID());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             float product_points = 0;
@@ -146,20 +145,21 @@ public class PointsService {
             while (resultSet.next()) {
                 product_points = saleDataFormat.getQuantity() * resultSet.getFloat("bonded_points");
             }
+            System.out.println("Points now: "+product_points);
 
             preparedStatement = connection.prepareStatement("INSERT INTO Points(customer_id,number_of_points,`source`) VALUES (?,?,'product')");
-            preparedStatement.setString(1, saleDataFormat.getCustomerId());
+            preparedStatement.setString(1, saleDataFormat.getCustomerID());
             preparedStatement.setFloat(2, product_points);
 
             if (preparedStatement.executeUpdate() == 0) return false;
 
             preparedStatement  = connection.prepareStatement("UPDATE Points_winning SET no_points = no_points+? WHERE customer_id = ?");
             preparedStatement.setFloat(1,product_points);
-            preparedStatement.setString(2,saleDataFormat.getCustomerId());
+            preparedStatement.setString(2,saleDataFormat.getCustomerID());
 
             if (preparedStatement.executeUpdate() < 1){
                 preparedStatement  = connection.prepareStatement("INSERT INTO Points_winning(customer_id,no_points) values (?,?)");
-                preparedStatement.setString(1,saleDataFormat.getCustomerId());
+                preparedStatement.setString(1,saleDataFormat.getCustomerID());
                 preparedStatement.setFloat(2,product_points);
             }
 

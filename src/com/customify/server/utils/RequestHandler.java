@@ -166,7 +166,7 @@ public class RequestHandler {
                 featureService.getAllFeature();
                 break;
             case GET_ALL_SALES:
-                salesService.getAllSales();
+//                salesService.getAllSales();
                 break;
             case ADD_SALE:
                 salesService.buyAProduct(json_data);
