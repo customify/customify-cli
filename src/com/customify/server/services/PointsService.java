@@ -79,7 +79,7 @@ public class PointsService {
 
 
             mailWinner();
-//            resetWinners();
+            resetWinners();
         }
 
 //        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
