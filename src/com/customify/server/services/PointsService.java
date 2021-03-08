@@ -77,7 +77,7 @@ public class PointsService {
             objectOutputStream.writeObject(winners);
 
             mailWinner();
-//            resetWinners();
+            resetWinners();
         }
 
     }
