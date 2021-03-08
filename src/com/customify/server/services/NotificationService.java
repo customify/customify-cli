@@ -38,7 +38,7 @@ public class NotificationService {
             PreparedStatement statement = connection.prepareStatement(query);
             PreparedStatement stId = connection.prepareStatement(result);
             ResultSet records = stId.executeQuery(result);
-             stId.execute();
+//             stId.execute();
             while (records.next()) {
                 id = records.getString("customer_id");
 //                System.out.println("ID: "+id);
