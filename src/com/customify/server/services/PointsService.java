@@ -4,7 +4,7 @@
 
 package com.customify.server.services;
 
-import com.customify.server.CustomizedObjectOutputStream;
+import com.customify.server.*;
 import com.customify.server.Db.Db;
 import com.customify.server.response_data_format.sale.SaleDataFormat;
 import com.customify.server.response_data_format.WinnersDataFormat;
@@ -77,13 +77,14 @@ public class PointsService {
             objectOutputStream.writeObject(winners);
 
             mailWinner();
-            resetWinners();
+            //resetWinners();
         }
 
     }
 
     public void mailWinner() throws SQLException{
-        String email = null;
+
+        String email=null;
         String result = "SELECT Customer.email FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15 ";
         Connection connection = Db.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(result);
@@ -92,22 +93,17 @@ public class PointsService {
         Properties prop = new Properties();
         String fileName = "config.properties";
         InputStream is = null;
-        try {
-            is = new FileInputStream(fileName);
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-        try {
-            prop.load(is);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        try { is = new FileInputStream(fileName); }
+        catch (FileNotFoundException ex) { System.out.println(ex.getMessage()); }
+        try { prop.load(is); }
+        catch (IOException ex) { System.out.println(ex.getMessage()); }
+
 
         while(resultSet.next()){
             email = resultSet.getString("email");
-//            System.out.println("Email "+ email);
+         System.out.println("Email "+ email);
         }
-        notificationService.send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), email, prop.getProperty("subject"), prop.getProperty("msg"));
+        notificationService.SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), email, prop.getProperty("subject"), prop.getProperty("msg"));
 
     }
 
