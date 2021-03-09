@@ -10,9 +10,9 @@ package com.customify.server;
 import com.customify.server.Db.*;
 import com.customify.server.utils.*;
 
+
 import java.net.ServerSocket;
 import java.net.Socket;
-
 
 public class Main {
 
@@ -39,7 +39,6 @@ public class Main {
             System.out.println("Can not listen to port: " + portNumber + ", Exception " + e);
         }
     }
-
 
 }
 
