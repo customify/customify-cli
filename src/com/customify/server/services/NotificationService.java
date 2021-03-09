@@ -56,6 +56,7 @@ public class NotificationService {
     /* this is method saving notification in database before sending it to customer.*/
 
     public void SaveNotifications(String customer_id,String title,String description){
+
         Properties prop = new Properties();
         String fileName = "config.properties";
         InputStream is = null;
@@ -69,7 +70,9 @@ public class NotificationService {
           try{ String query = "INSERT INTO Awards_Notifications(customer_id,title,description,created_at) VALUES(?,?,?,NOW())";
             Connection connection = Db.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
+
             statement.setString(1,customer_id);
+
             statement.setString(2,title);
             statement.setString(3, description);
 
@@ -97,7 +100,9 @@ public class NotificationService {
             System.out.println(ex.getMessage());
         }
 
+
 //        SaveNotifications("1", prop.getProperty("subject"), prop.getProperty("msg"));
+
        // SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
           //    prop.getProperty("msg"));
     }

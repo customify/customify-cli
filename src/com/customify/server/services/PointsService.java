@@ -4,7 +4,7 @@
 
 package com.customify.server.services;
 
-import com.customify.server.CustomizedObjectOutputStream;
+import com.customify.server.*;
 import com.customify.server.Db.Db;
 import com.customify.server.response_data_format.sale.SaleDataFormat;
 import com.customify.server.response_data_format.WinnersDataFormat;
@@ -83,8 +83,10 @@ public class PointsService {
     }
 
     public void mailWinner() throws SQLException{
+
         String email = null;
         String id = null;
+      
         String result = "SELECT Customer.email FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15 ";
         String outputId = "SELECT Customer.customer_id FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15 ";
         Connection connection = Db.getConnection();
@@ -96,21 +98,17 @@ public class PointsService {
         Properties prop = new Properties();
         String fileName = "config.properties";
         InputStream is = null;
-        try {
-            is = new FileInputStream(fileName);
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-        try {
-            prop.load(is);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        try { is = new FileInputStream(fileName); }
+        catch (FileNotFoundException ex) { System.out.println(ex.getMessage()); }
+        try { prop.load(is); }
+        catch (IOException ex) { System.out.println(ex.getMessage()); }
+
 
         while(resultSet.next()){
             email = resultSet.getString("email");
-//            System.out.println("Email "+ email);
+         System.out.println("Email "+ email);
         }
+
         while (resultSet1.next()){
             id = resultSet1.getString("customer_id");
 //            System.out.println("Id: "+id);
