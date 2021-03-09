@@ -77,7 +77,7 @@ public class PointsService {
             objectOutputStream.writeObject(winners);
 
             mailWinner();
-            resetWinners();
+//            resetWinners();
         }
 
     }
@@ -107,7 +107,7 @@ public class PointsService {
             email = resultSet.getString("email");
 //            System.out.println("Email "+ email);
         }
-        notificationService.send(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), email, prop.getProperty("subject"), prop.getProperty("msg"));
+        notificationService.SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), email, prop.getProperty("subject"), prop.getProperty("msg"));
 
     }
 
