@@ -107,7 +107,6 @@ public class RetrieveLoggedInUser {
 
                         user.setAppUser("EMPLOYEE");
 
-
                         this.setLoggedEdInEmployee(user);
                     }
 

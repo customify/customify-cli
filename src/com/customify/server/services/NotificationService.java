@@ -1,15 +1,11 @@
 // Hagenimana Yassin created at 3/2/2021
 // this is a service notification which sends email to customer who won an award.
-
-
 package com.customify.server.services;
 import com.customify.server.Db.Db;
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.FileInputStream;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,8 +13,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
-
-
 
 public class NotificationService {
     /**
@@ -45,7 +39,6 @@ public class NotificationService {
                     }
                 });
 
-
         //compose message
         try {
             MimeMessage message = new MimeMessage(session);
@@ -60,8 +53,6 @@ public class NotificationService {
             throw new RuntimeException(e);
         }
     }
-
-
 
     /* this is method saving notification in database before sending it to customer.*/
 
@@ -95,7 +86,6 @@ public class NotificationService {
             System.out.println(e.getMessage());
         }
     }
-
 
 
     public  void sendEmail(){
