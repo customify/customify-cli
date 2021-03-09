@@ -3,6 +3,8 @@
  *  This is for dealing with database interactions
  **/
 package com.customify.server.Db;
+import com.customify.server.services.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,6 +45,18 @@ public class Db {
             connection = DriverManager.getConnection(prop.getProperty("dbUrl"),prop.getProperty("user"),prop.getProperty("password"));
             statement = connection.createStatement();
             System.out.println("Db connected......");
+
+
+          /*
+
+           @author Yassin
+           this is sendEmail method which sends email to customer who got an award;
+*/
+
+          NotificationService notification = new NotificationService();
+          notification.sendEmail();
+
+
         }catch (SQLException e){
             System.out.println("Db error: "+e.getMessage());
         }
