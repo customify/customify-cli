@@ -77,18 +77,23 @@ public class PointsService {
             objectOutputStream.writeObject(winners);
 
             mailWinner();
-            //resetWinners();
+//            resetWinners();
         }
 
     }
 
     public void mailWinner() throws SQLException{
 
-        String email=null;
+        String email = null;
+        String id = null;
+      
         String result = "SELECT Customer.email FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15 ";
+        String outputId = "SELECT Customer.customer_id FROM Customer INNER JOIN Points_winning ON Customer.customer_id = Points_winning.customer_id AND no_points >= 15 ";
         Connection connection = Db.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(result);
         ResultSet resultSet = preparedStatement.executeQuery(result);
+        PreparedStatement preparedStatement1 = connection.prepareStatement(outputId);
+        ResultSet resultSet1 = preparedStatement1.executeQuery(outputId);
 
         Properties prop = new Properties();
         String fileName = "config.properties";
@@ -103,7 +108,13 @@ public class PointsService {
             email = resultSet.getString("email");
          System.out.println("Email "+ email);
         }
+
+        while (resultSet1.next()){
+            id = resultSet1.getString("customer_id");
+//            System.out.println("Id: "+id);
+        }
         notificationService.SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), email, prop.getProperty("subject"), prop.getProperty("msg"));
+        notificationService.SaveNotifications(id, prop.getProperty("subject"), prop.getProperty("msg"));
 
     }
 
