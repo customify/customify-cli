@@ -1,5 +1,6 @@
 package com.customify.server.models.submodels;
 // Create By Moss
+//Whole Document Wrote by Moss
 
 public class Feature <I,N,D>{
     //    S represents data type for name, description
@@ -7,7 +8,7 @@ public class Feature <I,N,D>{
     private I featureId;
     private N featureName;
     private D featureDescription;
-
+    public Feature(){}
     public Feature( I featureId, N featureName, D featureDescription){
         this.featureId = featureId;
         this.featureName = featureName;

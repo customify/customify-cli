@@ -5,6 +5,7 @@
 
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CouponFormat;
 import com.customify.client.data_format.RedeemCoupon;
@@ -42,25 +43,47 @@ public class CouponService {
         try {
             String json = objectMapper.writeValueAsString(couponFormat);
             SendToServer sendToServer = new SendToServer(json,this.socket);
-            System.out.println("Json to send "+json);
             if (sendToServer.send()){
-                System.out.println("Data sent");
+                this.input = this.socket.getInputStream();
+                this.objectInput = new ObjectInputStream(this.input);
+
+                String data = (String) this.objectInput.readObject();
+                System.out.println("\n");
+                System.out.println(Colors.ANSI_BLUE);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+data);
+                System.out.println(Colors.ANSI_RESET);
+                System.out.println("\n");
             }
         } catch (JsonProcessingException e) {
             System.out.println("Parsing create coupon "+e.getMessage());
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
-    public void reedemCoupon(RedeemCoupon redeemCoupon){
+    public void redeemCoupon(RedeemCoupon redeemCoupon){
         ObjectMapper objectMapper = new ObjectMapper();
         try{
             String json = objectMapper.writeValueAsString(redeemCoupon);
-            SendToServer sendToServer = new SendToServer(json,this.socket);
+            SendToServer sendToServer = new SendToServer(json, this.socket);
+          if(sendToServer.send()){
+              this.input = this.socket.getInputStream();
+              this.objectInput = new ObjectInputStream(this.input);
+
+              String data = (String) this.objectInput.readObject();
+              System.out.println("\n");
+              System.out.println(Colors.ANSI_BLUE);
+              System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+data);
+              System.out.println(Colors.ANSI_RESET);
+              System.out.println("\n");
+          }
         }catch (JsonProcessingException e){
-            System.out.println("Parsing reedem coupon "+e.getMessage());
-        } catch (IOException e) {
+            System.out.println("Parsing redeem coupon "+e.getMessage());
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -81,15 +104,19 @@ public class CouponService {
 
         //Casting the response data to list
         List<String> data = (List<String>) this.objectInput.readObject();
-        Iterator itr = data.iterator();
+       Iterator itr = data.iterator();
 
-        //display the businesses
-        System.out.println("------------------------------------------List of Businesses----------------------------------\n");
-        System.out.format("%5s%20s%20s%20s%20s%20s\n", "ID", "Name", "Location", "Address", "Phone number", "Created_at");
-        System.out.println();
+        String leftAlignFormat = "| %-13s | %-12s | %-12s | %-21s | %-21s | %-21s | %-13s |%n";
+
+        System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+---------------+--------------+--------------+-----------------------+-----------------------+-----------------------+---------------+%n");
+        System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t| CouponID      | customerID   |  CouponCode  | Expire Date           |  created at           | coupon Status         | Coupon value  |%n");
+        System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+---------------+--------------+--------------+-----------------------+-----------------------+-----------------------+---------------+%n");
         while (itr.hasNext()) {
-            JsonNode bs = objectMapper.readTree((String) itr.next());
-            System.out.format("%5d%20s%20s%20s%20s%20s\n", bs.get("id").asInt(), bs.get("name").asText(), bs.get("location").asText(), bs.get("address").asText(), bs.get("phone_number").asText(), bs.get("created_at").asText());
+            JsonNode jsonNode = objectMapper.readTree((String) itr.next());
+            System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t"+leftAlignFormat,jsonNode.get("coupon_id").textValue(),jsonNode.get("customer_id").textValue(),jsonNode.get("coupon_code").textValue(),jsonNode.get("created_at").textValue(),jsonNode.get("expire_date").textValue(),jsonNode.get("coupon_status").textValue(),jsonNode.get("coupon_value").textValue());
         }
+        System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+---------------+--------------+--------------+-----------------------+-----------------------+-----------------------+---------------+%n");
+        System.out.println("\n");
+
     }
 }

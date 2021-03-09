@@ -32,54 +32,59 @@ public class SalesService {
     public void buyAProduct(String jsonData) throws IOException {
 
         try{
-            System.out.println(jsonData);
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonData);
+            PointsService pointsService;
 
-            String query = "INSERT INTO `Sale`(`customerID`, `quantity`, `totalPrice`, `employeeID`, `productID`) VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO Sale(customerID, quantity, totalPrice, employeeID, productID) VALUES (?,?,?,?,?)";
 
             PreparedStatement statement = connection.prepareStatement(query);
 
+
+
             statement.setString(1,jsonNode.get("customerID").asText());
-            statement.setString(2,jsonNode.get("quantity").asText());
+            statement.setInt(2,jsonNode.get("quantity").asInt());
             statement.setString(3,jsonNode.get("totalPrice").asText());
             statement.setString(4,jsonNode.get("employeeID").asText());
             statement.setString(5,jsonNode.get("productID").asText());
+            statement.execute();
 
-            if(statement.execute()){
-                this.sendToClient("Product sold!");
-            }else {
-               this.sendToClient("Failed to sell Product!");
-            }
+            SaleDataFormat saleDataFormat = new SaleDataFormat(jsonNode.get("customerID").asText(),jsonNode.get("quantity").asInt(),jsonNode.get("totalPrice").asText(),jsonNode.get("employeeID").asText(),jsonNode.get("productID").asText());
+
+            PointsService.recordPointsAfterSale(saleDataFormat);
+
+            this.sendToClient("Product sold!");
+
         }catch (JsonProcessingException e){
-            System.out.println("Server failed to parse Request!");
+            this.sendToClient("Failed to parse request");
         } catch (IOException ioException) {
-            System.out.println("Failed to send!");
+            this.sendToClient("Failed to send response");
         }catch (SQLException e){
-            this.sendToClient("Customer ID is invalid");
+            this.sendToClient("Invalid CustomerID");
+            System.out.println(e.getMessage());
         }
     }
 
-    public void getAllSales() throws IOException {
-        List<String> sales = new ArrayList<>();
-        try{
-            String query = "SELECT * FROM Sale";
-
-            Statement statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()){
-                this.saleDataFormat = new SaleDataFormat(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));
-                String jsonData = this.objectMapper.writeValueAsString(saleDataFormat);
-                sales.add(jsonData);
-            }
-        }catch (SQLException | JsonProcessingException e){
-            e.printStackTrace();
-            System.out.println("Error while sending to the client");
-        } finally {
-           this.sendToClient(sales);
-        }
-    }
+//    public void getAllSales() throws IOException {
+//        List<String> sales = new ArrayList<>();
+//        try{
+//            String query = "SELECT * FROM Sale";
+//
+//            Statement statement = connection.createStatement();
+//
+//            ResultSet resultSet = statement.executeQuery(query);
+//            while (resultSet.next()){
+//                this.saleDataFormat = new SaleDataFormat(resultSet.getInt(1),resultSet.getString(2),(resultSet.getInt(3)),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));
+//                String jsonData = this.objectMapper.writeValueAsString(saleDataFormat);
+//                sales.add(jsonData);
+//            }
+//        }catch (SQLException | JsonProcessingException e){
+//            e.printStackTrace();
+//            System.out.println("Error while sending to the client");
+//        } finally {
+//           this.sendToClient(sales);
+//        }
+//    }
 
     public void sendToClient(Object dataToSend) throws IOException {
         outputStream = socket.getOutputStream();

@@ -2,21 +2,35 @@ package com.customify.server.models;
 
 //Initializing Model by Moss
 
-import com.customify.server.models.submodels.*;
+public class BillingModel<I,P,F>{
+    private I billingId;
+    private P planId;
+    private F featureId;
 
-public class BillingModel{
-/*
-Commented By Moss
-    Feature<Integer, String> feature =
-            new Feature<>(1,"Buy","Buying products ");
-    Plan<Integer, String> plan =
-        new Plan<>(2,"Basic","This will only contain 2 features");
-
- */
-    Feature<Integer,String,String> feature;
-    Plan<Integer,String,String> plan;
-    public BillingModel(){
-
+    public BillingModel(){}
+    public BillingModel(I billingId, P planId, F featureId){
+        this.billingId=billingId;
+        this.planId = planId;
+        this.featureId = featureId;
     }
 
+    public void setBillingId(I billingId) {
+        this.billingId = billingId;
+    }
+    public I getBillingId() {
+        return this.billingId;
+    }
+
+    public void setPlanId(P planId) {
+        this.planId = planId;
+    }
+    public P getPlanId() {
+        return this.planId;
+    }
+    public void setFeatureId(F featureId) {
+        this.featureId = featureId;
+    }
+    public F getFeatureId() {
+        return this.featureId;
+    }
 }

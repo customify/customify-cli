@@ -1,5 +1,6 @@
 package com.customify.server.models.submodels;
 //Created by Moss
+//Whole document wrote by Moss
 
 public class Plan <I,T,D>{
     //    S represents data type for title, description
@@ -7,7 +8,7 @@ public class Plan <I,T,D>{
     private I planId;
     private T planTitle;
     private D planDescription;
-
+    public Plan(){ }
     public Plan(I planId, T planTitle, D planDescription){
         this.planId = planId;
         this.planTitle = planTitle;
