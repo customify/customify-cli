@@ -97,7 +97,7 @@ public class NotificationService {
             System.out.println(ex.getMessage());
         }
 
-        SaveNotifications(1, prop.getProperty("subject"), prop.getProperty("msg"));
+        //SaveNotifications(1, prop.getProperty("subject"), prop.getProperty("msg"));
        // SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
           //    prop.getProperty("msg"));
     }
