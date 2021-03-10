@@ -40,5 +40,6 @@ public enum Keys {
     UPDATE_FEATURE,
     GET_FEATURE_BY_ID,
     GET_PLANS,
+    GET_PLAN_BY_ID
 }
 

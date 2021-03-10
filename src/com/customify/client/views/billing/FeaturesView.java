@@ -48,7 +48,7 @@ public class FeaturesView {
         System.out.println("\t\t\t\t         2. Add a Feature");
         System.out.println("\t\t\t\t         3. Update a Feature");
         System.out.println("\t\t\t\t         4. Delete a Delete a feature");
-        System.out.println("\t\t\t\t         5. Get feature by Id");
+        System.out.println("\t\t\t\t         5. Search a feature by Id");
 
 
         choice = scan.nextInt();
@@ -83,12 +83,12 @@ public class FeaturesView {
         System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > FEATURES > CREATE FEATURE ---------------------");
         System.out.println("\n\t\t\t\t\t         00. Return Home");
         System.out.println("\t\t\t\t\t         Enter feature name: ");
-        featureName +=  scan.nextLine();
+        featureName =  scan.nextLine();
         if(featureName.equals("00")){
             loop = false;
         }
         System.out.println("\t\t\t\t\t         Enter feature description: ");
-        featureDesc +=  scan.nextLine();
+        featureDesc =  scan.nextLine();
         if(featureDesc.equals("00")){
             loop = false;
         }
@@ -99,7 +99,7 @@ public class FeaturesView {
     public void getFeatureById() throws IOException, ClassNotFoundException {
         boolean loop = true;
         int featureId;
-        System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > FEATURES > DELETE FEATURE ---------------------");
+        System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > FEATURES > SEARCH FEATURE ---------------------");
         System.out.println("\n\t\t\t\t\t         00. Return Home");
         System.out.println("\t\t\t\t\t         Enter Feature Id: ");
         featureId =  scan.nextInt();
@@ -126,30 +126,34 @@ public class FeaturesView {
     public void updateFeature() throws IOException {
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
-        String updatedDeatureName="", updatedFeatureDesc="";
+        String updatedFeatureName="", updatedFeatureDesc="";
         int featureId;
         System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > FEATURES > UPDATE FEATURE ---------------------");
-        System.out.println("\n\t\t\t\t\t         00. Return Home");
 
-        System.out.println("\t\t\t\t\t         Enter feature Id : ");
-        featureId =  scan.nextInt();
-        if(featureId == 0){
-            loop = false;
+        System.out.println("\n\t\t\t\t\t         00. Return Home");
+        System.out.println("\n\t\t\t\t         Enter feature Id: ");
+        String idStr = scan.nextLine();
+        try {
+            featureId = Integer.parseInt(idStr);
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Error: "+e.getMessage());
+            featureId = 0;
         }
 
-        System.out.println("\t\t\t\t\t         Enter feature name : ");
-        updatedDeatureName =  scan.next();
-        if(updatedDeatureName.equals("00")){
+        System.out.println("\t\t\t\t\t         Enter feature name: ");
+        updatedFeatureName =  scan.nextLine();
+        if(updatedFeatureName.equals("00")){
             loop = false;
         }
         System.out.println("\t\t\t\t\t         Enter feature description: ");
-        updatedFeatureDesc +=  scan.next();
-
+        updatedFeatureDesc =  scan.nextLine();
         if(updatedFeatureDesc.equals("00")){
             loop = false;
         }
 
-        UpdatedFeatureFormat format = new UpdatedFeatureFormat(Keys.UPDATE_FEATURE, featureId, updatedDeatureName, updatedFeatureDesc);
+        UpdatedFeatureFormat format = new UpdatedFeatureFormat(Keys.UPDATE_FEATURE, featureId, updatedFeatureDesc, updatedFeatureDesc);
         featureService.update(format);
     }
 

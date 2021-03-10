@@ -5,17 +5,27 @@ package com.customify.client.data_format.billing;
  * */
 import com.customify.client.Keys;
 
-public class DeletePlanFormat {
+public class SearchPlanFormat {
     private Keys key;
+    private int planId;
 
-    public DeletePlanFormat(){}
+    public SearchPlanFormat(){}
 
-    public DeletePlanFormat(Keys key) {
+    public SearchPlanFormat(Keys key, int planId) {
         this.key = key;
+        this.planId = planId;
     }
 
     public Keys getKey() {
         return key;
+    }
+
+    public int getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(int planId) {
+        this.planId = planId;
     }
 
     public void setKey(Keys key) {

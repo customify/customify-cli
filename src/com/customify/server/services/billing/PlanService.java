@@ -9,6 +9,7 @@ package com.customify.server.services.billing;
 import com.customify.server.Db.Db;
 import com.customify.server.Keys;
 import com.customify.server.SendToClient;
+import com.customify.server.data_format.billing.FeatureFormat;
 import com.customify.server.data_format.billing.PlanFormat;
 //import com.customify.server.response_data_format.billing.PlanFormat;
 import com.customify.server.CustomizedObjectOutputStream;
@@ -60,7 +61,6 @@ public class PlanService {
         }
     }
     public void read(Keys key){
-        System.out.println("Fetching all features");
         ObjectMapper objectMapper = new ObjectMapper();
 
         //formatting the response into a data format
@@ -91,55 +91,55 @@ public class PlanService {
 
 
 
-    public String readById(String inputs) throws JsonProcessingException {
+    public void readById(String request) throws IOException{
+        //setting the response status code
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(inputs);
+        JsonNode jsonNode = objectMapper.readTree(request);
+
+        //formatting the response into a dataformat
+        Statement statement = Db.getStatement();
+        List<String> data = new ArrayList<>();
         try{
-            String query = "SELECT * from Plans where planId=";
-            Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery(query+jsonNode.get("planId"));
-            List<PlanFormat> response = new ArrayList<>();
-            while(results.next()){
-                PlanFormat planFormat = new PlanFormat(
-                        results.getInt(1),
-                        results.getString(2),
-                        results.getString(3)
+            ResultSet res = statement.executeQuery("select * from Plans  where planId="+jsonNode.get("planId"));
+            while(res.next()){
+                PlanFormat plan = new PlanFormat(
+                        res.getInt(1),
+                        res.getString(2),
+                        res.getString(3)
                 );
-                response.add(planFormat);
+                data.add(objectMapper.writeValueAsString(plan));
             }
-            ObjectMapper objectMapper1 = new ObjectMapper();
-            String json = objectMapper1.writeValueAsString(response);
-            SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(json));
-            if(sendToClient.send()){
-                System.out.println("Response sent!");
-            }else{
-                System.out.println("Response failed !");
-            }
-        }catch(SQLException | JsonProcessingException e){
-            System.out.println(e.getMessage());
+
+            //Sending the response to server after it has been formated
+            System.out.println("Sending response ......"+data);
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            objectOutput.writeObject(data);
+
         }
-        return null;
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
     public void update(String inputs) throws SQLException, JsonProcessingException{
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(inputs);
 
-        String query = "UPDATE Plans SET planTitle=? , planDescription=?";
+        String query = "UPDATE Plans SET plantTitle=? , planDescription=? WHERE planId = ?   ";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, jsonNode.get("planTitle").asText());
+        statement.setString(1, jsonNode.get("planName").asText());
         statement.setString(2, jsonNode.get("planDescription").asText());
+        statement.setInt(3,jsonNode.get("planId").asInt());
 
         try{
             if(statement.execute()){
+                System.out.println("Query not ok");
                 this.response = "Plan updated successfully";
-                SendToClient sendToClient = new SendToClient(socket, Collections.singletonList(response));
-                if(sendToClient.send()){
-                    System.out.println("Response sent!");
-                }else{
-                    System.out.println("Response failed !");
-                }
+                this.handleStatusResponses(400);
             }else{
-                System.out.println("Ops failed to execute");
+                System.out.println("Query ok");
+                this.handleStatusResponses(200);
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -156,10 +156,11 @@ public class PlanService {
 
         try{
             if (statement.execute()){
-                this.response = "Plan Deleted Successfully ";
-                this.handleStatusResponses(200);
+                this.response = "Query not ok";
+                this.handleStatusResponses(400);
             }else{
-                System.out.println("Ops Failed to execute");
+                System.out.println("Query ok");
+                this.handleStatusResponses(200);
             }
         }catch (Exception e){
             System.out.println(e.getMessage());

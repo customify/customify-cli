@@ -162,6 +162,12 @@ public class RequestHandler {
             case DELETE_PLAN:
                 planService.delete(json_data);
                 break;
+            case UPDATE_PLAN:
+                planService.update(json_data);
+                break;
+            case GET_PLAN_BY_ID:
+                planService.readById(json_data);
+                break;
             default:
                 System.out.println("\t\t\tSORRY INVALID API KEY");
         }

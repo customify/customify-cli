@@ -3,7 +3,6 @@ package com.customify.client.services.billing;
 import com.customify.client.Colors;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.billing.*;
-import com.customify.server.response_data_format.billing.PlanFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.client.Keys;
@@ -11,7 +10,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlanService {
@@ -42,15 +40,12 @@ public class PlanService {
             System.out.println("Request failed");
         }
     }
-    public void updatePlan(PlanFormat planFormat) throws Exception{
+    public void updatePlan(UpdatePlanFormat planFormat) throws Exception{
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(planFormat);
         SendToServer sendToServer = new SendToServer(json, socket);
         if(sendToServer.send()){
-            inputStream = this.socket.getInputStream();
-            objectInputStream = new ObjectInputStream(objectInputStream);
-            this.setResponse((String) objectInputStream.readObject());
-            System.out.println(this.getResponse());
+           this.handleUpdatePlanRes();
         }else{
             System.out.println("Request failed");
         }
@@ -66,12 +61,22 @@ public class PlanService {
         }
     }
 
+    public void getPlanById(SearchPlanFormat format) throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        String json = objectMapper.writeValueAsString(format);
+        SendToServer serverSend = new SendToServer(json, this.socket);
+        if (serverSend.send()) {
+            this.handleGetPlans();
+        }
+    }
+
     /**
      * @author Moss
      * @role
      * send request to the server for  deleting a plan
      * */
-    public void deletePlan(DeletePlanFormat format) throws IOException, ClassNotFoundException{
+    public void deletePlan(SearchPlanFormat format) throws IOException, ClassNotFoundException{
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(format);
         SendToServer serverSend = new SendToServer(json, this.socket);
@@ -95,7 +100,7 @@ public class PlanService {
             List<String> response = (List<String>) objectInputStream.readObject();
 
             System.out.println(Colors.ANSI_CYAN);
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tALL FEATURES");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tALL PLANS");
             System.out.println(Colors.ANSI_RESET);
             System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t+------------+------------+------------+%n");
             System.out.format("\t\t\t\t\t\t\t\t\t\t\t\t\t| Plan code     | Plan Name |  Plan description | %n");
@@ -153,9 +158,34 @@ public class PlanService {
             String json_response = response.get(0);
             JsonNode jsonNode = new ObjectMapper().readTree(json_response);
             if(jsonNode.get("status").asInt() != 200){
-                System.out.println("\t\t\t\t An error occured Feature Not deleted, "+jsonNode.get("status"));
+                System.out.println("\t\t\t\t An error occured plan Not deleted, "+jsonNode.get("status"));
             }else{
-                System.out.println("\t\t\t\t Feature successfully deleted, "+jsonNode.get("status").asInt());
+                System.out.println("\t\t\t\t Plan successfully deleted, "+jsonNode.get("status").asInt());
+                System.out.println("\n\n");
+            }
+        }catch(Exception e) {
+            System.out.println("RESPONSE ERROR =>"+e.getMessage());
+        }
+    }
+
+
+    public void handleUpdatePlanRes(){
+        /**
+         * @author Patrick Niyogitare
+         * @role
+         * handling the updated plan response
+         * */
+        try{
+            InputStream inputStream = this.socket.getInputStream();
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+            List<String> response = (List<String>) objectInputStream.readObject();
+
+            String json_response = response.get(0);
+            JsonNode jsonNode = new ObjectMapper().readTree(json_response);
+            if(jsonNode.get("status").asInt() != 200){
+                System.out.println("\t\t\t\t An error occured Plan not updated, "+jsonNode.get("status"));
+            }else{
+                System.out.println("\t\t\t\t Plan successfully updated, "+jsonNode.get("status").asInt());
                 System.out.println("\n\n");
             }
         }catch(Exception e) {

@@ -8,10 +8,7 @@
 package com.customify.client.views.billing;
 
 import com.customify.client.Keys;
-import com.customify.client.data_format.billing.CreatePlanFormat;
-import com.customify.client.data_format.billing.DeletePlanFormat;
-import com.customify.client.data_format.billing.FeatureFormat;
-import com.customify.client.data_format.billing.PlanFormatClient;
+import com.customify.client.data_format.billing.*;
 import com.customify.client.services.billing.PlanService;
 
 import java.io.IOException;
@@ -45,6 +42,7 @@ public class PlansView {
         System.out.println("\t\t\t\t\t         2. Add a plan");
         System.out.println("\t\t\t\t\t         3. Update a plan");
         System.out.println("\t\t\t\t\t         4. Delete a plan");
+        System.out.println("\t\t\t\t\t         5. Search a plan by Id");
 
         choice = scan.nextInt();
 
@@ -57,10 +55,13 @@ public class PlansView {
                 createPlanView();
                 break;
             case 3:
-
+                updatePlan();
                 break;
             case 4:
                 deletePlan();
+                break;
+            case 5:
+                getPlanById();
                 break;
             case 0:
 
@@ -77,12 +78,12 @@ public class PlansView {
         System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > FEATURES > CREATE PLAN ---------------------");
         System.out.println("\n\t\t\t\t\t         00. Return Home");
         System.out.println("\t\t\t\t\t         Enter  plan title: ");
-        planTitle +=  scan.nextLine();
+        planTitle =  scan.nextLine();
         if(planTitle.equals("00")){
             loop = false;
         }
         System.out.println("\t\t\t\t\t         Enter plan description: ");
-        planDesc +=  scan.nextLine();
+        planDesc =  scan.nextLine();
         if(planDesc.equals("00")){
             loop = false;
         }
@@ -91,13 +92,66 @@ public class PlansView {
         planService.createPlan(format);
     }
 
-    public void deletePlan() throws IOException, ClassNotFoundException {
+    public void updatePlan() throws Exception {
+        Scanner scan = new Scanner(System.in);
+        boolean loop = true;
+        String updatedPlanName="", updatedPlanDesc="";
         int planId;
-        System.out.println("\n\t\t\t\t        Enter plan Id: ");
-        planId = scan.nextInt();
+        System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > PLANS > UPDATE PLAN ---------------------");
 
-        DeletePlanFormat deletePlanFormat = new DeletePlanFormat(Keys.DELETE_PLAN);
-        planService.deletePlan(deletePlanFormat);
+        System.out.println("\n\t\t\t\t\t         00. Return Home");
+        System.out.println("\n\t\t\t\t         Enter planId Id: ");
+        String idStr = scan.nextLine();
+        try {
+            planId = Integer.parseInt(idStr);
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Error: "+e.getMessage());
+            planId = 0;
+        }
+
+        System.out.println("\t\t\t\t\t         Enter new plan name: ");
+        updatedPlanName =  scan.nextLine();
+        if(updatedPlanName.equals("00")){
+            loop = false;
+        }
+        System.out.println("\t\t\t\t\t         Enter new plan description: ");
+        updatedPlanDesc =  scan.nextLine();
+        if(updatedPlanDesc.equals("00")){
+            loop = false;
+        }
+
+        UpdatePlanFormat format = new UpdatePlanFormat(Keys.UPDATE_PLAN,planId, updatedPlanName, updatedPlanDesc);
+        planService.updatePlan(format);
+    }
+
+    public void deletePlan() throws IOException, ClassNotFoundException {
+        boolean loop = true;
+        int planId;
+        System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > PLANS > DELETE PLAN ---------------------");
+        System.out.println("\n\t\t\t\t\t         00. Return Home");
+        System.out.println("\t\t\t\t\t         Enter plan Id: ");
+        planId =  scan.nextInt();
+        if(planId == 0){
+            loop = false;
+        }
+        SearchPlanFormat format = new SearchPlanFormat(Keys.DELETE_PLAN, planId);
+        planService.deletePlan(format);
+    }
+
+    public void getPlanById() throws Exception {
+        boolean loop = true;
+        int planId;
+        System.out.println("\t\t\t\t\t------------------ SUPER ADMIN > BILLING > PLANS > SEARCH PLAN ---------------------");
+        System.out.println("\n\t\t\t\t\t         00. Return Home");
+        System.out.println("\t\t\t\t\t         Enter plan Id: ");
+        planId =  scan.nextInt();
+        if(planId == 0){
+            loop = false;
+        }
+        SearchPlanFormat format = new SearchPlanFormat(Keys.GET_PLAN_BY_ID, planId);
+        planService.getPlanById(format);
     }
 
 }
