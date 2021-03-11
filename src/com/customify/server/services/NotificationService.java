@@ -43,7 +43,7 @@ public class NotificationService {
             MimeMessage message = new MimeMessage(session);
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
             message.setSubject(subject);
-            message.setText(msg);
+            message.setContent(msg, "text/html");
 
             //send message
             Transport.send(message);

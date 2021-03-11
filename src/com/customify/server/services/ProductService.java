@@ -67,7 +67,7 @@ public class ProductService {
             if (preparedStatement.executeUpdate() > 0) {
                 response = "{\"status\": \"201\"}";
                 System.out.println("Product was Created successfully!!! ");
-                new MailCustomers().start();
+                new MailCustomers(jsonNode.get("name").asText()).start();
             } else {
                 response = "{\"status\": \"400\"}";
                 System.out.println("\n\nProduct format received was incorrect\n ");

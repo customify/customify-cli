@@ -14,10 +14,14 @@ public class MailCustomers extends Thread{
     private String subject;
     private String message;
 
-    public MailCustomers() {
-        this.subject = "New product available now";
-        this.message = "New Products are available!\n\nWith our endless customer care, we brought to you new products " +
-                "with even more satisfaction from your expectations.\n Come and shop among the first to get adorable discounts in this season";
+    public MailCustomers(String productName) {
+        this.subject = "[Customify] New product available now";
+        this.message = "<p style='color:grey'>Hello customer,</p>" +
+                "<h3>New Products are available!</h3> "+
+                "<h2><small>Come and shop</small>&nbsp;&nbsp;<span style='color:dodgerblue'>"+ productName+"</span></h2>"+
+                "<p style='color:gray;padding:20px;font-size:19px'>With our endless customer care, we brought to you new product<br/> " +
+                "with even more satisfaction from your expectations.<br> Come and shop among the first customers to get adorable discounts in this season.</p>"+
+                "<h2 style='color:blue'>Customify.</h2>";
     }
 
     public MailCustomers(String subject, String message) {
@@ -50,7 +54,7 @@ public class MailCustomers extends Thread{
 
     private List<String> getCustomerEmails() throws SQLException {
         Statement statement = Db.getStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT email FROM Customer");
+        ResultSet resultSet = statement.executeQuery("SELECT email FROM Customer WHERE disabled=0");
         List<String> emails = new ArrayList<>();
 
         while (resultSet.next()){
