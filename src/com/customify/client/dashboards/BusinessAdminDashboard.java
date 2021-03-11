@@ -6,6 +6,7 @@ import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.PointCountingView;
 import com.customify.client.views.ProductView;
 import com.customify.client.views.customer.CustomerMainView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
 import com.customify.client.views.employee.EmployeeMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -71,8 +72,9 @@ public class BusinessAdminDashboard {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. WINNERS");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. TODAY'S REPORT");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. MY PROFILE");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t7. PROFILE SETTINGS");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t8. LOGOUT !!!");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t7. PROVIDE FEEDBACK");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t8. PROFILE SETTINGS");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t9. LOGOUT !!!");
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice" + Colors.ANSI_YELLOW + " <1-8>" + Colors.ANSI_RESET + ": ");
             int choice = scan.nextInt();
             switch (choice) {
@@ -97,9 +99,10 @@ public class BusinessAdminDashboard {
 //                    loggedIn=false;
                     break;
                 case 7:
-//                    loggedIn=false;
+                    CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
+                    feedbackView.view();
                     break;
-                case 8:
+                case 9:
                     if (userSession.unSet())
                         loggedIn = false;
                     break;
