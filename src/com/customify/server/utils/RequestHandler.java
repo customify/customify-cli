@@ -47,7 +47,7 @@ public class RequestHandler {
 
     public void handleRequest() throws Exception {
         CustomerService customer = new CustomerService(this.clientSocket);
-        EmployeeService employee = new EmployeeService(this.clientSocket);
+        EmployeeService employee;
         BusinessService businessService = new BusinessService(this.clientSocket);
         ProductService productService = new ProductService(this.clientSocket);
         CouponService couponService = new CouponService(this.clientSocket);

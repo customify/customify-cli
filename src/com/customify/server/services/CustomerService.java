@@ -186,7 +186,7 @@ public class CustomerService {
         String received_code = jsonNode.get("customerCode").asText();
 
         Connection connection = Db.getConnection();
-        String query = "SELECT * FROM Customer WHERE code = \"" + received_code +"\"";
+        String query = "SELECT * FROM Customer WHERE code = \"" + received_code +"\"OR first_name = \""+ received_code +"\" OR last_name = \""+ received_code +"\"";
         String firstName, lastName, email, code,customerId,stateDesc = "";
         int state;
 

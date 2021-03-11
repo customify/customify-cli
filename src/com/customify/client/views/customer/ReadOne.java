@@ -37,7 +37,7 @@ public class ReadOne {
         search:do{
             System.out.println("\n\t\t\t---------------------------HOME | CUSTOMER MANAGEMENT | SEARCH CUSTOMER------------------------------------------------\n");
             System.out.println("\n\t\t\t| 00. Return ");
-            System.out.println("\n\t\t\tEnter  Customer Code:");
+            System.out.println("\n\t\t\tEnter  Customer Code / Name :");
             String customer_code = scan.nextLine();
 
 

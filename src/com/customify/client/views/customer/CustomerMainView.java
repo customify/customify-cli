@@ -42,7 +42,7 @@ public class CustomerMainView {
             label:do {
                 this.Header();
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. Add New Customer");
-                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. Read All Customer");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. Get All Customers");
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. Search Customer");
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. Update Customer");
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. Disable Customer");
