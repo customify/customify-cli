@@ -8,6 +8,7 @@
  * */
 package com.customify.client.services;
 
+import com.customify.client.Colors;
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.CustomerFeedback.CustomerFeedbackDataFormat;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -50,7 +51,7 @@ public class CustomerFeedbackService {
         SendToServer serverSend = new SendToServer(json, this.socket);
         if (serverSend.send()) {
              this.getFeedbacks();
-//            this.handleResponse("getAllFeedbacks");
+             System.out.println("Provided feedbacks");
         } else {
             System.out.println("Request failed...");
         }
@@ -64,13 +65,16 @@ public class CustomerFeedbackService {
         List<String> data = (List<String>) this.objectInput.readObject();
         Iterator rs = data.iterator();
 
-        System.out.println("\nAll customer Feedbacks\n");
+        System.out.println(Colors.ANSI_CYAN);
+        System.out.println("\n\t\t\t\t\t\t\t\t\tAll provided Feedbacks");
+        System.out.println(Colors.ANSI_RESET);
+
+        System.out.println(Colors.ANSI_GREEN);
         System.out.format("%5s%35s%35s%35s%35s\n", "CustomerID", "BusinessId", "Title", "Description", "CreatedD");
-        System.out.println();
+        System.out.println(Colors.ANSI_RESET);
         ;
             while (rs.hasNext()) {
                 JsonNode cf = objectMapper.readTree((String) rs.next());
-//                System.out.println(cf);
                 System.out.format("%5d%35d%35s%35s%35s\n", cf.get("customerId").asInt(), cf.get("businessId").asInt(),
                         cf.get("title").asText(), cf.get("description").asText(), cf.get("creationDate").asText());
             }
