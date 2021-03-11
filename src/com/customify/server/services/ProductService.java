@@ -10,6 +10,7 @@ import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.products.GetAllProductsFormat;
 import com.customify.server.response_data_format.products.ProductFormat;
+import com.customify.server.utils.MailCustomers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -66,6 +67,7 @@ public class ProductService {
             if (preparedStatement.executeUpdate() > 0) {
                 response = "{\"status\": \"201\"}";
                 System.out.println("Product was Created successfully!!! ");
+                new MailCustomers().start();
             } else {
                 response = "{\"status\": \"400\"}";
                 System.out.println("\n\nProduct format received was incorrect\n ");
