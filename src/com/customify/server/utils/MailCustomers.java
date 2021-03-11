@@ -54,7 +54,7 @@ public class MailCustomers extends Thread{
 
     private List<String> getCustomerEmails() throws SQLException {
         Statement statement = Db.getStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT email FROM Customer WHERE disabled=0");
+        ResultSet resultSet = statement.executeQuery("SELECT email FROM Customer WHERE disable=0");
         List<String> emails = new ArrayList<>();
 
         while (resultSet.next()){
