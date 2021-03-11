@@ -5,6 +5,8 @@ public class User {
     private String lasName;
     private String email;
     private String sessionStart;
+   private String appUser;
+
 
     public String getAppUser() {
         return appUser;
@@ -14,7 +16,9 @@ public class User {
         this.appUser = appUser;
     }
 
-    private String appUser;
+
+
+
 
     public String getSessionStart() {
         return sessionStart;

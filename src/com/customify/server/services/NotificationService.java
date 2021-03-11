@@ -61,13 +61,13 @@ public class NotificationService {
         String fileName = "config.properties";
         InputStream is = null;
         try { is = new FileInputStream(fileName); }
-        catch (FileNotFoundException ex) {
+            catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage()); }
-        try { prop.load(is); }
-        catch (IOException ex) {
-            System.out.println(ex.getMessage()); }
+            try { prop.load(is); }
+             catch (IOException ex) {
+                System.out.println(ex.getMessage()); }
 
-        try{ String query = "INSERT INTO Awards_Notifications(customer_id,title,description,created_at) VALUES(?,?,?,NOW())";
+          try{ String query = "INSERT INTO Awards_Notifications(customer_id,title,description,created_at) VALUES(?,?,?,NOW())";
             Connection connection = Db.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
 
@@ -78,13 +78,14 @@ public class NotificationService {
 
             if(statement.execute())
                 System.out.println("Insertion done");
-            Db.closeConnection(); }
-        catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
+                Db.closeConnection(); }
+                catch (SQLException e){
+               System.out.println(e.getMessage());
+              }
     }
 
-/*
+    /*
+
     public  void sendEmail(){
         Properties prop = new Properties();
         String fileName = "config.properties";
@@ -103,11 +104,4 @@ public class NotificationService {
        SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
               prop.getProperty("msg"));
     }*/
-
-
-//        SaveNotifications("1", prop.getProperty("subject"), prop.getProperty("msg"));
-
-    // SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
-    //    prop.getProperty("msg"));
-
 }

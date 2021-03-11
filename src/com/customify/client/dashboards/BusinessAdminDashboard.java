@@ -3,8 +3,10 @@ package com.customify.client.dashboards;
 import com.customify.client.Colors;
 import com.customify.client.Login;
 import com.customify.client.utils.authorization.UserSession;
+import com.customify.client.views.PointCountingView;
 import com.customify.client.views.ProductView;
 import com.customify.client.views.customer.CustomerMainView;
+import com.customify.client.views.CustomerFeedback.CustomerFeedbackView;
 import com.customify.client.views.employee.EmployeeMainView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -67,11 +69,13 @@ public class BusinessAdminDashboard {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. PRODUCT MANAGEMENT");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. EMPLOYEE MANAGEMENT");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. CUSTOMER MANAGEMENT");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. TODAY'S REPORT");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. MY PROFILE");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. PROFILE SETTINGS");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t7. LOGOUT !!!");
-            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice" + Colors.ANSI_YELLOW + " <1-6>" + Colors.ANSI_RESET + ": ");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. WINNERS");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. TODAY'S REPORT");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. MY PROFILE");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t7. PROVIDE FEEDBACK");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t8. PROFILE SETTINGS");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t9. LOGOUT !!!");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice" + Colors.ANSI_YELLOW + " <1-8>" + Colors.ANSI_RESET + ": ");
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -87,14 +91,18 @@ public class BusinessAdminDashboard {
                     customer.view();
                     break;
                 case 4:
-                    break;
+                    PointCountingView pointCountingView = new PointCountingView(this.socket);
+                    pointCountingView.view();
                 case 5:
-//                    loggedIn=false;
                     break;
                 case 6:
 //                    loggedIn=false;
                     break;
                 case 7:
+                    CustomerFeedbackView feedbackView = new CustomerFeedbackView(this.socket);
+                    feedbackView.view();
+                    break;
+                case 9:
                     if (userSession.unSet())
                         loggedIn = false;
                     break;

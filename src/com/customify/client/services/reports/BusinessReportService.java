@@ -1,3 +1,8 @@
+/**
+ * @author Fiston Nshimiyandinze
+ * @role
+ * For handling reports concerned with business on client side
+ * */
 package com.customify.client.services.reports;
 
 import com.customify.client.SendToServer;

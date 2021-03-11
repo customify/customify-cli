@@ -3,6 +3,7 @@ package com.customify.client.dashboards;
 import com.customify.client.Colors;
 import com.customify.client.utils.authorization.UserSession;
 import com.customify.client.views.Coupon;
+import com.customify.client.views.PointCountingView;
 import com.customify.client.views.ProductView;
 import com.customify.client.views.Sales;
 import com.customify.client.views.customer.CustomerMainView;
@@ -64,10 +65,11 @@ public class EmployeeDashboard {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. Customer Management");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. Product Management");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. Sales Management");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. Coupon Management");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. My Profile");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. Profile Settings");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t7. Logout\n");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. Winners");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t5. Coupon Management");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t6. My Profile");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t7. Profile Settings");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t8. Logout\n");
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+Colors.ANSI_YELLOW+" <1-7>"+Colors.ANSI_RESET+": ");
             int choice = scan.nextInt();
             switch (choice) {
@@ -83,14 +85,18 @@ public class EmployeeDashboard {
                     Sales sales = new Sales(this.socket,this.isLoggedIn());
                     break;
                 case 4:
-                    Coupon coupon = new Coupon(this.socket,this.isLoggedIn());
+                    PointCountingView pointCountingView = new PointCountingView(this.getSocket());
+                    pointCountingView.view();
                     break;
                 case 5:
-//                    loggedIn=false;
+                    Coupon coupon = new Coupon(this.socket,this.isLoggedIn());
                     break;
                 case 6:
+//                    loggedIn=false;
                     break;
                 case 7:
+                    break;
+                case 8:
                     if(userSession.unSet())
                         loggedIn=false;
                     break;

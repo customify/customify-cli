@@ -1,8 +1,8 @@
 /*
- * @author: NIYONZIMA Stecie
+ * @author: NSENGIYUMVA Gershom
  *
  * @Description
- * This class has a query for inserting data into database
+ * This class has a query for inserting, fetching and deleting data to and from the database
  * done on 9 Feb 2021
  */
 package com.customify.server.services;
@@ -41,7 +41,6 @@ public class CustomerFeedbackService {
 
         Statement stmt = Db.getStatement();
         ResultSet checkBusiness = stmt.executeQuery("SELECT * FROM businesses");
-
 
             // prepare the statement for the query
             while (checkBusiness.next()) {
@@ -124,14 +123,11 @@ public class CustomerFeedbackService {
                  json = "{\"message\" : \"" + "Successfully deleted" + "\", \"statusCode\" : \"" + 200 + "\" }";
                 objectOutput.writeObject(json);
             }
-        }catch (SQLException e){
-            json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
-        }
-        finally{
-
             this.output = socket.getOutputStream();
             this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(json);
+        }catch (SQLException e){
+            json = "{\"message\" : \""+e.getMessage()+"\", \"statusCode\" : \""+ 400 +"\" }";
         }
     }
 }
