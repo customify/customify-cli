@@ -19,7 +19,7 @@ public class MailCustomers extends Thread{
         this.message = "<p style='color:grey'>Hello customer,</p>" +
                 "<h3>New Products are available!</h3> "+
                 "<h2><small>Come and shop</small>&nbsp;&nbsp;<span style='color:dodgerblue'>"+ productName+"</span></h2>"+
-                "<p style='color:gray;padding:20px;font-size:19px'>With our endless customer care, we brought to you new product<br/> " +
+                "<p style='color:gray;font-size:16px'>With our endless customer care, we brought to you new product<br/> " +
                 "with even more satisfaction from your expectations.<br> Come and shop among the first customers to get adorable discounts in this season.</p>"+
                 "<h2 style='color:blue'>Customify.</h2>";
     }
