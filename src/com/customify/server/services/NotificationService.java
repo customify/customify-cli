@@ -33,8 +33,8 @@ public class NotificationService {
         //get Session
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(mailFrom, password);
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(mailFrom, password);
                     }
                 });
 
@@ -43,12 +43,12 @@ public class NotificationService {
             MimeMessage message = new MimeMessage(session);
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
             message.setSubject(subject);
-            message.setText(msg);
+            message.setContent(msg, "text/html");
 
             //send message
             Transport.send(message);
             System.out.println("MESSAGE SENT SUCCESSFULLY!!");
-            } catch (MessagingException e) {
+        } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
     }
@@ -84,6 +84,7 @@ public class NotificationService {
               }
     }
 
+    /*
 
     public  void sendEmail(){
         Properties prop = new Properties();
@@ -99,11 +100,8 @@ public class NotificationService {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-
-
-//        SaveNotifications("1", prop.getProperty("subject"), prop.getProperty("msg"));
-
-       // SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
-          //    prop.getProperty("msg"));
-    }
+        SaveNotifications();
+       SendNotification(prop.getProperty("mailFrom"), prop.getProperty("mailPassword"), prop.getProperty("mailTo"), prop.getProperty("subject"),
+              prop.getProperty("msg"));
+    }*/
 }

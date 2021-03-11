@@ -1,9 +1,8 @@
 /**
- * @description
- * A service to provide all required methods for Manipulating Products in DB.
+ * @description A service to provide all required methods for Manipulating Products in DB.
  * @author TWIZEYIMANA Jacques
  * @version 2
- * */
+ */
 package com.customify.server.services;
 
 import com.customify.server.CustomizedObjectOutputStream;
@@ -11,6 +10,7 @@ import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
 import com.customify.server.response_data_format.products.GetAllProductsFormat;
 import com.customify.server.response_data_format.products.ProductFormat;
+import com.customify.server.utils.MailCustomers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,22 +29,22 @@ public class ProductService {
 
     public ProductService(Socket socket) throws IOException {
         this.output = socket.getOutputStream();
-       this.objectOutput = new CustomizedObjectOutputStream(this.output);
-       this.socket = socket;
+        this.objectOutput = new CustomizedObjectOutputStream(this.output);
+        this.socket = socket;
     }
 
     public static void deleteProduct() {
     }
     /*
-    * @author: Jacques TWIZEYIMANA
-    * description: Register a new product in database*
-    */
+     * @author: Jacques TWIZEYIMANA
+     * description: Register a new product in database*
+     */
 
     public void registerProduct(String data) throws IOException, SQLException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
 
-        String response="";
+        String response = "";
 
         try {
 
@@ -67,6 +67,7 @@ public class ProductService {
             if (preparedStatement.executeUpdate() > 0) {
                 response = "{\"status\": \"201\"}";
                 System.out.println("Product was Created successfully!!! ");
+                new MailCustomers(jsonNode.get("name").asText()).start();
             } else {
                 response = "{\"status\": \"400\"}";
                 System.out.println("\n\nProduct format received was incorrect\n ");
@@ -74,8 +75,7 @@ public class ProductService {
         } catch (Exception e) {
             response = "{\"status\": \"500\"}";
             System.out.println("\n\nInternal server error:" + e.getMessage() + e.getCause());
-        }
-        finally {
+        } finally {
             responseData.add(response);
             objectOutput.writeObject(responseData);
         }
@@ -95,7 +95,7 @@ public class ProductService {
 
         Statement stmt = null;
         Connection conn = null;
-        try{
+        try {
 
             ProductFormat productFormat = new ProductFormat();
 
@@ -106,12 +106,12 @@ public class ProductService {
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
 
-            String sql = "SELECT product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at FROM products WHERE id= "+jsonNode.get("id").asText()+" ;";
+            String sql = "SELECT product_code,business_id,name,price,quantity,description,bonded_points,registered_by,created_at FROM products WHERE id= " + jsonNode.get("id").asText() + " ;";
             ResultSet rs = stmt.executeQuery(sql);
 
             //STEP 5: Extract data from result set
-            while(rs.next()){
-                System.out.println("Sent ID: "+jsonNode.get("id").asText());
+            while (rs.next()) {
+                System.out.println("Sent ID: " + jsonNode.get("id").asText());
 
                 productFormat.setProductCode(rs.getLong("product_code"));
                 productFormat.setBusiness_id(rs.getInt("business_id"));
@@ -124,7 +124,7 @@ public class ProductService {
                 productFormat.setCreatedAt(rs.getString("created_at"));
             }
             productFormat.setStatus(200);
-            System.out.println("Name: "+productFormat.getName());
+            System.out.println("Name: " + productFormat.getName());
 
             responseData.clear();
             responseData.add(new ObjectMapper().writeValueAsString(productFormat));
@@ -133,10 +133,10 @@ public class ProductService {
 //            rs.close();
 //            stmt.close();
 //            conn.close();
-        }catch(SQLException se){
+        } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
-        }catch(Exception e){
+        } catch (Exception e) {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
@@ -159,8 +159,6 @@ public class ProductService {
         JsonNode jsonNode = objectMapper.readTree(data);
 
 
-
-
         Statement stmt = null;
         Connection conn = null;
 
@@ -170,10 +168,10 @@ public class ProductService {
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
 
-            String sql = "UPDATE products SET product_code = "+jsonNode.get("productCode").asText()+",business_id = "+jsonNode.get("business_id").asText()+
-                    ",name = '"+jsonNode.get("name").asText()+"',price="+jsonNode.get("price").asText()+",quantity="+jsonNode.get("quantity").asText()+
-                    ",description = '"+jsonNode.get("description").asText()+"',bonded_points = "+jsonNode.get("bondedPoints").asText()+
-                    ",registered_by = "+jsonNode.get("registered_by").asText()+",created_at = '"+jsonNode.get("createdAt").asText()+"' WHERE id = "+jsonNode.get("id").asText();
+            String sql = "UPDATE products SET product_code = " + jsonNode.get("productCode").asText() + ",business_id = " + jsonNode.get("business_id").asText() +
+                    ",name = '" + jsonNode.get("name").asText() + "',price=" + jsonNode.get("price").asText() + ",quantity=" + jsonNode.get("quantity").asText() +
+                    ",description = '" + jsonNode.get("description").asText() + "',bonded_points = " + jsonNode.get("bondedPoints").asText() +
+                    ",registered_by = " + jsonNode.get("registered_by").asText() + ",created_at = '" + jsonNode.get("createdAt").asText() + "' WHERE id = " + jsonNode.get("id").asText();
 
             stmt.executeUpdate(sql);
 
@@ -189,8 +187,7 @@ public class ProductService {
 
 //            stmt.close();
 //            conn.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             List responseData = new ArrayList<>();
 //            Response response = new Response(500,new ProductFormat());
@@ -201,7 +198,7 @@ public class ProductService {
     }
 
 
-    public void deleteProduct(String data) throws IOException{
+    public void deleteProduct(String data) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
         String jsonSendStatusCode = null;
@@ -210,12 +207,12 @@ public class ProductService {
             Connection connection = Db.getConnection();
             String sql = "DELETE from products where product_code= ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setLong(1,jsonNode.get("productCode").asLong());
-            statusCode=(preparedStatement.executeUpdate() >0) ? 200 : 400;
-            jsonSendStatusCode= "{ \"StatusCode\" : \""+statusCode+"\"}";
+            preparedStatement.setLong(1, jsonNode.get("productCode").asLong());
+            statusCode = (preparedStatement.executeUpdate() > 0) ? 200 : 400;
+            jsonSendStatusCode = "{ \"StatusCode\" : \"" + statusCode + "\"}";
             // System.out.println("Status code [Server side]:"+jsonSendStatusCode);
             objectOutput.writeObject(jsonSendStatusCode);
-            objectOutput.close();
+
         }catch (Exception e){
             System.out.println("Exception Message ==> "+e.getMessage());
         }
@@ -225,30 +222,30 @@ public class ProductService {
 
     public void getAllProducts() throws IOException, SQLException {
         System.out.println("Request to get all products");
-        List products  = new ArrayList<ProductFormat>();
+        List products = new ArrayList<ProductFormat>();
         GetAllProductsFormat allProductsFormat = new GetAllProductsFormat();
 
         try {
             Statement statement = Db.getStatement();
             ResultSet records = statement.executeQuery("SELECT * FROM products");
 
-            while (records.next()){
-                products.add(
-                        new ProductFormat(
-                                records.getInt("business_id"), records.getString("name"),
-                                records.getFloat("price"), records.getInt("quantity"),
-                                records.getString("description"),records.getDouble("bonded_points"),
-                                records.getInt("registered_by"), records.getString("created_at")
-                        )
+            while (records.next()) {
+                ProductFormat product = new ProductFormat(
+                        records.getInt("business_id"), records.getString("name"),
+                        records.getFloat("price"), records.getInt("quantity"),
+                        records.getString("description"), records.getDouble("bonded_points"),
+                        records.getInt("registered_by"), records.getString("created_at")
                 );
+
+                product.setProductCode(records.getLong("product_code"));
+                products.add(product);
             }
             allProductsFormat.setProducts(products);
             allProductsFormat.setStatus(200);
         } catch (SQLException e) {
             allProductsFormat.setStatus(500);
             System.out.println(e.getMessage());
-        }
-        finally {
+        } finally {
             responseData.clear();
             responseData.add(new ObjectMapper().writeValueAsString(allProductsFormat));
             objectOutput.writeObject(responseData);
