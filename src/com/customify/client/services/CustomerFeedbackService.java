@@ -70,12 +70,12 @@ public class CustomerFeedbackService {
         System.out.println(Colors.ANSI_RESET);
 
         System.out.println(Colors.ANSI_GREEN);
-        System.out.format("%5s%35s%35s%35s%35s\n", "CustomerID", "BusinessId", "Title", "Description", "CreatedD");
+        System.out.format("%35s%35s%35s%35s%35s\n","Customer name","Business Name", "Title", "Description", "CreatedD");
         System.out.println(Colors.ANSI_RESET);
         ;
             while (rs.hasNext()) {
                 JsonNode cf = objectMapper.readTree((String) rs.next());
-                System.out.format("%5d%35d%35s%35s%35s\n", cf.get("customerId").asInt(), cf.get("businessId").asInt(),
+                System.out.format("%30s%35s%35s%35s%35s\n",cf.get("customer_name").asText(),cf.get("business_name").asText(),
                         cf.get("title").asText(), cf.get("description").asText(), cf.get("creationDate").asText());
             }
     }

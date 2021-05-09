@@ -15,12 +15,12 @@ import java.io.Serializable;
 
 public class CustomerFeedbackDataFormat implements Serializable {
     private Keys key;
-    private int customer_id, business_id;
-    private String title, description;
+    private int business_id;
+    private String title, description,customer_name;
 
-    public CustomerFeedbackDataFormat(Keys key, int customer_id, int business_id, String title, String description) {
+    public CustomerFeedbackDataFormat(Keys key, String customer_name, int business_id, String title, String description) {
         this.key = key;
-        this.customer_id = customer_id;
+        this.customer_name = customer_name;
         this.business_id = business_id;
         this.title = title;
         this.description = description;
@@ -35,12 +35,12 @@ public class CustomerFeedbackDataFormat implements Serializable {
         this.key = key;
     }
 
-    public int getCustomerId() {
-        return customer_id;
+    public String getCustomer_name(){
+        return customer_name;
     }
 
-    public void setCustomerId(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomer_name(String customer_name){
+        this.customer_name = customer_name;
     }
 
     public int getBusinessId() {

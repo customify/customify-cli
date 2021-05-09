@@ -37,7 +37,8 @@ public class CustomerFeedbackService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(data);
             Connection connection = Db.getConnection();
-            String feedbackQuery = "INSERT INTO CustomerFeedbacks values (?,?,?,?,NOW())";
+            System.out.println(data);
+            String feedbackQuery = "INSERT INTO CustomerFeedback(customer_name,business_id,title,description,created_date) values (?,?,?,?,NOW())";
 
         Statement stmt = Db.getStatement();
         ResultSet checkBusiness = stmt.executeQuery("SELECT * FROM businesses");
@@ -46,7 +47,8 @@ public class CustomerFeedbackService {
             while (checkBusiness.next()) {
                 if (jsonNode.get("businessId").asInt() == checkBusiness.getInt("id")) {
                     PreparedStatement statement = connection.prepareStatement(feedbackQuery);
-                    statement.setInt(1, jsonNode.get("customerId").asInt());
+//                    statement.setInt(1, jsonNode.get("customerId").asInt());
+                    statement.setString(1,jsonNode.get("customer_name").asText());
                     statement.setInt(2, jsonNode.get("businessId").asInt());
                     statement.setString(3, jsonNode.get("title").asText());
                     statement.setString(4, jsonNode.get("description").asText());
@@ -75,10 +77,12 @@ public class CustomerFeedbackService {
     /*
      * The function for getting the customer feedback from the database
      */
-    public void getAllFeedbacks() throws IOException {
+    public void getAllFeedbacks(String data) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
         Statement stmt = Db.getStatement();
-        String query = "Select * from CustomerFeedbacks";
+//        String query = "Select * from CustomerFeedback";
+        String query = "SELECT c.customer_name,b.name, c.title,c.description,c.created_date FROM businesses b INNER JOIN CustomerFeedback c ON b.id = c.business_id WHERE c.business_id ="+ jsonNode.get("businessId").asInt();
         List<String> feedbacks = new ArrayList<>();
 
         try {
@@ -86,8 +90,8 @@ public class CustomerFeedbackService {
             while (rs.next()) {
                 CustomerFeedbackDataFormat cf =
                         new CustomerFeedbackDataFormat(
-                                rs.getInt(1),
-                                rs.getInt(2),
+                                rs.getString(1),
+                                rs.getString(2),
                                 rs.getString(3),
                                 rs.getString(4),
                                 rs.getDate(5).toString()
@@ -96,6 +100,8 @@ public class CustomerFeedbackService {
                 String json = objectMapper.writeValueAsString(cf);
                 feedbacks.add(json);
             }
+
+            System.out.println(feedbacks);
             this.output = socket.getOutputStream();
             this.objectOutput = new CustomizedObjectOutputStream(this.output);
             objectOutput.writeObject(feedbacks);
@@ -114,14 +120,14 @@ public class CustomerFeedbackService {
         JsonNode jsonNode = objectMapper.readTree(data);
         Statement stmt = Db.getStatement();
         String json="";
-
+        System.out.println(data);
         try {
             int deleteQuery = stmt.executeUpdate(
-                    "DELETE FROM CustomerFeedbacks WHERE customer_id = " + jsonNode.get("customerId").asInt());
+                    "DELETE FROM CustomerFeedback WHERE feedback_id = " + jsonNode.get("feedbackId").asInt());
 
             if (deleteQuery == 1) {
                  json = "{\"message\" : \"" + "Successfully deleted" + "\", \"statusCode\" : \"" + 200 + "\" }";
-                objectOutput.writeObject(json);
+//                objectOutput.writeObject(json);
             }
             this.output = socket.getOutputStream();
             this.objectOutput = new CustomizedObjectOutputStream(this.output);

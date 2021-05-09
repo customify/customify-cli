@@ -75,7 +75,7 @@ public class RequestHandler {
                 break;
             case GET_ALL_FEEDBACKS:
                 CustomerFeedbackService feedback1 = new CustomerFeedbackService(this.clientSocket);
-                feedback1.getAllFeedbacks();
+                feedback1.getAllFeedbacks(json_data);
                 break;
             case REMOVE_FEEDBACK:
                 CustomerFeedbackService feedback2 = new CustomerFeedbackService(this.clientSocket);
@@ -97,7 +97,7 @@ public class RequestHandler {
                 productService.updateProduct(json_data);
                 break;
             case CREATE_CUSTOMER:
-                 customer.create();
+                customer.create();
                 break;
             case GET_ALL_BUSINESSES:
                 businessService.getAll();
@@ -118,11 +118,11 @@ public class RequestHandler {
                 couponService.redeemCoupon(json_data);
                 break;
             case GET_ALL_COUPONS:
-              couponService.getAllCoupons(json_data);
+                couponService.getAllCoupons(json_data);
                 break;
             case GET_ALL_CUSTOMERS:
-              customer  = new CustomerService(this.clientSocket,this.json_data);
-              customer.readAll();
+                customer  = new CustomerService(this.clientSocket,this.json_data);
+                customer.readAll();
                 break;
             case GET_CUSTOMER:
                 customer  = new CustomerService(this.clientSocket,this.json_data);

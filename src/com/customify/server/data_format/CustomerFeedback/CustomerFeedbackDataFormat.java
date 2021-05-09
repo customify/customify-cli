@@ -12,12 +12,12 @@ package com.customify.server.data_format.CustomerFeedback;
 import java.io.Serializable;
 
 public class CustomerFeedbackDataFormat implements Serializable {
-    private int customer_id, business_id;
+    private int business_id,feedback_id;
     private String title, description, creation_date;
 
-    public CustomerFeedbackDataFormat(int customer_id, int business_id, String title, String description,
+    public CustomerFeedbackDataFormat( int feedback_id, int business_id, String title, String description,
             String creation_date) {
-        this.customer_id = customer_id;
+        this.feedback_id = feedback_id;
         this.business_id = business_id;
         this.title = title;
         this.description = description;
@@ -25,12 +25,13 @@ public class CustomerFeedbackDataFormat implements Serializable {
     }
 
     // define the getters and setters
-    public int getCustomerId() {
-        return customer_id;
+
+    public  int getFeedback_id(){
+        return feedback_id;
     }
 
-    public void setCustomerId(int customer_id) {
-        this.customer_id = customer_id;
+    public void setFeedback_id(int feedback_id){
+        this.feedback_id = feedback_id;
     }
 
     public int getBusinessId() {

@@ -36,7 +36,11 @@ public class CustomerReadFeedbacks {
      */
 
     public void GetFeedbacks() throws IOException, ClassNotFoundException {
-        String json = "{ \"key\" : \""+ Keys.GET_ALL_FEEDBACKS +"\" }";
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the business id:");
+        int businessId = scan.nextInt();
+        String json = "{ \"businessId\" : \""+businessId+"\", \"key\" : \""+ Keys.GET_ALL_FEEDBACKS +"\" }";
+
         CustomerFeedbackService feedService = new CustomerFeedbackService(socket);
         feedService.getAllCustomerFeedbacks(json);
     }
@@ -48,10 +52,10 @@ public class CustomerReadFeedbacks {
     public void deleteCustomerFeedback() throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
         System.out.print(Colors.ANSI_GREEN);
-        System.out.print("Enter customer id: \t");
+        System.out.print("Enter feedback id: \t");
         System.out.print(Colors.ANSI_RESET);
-        int customerId = scan.nextInt();
-        String json = "{ \"customerId\" : \""+customerId+"\", \"key\" : \""+ Keys.REMOVE_FEEDBACK +"\" }";
+        int feedback_id = scan.nextInt();
+        String json = "{ \"feedbackId\" : \""+feedback_id+"\", \"key\" : \""+ Keys.REMOVE_FEEDBACK +"\" }";
         CustomerFeedbackService feedbackService = new CustomerFeedbackService(socket);
         feedbackService.deleteCustomerFeedback(json);
         // -------------------------------------------------------------------------------u

@@ -32,14 +32,10 @@ public class CustomerFeedbackView {
 
         boolean feed = true;
         Scanner scan = new Scanner(System.in);
-        int customer_id, business_id;
-        String title, description;
+        int business_id;
+        String title, description,customer_name;
 
         feedbackLooop: do {
-            /*
-             * now check if the entered customer id are relevants to the one stored in the
-             * database. --------------------------------- -------------------------------
-             */
 
             System.out.print("\tEnter the title: ");
             title = scan.nextLine();
@@ -49,14 +45,14 @@ public class CustomerFeedbackView {
             if (description.equals("00"))
                 break feedbackLooop;
 
-            System.out.print("\n         Enter the customer id: ");
-            customer_id = scan.nextInt();
+            System.out.print("\tEnter your name as customer name: ");
+            customer_name = scan.nextLine();
 
             System.out.print("\tEnter the business id: ");
             business_id = scan.nextInt();
             feed = false;
 
-            CustomerFeedbackDataFormat format = new CustomerFeedbackDataFormat(Keys.FEEDBACK, customer_id, business_id,
+            CustomerFeedbackDataFormat format = new CustomerFeedbackDataFormat(Keys.FEEDBACK, customer_name, business_id,
                     title, description);
             CustomerFeedbackService feedservice = new CustomerFeedbackService(this.socket);
             feedservice.Feedback(format);

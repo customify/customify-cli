@@ -17,6 +17,6 @@ public class CustomerFeedback {
     }
 
     public void getAllCustomerFeedbacks() throws IOException{
-        CFService.getAllFeedbacks();
+//        CFService.getAllFeedbacks(data);
     }
 }
