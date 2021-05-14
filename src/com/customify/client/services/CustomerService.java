@@ -241,9 +241,9 @@ public class CustomerService {
                 JsonNode jsonNode = objectMapper.readTree(res.get(0));
 
                 if (jsonNode.get("status").asInt() == 404) {
-                    System.out.println("\n\t\t\t*******************************************************************************************************");
-                    System.out.println("                                                  NO CUSTOMER FOUND                                            ");
-                    System.out.println("\t\t\t*******************************************************************************************************");
+//                    System.out.println("\n\t\t\t*******************************************************************************************************");
+//                    System.out.println("                                                  NO CUSTOMER FOUND                                            ");
+//                    System.out.println("\t\t\t*******************************************************************************************************");
                     return null;
                 }
 

@@ -1,10 +1,7 @@
 package com.customify.server.services;
 
-<<<<<<< HEAD
-=======
 import com.customify.client.SendToServer;
 import com.customify.client.data_format.DeActivateCustomer;
->>>>>>> 3e8bda51a8d88fc9cf47e1dcce21baa102b70b2a
 import com.customify.server.CustomizedObjectOutputStream;
 import com.customify.server.Db.Db;
 import com.customify.server.SendToClient;
@@ -29,7 +26,6 @@ public class CustomerService {
     Socket socket;
     OutputStream output;
      String json_data;
-    OutputStream output;
 
 
     private int statusCode;
@@ -41,18 +37,10 @@ public class CustomerService {
 
     }
 
-<<<<<<< HEAD
-    public CustomerService(Socket clientSocket) {
-        this.socket = clientSocket;
-    }
-
-=======
     public CustomerService(Socket socket) {
         this.socket = socket;
     }
 
-
->>>>>>> 3e8bda51a8d88fc9cf47e1dcce21baa102b70b2a
     /**
      * @author SAMUEL DUSHIMIMANA
      * @role
@@ -116,25 +104,25 @@ public class CustomerService {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(json_data);
+        System.out.println(json_data);
 
-        OutputStream output = this.socket.getOutputStream();
-        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+//        OutputStream output = this.socket.getOutputStream();
+//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 
         String response="";
 
         try {
-<<<<<<< HEAD
             Connection connection = Db.getConnection();
-            String sql = "UPDATE customers SET email =?,firstName=?,lastName=?, WHERE customer_code =?";
+            String sql = "UPDATE Customer SET email =?,first_name=?,last_name=? WHERE code =?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,jsonNode.get("email").asText());
             preparedStatement.setString(2,jsonNode.get("firstName").asText());
             preparedStatement.setString(3,jsonNode.get("lastName").asText());
-            preparedStatement.setString(4,jsonNode.get("code").asText());
+            preparedStatement.setString(4,jsonNode.get("customerCode").asText());
 
             if(preparedStatement.executeUpdate() > 0){
-                System.out.println("Customer updated successfully");
+                System.out.println("Customer updated successf`ully");
                 response = "{ \"status\" : \"201\"}";
             }
             else {
@@ -142,23 +130,10 @@ public class CustomerService {
                 response = "{ \"status\" : \"400\"}";;
             }
             connection.close()                           ;
-=======
-            conn = Db.getConnection();
-
-           // System.out.println("Creating statement...");
-            stmt = conn.createStatement();
-
-            String sql = "UPDATE customers SET customer_code = "+jsonNode.get("customer_code").asText()+",email = "+jsonNode.get("email").asText()+
-                    ",firstName="+jsonNode.get("firstName").asText()+",lastName="+jsonNode.get("lastName").asText()+", WHERE customer_code = "+jsonNode.get("customer_code").asText();
-
-            stmt.executeUpdate(sql);
-
-            stmt.close();
-            conn.close();
->>>>>>> 3e8bda51a8d88fc9cf47e1dcce21baa102b70b2a
         }
         catch (Exception e){
-            response = "{ \"status\" : \"500\"}";;
+            response = "{ \"status\" : \"500\"}";
+            e.printStackTrace();
         }
         finally {
             responseData.add(response);
@@ -191,9 +166,6 @@ public class CustomerService {
             // executeUpdate to execute our sql update statement and returns number of rows affected
             int updateCount = statement.executeUpdate();
             statement.close();
-<<<<<<< HEAD
-        }catch (Exception e)
-=======
 
 
             if(updateCount > 0){
@@ -207,7 +179,6 @@ public class CustomerService {
 
         }
         catch (Exception e)
->>>>>>> 3e8bda51a8d88fc9cf47e1dcce21baa102b70b2a
         {
 
             System.err.println("Got an exception!");

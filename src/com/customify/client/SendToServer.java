@@ -2,6 +2,8 @@ package com.customify.client;
 
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;

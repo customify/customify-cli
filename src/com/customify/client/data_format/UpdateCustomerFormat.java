@@ -23,12 +23,12 @@ public class UpdateCustomerFormat {
         this.lastName = lastName;
     }
 
-    public String customer_code() {
+    public String getCustomerCode() {
         return this.customerCode;
     }
 
-    public void setCustomerCode(String customer_codes) {
-        this.customerCode = customer_codes;
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
     }
 
     public String getEmail() {
@@ -49,13 +49,13 @@ public class UpdateCustomerFormat {
     public String getFirstName(){
         return this.firstName;
     }
-    public void setFirstName(String firName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     public String getLastName(){
         return this.lastName;
     }
-    public void setLastName(String lasName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 }

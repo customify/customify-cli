@@ -5,15 +5,6 @@ public class User {
     private String lasName;
     private String email;
     private String sessionStart;
-   private String appUser;
-
-    public String getAppUser() {
-        return appUser;
-    }
-
-    public void setAppUser(String appUser) {
-        this.appUser = appUser;
-    }
 
     public String getAppUser() {
         return appUser;

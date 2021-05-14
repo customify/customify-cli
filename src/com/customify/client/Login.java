@@ -61,22 +61,6 @@ public class Login {
             } else {
                 System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tSORRY CHECK YOUR PASSWORD OR EMAIL"+Colors.ANSI_RESET);
             }
-        }while(openLogin);
-    }
-
-    public void route(String appUser) throws Exception{
-        switch (appUser) {
-            case "BUSINESS_ADMIN":
-                BusinessAdminDashboard bussDashboard = new BusinessAdminDashboard(this.socket);
-                break;
-            case "EMPLOYEE":
-                EmployeeDashboard empDashboard = new EmployeeDashboard(this.socket);
-                break;
-            case "SUPER_ADMIN":
-                SuperAdminDashboard admDashboard = new SuperAdminDashboard(this.socket);
-                break;
-            default:
-                System.out.println("\t\t\tINVALID CHOICE");
         }
         while(openLogin);
     }

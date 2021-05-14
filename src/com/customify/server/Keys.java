@@ -18,9 +18,7 @@ public enum Keys {
     DISABLE_CUSTOMER,
     POINTS_BY_CUSTOMER_EMAIL,
     GET_ALL_COUPONS,
-<<<<<<< HEAD
-    UPDATE_CUSTOMER
-=======
+    UPDATE_CUSTOMER,
     GET_ALL_SALES,
     ADD_SALE,
     RENABLE_CUSTOMER,
@@ -30,5 +28,4 @@ public enum Keys {
     DELETE_PRODUCT,
     GET_ALL_CUSTOMERS,
     GET_CUSTOMER,
->>>>>>> 3e8bda51a8d88fc9cf47e1dcce21baa102b70b2a
 }
