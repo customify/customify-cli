@@ -8,26 +8,27 @@ import com.customify.client.Keys;
 
 public class UpdateCustomerFormat {
     private Keys key;
-    private String customer_code;
+    private String customerCode;
     private String email;
     private String firstName;
     private String lastName;
 
     public UpdateCustomerFormat() { }
 
-    public UpdateCustomerFormat( String customer_code,String email, String lastName, String firstName) {
-        this.customer_code = customer_code;
+    public UpdateCustomerFormat(Keys key, String customerCode, String email, String firstName, String lastName) {
+        this.key = key;
+        this.customerCode = customerCode;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.key = Keys.UPDATE_CUSTOMER;
-    }
-    public String customer_code() {
-        return this.customer_code;
     }
 
-    public void setCustomer_code(String customer_codes) {
-        this.customer_code = customer_codes;
+    public String getCustomerCode() {
+        return this.customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
     }
 
     public String getEmail() {
@@ -48,13 +49,13 @@ public class UpdateCustomerFormat {
     public String getFirstName(){
         return this.firstName;
     }
-    public void setFirstName(String firName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     public String getLastName(){
         return this.lastName;
     }
-    public void setLastName(String lasName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 }

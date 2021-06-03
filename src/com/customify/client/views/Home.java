@@ -14,7 +14,9 @@ import com.customify.client.views.customer.CustomerMainView;
 import java.net.Socket;
 import java.util.*;
 
-public class Home {
+public class
+
+Home {
 
     private Socket socket;
 

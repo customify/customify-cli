@@ -16,6 +16,10 @@ public class DisableCustomerFormat {
         private int createdById;
 
         public DisableCustomerFormat(){}
+        public DisableCustomerFormat(String code ,Keys key){
+            this.code = code;
+            this.key = key;
+        }
 
         public DisableCustomerFormat(String code , int createdById){
             this.code = code;

@@ -84,6 +84,7 @@ public class AuthService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(res.get(0));
 
+
             if(jsonNode.get("status").asInt() == 201)
             {
                 UserSession session =new UserSession();

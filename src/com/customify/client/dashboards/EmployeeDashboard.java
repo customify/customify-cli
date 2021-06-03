@@ -2,11 +2,12 @@ package com.customify.client.dashboards;
 
 import com.customify.client.Colors;
 import com.customify.client.utils.authorization.UserSession;
+import com.customify.client.views.customer.CustomerMainView;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.customify.client.views.Coupon;
 import com.customify.client.views.PointCountingView;
 import com.customify.client.views.ProductView;
 import com.customify.client.views.Sales;
-import com.customify.client.views.customer.CustomerMainView;
 
 import java.net.Socket;
 import java.util.Scanner;

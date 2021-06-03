@@ -116,6 +116,13 @@ public class UserSession {
 
     public boolean unSet() throws JsonProcessingException {
         boolean deleted = false;
+
+        if(loggedIn)
+        {
+            RemoveUser removeUser = new RemoveUser();
+            deleted = removeUser.isDeleted();
+        }else{
+
         if(loggedIn) {
             RemoveUser removeUser = new RemoveUser();
             deleted = removeUser.isDeleted();

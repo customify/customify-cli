@@ -2,85 +2,81 @@ package com.customify.client.views.customer;
 
 /**
  * @author Nshimiye Emmy
- * @role
- * this is the class to implement the update customer view to show interface of update customer
- * */
+ * @role this is the class to implement the update customer view to show interface of update customer
+ */
 
+import com.customify.client.Keys;
+import com.customify.client.SendToServer;
+import com.customify.client.data_format.GetCustomer;
 import com.customify.client.services.CustomerService;
 import com.customify.client.data_format.UpdateCustomerFormat;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.List;
 import java.util.Scanner;
 
 public class UpdateCustomerView {
     private Socket socket;
 
-    public UpdateCustomerView(){ }
+    public UpdateCustomerView() {
+    }
 
     public UpdateCustomerView(Socket socket) {
         this.socket = socket;
     }
 
     public void view() throws IOException, ClassNotFoundException {
-        boolean customerView = true;
         Scanner scan = new Scanner(System.in);
-        update:do{
-            System.out.println("\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> UPDATE-CUSTOMER---------------------");
-            System.out.println("\n       00. Return ");
-            System.out.println("        Enter  Customer Code:");
-            String customer_code = scan.nextLine();
-            String firstname = "";
-            String lastname = "";
-            String email = "";
+        CustomerService service = new CustomerService(this.socket);
+        System.out.println("\t\t\t------------------HOME >> CUSTOMER MANAGEMENT >> UPDATE-CUSTOMER---------------------");
+        System.out.println("\n\t\t\t\t\t\t  00. Return ");
+        System.out.println("\n\t\t\t\t\t\t  Enter  Customer Code:");
+        String customer_code = scan.nextLine();
 
-            if (customer_code.equals("00"))
-                break update;
-            if(customer_code.equals("1234")){
-                System.out.println("........Customer " +  customer_code+ " Details......");
-                System.out.println("1.First name is: Nshimiye");
-                System.out.println("2.Last name is: Emmy");
-                System.out.println("3.Email is: nshimiyee311@gmail.com \n");
+            List<String> response = service.get(new GetCustomer(Keys.GET_CUSTOMER, customer_code));
+            if (response != null) {
+                JsonNode jsonNode = new ObjectMapper().readTree(response.get(0));
+                System.out.println("\t\t\t............Customer " + jsonNode.get("code")+ " Details " + "..........");
+                System.out.println("\t\t\t\t\t\tFirst Name " + jsonNode.get("firstName"));
+                System.out.println("\t\t\t\t\t\tLast Name " + jsonNode.get("lastName"));
+                System.out.println("\t\t\t\t\t\tEmail " + jsonNode.get("email"));
+                //System.out.println("Code " + jsonNode.get("code"));
 
-                String choice = "";
-                while (!choice.equals("00")) {
-                    System.out.println("Enter your choice to Update or 00 to go back: ");
-                    choice = scan.nextLine();
+                UpdateCustomerFormat format = new UpdateCustomerFormat();
+                format.setKey(Keys.UPDATE_CUSTOMER);
 
-                    switch (choice) {
-                        case "1":
-                            System.out.println("Enter your first name");
-                            firstname = scan.nextLine();
-                            System.out.println("You have successfully Updated your first name to: " + firstname  );
-                            break;
-                        case "2":
-                            System.out.println("Enter your last name");
-                            lastname = scan.nextLine();
-                            System.out.println("You have successfully Updated your last name to: " + lastname  );
-                            break;
-                        case "3":
-                            System.out.println("Enter your email address");
-                            email = scan.nextLine();
-                            System.out.println("You have successfully Updated your email to: " + email);
-                            break;
-                        case "00":
-                            customerView = false;
-                            break;
+                System.out.println("\n\t\t\t\tEnter your first name to update:");
+                format.setFirstName(scan.nextLine());
 
-                        default:
-                            System.out.println("Invalid choice to update-Try again");
-                            break;
-                    }
-                }
+                System.out.println("\t\t\t\tEnter your last name to update:");
+                format.setLastName(scan.nextLine());
+
+                System.out.println("\t\t\t\tEnter your email address to update:");
+                format.setEmail(scan.nextLine());
+                format.setCustomerCode(jsonNode.get("code").asText());
+
+                SendToServer sendToServer = new SendToServer(new ObjectMapper().writeValueAsString(format), this.socket);
+
+                if (sendToServer.send()) {
+                    InputStream input = this.socket.getInputStream();
+                    ObjectInputStream inputStream = new ObjectInputStream(input);
+                    ObjectMapper mapper = new ObjectMapper();
+
+                    List<String> data = (List<String>) inputStream.readObject();
+                    System.out.println(data.get(0));
+
+                } else System.out.println("\t\tFAILED TO SEND TO SERVER");
 
             }
 
-            UpdateCustomerFormat format = new UpdateCustomerFormat(customer_code,email,lastname,firstname);
-            CustomerService customerService = new CustomerService(this.socket);
-            customerService.update(format);
-        }while(true);
+        }
     }
 
 
-}
+

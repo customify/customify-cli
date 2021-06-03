@@ -9,8 +9,12 @@ import com.customify.server.services.CustomerFeedbackService;
 import com.customify.server.Keys;
 
 //import com.customify.server.services.ProductService;
+
+import com.customify.server.services.CustomerService;
+
 import com.customify.server.services.SalesService;
 import com.customify.server.services.BusinessService;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customify.server.services.CouponService;
@@ -132,9 +136,15 @@ public class RequestHandler {
                 customer.renableCard(json_data);
                 couponService.getAllCoupons(json_data);
                 break;
+
+            case UPDATE_CUSTOMER:
+                customer.update(json_data);
+                break;
+
             case GET_FEATURES:
                 featureService.getAllFeature();
                 break;
+
             case GET_ALL_SALES:
 //                salesService.getAllSales();
                 break;

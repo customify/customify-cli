@@ -41,7 +41,6 @@ public class CustomerService {
         this.socket = socket;
     }
 
-
     /**
      * @author SAMUEL DUSHIMIMANA
      * @role
@@ -101,32 +100,47 @@ public class CustomerService {
      * @role
      * this service method is to update the customer in the database that means the server side
      * */
-    public void update() throws SQLException, IOException {
+    public void update(String json_data) throws SQLException, IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(json_data);
+        System.out.println(json_data);
 
-        OutputStream output = this.socket.getOutputStream();
-        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
+//        OutputStream output = this.socket.getOutputStream();
+//        ObjectOutputStream objectOutput =  new ObjectOutputStream(output);
 
-        Statement stmt = null;
-        Connection conn = null;
+        String response="";
 
         try {
-            conn = Db.getConnection();
+            Connection connection = Db.getConnection();
+            String sql = "UPDATE Customer SET email =?,first_name=?,last_name=? WHERE code =?";
 
-           // System.out.println("Creating statement...");
-            stmt = conn.createStatement();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,jsonNode.get("email").asText());
+            preparedStatement.setString(2,jsonNode.get("firstName").asText());
+            preparedStatement.setString(3,jsonNode.get("lastName").asText());
+            preparedStatement.setString(4,jsonNode.get("customerCode").asText());
 
-            String sql = "UPDATE customers SET customer_code = "+jsonNode.get("customer_code").asText()+",email = "+jsonNode.get("email").asText()+
-                    ",firstName="+jsonNode.get("firstName").asText()+",lastName="+jsonNode.get("lastName").asText()+", WHERE customer_code = "+jsonNode.get("customer_code").asText();
-
-            stmt.executeUpdate(sql);
-
-            stmt.close();
-            conn.close();
+            if(preparedStatement.executeUpdate() > 0){
+                System.out.println("Customer updated successf`ully");
+                response = "{ \"status\" : \"201\"}";
+            }
+            else {
+                System.out.println("Something went wrong and customer was not updated");
+                response = "{ \"status\" : \"400\"}";;
+            }
+            connection.close()                           ;
         }
         catch (Exception e){
+            response = "{ \"status\" : \"500\"}";
+            e.printStackTrace();
+        }
+        finally {
+            responseData.add(response);
+            this.output = socket.getOutputStream();
+            this.objectOutput = new CustomizedObjectOutputStream(this.output);
+            System.out.println("Response "+responseData.get(0));
+            objectOutput.writeObject(this.responseData);
 
         }
     }
