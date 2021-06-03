@@ -1,8 +1,13 @@
 package com.customify.client.views;
 
+import com.customify.client.Colors;
 import com.customify.client.Keys;
 import com.customify.client.services.ProductService;
 import com.customify.client.data_format.products.*;
+import com.customify.client.utils.authorization.UserSession;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.Date;
@@ -25,17 +30,15 @@ ProductView {
         Scanner reader = new Scanner(System.in);
         int choice;
 
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("\t\tPRODUCT MANAGEMENT");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("\t\t1.register product");
-        System.out.println("\t\t2.get all products");
-        System.out.println("\t\t3.get product by id");
-        System.out.println("\t\t4.update product");
-        System.out.println("\t\t5.Delete product");
-        System.out.println("\t\t00.back");
+        System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_CYAN + "HOME >> PRODUCT MANAGEMENT"+ Colors.ANSI_RESET+"\n");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t1.register product");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t2.get all products");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t3.get product by id");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t4.update product");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t5.Delete product");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t00.back");
 
-        System.out.print("\nEnter option:\t");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\t" + Colors.ANSI_GREEN +"Enter option:\t"+Colors.ANSI_RESET);
         choice = Integer.parseInt(reader.nextLine());
 
         switch (choice) {
@@ -61,31 +64,35 @@ ProductView {
     }
 
     public void createProduct() throws Exception {
+        JsonNode session = new ObjectMapper().readTree(new UserSession().getUserJsonObject());
+
         Scanner scanner = new Scanner(System.in);
         ProductFormat newProduct = new ProductFormat();
 
-        System.out.println("Enter product name:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product name: ");
         newProduct.setName(scanner.nextLine());
 
-        System.out.println("Enter business_id:");
-        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+//        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter business id: ");
+//        newProduct.setBusiness_id(Integer.parseInt(scanner.nextLine()));
+        newProduct.setBusiness_id(session.get("business_id").asInt());
 
-        System.out.println("Enter product price:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product price: ");
         newProduct.setPrice(Float.parseFloat(scanner.nextLine()));
 
-        System.out.println("Enter quantity you have:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter quantity you have: ");
         newProduct.setQuantity(Integer.parseInt(scanner.nextLine()));
 
-        System.out.println("Enter product description:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product description: ");
         newProduct.setDescription(scanner.nextLine());
 
-        System.out.println("Enter points to bind with:");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter points to bind with: ");
         newProduct.setBondedPoints(Double.parseDouble(scanner.nextLine()));
 
-        System.out.println("Who is registering this product?");
-        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+//        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tWho is registering this product: ");
+//        newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
+        newProduct.setRegistered_by(session.get("id").asInt());
 
-        newProduct.setCreatedAt("2021/02/04");
+        newProduct.setCreatedAt(LocalDate.now().toString());
 
         ProductService productService = new ProductService(this.socket);
         productService.addNewProduct(newProduct);
@@ -120,11 +127,14 @@ ProductView {
 //        System.out.println("You are going to update the above product");
 
         ProductFormat newProduct = new ProductFormat();
+        ProductService productService = new ProductService(this.socket);
 
         newProduct.setKey(UPDATE_PRODUCT);
 
         System.out.println("Enter Product Id: ");
         newProduct.setId(Integer.parseInt(scanner.nextLine()));
+
+        productService.getProductById(newProduct.getId());
 
         System.out.println("Enter NEW product code");
         newProduct.setProductCode(Long.parseLong(scanner.nextLine()));
@@ -151,10 +161,11 @@ ProductView {
         newProduct.setRegistered_by(Integer.parseInt(scanner.nextLine()));
 
 //        LocalDate myObj = LocalDate.now();
-        newProduct.setCreatedAt("2021-02-04");
 
-        ProductService productService = new ProductService(this.socket);
-       //productService.updateProduct(newProduct);
+        newProduct.setCreatedAt(LocalDate.now().toString());
+
+
+        productService.updateProduct(newProduct);
 
     }
 
@@ -182,12 +193,9 @@ ProductView {
     public void deleteProduct() throws Exception{
         Scanner scanner = new Scanner(System.in);
         ProductFormat oldProduct = new ProductFormat();
-        //set key for deleting a product to send to the server
         oldProduct.setKey(Keys.DELETE_PRODUCT);
-        System.out.println("Enter product Code:");
-        //set key for one product code deletion
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t\t\t\tEnter product Code: ");
         oldProduct.setProductCode(Long.parseLong(scanner.nextLine()));
         ProductService productService = new ProductService(this.socket);
-//        productService.deleteProduct(oldProduct);
-    }
+        productService.deleteProduct(oldProduct);}
 }

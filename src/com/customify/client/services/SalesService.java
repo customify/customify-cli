@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class SalesService {
+
     private final Socket socket;
 
     public SalesService(Socket socket) {
@@ -45,7 +46,6 @@ public class SalesService {
             String jsonData = objectMapper.writeValueAsString(saleDataFormat);
             SendToServer sendToServer = new SendToServer(jsonData,this.socket);
 
-            System.out.println(jsonData);
 
             if(sendToServer.send()){
                 this.handleCreateSale();
@@ -64,6 +64,7 @@ public class SalesService {
              ObjectMapper objectMapper = new ObjectMapper();
 
             List res =(List) objectInputStream.readObject();
+
 
 
             Iterator itr = res.iterator();
@@ -87,9 +88,22 @@ public class SalesService {
             ioException.printStackTrace();
         }
     }
-   private void handleCreateSale(){
-       System.out.println(Colors.ANSI_BLUE);
-       System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\tProduct sold!");
-       System.out.println(Colors.ANSI_RESET);
+
+   private void handleCreateSale()  {
+        try{
+            InputStream inputStream = this.socket.getInputStream();
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
+            String res =(String) objectInputStream.readObject();
+
+            System.out.println("\n");
+            System.out.println(Colors.ANSI_BLUE+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+res+Colors.ANSI_RESET);
+            System.out.println("\n");
+
+        }catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+
    }
+
 }

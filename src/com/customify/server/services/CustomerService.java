@@ -201,7 +201,8 @@ public class CustomerService {
 
         Connection connection = Db.getConnection();
         String query = "SELECT * FROM Customer WHERE code = \"" + received_code +"\"";
-        String firstName, lastName, email, code,customerId;
+        String firstName, lastName, email, code,customerId,stateDesc = "";
+        int state;
 
 
         String json = "";
@@ -221,7 +222,15 @@ public class CustomerService {
                 lastName = rs.getString("last_name");
                 email = rs.getString("email");
                 code = rs.getString("code");
-                GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200);
+                state = rs.getInt("disable");
+                if(state == 0){
+                    stateDesc = "INACTIVE";
+                }
+                else if(state == 1){
+                    stateDesc = "ACTIVE";
+                }
+
+                GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200, stateDesc);
                 json = objectMapper.writeValueAsString(format);
                 responseData.add(json);
             }
@@ -243,9 +252,8 @@ public class CustomerService {
         ObjectMapper objectMapper = new ObjectMapper();
         Connection connection = Db.getConnection();
         String query = "SELECT * FROM Customer";
-        String firstName, lastName, email, code,customerId;
-
-
+        String firstName, lastName, email, code,customerId,stateDesc = "";
+        int state;
         String json = "";
 
         try {
@@ -263,8 +271,18 @@ public class CustomerService {
                     lastName = rs.getString("last_name");
                     email = rs.getString("email");
                     code = rs.getString("code");
-                    GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200);
+                    state = rs.getInt("disable");
+
+                    if(state == 0){
+                        stateDesc = "INACTIVE";
+                    }
+                    else if(state == 1){
+                        stateDesc = "ACTIVE";
+                    }
+
+                    GetAll format = new GetAll(firstName, lastName, email, code, customerId, 200, stateDesc);
                     json = objectMapper.writeValueAsString(format);
+
                     responseData.add(json);
                 }
 

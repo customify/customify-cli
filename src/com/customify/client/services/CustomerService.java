@@ -132,17 +132,18 @@ public class CustomerService {
                     System.out.println(Colors.ANSI_PURPLE);
                     System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t          CARD WAS SUCCESSFULLY DE-ACTIVATED!!!!");
                     System.out.println(Colors.ANSI_RESET);
-                } else if (jsonNode.get("status").asInt() == 400) {
+                } else if (jsonNode.get("status").asInt() == 404) {
                     System.out.println(Colors.ANSI_PURPLE);
-                    System.out.println("\t\t\t\t\t\t\t\t\t THE CUSTOMER DOESN'T EXIST");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t        THE CUSTOMER DOESN'T EXIST");
                     System.out.println(Colors.ANSI_RESET);
-                } else if (jsonNode.get("status").asInt() == 500) {
+                } else if (jsonNode.get("status").asInt() == 444) {
                     System.out.println(Colors.ANSI_PURPLE);
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t  SYSTEM ERROR OCCURRED");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t        NO RESPONSE");
                     System.out.println(Colors.ANSI_RESET);
-                } else {
+                }
+                else {
                     System.out.println(Colors.ANSI_PURPLE);
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t   UNKNOWN ERROR");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t        UNKNOWN CODE");
                     System.out.println(Colors.ANSI_RESET);
                 }
             }
@@ -221,7 +222,7 @@ public class CustomerService {
 
 
             } catch (Exception e) {
-                System.out.println("RESPONSE ERROR HERE" + e.getMessage());
+                System.out.println("RESPONSE ERROR" + e.getMessage());
             }
         }
         return res;
@@ -254,4 +255,3 @@ public class CustomerService {
         return res;
     }
 }
-

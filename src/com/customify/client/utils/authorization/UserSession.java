@@ -37,6 +37,7 @@ public class UserSession {
 
 
     public boolean setEmployee(String json_object) throws JsonProcessingException {
+
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(json_object);
         String email = jsonNode.get("email").asText();
@@ -45,6 +46,7 @@ public class UserSession {
         String firName = jsonNode.get("firName").asText();
         String lasName = jsonNode.get("lasName").asText();
         String id = jsonNode.get("id").asText();
+        String createdAt =  jsonNode.get("createdAt").asText();
 
 
         EmployeeUser user = new EmployeeUser();
@@ -55,7 +57,7 @@ public class UserSession {
         user.setLasName(lasName);
         user.setTitle(title);
         user.setId(id);
-
+        user.setCreatedAt(createdAt);
 
         SaveUser savedUser = new SaveUser("EMPLOYEE",user);
         setUserJsonObject(json_object);
@@ -114,16 +116,19 @@ public class UserSession {
 
     public boolean unSet() throws JsonProcessingException {
         boolean deleted = false;
+
         if(loggedIn)
         {
             RemoveUser removeUser = new RemoveUser();
             deleted = removeUser.isDeleted();
         }else{
+
+        if(loggedIn) {
+            RemoveUser removeUser = new RemoveUser();
+            deleted = removeUser.isDeleted();
+        } else {
             System.out.println("\t\t\tNO  SESSION REGISTERED");
         }
         return deleted;
     }
-
-
-
 }
